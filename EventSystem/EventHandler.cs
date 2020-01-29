@@ -6,18 +6,18 @@ namespace VDFramework.EventSystem
 	internal abstract class EventHandler : IComparable<EventHandler>
 #pragma warning restore 660,661
 	{
-		public Delegate Callback = null;
-		public int PriorityOrder = 0;
+		protected readonly Delegate Callback = null;
+		private readonly int priorityOrder = 0;
 
 		protected EventHandler(Delegate callback, int priorityOrder)
 		{
 			Callback = callback;
-			PriorityOrder = priorityOrder;
+			this.priorityOrder = priorityOrder;
 		}
 
 		public static bool operator ==(EventHandler handler, Delegate callback)
 		{
-			return handler is null && handler.Callback == callback;
+			return !(handler is null) && handler.Callback == callback;
 		}
 
 		public static bool operator !=(EventHandler handler, Delegate callback)
@@ -28,7 +28,7 @@ namespace VDFramework.EventSystem
 		public int CompareTo(EventHandler other)
 		{
 			// Check if they have a higher priority than us. Used for sorting the list.
-			return other.PriorityOrder.CompareTo(PriorityOrder);
+			return other.priorityOrder.CompareTo(priorityOrder);
 		}
 	}
 

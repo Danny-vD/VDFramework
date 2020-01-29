@@ -8,7 +8,7 @@ namespace VDFramework.EventSystem
 
 	public class EventManager : Singleton<EventManager>
 	{
-		private Dictionary<Type, List<EventHandler>> eventHandlersPerEventType =
+		private readonly Dictionary<Type, List<EventHandler>> eventHandlersPerEventType =
 			new Dictionary<Type, List<EventHandler>>();
 
 		/////////////////////////////////////RaiseEvent/////////////////////////////////////
@@ -16,14 +16,13 @@ namespace VDFramework.EventSystem
 		{
 			List<EventHandler> handlers = GetEventHandlers<TEvent>();
 
-			if (handlers.Count == 0)
+			if (handlers.Count == 0 || eventToRaise.Consumed)
 			{
 				return;
-			}
+			}			
 
 			// Copy so that we can add and remove from the original list without editing the list we loop through
-			foreach (EventHandler handler in new List<EventHandler>(handlers)
-				.TakeWhile(handler => handler == null || !eventToRaise.Consumed))
+			foreach (EventHandler handler in new List<EventHandler>(handlers).Where(handler => handler != null))
 			{
 				switch (handler)
 				{
