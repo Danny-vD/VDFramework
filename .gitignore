@@ -6,5 +6,5 @@
 obj/
 
 # Solution and project
-VDFramework.sln
-VDFramework.csproj
+*.sln
+*.csproj
