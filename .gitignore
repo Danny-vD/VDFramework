@@ -1,0 +1,10 @@
+# IDE auto-generated files
+.idea/
+.vs/
+
+# Auto-generated files
+obj/
+
+# Solution and project
+VDFramework.sln
+VDFramework.csproj
