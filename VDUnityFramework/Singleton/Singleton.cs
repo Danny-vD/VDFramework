@@ -7,26 +7,6 @@ namespace VDUnityFramework.Singleton
 	
 	public abstract class Singleton<T> : BetterMonoBehaviour where T : Singleton<T>
 	{
-		protected Singleton()
-		{
-			if (!IsInitialized)
-			{
-				Instance = this as T;
-			}
-			else
-			{
-				throw new SingletonViolationException();
-			}
-		}
-
-		~Singleton()
-		{
-			if (instance == this)
-			{
-				instance = null;
-			}
-		}
-
 		private static T instance;
 
 		public static T Instance
@@ -47,13 +27,50 @@ namespace VDUnityFramework.Singleton
 		public static T InstanceIfInitialized => IsInitialized ? instance : null;
 
 		public static bool IsInitialized => instance != null;
+		
+		protected virtual void Awake()
+		{
+			if (!IsInitialized)
+			{
+				Instance = this as T;
+			}
+			else
+			{
+				DestroyThis(false);
+				throw new SingletonViolationException();
+			}
+		}
+
+		protected virtual void OnDestroy()
+		{
+			if (instance == this)
+			{
+				instance = null;
+			}
+		}
 
 		/// <summary>
 		/// Sets the instance of the singleton to null.
 		/// </summary>
 		public void DestroyInstance()
 		{
-			instance = null;
+			DestroyThis(true);
+		}
+		
+		private void DestroyThis(bool destroyInstance)
+		{
+			if (destroyInstance)
+			{
+				instance = null;
+			}
+			
+			if (gameObject.name.ToLower().Contains("singleton"))
+			{
+				Destroy(gameObject);
+				return;
+			}
+
+			Destroy(this);
 		}
 	}
 }
