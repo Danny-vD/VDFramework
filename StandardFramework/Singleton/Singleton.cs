@@ -10,26 +10,6 @@
 	public abstract class Singleton<T>
 		where T : Singleton<T>, new()
 	{
-		protected Singleton()
-		{
-			if (!IsInitialized)
-			{
-				Instance = this as T;
-			}
-			else
-			{
-				throw new SingletonViolationException();
-			}
-		}
-
-		~Singleton()
-		{
-			if (instance == this)
-			{
-				instance = null;
-			}
-		}
-
 		private static T instance;
 
 		public static T Instance
@@ -51,6 +31,26 @@
 
 		public static bool IsInitialized => instance != null;
 
+		protected Singleton()
+		{
+			if (!IsInitialized)
+			{
+				Instance = this as T;
+			}
+			else
+			{
+				throw new SingletonViolationException();
+			}
+		}
+
+		~Singleton()
+		{
+			if (instance == this)
+			{
+				instance = null;
+			}
+		}
+		
 		/// <summary>
 		/// Sets the instance of the singleton to null.
 		/// </summary>

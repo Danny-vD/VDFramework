@@ -19,7 +19,7 @@ namespace VDUnityFramework.UnityExtensions
 
 		public static List<GameObject> ConvertToGameObjectList<TItem>(this List<TItem> list) where TItem : Component
 		{
-			List<GameObject> gameObjects = new List<GameObject>(list.Count);
+			List<GameObject> gameObjects = new List<GameObject>(list.Count) {Capacity = list.Count};
 
 			for (int i = 0; i < list.Count; ++i)
 			{

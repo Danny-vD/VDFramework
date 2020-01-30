@@ -12,7 +12,7 @@ namespace VDUnityFramework.BaseClasses
 			{
 				if (cachedTransform == null)
 				{
-					cachedTransform = transform;
+					cachedTransform = base.transform;
 				}
 
 				return cachedTransform;

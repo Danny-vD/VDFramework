@@ -6,7 +6,7 @@ namespace VDUnityFramework.Utility
 	{
 		public static T CreateInstance()
 		{
-			GameObject singletonContainer = new GameObject($"{typeof(T)} Singleton");
+			GameObject singletonContainer = new GameObject($"{nameof(T)} Singleton");
 			return singletonContainer.AddComponent<T>();
 		}
 	}
