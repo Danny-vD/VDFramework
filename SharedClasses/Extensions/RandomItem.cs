@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace VDFramework.Extensions
 {
@@ -6,42 +7,32 @@ namespace VDFramework.Extensions
 	{
 		private static readonly System.Random random = new System.Random();
 
-		public static TItem GetRandomItem<TItem>(this TItem[] array)
+		public static TItem GetRandomItem<TItem>(this IEnumerable<TItem> collection)
 		{
-			return array.GetRandomItem(out _);
+			return collection.GetRandomItem(out _);
 		}
 
-		public static TItem GetRandomItem<TItem>(this TItem[] array, out int randomIndex)
+		public static TItem GetRandomItem<TItem>(this IEnumerable<TItem> collection, out int randomIndex)
 		{
-			if (array.Length == 0)
+			if (collection.Any())
 			{
 				randomIndex = -1;
 				return default;
 			}
 
-			randomIndex = random.Next(array.Length);
+			randomIndex = random.Next(collection.Count());
 
-			return array[randomIndex];
+			return collection.ElementAt(randomIndex);
 		}
 
-		public static TItem GetRandomItem<TItem>(this List<TItem> list)
+		public static IEnumerable<TItem> RandomSort<TItem>(this IEnumerable<TItem> collection)
 		{
-			return list.GetRandomItem(out _);
+			List<TItem> list = collection.ToList();
+			list.RandomSort();
+
+			return list.ToArray();
 		}
-
-		public static TItem GetRandomItem<TItem>(this List<TItem> list, out int randomIndex)
-		{
-			if (list.Count == 0)
-			{
-				randomIndex = -1;
-				return default;
-			}
-
-			randomIndex = random.Next(list.Count);
-
-			return list[randomIndex];
-		}
-
+		
 		public static List<TItem> RandomSort<TItem>(this List<TItem> list)
 		{
 			if (list.Count == 0)
