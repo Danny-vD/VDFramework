@@ -1,13 +1,10 @@
 ﻿using System.Collections.Generic;
 
+// ReSharper disable once CheckNamespace
 namespace VDFramework.Extensions
 {
-	public static class ListExtensions
+	internal static class ListExtensions
 	{
-		public static bool CountIsZeroOrOne<TItem>(this List<TItem> list)
-		{
-			return (list.Count == 0 || list.Count == 1);
-		}
 
 		/// <summary>
 		/// Resize the list so that it holds a <see cref="newSize"/> amount of <see cref="TItem"/>

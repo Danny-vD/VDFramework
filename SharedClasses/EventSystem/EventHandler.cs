@@ -1,5 +1,6 @@
 ﻿using System;
 
+// ReSharper disable once CheckNamespace
 namespace VDFramework.EventSystem
 {
 #pragma warning disable 660,661

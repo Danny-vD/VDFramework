@@ -1,6 +1,7 @@
-﻿namespace VDFramework.EventSystem
+﻿// ReSharper disable once CheckNamespace
+namespace VDFramework.EventSystem
 {
-	public class VDEvent
+	public abstract class VDEvent
 	{
 		public bool Consumed { get; private set; }
 

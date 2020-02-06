@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
+// ReSharper disable once CheckNamespace
 namespace VDFramework.Extensions
 {
-	public static class RandomItem
+	internal static class RandomItem
 	{
 		private static readonly System.Random random = new System.Random();
 
@@ -14,13 +15,15 @@ namespace VDFramework.Extensions
 
 		public static TItem GetRandomItem<TItem>(this IEnumerable<TItem> collection, out int randomIndex)
 		{
-			if (collection.Any())
+			int count = collection.Count();
+			
+			if (count == 0)
 			{
 				randomIndex = -1;
 				return default;
 			}
 
-			randomIndex = random.Next(collection.Count());
+			randomIndex = random.Next(count);
 
 			return collection.ElementAt(randomIndex);
 		}
