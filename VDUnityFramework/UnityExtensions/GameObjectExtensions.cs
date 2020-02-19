@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace VDUnityFramework.UnityExtensions
+namespace VDFramework.UnityExtensions
 {
 	public static class GameObjectExtensions
 	{
@@ -12,6 +12,13 @@ namespace VDUnityFramework.UnityExtensions
 			return gameObject.TryGetComponent(out TComponent component)
 				? component
 				: gameObject.AddComponent<TComponent>();
+		}
+
+		public static TComponent EnsureComponent<TComponent>(this Component monoBehaviour) where TComponent : Component
+		{
+			return monoBehaviour.gameObject.TryGetComponent(out TComponent component)
+				? component
+				: monoBehaviour.gameObject.AddComponent<TComponent>();
 		}
 	}
 }

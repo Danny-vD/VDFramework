@@ -1,10 +1,8 @@
 ﻿using VDFramework.Exceptions;
+using VDFramework.Utility;
 
-namespace VDUnityFramework.Singleton
+namespace VDFramework.Singleton
 {
-	using BaseClasses;
-	using Utility;
-	
 	public abstract class Singleton<T> : BetterMonoBehaviour where T : Singleton<T>
 	{
 		private static T instance;
@@ -35,7 +33,7 @@ namespace VDUnityFramework.Singleton
 				Instance = this as T;
 			}
 			else
-			{
+			{	
 				DestroyThis(false);
 				throw new SingletonViolationException();
 			}

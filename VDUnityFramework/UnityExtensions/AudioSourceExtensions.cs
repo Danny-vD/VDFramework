@@ -1,30 +1,16 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-namespace VDUnityFramework.UnityExtensions
+namespace VDFramework.UnityExtensions
 {
 	public static class AudioSourceExtensions
 	{
-		public static AudioSource GetFirstNotPlaying(this List<AudioSource> list)
+		public static AudioSource GetFirstNotPlaying(this IEnumerable<AudioSource> collection)
 		{
-			if (list.Count == 0)
-			{
-				return null;
-			}
+			int count = collection.Count();
 
-			for (int i = 0; i < list.Count; ++i)
-			{
-				AudioSource audioSource = list[i];
-
-				if (audioSource.isPlaying)
-				{
-					continue;
-				}
-
-				return audioSource;
-			}
-
-			return null;
+			return count == 0 ? null : collection.FirstOrDefault(audioSource => !audioSource.isPlaying);
 		}
 	}
 }

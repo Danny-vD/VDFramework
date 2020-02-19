@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 
-namespace VDUnityFramework.BaseClasses
+namespace VDFramework
 {
+	/// <summary>
+	/// A 'improved' <see cref="MonoBehaviour"/> which caches often used properties
+	/// </summary>
 	public class BetterMonoBehaviour : MonoBehaviour
 	{
 		private Transform cachedTransform;

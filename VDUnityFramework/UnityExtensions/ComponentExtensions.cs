@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace VDUnityFramework.UnityExtensions
+namespace VDFramework.UnityExtensions
 {
 	public static class ComponentExtensions
 	{

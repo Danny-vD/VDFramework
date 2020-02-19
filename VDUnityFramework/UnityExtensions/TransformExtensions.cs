@@ -1,6 +1,6 @@
 ﻿﻿using UnityEngine;
 
- namespace VDUnityFramework.UnityExtensions
+ namespace VDFramework.UnityExtensions
 {
 	public static class TransformExtensions
 	{

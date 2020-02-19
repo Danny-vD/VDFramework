@@ -19,7 +19,7 @@ namespace VDFramework.EventSystem
 			if (handlers.Count == 0 || eventToRaise.Consumed)
 			{
 				return;
-			}			
+			}
 
 			// Copy so that we can add and remove from the original list without editing the list we loop through
 			foreach (EventHandler handler in new List<EventHandler>(handlers).Where(handler => handler != null))
@@ -84,7 +84,7 @@ namespace VDFramework.EventSystem
 
 			eventHandlers.Sort();
 		}
-		
+
 		/////////////////////////////////////RemoveListenerInternal/////////////////////////////////////
 		private void RemoveListenerInternal<TEvent>(Delegate listener) where TEvent : VDEvent
 		{

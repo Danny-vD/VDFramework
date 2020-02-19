@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
-namespace VDUnityFramework.Utility
+namespace VDFramework.Utility
 {
 	public static class InstanceCreator<T> where T: Component
 	{
 		public static T CreateInstance()
 		{
-			GameObject singletonContainer = new GameObject($"{nameof(T)} Singleton");
+			GameObject singletonContainer = new GameObject($"{typeof(T)}");
 			return singletonContainer.AddComponent<T>();
 		}
 	}
