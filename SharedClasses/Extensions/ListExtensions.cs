@@ -3,7 +3,7 @@
 // ReSharper disable once CheckNamespace
 namespace VDFramework.Extensions
 {
-	internal static class ListExtensions
+	public static class ListExtensions
 	{
 
 		/// <summary>

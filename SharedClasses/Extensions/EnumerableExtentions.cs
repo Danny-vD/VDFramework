@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace VDFramework.Extensions
 {
-	internal static class EnumerableExtentions
+	public static class EnumerableExtentions
 	{
 		public static bool CountIsZeroOrOne<TItem>(this IEnumerable<TItem> collection)
 		{

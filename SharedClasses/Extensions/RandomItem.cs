@@ -4,7 +4,7 @@ using System.Linq;
 // ReSharper disable once CheckNamespace
 namespace VDFramework.Extensions
 {
-	internal static class RandomItem
+	public static class RandomItem
 	{
 		private static readonly System.Random random = new System.Random();
 
