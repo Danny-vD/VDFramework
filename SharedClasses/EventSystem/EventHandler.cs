@@ -1,5 +1,7 @@
 ﻿using System;
 
+#pragma warning disable 660,661 //Did not override gethashcode
+
 namespace VDFramework.EventSystem
 {
 	internal abstract class EventHandler : IComparable<EventHandler>

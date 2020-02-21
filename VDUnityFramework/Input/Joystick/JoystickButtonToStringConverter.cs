@@ -1,29 +1,23 @@
-﻿﻿using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using Enums;
 
-namespace JoystickData
+namespace VDFramework.Input
 {
 	public static class JoystickButtonToStringConverter
 	{
-		private static readonly Dictionary<JoystickButton, string> stringPerButton = new Dictionary<JoystickButton, string>()
-		{
-			{JoystickButton.HorizontalAxis, "Horizontal_Joystick_"},
-			{JoystickButton.VerticalAxis, "Vertical_Joystick_"},
-			{JoystickButton.RightShoulderButton, "RShoulderButton_Joystick_"},
-		};
+		public static Dictionary<JoystickButton, string> StringPerButton = new Dictionary<JoystickButton, string>();
 
-		public static string GetString(JoystickButton buttonName)
+		internal static string GetString(JoystickButton buttonName)
 		{
-			if (!stringPerButton.TryGetValue(buttonName, out string button))
+			if (!StringPerButton.TryGetValue(buttonName, out string button))
 			{
-				throw new InvalidEnumArgumentException($"There is no button assigned for {buttonName}");
+				throw new InvalidEnumArgumentException($"There is no string assigned for {buttonName}!\n Assign one through JoystickButtonToStringConverter");
 			}
 			
 			return button;
 		}
 
-		public static string GetString(JoystickButton buttonName, uint joystickNumber)
+		internal static string GetString(JoystickButton buttonName, uint joystickNumber)
 		{
 			return $"{GetString(buttonName)}{joystickNumber}";
 		}

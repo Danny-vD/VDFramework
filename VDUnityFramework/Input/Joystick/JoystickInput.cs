@@ -1,11 +1,10 @@
-﻿﻿using System.Collections.Generic;
-using Enums;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using VDFramework.Extensions;
 using VDFramework.Singleton;
-using StringConverter = JoystickData.JoystickButtonToStringConverter;
+using StringConverter = VDFramework.Input.JoystickButtonToStringConverter;
 
-namespace JoystickData
+namespace VDFramework.Input
 {
 	public static class JoystickInput
 	{
@@ -21,10 +20,10 @@ namespace JoystickData
 		public static Vector3 GetAxes(uint joystickNumber)
 		{
 			float horizontalAxis =
-				Input.GetAxisRaw(
+				UnityEngine.Input.GetAxisRaw(
 					StringConverter.GetString(JoystickButton.HorizontalAxis, joystickNumber));
 			float verticalAxis =
-				Input.GetAxisRaw(
+				UnityEngine.Input.GetAxisRaw(
 					StringConverter.GetString(JoystickButton.VerticalAxis, joystickNumber));
 
 			return new Vector3(horizontalAxis, 0.0f, verticalAxis);
@@ -53,7 +52,7 @@ namespace JoystickData
 
 		public static bool GetButton(uint joystickNumber, JoystickButton button)
 		{
-			return Input.GetAxis(
+			return UnityEngine.Input.GetAxis(
 					   StringConverter.GetString(button, joystickNumber)) > 0;
 		}
 
@@ -68,8 +67,12 @@ namespace JoystickData
 
 			public static int JoystickCount => buttonDataPerJoystick.Count;
 
-			// ReSharper disable once MemberCanBeMadeStatic.Local
-			//Justification: Needed a non-static to be able to create a singleton instance
+			protected override void Awake()
+			{
+				base.Awake();
+				hideFlags = HideFlags.HideInHierarchy | HideFlags.HideInInspector;
+			}
+
 			public bool IsButtonPressedLastFrame(uint joystickNumber, JoystickButton button)
 			{
 				return EnsureKeyIsPresent(joystickNumber, button);
