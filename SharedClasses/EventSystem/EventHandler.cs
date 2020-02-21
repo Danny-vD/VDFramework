@@ -1,11 +1,8 @@
 ﻿using System;
 
-// ReSharper disable once CheckNamespace
 namespace VDFramework.EventSystem
 {
-#pragma warning disable 660,661
 	internal abstract class EventHandler : IComparable<EventHandler>
-#pragma warning restore 660,661
 	{
 		protected readonly Delegate Callback = null;
 		private readonly int priorityOrder = 0;

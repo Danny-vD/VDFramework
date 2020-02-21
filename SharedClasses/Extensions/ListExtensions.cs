@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
 
-// ReSharper disable once CheckNamespace
 namespace VDFramework.Extensions
 {
 	public static class ListExtensions
 	{
-
 		/// <summary>
 		/// Resize the list so that it holds a <see cref="newSize"/> amount of <see cref="TItem"/>
 		/// <para></para>(will also resize the underlaying array)

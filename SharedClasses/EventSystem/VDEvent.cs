@@ -1,5 +1,4 @@
-﻿// ReSharper disable once CheckNamespace
-namespace VDFramework.EventSystem
+﻿namespace VDFramework.EventSystem
 {
 	public abstract class VDEvent
 	{

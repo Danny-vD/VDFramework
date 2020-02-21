@@ -3,7 +3,7 @@
 namespace VDFramework
 {
 	/// <summary>
-	/// A 'improved' <see cref="MonoBehaviour"/> which caches often used properties
+	/// An 'improved' <see cref="MonoBehaviour"/> which caches often used properties
 	/// </summary>
 	public class BetterMonoBehaviour : MonoBehaviour
 	{

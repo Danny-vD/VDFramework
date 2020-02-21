@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace VDFramework.Utility
+namespace VDFramework.Singleton
 {
-	public static class InstanceCreator<T> where T: Component
+	public static class SingletonInstanceCreator<T> where T : Component
 	{
 		public static T CreateInstance()
 		{

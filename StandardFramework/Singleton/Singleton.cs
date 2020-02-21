@@ -1,6 +1,5 @@
 ﻿namespace VDFramework.Singleton
 {
-	using Utility;
 	using Exceptions;
 
 	/// <summary>
@@ -19,7 +18,7 @@
 				// ReSharper disable once ConvertIfStatementToNullCoalescingExpression
 				if (instance == null)
 				{
-					instance = InstanceCreator<T>.CreateInstance();
+					instance = SingletonInstanceCreator<T>.CreateInstance();
 				}
 
 				return instance;

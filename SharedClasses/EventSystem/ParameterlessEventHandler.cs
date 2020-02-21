@@ -1,6 +1,5 @@
 ﻿using System;
 
-// ReSharper disable once CheckNamespace
 namespace VDFramework.EventSystem
 {
 	internal class ParameterlessEventHandler : EventHandler
