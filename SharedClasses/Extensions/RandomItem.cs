@@ -6,7 +6,6 @@ namespace VDFramework.Extensions
 	public static class RandomItem
 	{
 		private static readonly System.Random random = new System.Random();
-		private static readonly bool[] boolValues = {true, false};
 
 		public static TItem GetRandomItem<TItem>(this IEnumerable<TItem> collection)
 		{
@@ -56,11 +55,6 @@ namespace VDFramework.Extensions
 			}
 
 			return list;
-		}
-
-		public static bool RandomBool()
-		{
-			return boolValues.GetRandomItem();
 		}
 	}
 }
