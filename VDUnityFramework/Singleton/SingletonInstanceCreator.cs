@@ -6,7 +6,7 @@ namespace VDFramework.Singleton
 	{
 		public static T CreateInstance()
 		{
-			GameObject singletonContainer = new GameObject($"{typeof(T)} singleton");
+			GameObject singletonContainer = new GameObject($"{typeof(T).Name} singleton");
 			return singletonContainer.AddComponent<T>();
 		}
 	}
