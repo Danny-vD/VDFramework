@@ -38,7 +38,7 @@ namespace VDFramework.Extensions
 
 		public static List<TItem> RandomSort<TItem>(this List<TItem> list)
 		{
-			if (list.Count == 0)
+			if (list.CountIsZeroOrOne())
 			{
 				return list;
 			}

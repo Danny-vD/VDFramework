@@ -1,6 +1,6 @@
-﻿﻿using UnityEngine;
+﻿using UnityEngine;
 
- namespace VDFramework.UnityExtensions
+namespace VDFramework.UnityExtensions
 {
 	public static class TransformExtensions
 	{

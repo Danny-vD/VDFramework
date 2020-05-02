@@ -1,6 +1,4 @@
-﻿﻿using System.Collections.Generic;
-
-namespace VDFramework.Extensions
+﻿namespace VDFramework.Extensions
 {
 	public static class StringExtentions
 	{

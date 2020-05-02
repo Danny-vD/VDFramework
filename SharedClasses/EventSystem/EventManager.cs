@@ -1,18 +1,18 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using VDFramework.Singleton;
 
 namespace VDFramework.EventSystem
 {
-	using Singleton;
-
 	public class EventManager : Singleton<EventManager>
 	{
 		private readonly Dictionary<Type, List<EventHandler>> eventHandlersPerEventType =
 			new Dictionary<Type, List<EventHandler>>();
 
 		/////////////////////////////////////RaiseEvent/////////////////////////////////////
-		public void RaiseEvent<TEvent>(TEvent eventToRaise) where TEvent : VDEvent
+		public void RaiseEvent<TEvent>(TEvent eventToRaise)
+			where TEvent : VDEvent
 		{
 			List<EventHandler> handlers = GetEventHandlers<TEvent>();
 
@@ -24,6 +24,11 @@ namespace VDFramework.EventSystem
 			// Copy so that we can add and remove from the original list without editing the list we loop through
 			foreach (EventHandler handler in new List<EventHandler>(handlers).Where(handler => handler != null))
 			{
+				if (eventToRaise.Consumed)
+				{
+					return;
+				}
+				
 				switch (handler)
 				{
 					case EventHandler<TEvent> eventHandler:
@@ -37,14 +42,16 @@ namespace VDFramework.EventSystem
 		}
 
 		/////////////////////////////////////AddListener/////////////////////////////////////
-		public void AddListener<TEvent>(Action<TEvent> listener, int priorityOrder = 0) where TEvent : VDEvent
+		public void AddListener<TEvent>(Action<TEvent> listener, int priorityOrder = 0)
+			where TEvent : VDEvent
 		{
-			EventHandler handler = new EventHandler<TEvent>(listener, priorityOrder);
+			EventHandler handler = new VDFramework.EventSystem.EventHandler<TEvent>(listener, priorityOrder);
 
 			AddListenerInternal<TEvent>(handler);
 		}
 
-		public void AddListener<TEvent>(Action listener, int priorityOrder = 0) where TEvent : VDEvent
+		public void AddListener<TEvent>(Action listener, int priorityOrder = 0)
+			where TEvent : VDEvent
 		{
 			AddListener(typeof(TEvent), listener, priorityOrder);
 		}
@@ -56,12 +63,14 @@ namespace VDFramework.EventSystem
 		}
 
 		/////////////////////////////////////RemoveListener/////////////////////////////////////
-		public void RemoveListener<TEvent>(Action<TEvent> listener) where TEvent : VDEvent
+		public void RemoveListener<TEvent>(Action<TEvent> listener)
+			where TEvent : VDEvent
 		{
 			RemoveListenerInternal<TEvent>(listener);
 		}
 
-		public void RemoveListener<TEvent>(Action listener) where TEvent : VDEvent
+		public void RemoveListener<TEvent>(Action listener)
+			where TEvent : VDEvent
 		{
 			RemoveListenerInternal<TEvent>(listener);
 		}
@@ -86,7 +95,8 @@ namespace VDFramework.EventSystem
 		}
 
 		/////////////////////////////////////RemoveListenerInternal/////////////////////////////////////
-		private void RemoveListenerInternal<TEvent>(Delegate listener) where TEvent : VDEvent
+		private void RemoveListenerInternal<TEvent>(Delegate listener)
+			where TEvent : VDEvent
 		{
 			RemoveListenerInternal(typeof(TEvent), listener);
 		}
@@ -106,7 +116,8 @@ namespace VDFramework.EventSystem
 		}
 
 		/////////////////////////////////////GetEventHandlers/////////////////////////////////////
-		private List<EventHandler> GetEventHandlers<TEvent>() where TEvent : VDEvent
+		private List<EventHandler> GetEventHandlers<TEvent>()
+			where TEvent : VDEvent
 		{
 			return GetEventHandlers(typeof(TEvent));
 		}

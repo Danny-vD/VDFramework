@@ -2,37 +2,38 @@
 
 namespace VDFramework.Singleton
 {
-	public abstract class Singleton<T> : BetterMonoBehaviour where T : Singleton<T>
+	public abstract class Singleton<TSingleton> : BetterMonoBehaviour
+		where TSingleton : Singleton<TSingleton>
 	{
-		private static T instance;
+		private static TSingleton instance;
 
-		public static T Instance
+		public static TSingleton Instance
 		{
 			get
 			{
 				// ReSharper disable once ConvertIfStatementToNullCoalescingExpression
 				if (instance == null)
 				{
-					instance = SingletonInstanceCreator<T>.CreateInstance();
+					instance = SingletonInstanceCreator<TSingleton>.CreateInstance();
 				}
 
 				return instance;
 			}
-			set => instance = value;
+			private set => instance = value;
 		}
 
-		public static T InstanceIfInitialized => IsInitialized ? instance : null;
+		public static TSingleton InstanceIfInitialized => IsInitialized ? instance : null;
 
 		public static bool IsInitialized => instance != null;
-		
+
 		protected virtual void Awake()
 		{
 			if (!IsInitialized)
 			{
-				Instance = this as T;
+				Instance = this as TSingleton;
 			}
 			else
-			{	
+			{
 				DestroyThis(false);
 				throw new SingletonViolationException();
 			}
@@ -53,14 +54,14 @@ namespace VDFramework.Singleton
 		{
 			DestroyThis(true);
 		}
-		
+
 		private void DestroyThis(bool destroyInstance)
 		{
 			if (destroyInstance)
 			{
 				instance = null;
 			}
-			
+
 			if (gameObject.name.ToLower().Contains("singleton"))
 			{
 				Destroy(gameObject);

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 #pragma warning disable 660,661 //Did not override gethashcode
 
@@ -32,11 +32,10 @@ namespace VDFramework.EventSystem
 		}
 	}
 
-	internal class EventHandler<TEvent> : EventHandler where TEvent : VDEvent
+	internal class EventHandler<TEvent> : EventHandler
+		where TEvent : VDEvent
 	{
-		public EventHandler(Delegate callback, int priorityOrder) : base(callback, priorityOrder)
-		{
-		}
+		public EventHandler(Delegate callback, int priorityOrder) : base(callback, priorityOrder) { }
 
 		public void Invoke(TEvent eventToRaise)
 		{
