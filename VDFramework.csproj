@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="SharedClasses\Interfaces" />
+    <Folder Include="StandardFramework\Utility" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="VDUnityFramework\**" />
+    <Compile Remove="FMODUnityUtils\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="VDUnityFramework\**" />
+    <EmbeddedResource Remove="FMODUnityUtils\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="VDUnityFramework\**" />
+    <None Remove="StandardFramework\Utility\.gitkeep" />
+    <None Remove="FMODUnityUtils\**" />
+  </ItemGroup>
+
+</Project>
