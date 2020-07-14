@@ -1,4 +1,6 @@
-﻿using VDFramework.Exceptions;
+﻿using UnityEngine;
+using VDFramework.Exceptions;
+using VDFramework.UnityExtensions;
 
 namespace VDFramework.Singleton
 {
@@ -45,6 +47,17 @@ namespace VDFramework.Singleton
 			{
 				instance = null;
 			}
+		}
+
+		public void DontDestroyOnLoad(bool dontDestroy)
+		{
+			if (dontDestroy)
+			{
+				Object.DontDestroyOnLoad(instance.gameObject);
+				return;
+			}
+			
+			instance.gameObject.DestroyOnLoad();
 		}
 
 		/// <summary>

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace VDFramework.Extensions
@@ -30,13 +30,13 @@ namespace VDFramework.Extensions
 		/// <summary>
 		/// Randomly sorts the IEnumberable
 		/// </summary>
-		public static IEnumerable<TItem> RandomSort<TItem>(this IEnumerable<TItem> collection)
+		public static IEnumerable<TItem> Randomize<TItem>(this IEnumerable<TItem> collection)
 		{
 			List<TItem> list = collection.ToList();
-			return list.RandomSort();
+			return list.Randomize();
 		}
 
-		public static List<TItem> RandomSort<TItem>(this List<TItem> list)
+		public static List<TItem> Randomize<TItem>(this List<TItem> list)
 		{
 			if (list.CountIsZeroOrOne())
 			{
