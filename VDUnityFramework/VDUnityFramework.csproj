@@ -67,8 +67,8 @@
     <Compile Include="..\SharedClasses\Extensions\ListExtensions.cs">
       <Link>SharedClasses\Extensions\ListExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\SharedClasses\Extensions\ObjectExtentions.cs">
-      <Link>SharedClasses\Extensions\ObjectExtentions.cs</Link>
+    <Compile Include="..\SharedClasses\Extensions\ObjectExtensions.cs">
+      <Link>SharedClasses\Extensions\ObjectExtensions.cs</Link>
     </Compile>
     <Compile Include="..\SharedClasses\Extensions\RandomItem.cs">
       <Link>SharedClasses\Extensions\RandomItem.cs</Link>
