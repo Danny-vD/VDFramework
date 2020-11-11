@@ -2,7 +2,7 @@
 
 namespace VDFramework.Singleton
 {
-	public static class SingletonInstanceCreator<T>
+	internal static class SingletonInstanceCreator<T>
 		where T : Component
 	{
 		public static T CreateInstance()

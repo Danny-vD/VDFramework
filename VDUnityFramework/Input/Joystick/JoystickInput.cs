@@ -53,7 +53,7 @@ namespace VDFramework.Input
 		public static bool GetButton(uint joystickNumber, JoystickButton button)
 		{
 			return UnityEngine.Input.GetAxis(
-					   StringConverter.GetString(button, joystickNumber)) > 0;
+				StringConverter.GetString(button, joystickNumber)) > 0;
 		}
 
 		//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//

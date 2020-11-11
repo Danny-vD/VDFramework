@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 
 #pragma warning disable 660,661 //Did not override gethashcode
 
@@ -9,9 +10,12 @@ namespace VDFramework.EventSystem
 		protected readonly Delegate Callback = null;
 		private readonly int priorityOrder = 0;
 
+		private Type callbackDeclaringType = null;
+		public Type DeclaringType => callbackDeclaringType ?? (callbackDeclaringType = Callback.GetMethodInfo().DeclaringType);
+
 		protected EventHandler(Delegate callback, int priorityOrder)
 		{
-			Callback = callback;
+			Callback           = callback;
 			this.priorityOrder = priorityOrder;
 		}
 
@@ -35,7 +39,9 @@ namespace VDFramework.EventSystem
 	internal class EventHandler<TEvent> : EventHandler
 		where TEvent : VDEvent
 	{
-		public EventHandler(Delegate callback, int priorityOrder) : base(callback, priorityOrder) { }
+		public EventHandler(Delegate callback, int priorityOrder) : base(callback, priorityOrder)
+		{
+		}
 
 		public void Invoke(TEvent eventToRaise)
 		{

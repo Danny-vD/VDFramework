@@ -9,12 +9,18 @@ namespace VDFramework.Exceptions
 	{
 		private const string exceptionMessage = "There can only be one instance of a singleton";
 
-		public SingletonViolationException() : base(exceptionMessage) { }
+		public SingletonViolationException() : base(exceptionMessage)
+		{
+		}
 
-		public SingletonViolationException(string message) : base(GetErrorMessage(message)) { }
+		public SingletonViolationException(string message) : base(GetErrorMessage(message))
+		{
+		}
 
 		public SingletonViolationException(string message, Exception innerException) :
-			base(GetErrorMessage(message), innerException) { }
+			base(GetErrorMessage(message), innerException)
+		{
+		}
 
 		private static string GetErrorMessage(string message)
 		{

@@ -49,6 +49,11 @@ namespace VDFramework.Singleton
 			}
 		}
 
+		public static TSingleton ForceInitialize()
+		{
+			return Instance;
+		}
+		
 		public void DontDestroyOnLoad(bool dontDestroy)
 		{
 			if (dontDestroy)
@@ -56,7 +61,7 @@ namespace VDFramework.Singleton
 				Object.DontDestroyOnLoad(instance.gameObject);
 				return;
 			}
-			
+
 			instance.gameObject.DestroyOnLoad();
 		}
 
@@ -68,9 +73,9 @@ namespace VDFramework.Singleton
 			DestroyThis(true);
 		}
 
-		private void DestroyThis(bool destroyInstance)
+		private void DestroyThis(bool destroyStaticInstance)
 		{
-			if (destroyInstance)
+			if (destroyStaticInstance)
 			{
 				instance = null;
 			}

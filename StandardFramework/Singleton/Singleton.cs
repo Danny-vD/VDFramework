@@ -5,28 +5,19 @@
 	/// <summary>
 	/// A abstract generic implementation of the singleton pattern
 	/// </summary>
-	/// <typeparam name="T">The type to create a singleton of</typeparam>
-	public abstract class Singleton<T>
-		where T : Singleton<T>, new()
+	/// <typeparam name="TSingleton">The type to create a singleton of</typeparam>
+	public abstract class Singleton<TSingleton>
+		where TSingleton : Singleton<TSingleton>, new()
 	{
-		private static T instance;
+		private static TSingleton instance;
 
-		public static T Instance
+		public static TSingleton Instance
 		{
-			get
-			{
-				// ReSharper disable once ConvertIfStatementToNullCoalescingExpression
-				if (instance == null)
-				{
-					instance = SingletonInstanceCreator<T>.CreateInstance();
-				}
-
-				return instance;
-			}
+			get => instance ?? (instance = SingletonInstanceCreator<TSingleton>.CreateInstance());
 			set => instance = value;
 		}
 
-		public static T InstanceIfInitialized => IsInitialized ? instance : null;
+		public static TSingleton InstanceIfInitialized => IsInitialized ? instance : null;
 
 		public static bool IsInitialized => instance != null;
 
@@ -34,7 +25,7 @@
 		{
 			if (!IsInitialized)
 			{
-				Instance = this as T;
+				Instance = this as TSingleton;
 			}
 			else
 			{
@@ -42,14 +33,11 @@
 			}
 		}
 
-		~Singleton()
+		public static TSingleton ForceInitialize()
 		{
-			if (instance == this)
-			{
-				instance = null;
-			}
+			return Instance;
 		}
-		
+
 		/// <summary>
 		/// Sets the instance of the singleton to null.
 		/// </summary>

@@ -7,6 +7,7 @@ namespace VDFramework.EventSystem
 {
 	public class EventManager : Singleton<EventManager>
 	{
+		// A dictionary of EventHandlers per Event Type
 		private readonly Dictionary<Type, List<EventHandler>> eventHandlersPerEventType =
 			new Dictionary<Type, List<EventHandler>>();
 
@@ -28,7 +29,7 @@ namespace VDFramework.EventSystem
 				{
 					return;
 				}
-				
+
 				switch (handler)
 				{
 					case EventHandler<TEvent> eventHandler:
@@ -45,7 +46,7 @@ namespace VDFramework.EventSystem
 		public void AddListener<TEvent>(Action<TEvent> listener, int priorityOrder = 0)
 			where TEvent : VDEvent
 		{
-			EventHandler handler = new VDFramework.EventSystem.EventHandler<TEvent>(listener, priorityOrder);
+			EventHandler handler = new EventHandler<TEvent>(listener, priorityOrder);
 
 			AddListenerInternal<TEvent>(handler);
 		}
@@ -72,7 +73,22 @@ namespace VDFramework.EventSystem
 		public void RemoveListener<TEvent>(Action listener)
 			where TEvent : VDEvent
 		{
-			RemoveListenerInternal<TEvent>(listener);
+			RemoveListener(typeof(TEvent), listener);
+		}
+
+		public void RemoveListener(Type eventType, Action listener)
+		{
+			RemoveListenerInternal(eventType, listener);
+		}
+
+		public void RemoveAllListeners<TType>()
+		{
+			RemoveAllListeners(typeof(TType));
+		}
+
+		public void RemoveAllListeners(Type type)
+		{
+			RemoveAllListenersInternal(type);
 		}
 
 		/////////////////////////////////////AddListenerInternal/////////////////////////////////////
@@ -115,6 +131,15 @@ namespace VDFramework.EventSystem
 			eventHandlers.Remove(handler);
 		}
 
+		private void RemoveAllListenersInternal(Type listenerDeclaringType)
+		{
+			// Loop over all eventTypes, then loop over all EventHandlers for that type to find the callback with the same declaring type as listenerDeclaringType
+			foreach (Type eventType in eventHandlersPerEventType.Select(pair => pair.Key))
+			{
+				GetEventHandlers(eventType).RemoveAll(eventHandler => eventHandler.DeclaringType == listenerDeclaringType);
+			}
+		}
+
 		/////////////////////////////////////GetEventHandlers/////////////////////////////////////
 		private List<EventHandler> GetEventHandlers<TEvent>()
 			where TEvent : VDEvent
@@ -124,9 +149,7 @@ namespace VDFramework.EventSystem
 
 		private List<EventHandler> GetEventHandlers(Type eventType)
 		{
-			return eventHandlersPerEventType.TryGetValue(eventType, out List<EventHandler> handlers)
-				? handlers
-				: new List<EventHandler>();
+			return eventHandlersPerEventType.TryGetValue(eventType, out List<EventHandler> handlers) ? handlers : new List<EventHandler>();
 		}
 	}
 }

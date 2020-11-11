@@ -11,9 +11,10 @@ namespace VDFramework.Input
 		{
 			if (!StringPerButton.TryGetValue(buttonName, out string button))
 			{
-				throw new InvalidEnumArgumentException($"There is no string assigned for {buttonName}!\n Assign one through JoystickButtonToStringConverter");
+				throw new InvalidEnumArgumentException(
+					$"There is no string assigned for {buttonName}!\n Assign one through JoystickButtonToStringConverter");
 			}
-			
+
 			return button;
 		}
 
