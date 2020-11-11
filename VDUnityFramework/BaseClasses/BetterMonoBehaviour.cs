@@ -50,7 +50,7 @@ namespace VDFramework
 		/// <summary>
 		/// Overridden to return the CachedGameObject
 		/// </summary>
-		public new GameObject gameObject => cachedGameObject;
+		public new GameObject gameObject => CachedGameObject;
 		
 		// ReSharper restore InconsistentNaming
 	}
