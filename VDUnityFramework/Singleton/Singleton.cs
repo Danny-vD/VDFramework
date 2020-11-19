@@ -37,7 +37,7 @@ namespace VDFramework.Singleton
 			else
 			{
 				DestroyThis(false);
-				throw new SingletonViolationException();
+				throw new SingletonViolationException($"Violator: {typeof(TSingleton).Name}");
 			}
 		}
 

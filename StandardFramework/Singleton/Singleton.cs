@@ -13,8 +13,8 @@
 
 		public static TSingleton Instance
 		{
-			get => instance ?? (instance = SingletonInstanceCreator<TSingleton>.CreateInstance());
-			set => instance = value;
+			get => instance ??= SingletonInstanceCreator<TSingleton>.CreateInstance();
+			private set => instance = value;
 		}
 
 		public static TSingleton InstanceIfInitialized => IsInitialized ? instance : null;
@@ -29,7 +29,7 @@
 			}
 			else
 			{
-				throw new SingletonViolationException();
+				throw new SingletonViolationException($"Violator: {typeof(TSingleton).Name}");
 			}
 		}
 

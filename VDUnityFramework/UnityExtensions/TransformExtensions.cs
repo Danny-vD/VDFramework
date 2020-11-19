@@ -1,4 +1,4 @@
-﻿﻿using UnityEngine;
+﻿using UnityEngine;
 
 namespace VDFramework.UnityExtensions
 {
@@ -12,6 +12,17 @@ namespace VDFramework.UnityExtensions
 			foreach (Transform child in transform)
 			{
 				Object.Destroy(child.gameObject);
+			}
+		}
+
+		/// <summary>
+		/// Destroys all children immediately
+		/// </summary>
+		public static void DestroyChildrenImmediate(this Transform transform)
+		{
+			foreach (Transform child in transform)
+			{
+				Object.DestroyImmediate(child.gameObject);
 			}
 		}
 	}
