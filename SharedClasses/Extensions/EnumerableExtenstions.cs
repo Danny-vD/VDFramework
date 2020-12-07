@@ -8,7 +8,7 @@ namespace VDFramework.Extensions
 		public static bool CountIsZeroOrOne<TItem>(this IEnumerable<TItem> collection)
 		{
 			int count = collection.Count();
-			return (count == 0 || count == 1);
+			return count == 0 || count == 1;
 		}
 	}
 }

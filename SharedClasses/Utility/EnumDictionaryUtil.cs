@@ -15,10 +15,7 @@ namespace VDFramework.Utility
 			where TKeyValuePair : IKeyValuePair<TEnum, TValue>, new()
 			where TEnum : struct, Enum
 		{
-			if (list == null)
-			{
-				list = new List<TKeyValuePair>();
-			}
+			list ??= new List<TKeyValuePair>();
 
 			TEnum @enum = default;
 			TEnum[] enumValues = @enum.GetValues().ToArray();
