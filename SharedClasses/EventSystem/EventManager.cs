@@ -81,13 +81,18 @@ namespace VDFramework.EventSystem
 			RemoveListenerInternal(eventType, listener);
 		}
 
-		public void RemoveAllListeners<TType>()
+		public void RemoveAllListeners<TEvent>() where TEvent : VDEvent
 		{
-			RemoveAllListeners(typeof(TType));
+			RemoveAllListeners(typeof(TEvent));
 		}
 
 		public void RemoveAllListeners(Type type)
 		{
+			if (!type.IsAssignableFrom(typeof(VDEvent)))
+			{
+				throw new ArgumentException("The type has to be a subclass of VDEvent!", nameof(type));
+			}
+			
 			RemoveAllListenersInternal(type);
 		}
 
@@ -131,13 +136,14 @@ namespace VDFramework.EventSystem
 			eventHandlers.Remove(handler);
 		}
 
-		private void RemoveAllListenersInternal(Type listenerDeclaringType)
+		private void RemoveAllListenersInternal(Type eventType)
 		{
-			// Loop over all eventTypes, then loop over all EventHandlers for that type to find the callback with the same declaring type as listenerDeclaringType
-			foreach (Type eventType in eventHandlersPerEventType.Select(pair => pair.Key))
+			if (!eventHandlersPerEventType.TryGetValue(eventType, out List<EventHandler> eventHandlers))
 			{
-				GetEventHandlers(eventType).RemoveAll(eventHandler => eventHandler.DeclaringType == listenerDeclaringType);
+				return;
 			}
+			
+			eventHandlers.Clear();
 		}
 
 		/////////////////////////////////////GetEventHandlers/////////////////////////////////////

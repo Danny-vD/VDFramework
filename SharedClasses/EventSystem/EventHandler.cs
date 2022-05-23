@@ -11,7 +11,7 @@ namespace VDFramework.EventSystem
 		private readonly int priorityOrder = 0;
 
 		private Type callbackDeclaringType = null;
-		public Type DeclaringType => callbackDeclaringType ?? (callbackDeclaringType = Callback.GetMethodInfo().DeclaringType);
+		public Type DeclaringType => callbackDeclaringType ??= Callback.GetMethodInfo().DeclaringType;
 
 		protected EventHandler(Delegate callback, int priorityOrder)
 		{
