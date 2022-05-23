@@ -4,8 +4,8 @@ namespace VDFramework.Utility
 {
 	public static class RandomUtil
 	{
-		private static readonly bool[] boolValues = {true, false};
-		
+		private static readonly bool[] boolValues = { true, false };
+
 		public static bool RandomBool()
 		{
 			return boolValues.GetRandomItem();
