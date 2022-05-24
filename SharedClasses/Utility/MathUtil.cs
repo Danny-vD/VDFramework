@@ -27,12 +27,12 @@ namespace VDFramework.Utility
 		{
 			if (height == 0)
 			{
-					
+				throw new ArgumentException("Height cannot be 0, the result would be a straight horizontal line", nameof(height));
 			}
 
 			if (distance == 0)
 			{
-				
+				throw new ArgumentException("Distance cannot be 0, the result would be a straight vertical line", nameof(distance));
 			}
 
 			float b = height / distance * 4; // Magic number 4, but 4 just happens to be the correct factor
@@ -63,10 +63,9 @@ namespace VDFramework.Utility
 				throw new ArgumentException("The coordinate y may not be heigher than height", nameof(y));
 			}
 			
-			// We shift the entire curve down by -y, to then solve -ax² + bx = 0
 			float b = height / distance * 4; // Magic number 4, but 4 just happens to be the correct factor
 			float a = b / distance;
-			float c = -y;
+			float c = -y; // We shift the entire curve down by -y, to then solve -ax² + bx = 0
 			
 			float discriminant = b * b - 4 * -a * c; // b² - 4(-a)c    a negative because we flipped the curve
 			float sqrtDiscriminant = (float)Math.Sqrt(discriminant);
