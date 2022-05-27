@@ -1,0 +1,275 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>VDFramework</name>
+    </assembly>
+    <members>
+        <member name="T:VDFramework.Exceptions.SingletonViolationException">
+            <summary>
+            The exception that is thrown once you create a 2nd instance of a singleton
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.EnumExtensions.GetValues``1(``0)">
+            <summary>
+            Returns an IEnumerable of <see cref="!:TEnum"/> that has all the values of the enum
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.Int32Extentions.HasOneMatchingBit(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Check every bit one by one to see if they are equal
+            </summary>
+            <returns>TRUE if at least one bit is equal</returns>
+        </member>
+        <member name="M:VDFramework.Extensions.ListExtensions.ResizeList``1(System.Collections.Generic.List{``0},System.Int32)">
+            <summary>
+            Resize the list so that it holds a <see cref="!:newSize"/> amount of <see cref="!:TItem"/>
+            <para></para>(will also resize the underlaying array)
+            </summary>
+            <param name="list">The list to resize</param>
+            <param name="newSize">The elements that are in the list</param>
+            <typeparam name="TItem">The type of items in the list</typeparam>
+        </member>
+        <member name="M:VDFramework.Extensions.RandomItem.Randomize``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Randomly sorts the IEnumberable
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.StringExtensions.InsertSpaceBeforeCapitals(System.String)">
+            <summary>
+            Returns a new string where a space is inserted before each capital, skipping the first char
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.EnumDictionaryUtil.PopulateEnumDictionary``3(System.Collections.Generic.List{``0})">
+            <summary>
+            Will add a KeyValuePair for every enumValue to the list
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.MathUtil.GetYCoordinateOnCurve(System.Single,System.Single,System.Single)">
+            <summary>
+            Get the Y coordinate of a 2D curve that crosses y = 0 at [0,0] and [distance,0] with a maxY of height
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.MathUtil.GetXCoordinatesOnCurve(System.Single,System.Single,System.Single)">
+            <summary>
+            Get the X coordinates of a 2D curve that crosses y = 0 at [0,0] and [distance,0] with a maxY of height
+            </summary>
+        </member>
+        <member name="T:VDFramework.Utility.Windows.EnvironmentVariables">
+            <summary>
+            An Utility class to easily access some environment variables
+            </summary>
+        </member>
+        <member name="P:VDFramework.Utility.Windows.SpecialFolder.DefaultPath">
+            <summary>
+            Returns the default path for the folder
+            </summary>
+        </member>
+        <member name="P:VDFramework.Utility.Windows.SpecialFolder.Path">
+            <summary>
+            Get the current path to the folder
+            </summary>
+            <exception cref="T:System.IO.DirectoryNotFoundException">Throws if there is no valid path to the folder</exception>
+        </member>
+        <member name="P:VDFramework.Utility.Windows.SpecialFolder.CSIDL">
+            <summary>
+            constant special item ID list
+            <para>(Only applicable before Windows Vista)</para>
+            <para>https://docs.microsoft.com/en-us/windows/win32/shell/csidl</para>
+            </summary>
+        </member>
+        <member name="T:VDFramework.Utility.Windows.SpecialFolders">
+            <summary>
+            An utility class to easily access information about the special folders
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.AddNewPrograms">
+            <summary>
+            <para>VIRTUAL FOLDER: no path available</para>
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.AppdataDesktop">
+            <summary>
+            Used internally by .NET applications to enable cross-platform app functionality. It is not intended to be used directly from an application.
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.AppdataDocuments">
+            <summary>
+            Used internally by .NET applications to enable cross-platform app functionality. It is not intended to be used directly from an application.
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.AppDataFavorites">
+            <summary>
+            Used internally by .NET applications to enable cross-platform app functionality. It is not intended to be used directly from an application.
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.AppDataProgramData">
+            <summary>
+            Used internally by .NET applications to enable cross-platform app functionality. It is not intended to be used directly from an application.
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.AppsFolder">
+            <summary>
+            <para>VIRTUAL FOLDER: no path available</para>
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.AppUpdates">
+            <summary>
+            <para>VIRTUAL FOLDER: no path available</para>
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.ChangeRemovePrograms">
+            <summary>
+            <para>VIRTUAL FOLDER: no path available</para>
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.ComputerFolder">
+            <summary>
+            <para>VIRTUAL FOLDER: no path available</para>
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.ConflictFolder">
+            <summary>
+            <para>VIRTUAL FOLDER: no path available</para>
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.ConnectionsFolder">
+            <summary>
+            <para>VIRTUAL FOLDER: no path available</para>
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.ControlPanelFolder">
+            <summary>
+            <para>VIRTUAL FOLDER: no path available</para>
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.Downloads">
+            <summary>
+            The default folder where downloaded files are stored.
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.Games">
+             <summary>
+             Deprecated in Windows 10, version 1803 and later versions. In these versions, it returns 0x80070057 - E_INVALIDARG
+            <para></para>
+             <para>VIRTUAL FOLDER: no path available</para>
+             </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.HomeGroup">
+            <summary>
+            <para>VIRTUAL FOLDER: no path available</para>
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.HomeGroupCurrentUser">
+            <summary>
+            <para>VIRTUAL FOLDER: no path available</para>
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.InternetFolder">
+            <summary>
+            <para>VIRTUAL FOLDER: no path available</para>
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.Libraries">
+            <summary>
+            The folder where libraries like 'Videos', 'Images', 'Documents', 'Music' etc. are stored.
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.NetworkFolder">
+            <summary>
+            <para>VIRTUAL FOLDER: no path available</para>
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.PrintersFolder">
+            <summary>
+            <para>VIRTUAL FOLDER: no path available</para>
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.ProgramFilesX64">
+            <summary>
+            Not supported on 32-bit operating systems. It also is not supported for 32-bit applications running on 64-bit operating systems.
+            Attempting to use FOLDERID_ProgramFilesX64 in either situation results in an error.
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.RecycleBinFolder">
+            <summary>
+            <para>VIRTUAL FOLDER: no path available</para>
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.SEARCH_CSC">
+            <summary>
+            <para>VIRTUAL FOLDER: no path available</para>
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.SearchHome">
+            <summary>
+            <para>VIRTUAL FOLDER: no path available</para>
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.SEARCH_MAPI">
+            <summary>
+            <para>VIRTUAL FOLDER: no path available</para>
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.SkyDrive">
+            <summary>
+            OneDrive
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.SkyDriveCameraRoll">
+            <summary>
+            OneDrive Camera Roll
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.SkyDriveDocuments">
+            <summary>
+            OneDrive Documents
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.SkyDrivePictures">
+            <summary>
+            OneDrive Pictures
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.SyncManagerFolder">
+            <summary>
+            <para>VIRTUAL FOLDER: no path available</para>
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.SyncResultsFolder">
+            <summary>
+            <para>VIRTUAL FOLDER: no path available</para>
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.SyncSetupFolder">
+            <summary>
+            <para>VIRTUAL FOLDER: no path available</para>
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.System">
+            <summary>
+            System32
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.UsersFiles">
+            <summary>
+            <para>VIRTUAL FOLDER: no path available</para>
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.Windows.SpecialFolders.UsersLibraries">
+            <summary>
+            <para>VIRTUAL FOLDER: no path available</para>
+            </summary>
+        </member>
+        <member name="T:VDFramework.Singleton.Singleton`1">
+            <summary>
+            A abstract generic implementation of the singleton pattern
+            </summary>
+            <typeparam name="TSingleton">The type to create a singleton of</typeparam>
+        </member>
+        <member name="M:VDFramework.Singleton.Singleton`1.DestroyInstance">
+            <summary>
+            Sets the instance of the singleton to null.
+            </summary>
+        </member>
+    </members>
+</doc>
