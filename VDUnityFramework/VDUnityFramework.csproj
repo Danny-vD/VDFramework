@@ -64,6 +64,18 @@
       <Compile Include="..\SharedClasses\Utility\StringVariableWriter.cs">
         <Link>SharedClasses\Utility\StringVariableWriter.cs</Link>
       </Compile>
+      <Compile Include="..\SharedClasses\Utility\Windows\EnvironmentVariables.cs">
+        <Link>SharedClasses\Utility\Windows\EnvironmentVariables.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\Utility\Windows\FolderType.cs">
+        <Link>SharedClasses\Utility\Windows\FolderType.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\Utility\Windows\SpecialFolder.cs">
+        <Link>SharedClasses\Utility\Windows\SpecialFolder.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\Utility\Windows\SpecialFolders.cs">
+        <Link>SharedClasses\Utility\Windows\SpecialFolders.cs</Link>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>
