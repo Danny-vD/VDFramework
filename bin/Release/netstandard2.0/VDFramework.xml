@@ -39,6 +39,24 @@
             Returns a new string where a space is inserted before each capital, skipping the first char
             </summary>
         </member>
+        <member name="M:VDFramework.Extensions.StringExtensions.EnforceLength(System.String,System.Int32,System.Char,System.Collections.Generic.IReadOnlyCollection{System.String})">
+            <summary>
+            Returns a string with specified length where certain substrings will only count as 1 char
+            </summary>
+            <param name="desiredLength">The length that you want the returned string to be</param>
+            <param name="addCharToEnd">In case the string is too short, add this character to get the desired length</param>
+            <param name="countAs1Char">A collection of substrings that will only count as 1 char for the purposes of returning the desired length</param>
+        </member>
+        <member name="M:VDFramework.Extensions.StringExtensions.GetCharsBetweenAandB(System.String,System.Char,System.Char,System.Int32)">
+            <summary>
+            Get all characters between two characters including the two characters (will not return correctly if another pair is nested within a pair)
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.StringExtensions.CharCount(System.String,System.Char)">
+            <summary>
+            Get a count of how many times a specific character appears within the string
+            </summary>
+        </member>
         <member name="M:VDFramework.Utility.EnumDictionaryUtil.PopulateEnumDictionary``3(System.Collections.Generic.List{``0})">
             <summary>
             Will add a KeyValuePair for every enumValue to the list

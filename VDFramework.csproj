@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <DocumentationFile></DocumentationFile>
+    <DocumentationFile>bin\Release\VDFramework.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
