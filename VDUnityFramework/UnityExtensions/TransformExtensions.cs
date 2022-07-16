@@ -9,6 +9,7 @@ namespace VDFramework.UnityExtensions
 		/// </summary>
 		public static void DestroyChildren(this Transform transform)
 		{
+			// It's possible to loop over all of them like this because they will only be destroyed at the end of the frame
 			foreach (Transform child in transform)
 			{
 				Object.Destroy(child.gameObject);
@@ -20,9 +21,11 @@ namespace VDFramework.UnityExtensions
 		/// </summary>
 		public static void DestroyChildrenImmediate(this Transform transform)
 		{
-			foreach (Transform child in transform)
+			int childCount = transform.childCount;
+
+			for (int i = 0; i < childCount; i++)
 			{
-				Object.DestroyImmediate(child.gameObject);
+				Object.DestroyImmediate(transform.GetChild(0));
 			}
 		}
 	}
