@@ -25,7 +25,7 @@ namespace VDFramework.UnityExtensions
 
 			for (int i = 0; i < childCount; i++)
 			{
-				Object.DestroyImmediate(transform.GetChild(0));
+				Object.DestroyImmediate(transform.GetChild(0).gameObject);
 			}
 		}
 	}
