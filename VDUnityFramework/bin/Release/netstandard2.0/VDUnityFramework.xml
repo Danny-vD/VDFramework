@@ -97,6 +97,11 @@
             Will add a KeyValuePair for every enumValue to the list
             </summary>
         </member>
+        <member name="M:VDFramework.Utility.MathUtil.GetSignFactor(System.Single)">
+            <summary>
+            Returns the sign of the number, and 0 if input == 0
+            </summary>
+        </member>
         <member name="M:VDFramework.Utility.MathUtil.GetYCoordinateOnCurve(System.Single,System.Single,System.Single)">
             <summary>
             Get the Y coordinate of a 2D curve that crosses y = 0 at [0,0] and [distance,0] with a maxY of height
