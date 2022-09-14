@@ -5,6 +5,9 @@ namespace VDFramework.Utility
 {
 	public static class MathUtil
 	{
+		/// <summary>
+		/// Returns the sign of the number, and 0 if input == 0
+		/// </summary>
 		public static int GetSignFactor(float input)
 		{
 			if (input < 0)
@@ -53,25 +56,48 @@ namespace VDFramework.Utility
 				throw new ArgumentException("Height cannot be 0, the result would be a straight horizontal line", nameof(height));
 			}
 
+			if (y == height) // in this case, the peak of the curve will be the requested coordinate
+			{
+				float halfDistance = distance / 2;
+				return new Tuple<float, float>(halfDistance, halfDistance);
+			}
+
+			bool curveFlipped = height < 0;
+
 			if (distance == 0)
 			{
 				throw new ArgumentException("Distance cannot be 0, the result would be a straight vertical line", nameof(distance));
 			}
-			
-			if (y > height)
+
+			if (curveFlipped)
 			{
-				throw new ArgumentException("The coordinate y may not be heigher than height", nameof(y));
+				if (y < height)
+				{
+					throw new ArgumentException("The coordinate y may not be lower than height, for a negative height", nameof(y));
+				}
 			}
-			
+			else
+			{
+				if (y > height)
+				{
+					throw new ArgumentException("The coordinate y may not be higher than height, for a positive height", nameof(y));
+				}
+			}
+
 			float b = height / distance * 4; // Magic number 4, but 4 just happens to be the correct factor
 			float a = b / distance;
 			float c = -y; // We shift the entire curve down by -y, to then solve -ax² + bx = 0
-			
+
 			float discriminant = b * b - 4 * -a * c; // b² - 4(-a)c    a negative because we flipped the curve
 			float sqrtDiscriminant = (float)Math.Sqrt(discriminant);
-			
-			float p1 = (-b + sqrtDiscriminant) / 2 * a;
-			float p2 = (-b - sqrtDiscriminant) / 2 * a;
+
+			float p1 = -((-b + sqrtDiscriminant) / (2 * a)); // - (-b + sqrt(d))/2a | the left X coordinate
+			float p2 = -((-b - sqrtDiscriminant) / (2 * a)); // - (-b - sqrt(d))/2a | the right X coordinate
+
+			if (curveFlipped)
+			{
+				return new Tuple<float, float>(p2, p1); // Reverse P2 and P1
+			}
 
 			return new Tuple<float, float>(p1, p2);
 		}
