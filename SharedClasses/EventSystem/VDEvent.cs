@@ -6,26 +6,14 @@ namespace VDFramework.EventSystem
 	{
 		public static event Action<TEvent> Listeners
 		{
-			add => EventManager.Instance.AddListener(value);
-			remove
-			{
-				if (EventManager.IsInitialized)
-				{
-					EventManager.Instance.RemoveListener(value);
-				}
-			}
+			add => EventManager.AddListener(value);
+			remove => EventManager.RemoveListener(value);
 		}
 
 		public static event Action ParameterlessListeners
 		{
-			add => EventManager.Instance.AddListener<TEvent>(value);
-			remove
-			{
-				if (EventManager.IsInitialized)
-				{
-					EventManager.Instance.RemoveListener<TEvent>(value);
-				}
-			}
+			add => EventManager.AddListener<TEvent>(value);
+			remove => EventManager.RemoveListener<TEvent>(value);
 		}
 	}
 
