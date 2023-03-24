@@ -9,11 +9,28 @@
 	public abstract class Singleton<TSingleton>
 		where TSingleton : Singleton<TSingleton>, new()
 	{
-		private static TSingleton instance;
+		// ReSharper disable once StaticMemberInGenericType
+		private static readonly object singletonLock = new object();
+
+		private static volatile TSingleton instance;
 
 		public static TSingleton Instance
 		{
-			get => instance ??= SingletonInstanceCreator<TSingleton>.CreateInstance();
+			get
+			{
+				if (instance == null)
+				{
+					lock (singletonLock)
+					{
+						if (instance == null)
+						{
+							instance = SingletonInstanceCreator<TSingleton>.CreateInstance();
+						}
+					}
+				}
+
+				return instance;
+			}
 			private set => instance = value;
 		}
 

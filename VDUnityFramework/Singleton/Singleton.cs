@@ -4,10 +4,17 @@ using VDFramework.UnityExtensions;
 
 namespace VDFramework.Singleton
 {
+	/// <summary>
+	/// A abstract generic implementation of the singleton pattern
+	/// </summary>
+	/// <typeparam name="TSingleton">The type to create a singleton of</typeparam>
 	public abstract class Singleton<TSingleton> : BetterMonoBehaviour
 		where TSingleton : Singleton<TSingleton>
 	{
-		private static TSingleton instance;
+		// ReSharper disable once StaticMemberInGenericType
+		private static readonly object singletonLock = new object();
+
+		private static volatile TSingleton instance;
 
 		public static TSingleton Instance
 		{
@@ -16,7 +23,13 @@ namespace VDFramework.Singleton
 				// ReSharper disable once ConvertIfStatementToNullCoalescingExpression
 				if (instance == null)
 				{
-					instance = SingletonInstanceCreator<TSingleton>.CreateInstance();
+					lock (singletonLock)
+					{
+						if (instance == null)
+						{
+							instance = SingletonInstanceCreator<TSingleton>.CreateInstance();
+						}
+					}
 				}
 
 				return instance;
@@ -53,7 +66,7 @@ namespace VDFramework.Singleton
 		{
 			return Instance;
 		}
-		
+
 		public void DontDestroyOnLoad(bool dontDestroy)
 		{
 			if (dontDestroy)
