@@ -5,7 +5,7 @@ namespace VDFramework.Utility.TimerUtil
 	/// <summary>
 	/// A representation of a timer which invokes an event after a certain amount of seconds pass (possibly loops)
 	/// </summary>
-	public class TimerHandle
+	public class TimerHandle : IComparable<TimerHandle>
 	{
 		/// <summary>
 		/// The callback to invoke when the timer expires
@@ -141,6 +141,32 @@ namespace VDFramework.Utility.TimerUtil
 			OnHandleFinished = null;
 
 			IsValid = false;
+		}
+		
+		/// <summary>
+		/// Compare using the StartTime
+		/// <para>(uses CurrentTime if equal)</para>
+		/// </summary>
+		public int CompareTo(TimerHandle other)
+		{
+			if (ReferenceEquals(this, other))
+			{
+				return 0;
+			}
+
+			if (ReferenceEquals(null, other))
+			{
+				return 1;
+			}
+
+			int result = StartTime.CompareTo(other.StartTime);
+
+			if (result == 0)
+			{
+				result = CurrentTime.CompareTo(other.CurrentTime);
+			}
+
+			return result;
 		}
 	}
 }
