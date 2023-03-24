@@ -147,10 +147,17 @@
             <para>If you mean to temporarily pause a timer, use <see cref="M:VDFramework.Utility.TimerUtil.TimerHandle.SetPause(System.Boolean)"/> instead</para>
             </summary>
         </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerHandle.CompareTo(VDFramework.Utility.TimerUtil.TimerHandle)">
+            <summary>
+            Compare using the StartTime
+            <para>(uses CurrentTime if equal)</para>
+            </summary>
+        </member>
         <member name="T:VDFramework.Utility.TimerUtil.TimerManager">
             <summary>
             Manager class for all timers
             <para>use <see cref="M:VDFramework.Utility.TimerUtil.TimerManager.Update(System.Double)"/> to update all timers</para>
+            <para>The timers are updated in reversed order so the last one in the list will be updated first</para>
             </summary>
         </member>
         <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimer(System.Double,System.Action,System.Boolean)">
@@ -160,7 +167,7 @@
             <param name="startTime">The time in seconds after which the callBack will be called</param>
             <param name="timerExpiredCallback">The callback to invoke once the timer expires</param>
             <param name="loop">Whether this timer should loop (restart once it ends)</param>
-            <returns>Returns a handle to the timer, this can be used to Pause the timer or change some properties
+            <returns>A handle to the timer, this can be used to Pause the timer or change some properties
             <para>It can also be safely ignored if not needed</para></returns>
         </member>
         <member name="M:VDFramework.Utility.TimerUtil.TimerManager.Update(System.Double)">
