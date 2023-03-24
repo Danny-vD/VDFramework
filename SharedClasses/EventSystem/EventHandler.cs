@@ -1,8 +1,6 @@
 using System;
 using System.Reflection;
 
-#pragma warning disable 660,661 //Did not override gethashcode
-
 namespace VDFramework.EventSystem
 {
 	internal abstract class EventHandler : IComparable<EventHandler>
@@ -21,7 +19,7 @@ namespace VDFramework.EventSystem
 
 		public static bool operator ==(EventHandler handler, Delegate callback)
 		{
-			return handler?.Callback == callback;
+			return handler != null && handler.Callback == callback;
 		}
 
 		public static bool operator !=(EventHandler handler, Delegate callback)
@@ -33,6 +31,36 @@ namespace VDFramework.EventSystem
 		{
 			// Check if they have a higher priority than us. Used for sorting the list.
 			return other.priorityOrder.CompareTo(priorityOrder);
+		}
+		
+		protected bool Equals(EventHandler other)
+		{
+			return Callback == other.Callback;
+		}
+
+		public override bool Equals(object obj)
+		{
+			if (ReferenceEquals(null, obj))
+			{
+				return false;
+			}
+
+			if (ReferenceEquals(this, obj))
+			{
+				return true;
+			}
+
+			if (obj.GetType() != this.GetType())
+			{
+				return false;
+			}
+
+			return Equals((EventHandler)obj);
+		}
+
+		public override int GetHashCode()
+		{
+			return Callback.GetHashCode();
 		}
 	}
 
