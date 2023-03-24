@@ -19,6 +19,18 @@
             Overridden to return the CachedGameObject
             </summary>
         </member>
+        <member name="T:VDFramework.Monobehaviours.TimerManagerUpdater">
+            <summary>
+            A simple utility behaviour for Unity that updates the TimerManager in Update using Time.deltaTime
+            (makes the object DontDestroyOnLoad)
+            </summary>
+        </member>
+        <member name="T:VDFramework.Singleton.Singleton`1">
+            <summary>
+            A abstract generic implementation of the singleton pattern
+            </summary>
+            <typeparam name="TSingleton">The type to create a singleton of</typeparam>
+        </member>
         <member name="M:VDFramework.Singleton.Singleton`1.DestroyInstance">
             <summary>
             Sets the instance of the singleton to null.
@@ -111,6 +123,98 @@
             <summary>
             Get the X coordinates of a 2D curve that crosses y = 0 at [0,0] and [distance,0] with a maxY of height
             </summary>
+        </member>
+        <member name="T:VDFramework.Utility.TimerUtil.TimerHandle">
+            <summary>
+            A representation of a timer which invokes an event after a certain amount of seconds pass (possibly loops)
+            </summary>
+        </member>
+        <member name="E:VDFramework.Utility.TimerUtil.TimerHandle.OnTimerExpire">
+            <summary>
+            The callback to invoke when the timer expires
+            </summary>
+        </member>
+        <member name="P:VDFramework.Utility.TimerUtil.TimerHandle.CurrentTime">
+            <summary>
+            The amount of seconds remaining until the callback invokes
+            </summary>
+        </member>
+        <member name="P:VDFramework.Utility.TimerUtil.TimerHandle.CurrentTimeNormalized">
+            <summary>
+            A value of [0,1] that represents the % between 0 and the startTime of the timer
+            </summary>
+        </member>
+        <member name="P:VDFramework.Utility.TimerUtil.TimerHandle.StartTime">
+            <summary>
+            The amount of seconds that the timer started with (will be reset to this value when the timer loops)
+            </summary>
+        </member>
+        <member name="P:VDFramework.Utility.TimerUtil.TimerHandle.IsLooping">
+            <summary>
+            Whether or not the timer should reset itself upon expiring
+            </summary>
+        </member>
+        <member name="P:VDFramework.Utility.TimerUtil.TimerHandle.IsPaused">
+            <summary>
+            If a timer is paused the internal timer will not be updated
+            </summary>
+        </member>
+        <member name="P:VDFramework.Utility.TimerUtil.TimerHandle.IsValid">
+            <summary>
+            Whether or not this handle still represents an active timer (will be false if a non-looped timer expires)
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerHandle.ResetTimer">
+            <summary>
+            Reset the internal timer immediately to <see cref="P:VDFramework.Utility.TimerUtil.TimerHandle.StartTime"/>
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerHandle.SetLoop(System.Boolean)">
+            <summary>
+            Set whether or not the timer should loop after expiring
+            </summary>
+            <param name="loop">Should the timer loop after expiring?</param>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerHandle.SetStartTime(System.Double,System.Boolean)">
+            <summary>
+            Set the <see cref="P:VDFramework.Utility.TimerUtil.TimerHandle.StartTime"/> of the timer
+            <para>This will only have an effect if the timer is reset or loops</para>
+            </summary>
+            <param name="newStartTime">The new start time for the timer</param>
+            <param name="resetTimer">Whether the timer should reset after setting the new start time</param>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerHandle.SetPause(System.Boolean)">
+            <summary>
+            Pause the timer to temporarily prevent updating the internal timer
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerHandle.Stop">
+            <summary>
+            Stop this timer immediately and prevent further updates
+            <para>If you mean to temporarily pause a timer, use <see cref="M:VDFramework.Utility.TimerUtil.TimerHandle.SetPause(System.Boolean)"/> instead</para>
+            </summary>
+        </member>
+        <member name="T:VDFramework.Utility.TimerUtil.TimerManager">
+            <summary>
+            Manager class for all timers
+            <para>use <see cref="M:VDFramework.Utility.TimerUtil.TimerManager.Update(System.Double)"/> to update all timers</para>
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimer(System.Double,System.Action,System.Boolean)">
+            <summary>
+            Start a new timer
+            </summary>
+            <param name="startTime">The time in seconds after which the callBack will be called</param>
+            <param name="timerExpiredCallback">The callback to invoke once the timer expires</param>
+            <param name="loop">Whether this timer should loop (restart once it ends)</param>
+            <returns>Returns a handle to the timer, this can be used to Pause the timer or change some properties
+            <para>It can also be safely ignored if not needed</para></returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.Update(System.Double)">
+            <summary>
+            Updates the internal timer of each <see cref="T:VDFramework.Utility.TimerUtil.TimerHandle"/> with deltaTime
+            </summary>
+            <param name="deltaTime">The amount to update the timers with</param>
         </member>
         <member name="T:VDFramework.Utility.Windows.EnvironmentVariables">
             <summary>
