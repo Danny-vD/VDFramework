@@ -9,6 +9,16 @@
             An 'improved' <see cref="T:UnityEngine.MonoBehaviour"/> which caches often used properties
             </summary>
         </member>
+        <member name="P:VDFramework.BetterMonoBehaviour.CachedTransform">
+            <summary>
+            The transform of this object
+            </summary>
+        </member>
+        <member name="P:VDFramework.BetterMonoBehaviour.CachedGameObject">
+            <summary>
+            The gameobject where this component is attached to
+            </summary>
+        </member>
         <member name="P:VDFramework.BetterMonoBehaviour.transform">
             <summary>
             Overridden to return the CachedTransform
@@ -34,6 +44,36 @@
         <member name="M:VDFramework.Singleton.Singleton`1.DestroyInstance">
             <summary>
             Sets the instance of the singleton to null.
+            </summary>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.CoroutineExtensions.Then(System.Collections.IEnumerator,System.Collections.IEnumerator)">
+            <summary>
+            Execute another coroutine immediately after this one is done
+            </summary>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.CoroutineExtensions.Wait(System.Collections.IEnumerator,System.Single)">
+            <summary>
+            Wait for a set amount of seconds immediately after this coroutine
+            </summary>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.CoroutineExtensions.WaitRealTime(System.Collections.IEnumerator,System.Single)">
+            <summary>
+            Wait for a set amount of real-time seconds immediately after this coroutine
+            </summary>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.CoroutineExtensions.Then(System.Collections.IEnumerable,System.Collections.IEnumerable)">
+            <summary>
+            Execute another coroutine immediately after this one is done
+            </summary>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.CoroutineExtensions.Wait(System.Collections.IEnumerable,System.Single)">
+            <summary>
+            Wait for a set amount of seconds immediately after this coroutine
+            </summary>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.CoroutineExtensions.WaitRealTime(System.Collections.IEnumerable,System.Single)">
+            <summary>
+            Wait for a set amount of real-time seconds immediately after this coroutine
             </summary>
         </member>
         <member name="M:VDFramework.UnityExtensions.GameObjectExtensions.EnsureComponent``1(UnityEngine.GameObject)">
