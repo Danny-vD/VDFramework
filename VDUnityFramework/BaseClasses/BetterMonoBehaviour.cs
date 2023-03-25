@@ -7,9 +7,17 @@ namespace VDFramework
 	/// </summary>
 	public class BetterMonoBehaviour : MonoBehaviour
 	{
+		/*
+		 * A standard call to 'transform' makes a call to the C++ side of Unity (where it is cached)
+		 * this call has some overhead which can be removed by caching the transform on the C# side
+		 */
+		
 		private Transform cachedTransform;
 		private GameObject cachedGameObject;
 
+		/// <summary>
+		/// The transform of this object
+		/// </summary>
 		public Transform CachedTransform
 		{
 			get
@@ -23,6 +31,9 @@ namespace VDFramework
 			}
 		}
 		
+		/// <summary>
+		/// The gameobject where this component is attached to
+		/// </summary>
 		public GameObject CachedGameObject
 		{
 			get
