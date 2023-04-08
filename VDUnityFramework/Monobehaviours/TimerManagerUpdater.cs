@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using VDFramework.Utility.TimerUtil;
 
 namespace VDFramework.Monobehaviours
@@ -9,14 +10,36 @@ namespace VDFramework.Monobehaviours
 	/// </summary>
 	public class TimerManagerUpdater : BetterMonoBehaviour
 	{
-		private void Start()
+		private static bool exists = false;
+		private bool destroyStatic = true;
+		
+		private void Awake()
 		{
+			if (exists)
+			{
+				destroyStatic = false;
+				
+				// Prevent updating the TimerManager twice
+				Destroy(this);
+				return;
+			}
+			
+			exists = true;
+			
 			DontDestroyOnLoad(gameObject);
 		}
 
 		private void Update()
 		{
 			TimerManager.Update(Time.deltaTime);
+		}
+
+		private void OnDestroy()
+		{
+			if (destroyStatic)
+			{
+				exists = false;
+			}
 		}
 	}
 }

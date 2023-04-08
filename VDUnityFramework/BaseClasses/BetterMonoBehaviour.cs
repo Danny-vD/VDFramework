@@ -3,15 +3,12 @@
 namespace VDFramework
 {
 	/// <summary>
-	/// An 'improved' <see cref="MonoBehaviour"/> which caches often used properties
+	///<para>An 'improved' <see cref="MonoBehaviour"/> which caches often used properties</para>
+	///<para>A standard call to 'transform' and 'gameobject' makes a call to the C++ side of Unity (where it is cached)</para>
+	///<para>this call has some overhead which can be removed by caching these on the C# side</para>
 	/// </summary>
 	public class BetterMonoBehaviour : MonoBehaviour
 	{
-		/*
-		 * A standard call to 'transform' makes a call to the C++ side of Unity (where it is cached)
-		 * this call has some overhead which can be removed by caching the transform on the C# side
-		 */
-		
 		private Transform cachedTransform;
 		private GameObject cachedGameObject;
 
@@ -22,7 +19,7 @@ namespace VDFramework
 		{
 			get
 			{
-				if (cachedTransform == null)
+				if (ReferenceEquals(cachedTransform, null))
 				{
 					cachedTransform = base.transform;
 				}
@@ -38,7 +35,7 @@ namespace VDFramework
 		{
 			get
 			{
-				if (cachedGameObject == null)
+				if (ReferenceEquals(cachedGameObject, null))
 				{
 					cachedGameObject = base.gameObject;
 				}
