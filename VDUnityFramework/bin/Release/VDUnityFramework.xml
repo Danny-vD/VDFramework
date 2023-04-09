@@ -5,9 +5,11 @@
     </assembly>
     <members>
         <member name="T:VDFramework.BetterMonoBehaviour">
-            <summary>
-            An 'improved' <see cref="T:UnityEngine.MonoBehaviour"/> which caches often used properties
-            </summary>
+             <summary>
+            <para>An 'improved' <see cref="T:UnityEngine.MonoBehaviour"/> which caches often used properties</para>
+            <para>A standard call to 'transform' and 'gameobject' makes a call to the C++ side of Unity (where it is cached)</para>
+            <para>this call has some overhead which can be removed by caching these on the C# side</para>
+             </summary>
         </member>
         <member name="P:VDFramework.BetterMonoBehaviour.CachedTransform">
             <summary>

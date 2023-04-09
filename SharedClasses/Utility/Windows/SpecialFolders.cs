@@ -162,8 +162,7 @@ namespace VDFramework.Utility.Windows
 			"Fonts", FolderType.FIXED, "windir", @"\Fonts");
 
 		/// <summary>
-		/// Deprecated in Windows 10, version 1803 and later versions. In these versions, it returns 0x80070057 - E_INVALIDARG
-		///<para></para>
+		///<para>Deprecated in Windows 10, version 1803 and later versions. In these versions, it returns 0x80070057 - E_INVALIDARG</para>
 		/// <para>VIRTUAL FOLDER: no path available</para>
 		/// </summary>
 		public static readonly SpecialFolder Games = new SpecialFolder(new Guid("{CAC52C1A-B53D-4edc-92D7-6B2E8AC19434}"),
