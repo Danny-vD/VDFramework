@@ -14,7 +14,7 @@
             Returns an IEnumerable of <see cref="!:TEnum"/> that has all the values of the enum
             </summary>
         </member>
-        <member name="M:VDFramework.Extensions.Int32Extentions.HasOneMatchingBit(System.Int32,System.Int32,System.Boolean)">
+        <member name="M:VDFramework.Extensions.Int32Extensions.HasOneMatchingBit(System.Int32,System.Int32,System.Boolean)">
             <summary>
             Check every bit one by one to see if they are equal
             </summary>
@@ -29,9 +29,27 @@
             <param name="newSize">The elements that are in the list</param>
             <typeparam name="TItem">The type of items in the list</typeparam>
         </member>
-        <member name="M:VDFramework.Extensions.RandomItem.Randomize``1(System.Collections.Generic.IEnumerable{``0})">
+        <member name="M:VDFramework.Extensions.RandomElement.GetRandomElement``1(System.Collections.Generic.IEnumerable{``0},System.Int32@,System.Int32[])">
+            <summary>
+            Returns a random element from this collection
+            </summary>
+            <param name="randomIndex">the index of the element returned</param>
+            <param name="ignoreIndices">[OPTIONAL] the indices of elements that cannot be returned by this function</param>
+        </member>
+        <member name="M:VDFramework.Extensions.RandomElement.GetRandomElement``1(System.Collections.Generic.IEnumerable{``0},System.Int32[])">
+            <summary>
+            Returns a random element from this collection
+            </summary>
+            <param name="ignoreIndices">[OPTIONAL] the indices of elements that cannot be returned by this function</param>
+        </member>
+        <member name="M:VDFramework.Extensions.RandomElement.Randomize``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
             Randomly sorts the IEnumberable
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.RandomElement.Randomize``1(System.Collections.Generic.List{``0})">
+            <summary>
+            Randomly sorts the list
             </summary>
         </member>
         <member name="M:VDFramework.Extensions.StringExtensions.InsertSpaceBeforeCapitals(System.String)">
@@ -271,8 +289,7 @@
         </member>
         <member name="F:VDFramework.Utility.Windows.SpecialFolders.Games">
              <summary>
-             Deprecated in Windows 10, version 1803 and later versions. In these versions, it returns 0x80070057 - E_INVALIDARG
-            <para></para>
+            <para>Deprecated in Windows 10, version 1803 and later versions. In these versions, it returns 0x80070057 - E_INVALIDARG</para>
              <para>VIRTUAL FOLDER: no path available</para>
              </summary>
         </member>
