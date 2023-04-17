@@ -41,7 +41,14 @@ namespace VDFramework.Utility
 					continue;
 				}
 
-				list.Insert(i, new TKeyValuePair {Key = enumValue});
+				if (i > list.Count) // Happens in case of duplicate values
+				{
+					list.Add(new TKeyValuePair { Key = enumValue });
+				}
+				else
+				{
+					list.Insert(i, new TKeyValuePair { Key = enumValue });
+				}
 			}
 
 			// Remove any duplicates
@@ -52,7 +59,7 @@ namespace VDFramework.Utility
 				for (int index = list.Count - 1; index > i; index--)
 				{
 					TKeyValuePair other = list[index];
-					
+
 					if (pair.Key.Equals(other.Key))
 					{
 						list.Remove(other);
