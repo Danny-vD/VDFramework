@@ -40,8 +40,8 @@
         <Compile Include="..\SharedClasses\Extensions\EnumExtensions.cs">
             <Link>SharedClasses\Extensions\EnumExtensions.cs</Link>
         </Compile>
-        <Compile Include="..\SharedClasses\Extensions\Int32Extentions.cs">
-            <Link>SharedClasses\Extensions\Int32Extentions.cs</Link>
+        <Compile Include="..\SharedClasses\Extensions\Int32Extensions.cs">
+            <Link>SharedClasses\Extensions\Int32Extensions.cs</Link>
         </Compile>
         <Compile Include="..\SharedClasses\Extensions\ListExtensions.cs">
             <Link>SharedClasses\Extensions\ListExtensions.cs</Link>

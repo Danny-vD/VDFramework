@@ -1,6 +1,6 @@
 ﻿namespace VDFramework.Extensions
 {
-	public static class Int32Extentions
+	public static class Int32Extensions
 	{
 		/// <summary>
 		/// Check every bit one by one to see if they are equal
