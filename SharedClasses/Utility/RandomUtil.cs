@@ -8,17 +8,17 @@ namespace VDFramework.Utility
 
 		public static bool RandomBool()
 		{
-			return boolValues.GetRandomItem();
+			return boolValues.GetRandomElement();
 		}
 
 		public static object GetRandom(params object[] array)
 		{
-			return array.GetRandomItem();
+			return array.GetRandomElement();
 		}
 
 		public static TItem GetRandom<TItem>(params TItem[] array)
 		{
-			return array.GetRandomItem();
+			return array.GetRandomElement();
 		}
 	}
 }

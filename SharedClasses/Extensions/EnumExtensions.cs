@@ -46,7 +46,7 @@ namespace VDFramework.Extensions
 		{
 			IEnumerable<string> names = @enum.GetNames();
 
-			Enum.TryParse(names.GetRandomItem(), out TEnum result);
+			Enum.TryParse(names.GetRandomElement(), out TEnum result);
 
 			return result;
 		}
