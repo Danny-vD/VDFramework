@@ -49,8 +49,8 @@
         <Compile Include="..\SharedClasses\Extensions\ObjectExtensions.cs">
             <Link>SharedClasses\Extensions\ObjectExtensions.cs</Link>
         </Compile>
-        <Compile Include="..\SharedClasses\Extensions\RandomItem.cs">
-            <Link>SharedClasses\Extensions\RandomItem.cs</Link>
+        <Compile Include="..\SharedClasses\Extensions\RandomElement.cs">
+          <Link>SharedClasses\Extensions\RandomElement.cs</Link>
         </Compile>
         <Compile Include="..\SharedClasses\Extensions\StringExtensions.cs">
             <Link>SharedClasses\Extensions\StringExtensions.cs</Link>

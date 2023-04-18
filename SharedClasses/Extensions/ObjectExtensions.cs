@@ -8,11 +8,11 @@ namespace VDFramework.Extensions
 		{
 			try
 			{
-				return (TNewType) Convert.ChangeType(@object, typeof(TNewType));
+				return (TNewType)Convert.ChangeType(@object, typeof(TNewType));
 			}
 			catch
 			{
-				return (TNewType) @object;
+				return (TNewType)@object;
 			}
 		}
 	}
