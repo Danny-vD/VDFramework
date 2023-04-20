@@ -32,8 +32,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// A Handle for a timer that has a callback that has 1 parameter
 		/// </summary>
 		/// <inheritdoc />
-		protected internal ParameterTimerHandler(double startTime, Action<TParam1> callback, bool loop, params object[] callbackParameters)
-			: base(startTime, callback, loop, callbackParameters)
+		protected internal ParameterTimerHandler(double startTime, Action<TParam1> callback, bool loop, params object[] callbackParameters) : base(startTime, callback, loop, callbackParameters)
 		{
 		}
 
