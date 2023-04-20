@@ -19,6 +19,7 @@ namespace VDFramework
 		{
 			get
 			{
+				// Using ReferenceEquals so we don't have the overhead from Unity's lifetime check
 				if (ReferenceEquals(cachedTransform, null))
 				{
 					cachedTransform = base.transform;
@@ -35,6 +36,7 @@ namespace VDFramework
 		{
 			get
 			{
+				// Using ReferenceEquals so we don't have the overhead from Unity's lifetime check
 				if (ReferenceEquals(cachedGameObject, null))
 				{
 					cachedGameObject = base.gameObject;
