@@ -82,6 +82,43 @@ namespace VDFramework.Utility.TimerUtil
 		}
 
 		/// <summary>
+		/// <para>Starts a new timer using the data from the given TimerHandle</para>
+		/// <para>A callback has to be provided because the given TimerHandle may not have a valid callback anymore</para>
+		/// </summary>
+		/// <param name="handle">A TimerHandle whose data will be used to set a new timer</param>
+		/// <param name="timerExpiredCallback">The callback to invoke once the timer expires</param>
+		/// <returns>A handle to the timer, this can be used to pause the timer or change properties
+		/// <para>It can also be safely ignored if not needed</para></returns>
+		/// <seealso cref="AbstractTimerHandle.IsValid"/>
+		public static DelegateTimerHandle StartNewTimerFromTemplate<TDelegate>(AbstractTimerHandle handle, TDelegate timerExpiredCallback) where TDelegate : Delegate
+		{
+			if (handle is AbstractParametersTimerHandle<TDelegate> parametersTimerHandle)
+			{
+				return StartNewTimer(handle.StartTime, timerExpiredCallback, handle.IsLooping, parametersTimerHandle.GetParameters());
+			}
+			
+			return StartNewTimer(handle.StartTime, timerExpiredCallback, handle.IsLooping);
+		}
+		
+		/// <summary>
+		/// <para>Starts a new timer using the data from the given TimerHandle</para>
+		/// </summary>
+		/// <param name="handle">A TimerHandle whose data will be used to set a new timer</param>
+		/// <returns>A handle to the timer, this can be used to pause the timer or change properties
+		/// <para>It can also be safely ignored if not needed</para></returns>
+		/// <exception cref="ArgumentException">Will be thrown if handle does not have a valid callback</exception>
+		/// <seealso cref="AbstractTimerHandle.IsValid"/>
+		public static DelegateTimerHandle StartNewTimerFromTemplate<TDelegate>(AbstractTimerHandle<TDelegate> handle) where TDelegate : Delegate
+		{
+			if (!handle.IsValid)
+			{
+				throw new ArgumentException("The timerhandle is not valid (this happens because the TimerHandle cleans up after itself when the timer expires)", nameof(handle));
+			}
+
+			return StartNewTimerFromTemplate(handle, handle.OnTimerExpire);
+		}
+
+		/// <summary>
 		/// Adds this timerHandle to the list of TimerHandles
 		/// </summary>
 		/// <param name="handle">The TimerHandle that will be added</param>
