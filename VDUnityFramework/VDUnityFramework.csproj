@@ -13,12 +13,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-        <HintPath>bin\Release\netstandard2.0\UnityEngine.dll</HintPath>
-      </Reference>
-    </ItemGroup>
-
-    <ItemGroup>
       <Compile Include="..\SharedClasses\EventSystem\EventHandler.cs">
         <Link>SharedClasses\EventSystem\EventHandler.cs</Link>
       </Compile>
@@ -115,5 +109,11 @@
       <Content Include="..\SharedClasses\Utility\.gitkeep">
         <Link>SharedClasses\Utility\.gitkeep</Link>
       </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="UnityEngine">
+        <HintPath>C:\GameEngines\Unity\2022.2.16f1\Editor\Data\Managed\UnityEngine.dll</HintPath>
+      </Reference>
     </ItemGroup>
 </Project>
