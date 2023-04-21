@@ -27,5 +27,36 @@
 		{
 			number &= ~flagToRemove;
 		}
+
+		/// <summary>
+		/// <para>Returns the ordinal version of this number</para>
+		/// <para>Only supports 0-16 at the moment, higher than that will return number.ToString</para>
+		/// </summary>
+		/// <param name="number">The number to ordinalise</param>
+		/// <returns>A string that respresents the ordinal version of the given number (e.g. 3 -> "third")</returns>
+		public static string Ordinalize(this int number)
+		{
+			return number switch
+			{
+				0 => "zeroth",
+				1 => "first",
+				2 => "second",
+				3 => "third",
+				4 => "fourth",
+				5 => "fifth",
+				6 => "sixth",
+				7 => "seventh",
+				8 => "eighth",
+				9 => "ninth",
+				10 => "tenth",
+				11 => "eleventh",
+				12 => "twelfth",
+				13 => "thirteenth",
+				14 => "fourteenth",
+				15 => "fifteenth",
+				16 => "sixteenth",
+				_ => number.ToString(),
+			};
+		}
 	}
 }
