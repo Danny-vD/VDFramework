@@ -48,35 +48,227 @@
             Sets the instance of the singleton to null.
             </summary>
         </member>
+        <member name="T:VDFramework.UnityExtensions.CoroutineExtensions">
+            <summary>
+            Contains several extension methods that add extra functions to coroutines
+            </summary>
+        </member>
         <member name="M:VDFramework.UnityExtensions.CoroutineExtensions.Then(System.Collections.IEnumerator,System.Collections.IEnumerator)">
             <summary>
-            Execute another coroutine immediately after this one is done
+                Execute another coroutine immediately after this one is done
             </summary>
         </member>
         <member name="M:VDFramework.UnityExtensions.CoroutineExtensions.Wait(System.Collections.IEnumerator,System.Single)">
             <summary>
-            Wait for a set amount of seconds immediately after this coroutine
+                Wait for a set amount of seconds immediately after this coroutine
             </summary>
         </member>
         <member name="M:VDFramework.UnityExtensions.CoroutineExtensions.WaitRealTime(System.Collections.IEnumerator,System.Single)">
             <summary>
-            Wait for a set amount of real-time seconds immediately after this coroutine
+                Wait for a set amount of real-time seconds immediately after this coroutine
             </summary>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.CoroutineExtensions.Repeat(System.Collections.IEnumerator,System.Int32)">
+            <summary>
+                Repeats the given Coroutine.
+            </summary>
+            <param name="enumerator">The Coroutine that is being repeated.</param>
+            <param name="count">The Amount of repetitions. -1 to repeat indefinetly</param>
+            <returns>Repeating Coroutine</returns>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.CoroutineExtensions.If(System.Collections.IEnumerator,System.Func{System.Boolean})">
+            <summary>
+            Executes the coroutine if the condition is true
+            </summary>
+            <param name="enumerator">The coroutine to be executed</param>
+            <param name="condition">The condition that has to be met for the execution</param>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.CoroutineExtensions.Else(VDFramework.UnityExtensions.ConditionalEnumerator,System.Collections.IEnumerator)">
+            <summary>
+            Executes the coroutine if the <see cref="M:VDFramework.UnityExtensions.CoroutineExtensions.If(System.Collections.IEnumerator,System.Func{System.Boolean})"/> is false
+            </summary>
+            <param name="enumerator">The <see cref="T:VDFramework.UnityExtensions.ConditionalEnumerator"/> whose condition to check</param>
+            <param name="elseCoroutine">The coroutine to be executed</param>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.CoroutineExtensions.While(System.Collections.IEnumerator,System.Func{System.Boolean})">
+            <summary>
+            Executes the coroutine while the condition is true
+            </summary>
+            <param name="enumerator">The coroutine to be executed</param>
+            <param name="condition">The condition that has to be met for the execution</param>
         </member>
         <member name="M:VDFramework.UnityExtensions.CoroutineExtensions.Then(System.Collections.IEnumerable,System.Collections.IEnumerable)">
             <summary>
-            Execute another coroutine immediately after this one is done
+                Execute another coroutine immediately after this one is done
             </summary>
         </member>
         <member name="M:VDFramework.UnityExtensions.CoroutineExtensions.Wait(System.Collections.IEnumerable,System.Single)">
             <summary>
-            Wait for a set amount of seconds immediately after this coroutine
+                Wait for a set amount of seconds immediately after this coroutine
             </summary>
         </member>
         <member name="M:VDFramework.UnityExtensions.CoroutineExtensions.WaitRealTime(System.Collections.IEnumerable,System.Single)">
             <summary>
-            Wait for a set amount of real-time seconds immediately after this coroutine
+                Wait for a set amount of real-time seconds immediately after this coroutine
             </summary>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.CoroutineExtensions.Repeat(System.Collections.IEnumerable,System.Int32)">
+            <summary>
+                Repeats the given Coroutine.
+            </summary>
+            <param name="enumerable">The Coroutine that is being repeated.</param>
+            <param name="count">The Amount of repetitions. -1 to repeat indefinetly</param>
+            <returns>Repeating Coroutine</returns>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.CoroutineExtensions.If(System.Collections.IEnumerable,System.Func{System.Boolean})">
+            <summary>
+            Executes the coroutine if the condition is true
+            </summary>
+            <param name="enumerable">The coroutine to be executed</param>
+            <param name="condition">The condition that has to be met for the execution</param>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.CoroutineExtensions.Else(VDFramework.UnityExtensions.ConditionalEnumerable,System.Collections.IEnumerable)">
+            <summary>
+            Executes the coroutine if the <see cref="M:VDFramework.UnityExtensions.CoroutineExtensions.If(System.Collections.IEnumerable,System.Func{System.Boolean})"/> is false
+            </summary>
+            <param name="enumerable">The <see cref="T:VDFramework.UnityExtensions.ConditionalEnumerator"/> whose condition to check</param>
+            <param name="elseCoroutine">The coroutine to be executed</param>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.CoroutineExtensions.While(System.Collections.IEnumerable,System.Func{System.Boolean})">
+            <summary>
+            Executes the coroutine while the condition is true
+            </summary>
+            <param name="enumerable">The coroutine to be executed</param>
+            <param name="condition">The condition that has to be met for the execution</param>
+        </member>
+        <member name="T:VDFramework.UnityExtensions.ConditionalEnumerator">
+            <summary>
+            An abstract base class that has properties specificially aimed at conditional execution
+            </summary>
+        </member>
+        <member name="F:VDFramework.UnityExtensions.ConditionalEnumerator.enumerator">
+            <summary>
+            The enumerator to execute depending on the <see cref="F:VDFramework.UnityExtensions.ConditionalEnumerator.executionCondition"/>
+            </summary>
+        </member>
+        <member name="F:VDFramework.UnityExtensions.ConditionalEnumerator.executionCondition">
+            <summary>
+            The condition for the execution
+            </summary>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.ConditionalEnumerator.#ctor(System.Collections.IEnumerator,System.Func{System.Boolean})">
+            <summary>
+            An abstract base class that has properties specificially aimed at conditional execution
+            </summary>
+            <param name="enumerator">The enumerator to execute depending on the <see cref="F:VDFramework.UnityExtensions.ConditionalEnumerator.executionCondition"/></param>
+            <param name="condition">The condition for the execution</param>
+        </member>
+        <member name="P:VDFramework.UnityExtensions.ConditionalEnumerator.ExecutedOnce">
+            <summary>
+            Will be true if the enumerator has ran at least once
+            </summary>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.ConditionalEnumerator.MoveNext">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.UnityExtensions.ConditionalEnumerator.Reset">
+            <inheritdoc />
+        </member>
+        <member name="P:VDFramework.UnityExtensions.ConditionalEnumerator.Current">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.UnityExtensions.ConditionalEnumerator.SetExecutedOnce">
+            <summary>
+            Flag this enumerator as 'has ran at least once'
+            </summary>
+            <seealso cref="P:VDFramework.UnityExtensions.ConditionalEnumerator.ExecutedOnce"/>
+        </member>
+        <member name="T:VDFramework.UnityExtensions.IfEnumerator">
+            <summary>
+            An Enumerator that executes the enumerator if the condition is true
+            </summary>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.IfEnumerator.#ctor(System.Collections.IEnumerator,System.Func{System.Boolean})">
+            <summary>
+            An Enumerator that executes the enumerator if the condition is true
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.UnityExtensions.IfEnumerator.MoveNext">
+            <inheritdoc />
+        </member>
+        <member name="T:VDFramework.UnityExtensions.WhileEnumerator">
+            <summary>
+            An Enumerator that executes as long as the condition is true
+            </summary>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.WhileEnumerator.#ctor(System.Collections.IEnumerator,System.Func{System.Boolean})">
+            <summary>
+            An Enumerator that executes as long as the condition is true
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.UnityExtensions.WhileEnumerator.MoveNext">
+            <inheritdoc />
+        </member>
+        <member name="T:VDFramework.UnityExtensions.ConditionalEnumerable">
+            <summary>
+            An abstract base class that has properties specificially aimed at conditional execution
+            </summary>
+        </member>
+        <member name="F:VDFramework.UnityExtensions.ConditionalEnumerable.enumerable">
+            <summary>
+            The enumerable to execute depending on the <see cref="F:VDFramework.UnityExtensions.ConditionalEnumerable.executionCondition"/>
+            </summary>
+        </member>
+        <member name="F:VDFramework.UnityExtensions.ConditionalEnumerable.executionCondition">
+            <summary>
+            The condition for the execution
+            </summary>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.ConditionalEnumerable.#ctor(System.Collections.IEnumerable,System.Func{System.Boolean})">
+            <summary>
+            An abstract base class that has properties specificially aimed at conditional execution
+            </summary>
+            <param name="enumerable">The enumerable to execute depending on the <see cref="F:VDFramework.UnityExtensions.ConditionalEnumerable.executionCondition"/></param>
+            <param name="condition">The condition for the execution</param>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.ConditionalEnumerable.GetEnumerator">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.UnityExtensions.ConditionalEnumerable.InnerGetEnumerator">
+            <summary>
+             Returns the Enumerator of the underlaying Enumerable
+            </summary>
+             <inheritdoc cref="M:VDFramework.UnityExtensions.ConditionalEnumerable.GetEnumerator"/>
+        </member>
+        <member name="T:VDFramework.UnityExtensions.IfEnumerable">
+            <summary>
+            An Enumerable that executes the enumerator if the condition is true
+            </summary>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.IfEnumerable.#ctor(System.Collections.IEnumerable,System.Func{System.Boolean})">
+            <summary>
+            An Enumerable that executes the enumerator if the condition is true
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.UnityExtensions.IfEnumerable.InnerGetEnumerator">
+            <inheritdoc />
+        </member>
+        <member name="T:VDFramework.UnityExtensions.WhileEnumerable">
+            <summary>
+            An Enumerable that executes as long as the condition is true
+            </summary>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.WhileEnumerable.#ctor(System.Collections.IEnumerable,System.Func{System.Boolean})">
+            <summary>
+            An Enumerable that executes as long as the condition is true
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.UnityExtensions.WhileEnumerable.InnerGetEnumerator">
+            <inheritdoc />
         </member>
         <member name="M:VDFramework.UnityExtensions.GameObjectExtensions.EnsureComponent``1(UnityEngine.GameObject)">
             <summary>
@@ -98,6 +290,16 @@
             The exception that is thrown once you create a 2nd instance of a singleton
             </summary>
         </member>
+        <member name="T:VDFramework.Extensions.EnumerableExtensions">
+            <summary>
+            Contains Extension methods for IEnumerables
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.EnumerableExtensions.CountIsZeroOrOne``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            True if this collection is empty or contains only one element
+            </summary>
+        </member>
         <member name="M:VDFramework.Extensions.EnumExtensions.GetValues``1(``0)">
             <summary>
             Returns an IEnumerable of <see cref="!:TEnum"/> that has all the values of the enum
@@ -108,6 +310,14 @@
             Check every bit one by one to see if they are equal
             </summary>
             <returns>TRUE if at least one bit is equal</returns>
+        </member>
+        <member name="M:VDFramework.Extensions.Int32Extensions.Ordinalize(System.Int32)">
+            <summary>
+            <para>Returns the ordinal version of this number</para>
+            <para>Only supports 0-16 at the moment, higher than that will return number.ToString</para>
+            </summary>
+            <param name="number">The number to ordinalise</param>
+            <returns>A string that respresents the ordinal version of the given number (e.g. 3 -> "third")</returns>
         </member>
         <member name="M:VDFramework.Extensions.ListExtensions.ResizeList``1(System.Collections.Generic.List{``0},System.Int32)">
             <summary>
@@ -228,11 +438,6 @@
             </summary>
             <seealso cref="P:VDFramework.Utility.TimerUtil.TimerHandles.AbstractTimerHandle.IsPaused"/>
         </member>
-        <member name="P:VDFramework.Utility.TimerUtil.TimerHandles.AbstractTimerHandle.IsValid">
-            <summary>
-            Whether or not all this the properties of this timer are valid (will be false if a non-looped timer expires)
-            </summary>
-        </member>
         <member name="M:VDFramework.Utility.TimerUtil.TimerHandles.AbstractTimerHandle.#ctor(System.Double,System.Boolean)">
             <summary>
             A handle to the timer, this can be used to Pause the timer or change some properties
@@ -269,6 +474,12 @@
             Stop this timer immediately and prevent further updates
             <para>If you mean to temporarily pause a timer, use <see cref="M:VDFramework.Utility.TimerUtil.TimerHandles.AbstractTimerHandle.SetPause(System.Boolean)"/> instead</para>
             </summary>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerHandles.AbstractTimerHandle.Cleanup">
+            <summary>
+            Called when the timer is stopped
+            </summary>
+            <seealso cref="M:VDFramework.Utility.TimerUtil.TimerHandles.AbstractTimerHandle.Stop"/>
         </member>
         <member name="M:VDFramework.Utility.TimerUtil.TimerHandles.AbstractTimerHandle.InvokeCallback">
             <summary>
@@ -1872,7 +2083,7 @@
             <returns>A handle to the timer, this can be used to pause the timer or change properties
             <para>It can also be safely ignored if not needed</para></returns>
         </member>
-        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimer(System.Double,System.Delegate,System.Boolean,System.Object[])">
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimerDelegate(System.Double,System.Delegate,System.Boolean,System.Object[])">
             <summary>
             Start a new timer
             </summary>
@@ -1889,9 +2100,26 @@
             Start a timer on the given TimerHandle (resets if one is already ticking)
             </summary>
             <param name="handle">The TimerHandle to set the timer on</param>
-            <returns>Whether a not a timer was successfully started (will fail if the handle is not valid (i.e. has already been cleaned up after expiring))</returns>
+            <returns>The same timerhandle</returns>
             <seealso cref="P:VDFramework.Utility.TimerUtil.TimerHandles.AbstractTimerHandle.IsTicking"/>
-            <seealso cref="P:VDFramework.Utility.TimerUtil.TimerHandles.AbstractTimerHandle.IsValid"/>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimerFromTemplate``1(VDFramework.Utility.TimerUtil.TimerHandles.AbstractTimerHandle,``0)">
+            <summary>
+            <para>Starts a new timer using the data from the given TimerHandle</para>
+            <para>use <see cref="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimerFromTemplate``1(VDFramework.Utility.TimerUtil.TimerHandles.AbstractTimerHandle{``0})"/> if you want to reuse the callback from the given handle</para>
+            </summary>
+            <param name="handle">A TimerHandle whose data will be used to set a new timer</param>
+            <param name="timerExpiredCallback">The callback to invoke once the timer expires</param>
+            <returns>A handle to the timer, this can be used to pause the timer or change properties
+            <para>It can also be safely ignored if not needed</para></returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimerFromTemplate``1(VDFramework.Utility.TimerUtil.TimerHandles.AbstractTimerHandle{``0})">
+            <summary>
+            <para>Starts a new timer using the data from the given TimerHandle</para>
+            </summary>
+            <param name="handle">A TimerHandle whose data will be used to set a new timer</param>
+            <returns>A handle to the timer, this can be used to pause the timer or change properties
+            <para>It can also be safely ignored if not needed</para></returns>
         </member>
         <member name="M:VDFramework.Utility.TimerUtil.TimerManager.AddHandleToUpdateList(VDFramework.Utility.TimerUtil.TimerHandles.AbstractTimerHandle)">
             <summary>
@@ -1904,6 +2132,370 @@
             Updates the internal timer of each <see cref="T:VDFramework.Utility.TimerUtil.TimerHandles.AbstractTimerHandle"/> with deltaTime
             </summary>
             <param name="deltaTime">The amount to update the timers with</param>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimer``1(System.Double,System.Action{``0},System.Boolean,System.Object[])">
+            <summary>
+            Start a new timer
+            </summary>
+            <param name="startTime">The time in seconds after which the callBack will be called</param>
+            <param name="timerExpiredCallback">The callback to invoke once the timer expires</param>
+            <param name="loop">Whether this timer should loop (restart once it ends)</param>
+            <param name="callbackParameters">Parameters that will be used to invoke the callback, any undefined parameters will be their default value and any excess will be ignored</param>
+            <returns>A handle to the timer, this can be used to pause the timer or change properties
+            <para>It can also be safely ignored if not needed</para></returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimer``1(System.Double,System.Action{``0},System.Boolean,``0)">
+            <summary>
+            Start a new timer
+            </summary>
+            <param name="startTime">The time in seconds after which the callBack will be called</param>
+            <param name="timerExpiredCallback">The callback to invoke once the timer expires</param>
+            <param name="loop">Whether this timer should loop (restart once it ends)</param>
+            <param name="param1">The parameter that is used to invoke the callback</param>
+            <returns>A handle to the timer, this can be used to pause the timer or change properties
+            <para>It can also be safely ignored if not needed</para></returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimer``2(System.Double,System.Action{``0,``1},System.Boolean,System.Object[])">
+            <summary>
+            Start a new timer
+            </summary>
+            <param name="startTime">The time in seconds after which the callBack will be called</param>
+            <param name="timerExpiredCallback">The callback to invoke once the timer expires</param>
+            <param name="loop">Whether this timer should loop (restart once it ends)</param>
+            <param name="callbackParameters">Parameters that will be used to invoke the callback, any undefined parameters will be their default value and any excess will be ignored</param>
+            <returns>A handle to the timer, this can be used to pause the timer or change properties
+            <para>It can also be safely ignored if not needed</para></returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimer``2(System.Double,System.Action{``0,``1},System.Boolean,``0,``1)">
+            <summary>
+            Start a new timer
+            </summary>
+            <param name="startTime">The time in seconds after which the callBack will be called</param>
+            <param name="timerExpiredCallback">The callback to invoke once the timer expires</param>
+            <param name="loop">Whether this timer should loop (restart once it ends)</param>
+            <param name="param1">The first parameter that is used to invoke the callback</param>
+            <param name="param2">The second parameter that is used to invoke the callback</param>
+            <returns>A handle to the timer, this can be used to pause the timer or change properties
+            <para>It can also be safely ignored if not needed</para></returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimer``3(System.Double,System.Action{``0,``1,``2},System.Boolean,System.Object[])">
+            <summary>
+            Start a new timer
+            </summary>
+            <param name="startTime">The time in seconds after which the callBack will be called</param>
+            <param name="timerExpiredCallback">The callback to invoke once the timer expires</param>
+            <param name="loop">Whether this timer should loop (restart once it ends)</param>
+            <param name="callbackParameters">Parameters that will be used to invoke the callback, any undefined parameters will be their default value and any excess will be ignored</param>
+            <returns>A handle to the timer, this can be used to pause the timer or change properties
+            <para>It can also be safely ignored if not needed</para></returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimer``3(System.Double,System.Action{``0,``1,``2},System.Boolean,``0,``1,``2)">
+            <summary>
+            Start a new timer
+            </summary>
+            <param name="startTime">The time in seconds after which the callBack will be called</param>
+            <param name="timerExpiredCallback">The callback to invoke once the timer expires</param>
+            <param name="loop">Whether this timer should loop (restart once it ends)</param>
+            <param name="param1">The first parameter that is used to invoke the callback</param>
+            <param name="param2">The second parameter that is used to invoke the callback</param>
+            <param name="param3">The third parameter that is used to invoke the callback</param>
+            <returns>A handle to the timer, this can be used to pause the timer or change properties
+            <para>It can also be safely ignored if not needed</para></returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimer``4(System.Double,System.Action{``0,``1,``2,``3},System.Boolean,System.Object[])">
+            <summary>
+            Start a new timer
+            </summary>
+            <param name="startTime">The time in seconds after which the callBack will be called</param>
+            <param name="timerExpiredCallback">The callback to invoke once the timer expires</param>
+            <param name="loop">Whether this timer should loop (restart once it ends)</param>
+            <param name="callbackParameters">Parameters that will be used to invoke the callback, any undefined parameters will be their default value and any excess will be ignored</param>
+            <returns>A handle to the timer, this can be used to pause the timer or change properties
+            <para>It can also be safely ignored if not needed</para></returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimer``4(System.Double,System.Action{``0,``1,``2,``3},System.Boolean,``0,``1,``2,``3)">
+            <summary>
+            Start a new timer
+            </summary>
+            <param name="startTime">The time in seconds after which the callBack will be called</param>
+            <param name="timerExpiredCallback">The callback to invoke once the timer expires</param>
+            <param name="loop">Whether this timer should loop (restart once it ends)</param>
+            <param name="param1">The first parameter that is used to invoke the callback</param>
+            <param name="param2">The second parameter that is used to invoke the callback</param>
+            <param name="param3">The third parameter that is used to invoke the callback</param>
+            <param name="param4">The fourth parameter that is used to invoke the callback</param>
+            <returns>A handle to the timer, this can be used to pause the timer or change properties
+            <para>It can also be safely ignored if not needed</para></returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimer``5(System.Double,System.Action{``0,``1,``2,``3,``4},System.Boolean,System.Object[])">
+            <summary>
+            Start a new timer
+            </summary>
+            <param name="startTime">The time in seconds after which the callBack will be called</param>
+            <param name="timerExpiredCallback">The callback to invoke once the timer expires</param>
+            <param name="loop">Whether this timer should loop (restart once it ends)</param>
+            <param name="callbackParameters">Parameters that will be used to invoke the callback, any undefined parameters will be their default value and any excess will be ignored</param>
+            <returns>A handle to the timer, this can be used to pause the timer or change properties
+            <para>It can also be safely ignored if not needed</para></returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimer``5(System.Double,System.Action{``0,``1,``2,``3,``4},System.Boolean,``0,``1,``2,``3,``4)">
+            <summary>
+            Start a new timer
+            </summary>
+            <param name="startTime">The time in seconds after which the callBack will be called</param>
+            <param name="timerExpiredCallback">The callback to invoke once the timer expires</param>
+            <param name="loop">Whether this timer should loop (restart once it ends)</param>
+            <param name="param1">The first parameter that is used to invoke the callback</param>
+            <param name="param2">The second parameter that is used to invoke the callback</param>
+            <param name="param3">The third parameter that is used to invoke the callback</param>
+            <param name="param4">The fourth parameter that is used to invoke the callback</param>
+            <param name="param5">The fifth parameter that is used to invoke the callback</param>
+            <returns>A handle to the timer, this can be used to pause the timer or change properties
+            <para>It can also be safely ignored if not needed</para></returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimer``6(System.Double,System.Action{``0,``1,``2,``3,``4,``5},System.Boolean,System.Object[])">
+            <summary>
+            Start a new timer
+            </summary>
+            <param name="startTime">The time in seconds after which the callBack will be called</param>
+            <param name="timerExpiredCallback">The callback to invoke once the timer expires</param>
+            <param name="loop">Whether this timer should loop (restart once it ends)</param>
+            <param name="callbackParameters">Parameters that will be used to invoke the callback, any undefined parameters will be their default value and any excess will be ignored</param>
+            <returns>A handle to the timer, this can be used to pause the timer or change properties
+            <para>It can also be safely ignored if not needed</para></returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimer``6(System.Double,System.Action{``0,``1,``2,``3,``4,``5},System.Boolean,``0,``1,``2,``3,``4,``5)">
+            <summary>
+            Start a new timer
+            </summary>
+            <param name="startTime">The time in seconds after which the callBack will be called</param>
+            <param name="timerExpiredCallback">The callback to invoke once the timer expires</param>
+            <param name="loop">Whether this timer should loop (restart once it ends)</param>
+            <param name="param1">The first parameter that is used to invoke the callback</param>
+            <param name="param2">The second parameter that is used to invoke the callback</param>
+            <param name="param3">The third parameter that is used to invoke the callback</param>
+            <param name="param4">The fourth parameter that is used to invoke the callback</param>
+            <param name="param5">The fifth parameter that is used to invoke the callback</param>
+            <param name="param6">The sixth parameter that is used to invoke the callback</param>
+            <returns>A handle to the timer, this can be used to pause the timer or change properties
+            <para>It can also be safely ignored if not needed</para></returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimer``7(System.Double,System.Action{``0,``1,``2,``3,``4,``5,``6},System.Boolean,System.Object[])">
+            <summary>
+            Start a new timer
+            </summary>
+            <param name="startTime">The time in seconds after which the callBack will be called</param>
+            <param name="timerExpiredCallback">The callback to invoke once the timer expires</param>
+            <param name="loop">Whether this timer should loop (restart once it ends)</param>
+            <param name="callbackParameters">Parameters that will be used to invoke the callback, any undefined parameters will be their default value and any excess will be ignored</param>
+            <returns>A handle to the timer, this can be used to pause the timer or change properties
+            <para>It can also be safely ignored if not needed</para></returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimer``7(System.Double,System.Action{``0,``1,``2,``3,``4,``5,``6},System.Boolean,``0,``1,``2,``3,``4,``5,``6)">
+            <summary>
+            Start a new timer
+            </summary>
+            <param name="startTime">The time in seconds after which the callBack will be called</param>
+            <param name="timerExpiredCallback">The callback to invoke once the timer expires</param>
+            <param name="loop">Whether this timer should loop (restart once it ends)</param>
+            <param name="param1">The first parameter that is used to invoke the callback</param>
+            <param name="param2">The second parameter that is used to invoke the callback</param>
+            <param name="param3">The third parameter that is used to invoke the callback</param>
+            <param name="param4">The fourth parameter that is used to invoke the callback</param>
+            <param name="param5">The fifth parameter that is used to invoke the callback</param>
+            <param name="param6">The sixth parameter that is used to invoke the callback</param>
+            <param name="param7">The seventh parameter that is used to invoke the callback</param>
+            <returns>A handle to the timer, this can be used to pause the timer or change properties
+            <para>It can also be safely ignored if not needed</para></returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimer``8(System.Double,System.Action{``0,``1,``2,``3,``4,``5,``6,``7},System.Boolean,System.Object[])">
+            <summary>
+            Start a new timer
+            </summary>
+            <param name="startTime">The time in seconds after which the callBack will be called</param>
+            <param name="timerExpiredCallback">The callback to invoke once the timer expires</param>
+            <param name="loop">Whether this timer should loop (restart once it ends)</param>
+            <param name="callbackParameters">Parameters that will be used to invoke the callback, any undefined parameters will be their default value and any excess will be ignored</param>
+            <returns>A handle to the timer, this can be used to pause the timer or change properties
+            <para>It can also be safely ignored if not needed</para></returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimer``8(System.Double,System.Action{``0,``1,``2,``3,``4,``5,``6,``7},System.Boolean,``0,``1,``2,``3,``4,``5,``6,``7)">
+            <summary>
+            Start a new timer
+            </summary>
+            <param name="startTime">The time in seconds after which the callBack will be called</param>
+            <param name="timerExpiredCallback">The callback to invoke once the timer expires</param>
+            <param name="loop">Whether this timer should loop (restart once it ends)</param>
+            <param name="param1">The first parameter that is used to invoke the callback</param>
+            <param name="param2">The second parameter that is used to invoke the callback</param>
+            <param name="param3">The third parameter that is used to invoke the callback</param>
+            <param name="param4">The fourth parameter that is used to invoke the callback</param>
+            <param name="param5">The fifth parameter that is used to invoke the callback</param>
+            <param name="param6">The sixth parameter that is used to invoke the callback</param>
+            <param name="param7">The seventh parameter that is used to invoke the callback</param>
+            <param name="param8">The eighth parameter that is used to invoke the callback</param>
+            <returns>A handle to the timer, this can be used to pause the timer or change properties
+            <para>It can also be safely ignored if not needed</para></returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimer``9(System.Double,System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8},System.Boolean,System.Object[])">
+            <summary>
+            Start a new timer
+            </summary>
+            <param name="startTime">The time in seconds after which the callBack will be called</param>
+            <param name="timerExpiredCallback">The callback to invoke once the timer expires</param>
+            <param name="loop">Whether this timer should loop (restart once it ends)</param>
+            <param name="callbackParameters">Parameters that will be used to invoke the callback, any undefined parameters will be their default value and any excess will be ignored</param>
+            <returns>A handle to the timer, this can be used to pause the timer or change properties
+            <para>It can also be safely ignored if not needed</para></returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimer``9(System.Double,System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8},System.Boolean,``0,``1,``2,``3,``4,``5,``6,``7,``8)">
+            <summary>
+            Start a new timer
+            </summary>
+            <param name="startTime">The time in seconds after which the callBack will be called</param>
+            <param name="timerExpiredCallback">The callback to invoke once the timer expires</param>
+            <param name="loop">Whether this timer should loop (restart once it ends)</param>
+            <param name="param1">The first parameter that is used to invoke the callback</param>
+            <param name="param2">The second parameter that is used to invoke the callback</param>
+            <param name="param3">The third parameter that is used to invoke the callback</param>
+            <param name="param4">The fourth parameter that is used to invoke the callback</param>
+            <param name="param5">The fifth parameter that is used to invoke the callback</param>
+            <param name="param6">The sixth parameter that is used to invoke the callback</param>
+            <param name="param7">The seventh parameter that is used to invoke the callback</param>
+            <param name="param8">The eighth parameter that is used to invoke the callback</param>
+            <param name="param9">The ninth parameter that is used to invoke the callback</param>
+            <returns>A handle to the timer, this can be used to pause the timer or change properties
+            <para>It can also be safely ignored if not needed</para></returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimer``10(System.Double,System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9},System.Boolean,System.Object[])">
+            <summary>
+            Start a new timer
+            </summary>
+            <param name="startTime">The time in seconds after which the callBack will be called</param>
+            <param name="timerExpiredCallback">The callback to invoke once the timer expires</param>
+            <param name="loop">Whether this timer should loop (restart once it ends)</param>
+            <param name="callbackParameters">Parameters that will be used to invoke the callback, any undefined parameters will be their default value and any excess will be ignored</param>
+            <returns>A handle to the timer, this can be used to pause the timer or change properties
+            <para>It can also be safely ignored if not needed</para></returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimer``10(System.Double,System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9},System.Boolean,``0,``1,``2,``3,``4,``5,``6,``7,``8,``9)">
+            <summary>
+            Start a new timer
+            </summary>
+            <param name="startTime">The time in seconds after which the callBack will be called</param>
+            <param name="timerExpiredCallback">The callback to invoke once the timer expires</param>
+            <param name="loop">Whether this timer should loop (restart once it ends)</param>
+            <param name="param1">The first parameter that is used to invoke the callback</param>
+            <param name="param2">The second parameter that is used to invoke the callback</param>
+            <param name="param3">The third parameter that is used to invoke the callback</param>
+            <param name="param4">The fourth parameter that is used to invoke the callback</param>
+            <param name="param5">The fifth parameter that is used to invoke the callback</param>
+            <param name="param6">The sixth parameter that is used to invoke the callback</param>
+            <param name="param7">The seventh parameter that is used to invoke the callback</param>
+            <param name="param8">The eighth parameter that is used to invoke the callback</param>
+            <param name="param9">The ninth parameter that is used to invoke the callback</param>
+            <param name="param10">The tenth parameter that is used to invoke the callback</param>
+            <returns>A handle to the timer, this can be used to pause the timer or change properties
+            <para>It can also be safely ignored if not needed</para></returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimer``11(System.Double,System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10},System.Boolean,System.Object[])">
+            <summary>
+            Start a new timer
+            </summary>
+            <param name="startTime">The time in seconds after which the callBack will be called</param>
+            <param name="timerExpiredCallback">The callback to invoke once the timer expires</param>
+            <param name="loop">Whether this timer should loop (restart once it ends)</param>
+            <param name="callbackParameters">Parameters that will be used to invoke the callback, any undefined parameters will be their default value and any excess will be ignored</param>
+            <returns>A handle to the timer, this can be used to pause the timer or change properties
+            <para>It can also be safely ignored if not needed</para></returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimer``11(System.Double,System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10},System.Boolean,``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10)">
+            <summary>
+            Start a new timer
+            </summary>
+            <param name="startTime">The time in seconds after which the callBack will be called</param>
+            <param name="timerExpiredCallback">The callback to invoke once the timer expires</param>
+            <param name="loop">Whether this timer should loop (restart once it ends)</param>
+            <param name="param1">The first parameter that is used to invoke the callback</param>
+            <param name="param2">The second parameter that is used to invoke the callback</param>
+            <param name="param3">The third parameter that is used to invoke the callback</param>
+            <param name="param4">The fourth parameter that is used to invoke the callback</param>
+            <param name="param5">The fifth parameter that is used to invoke the callback</param>
+            <param name="param6">The sixth parameter that is used to invoke the callback</param>
+            <param name="param7">The seventh parameter that is used to invoke the callback</param>
+            <param name="param8">The eighth parameter that is used to invoke the callback</param>
+            <param name="param9">The ninth parameter that is used to invoke the callback</param>
+            <param name="param10">The tenth parameter that is used to invoke the callback</param>
+            <param name="param11">The eleventh parameter that is used to invoke the callback</param>
+            <returns>A handle to the timer, this can be used to pause the timer or change properties
+            <para>It can also be safely ignored if not needed</para></returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimer``12(System.Double,System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11},System.Boolean,System.Object[])">
+            <summary>
+            Start a new timer
+            </summary>
+            <param name="startTime">The time in seconds after which the callBack will be called</param>
+            <param name="timerExpiredCallback">The callback to invoke once the timer expires</param>
+            <param name="loop">Whether this timer should loop (restart once it ends)</param>
+            <param name="callbackParameters">Parameters that will be used to invoke the callback, any undefined parameters will be their default value and any excess will be ignored</param>
+            <returns>A handle to the timer, this can be used to pause the timer or change properties
+            <para>It can also be safely ignored if not needed</para></returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimer``12(System.Double,System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11},System.Boolean,``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11)">
+            <summary>
+            Start a new timer
+            </summary>
+            <param name="startTime">The time in seconds after which the callBack will be called</param>
+            <param name="timerExpiredCallback">The callback to invoke once the timer expires</param>
+            <param name="loop">Whether this timer should loop (restart once it ends)</param>
+            <param name="param1">The first parameter that is used to invoke the callback</param>
+            <param name="param2">The second parameter that is used to invoke the callback</param>
+            <param name="param3">The third parameter that is used to invoke the callback</param>
+            <param name="param4">The fourth parameter that is used to invoke the callback</param>
+            <param name="param5">The fifth parameter that is used to invoke the callback</param>
+            <param name="param6">The sixth parameter that is used to invoke the callback</param>
+            <param name="param7">The seventh parameter that is used to invoke the callback</param>
+            <param name="param8">The eighth parameter that is used to invoke the callback</param>
+            <param name="param9">The ninth parameter that is used to invoke the callback</param>
+            <param name="param10">The tenth parameter that is used to invoke the callback</param>
+            <param name="param11">The eleventh parameter that is used to invoke the callback</param>
+            <param name="param12">The twelfth parameter that is used to invoke the callback</param>
+            <returns>A handle to the timer, this can be used to pause the timer or change properties
+            <para>It can also be safely ignored if not needed</para></returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimer``13(System.Double,System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12},System.Boolean,System.Object[])">
+            <summary>
+            Start a new timer
+            </summary>
+            <param name="startTime">The time in seconds after which the callBack will be called</param>
+            <param name="timerExpiredCallback">The callback to invoke once the timer expires</param>
+            <param name="loop">Whether this timer should loop (restart once it ends)</param>
+            <param name="callbackParameters">Parameters that will be used to invoke the callback, any undefined parameters will be their default value and any excess will be ignored</param>
+            <returns>A handle to the timer, this can be used to pause the timer or change properties
+            <para>It can also be safely ignored if not needed</para></returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimer``13(System.Double,System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12},System.Boolean,``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12)">
+            <summary>
+            Start a new timer
+            </summary>
+            <param name="startTime">The time in seconds after which the callBack will be called</param>
+            <param name="timerExpiredCallback">The callback to invoke once the timer expires</param>
+            <param name="loop">Whether this timer should loop (restart once it ends)</param>
+            <param name="param1">The first parameter that is used to invoke the callback</param>
+            <param name="param2">The second parameter that is used to invoke the callback</param>
+            <param name="param3">The third parameter that is used to invoke the callback</param>
+            <param name="param4">The fourth parameter that is used to invoke the callback</param>
+            <param name="param5">The fifth parameter that is used to invoke the callback</param>
+            <param name="param6">The sixth parameter that is used to invoke the callback</param>
+            <param name="param7">The seventh parameter that is used to invoke the callback</param>
+            <param name="param8">The eighth parameter that is used to invoke the callback</param>
+            <param name="param9">The ninth parameter that is used to invoke the callback</param>
+            <param name="param10">The tenth parameter that is used to invoke the callback</param>
+            <param name="param11">The eleventh parameter that is used to invoke the callback</param>
+            <param name="param12">The twelfth parameter that is used to invoke the callback</param>
+            <param name="param13">The thirteenth parameter that is used to invoke the callback</param>
+            <returns>A handle to the timer, this can be used to pause the timer or change properties
+            <para>It can also be safely ignored if not needed</para></returns>
         </member>
         <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimer``14(System.Double,System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13},System.Boolean,System.Object[])">
             <summary>
@@ -2012,6 +2604,244 @@
             <param name="callbackParameters">Parameters that will be used to invoke the callback, any undefined parameters will be their default value and any excess will be ignored</param>
             <returns>A handle to the timer, this can be used to pause the timer or change properties
             <para>It can also be safely ignored if not needed</para></returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimerFromTemplate(VDFramework.Utility.TimerUtil.TimerHandles.AbstractTimerHandle{System.Action})">
+            <summary>
+            Starts a new timer using the data from the given TimerHandle
+            </summary>
+            <returns>A new TimerHandle</returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimerFromTemplate``1(VDFramework.Utility.TimerUtil.TimerHandles.Parameters.ParameterTimerHandler{``0})">
+            <summary>
+            Starts a new timer using the data from the given TimerHandle
+            </summary>
+            <typeparam name="TParam1">The type of the first parameter</typeparam>
+            <returns>A new ParameterTimerHandler with the given parameters</returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimerFromTemplate``2(VDFramework.Utility.TimerUtil.TimerHandles.Parameters.ParameterTimerHandler{``0,``1})">
+            <summary>
+            Starts a new timer using the data from the given TimerHandle
+            </summary>
+            <typeparam name="TParam1">The type of the first parameter</typeparam>
+            <typeparam name="TParam2">The type of the second parameter</typeparam>
+            <returns>A new ParameterTimerHandler with the given parameters</returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimerFromTemplate``3(VDFramework.Utility.TimerUtil.TimerHandles.Parameters.ParameterTimerHandler{``0,``1,``2})">
+            <summary>
+            Starts a new timer using the data from the given TimerHandle
+            </summary>
+            <typeparam name="TParam1">The type of the first parameter</typeparam>
+            <typeparam name="TParam2">The type of the second parameter</typeparam>
+            <typeparam name="TParam3">The type of the third parameter</typeparam>
+            <returns>A new ParameterTimerHandler with the given parameters</returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimerFromTemplate``4(VDFramework.Utility.TimerUtil.TimerHandles.Parameters.ParameterTimerHandler{``0,``1,``2,``3})">
+            <summary>
+            Starts a new timer using the data from the given TimerHandle
+            </summary>
+            <typeparam name="TParam1">The type of the first parameter</typeparam>
+            <typeparam name="TParam2">The type of the second parameter</typeparam>
+            <typeparam name="TParam3">The type of the third parameter</typeparam>
+            <typeparam name="TParam4">The type of the fourth parameter</typeparam>
+            <returns>A new ParameterTimerHandler with the given parameters</returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimerFromTemplate``5(VDFramework.Utility.TimerUtil.TimerHandles.Parameters.ParameterTimerHandler{``0,``1,``2,``3,``4})">
+            <summary>
+            Starts a new timer using the data from the given TimerHandle
+            </summary>
+            <typeparam name="TParam1">The type of the first parameter</typeparam>
+            <typeparam name="TParam2">The type of the second parameter</typeparam>
+            <typeparam name="TParam3">The type of the third parameter</typeparam>
+            <typeparam name="TParam4">The type of the fourth parameter</typeparam>
+            <typeparam name="TParam5">The type of the fifth parameter</typeparam>
+            <returns>A new ParameterTimerHandler with the given parameters</returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimerFromTemplate``6(VDFramework.Utility.TimerUtil.TimerHandles.Parameters.ParameterTimerHandler{``0,``1,``2,``3,``4,``5})">
+            <summary>
+            Starts a new timer using the data from the given TimerHandle
+            </summary>
+            <typeparam name="TParam1">The type of the first parameter</typeparam>
+            <typeparam name="TParam2">The type of the second parameter</typeparam>
+            <typeparam name="TParam3">The type of the third parameter</typeparam>
+            <typeparam name="TParam4">The type of the fourth parameter</typeparam>
+            <typeparam name="TParam5">The type of the fifth parameter</typeparam>
+            <typeparam name="TParam6">The type of the sixth parameter</typeparam>
+            <returns>A new ParameterTimerHandler with the given parameters</returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimerFromTemplate``7(VDFramework.Utility.TimerUtil.TimerHandles.Parameters.ParameterTimerHandler{``0,``1,``2,``3,``4,``5,``6})">
+            <summary>
+            Starts a new timer using the data from the given TimerHandle
+            </summary>
+            <typeparam name="TParam1">The type of the first parameter</typeparam>
+            <typeparam name="TParam2">The type of the second parameter</typeparam>
+            <typeparam name="TParam3">The type of the third parameter</typeparam>
+            <typeparam name="TParam4">The type of the fourth parameter</typeparam>
+            <typeparam name="TParam5">The type of the fifth parameter</typeparam>
+            <typeparam name="TParam6">The type of the sixth parameter</typeparam>
+            <typeparam name="TParam7">The type of the seventh parameter</typeparam>
+            <returns>A new ParameterTimerHandler with the given parameters</returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimerFromTemplate``8(VDFramework.Utility.TimerUtil.TimerHandles.Parameters.ParameterTimerHandler{``0,``1,``2,``3,``4,``5,``6,``7})">
+            <summary>
+            Starts a new timer using the data from the given TimerHandle
+            </summary>
+            <typeparam name="TParam1">The type of the first parameter</typeparam>
+            <typeparam name="TParam2">The type of the second parameter</typeparam>
+            <typeparam name="TParam3">The type of the third parameter</typeparam>
+            <typeparam name="TParam4">The type of the fourth parameter</typeparam>
+            <typeparam name="TParam5">The type of the fifth parameter</typeparam>
+            <typeparam name="TParam6">The type of the sixth parameter</typeparam>
+            <typeparam name="TParam7">The type of the seventh parameter</typeparam>
+            <typeparam name="TParam8">The type of the eighth parameter</typeparam>
+            <returns>A new ParameterTimerHandler with the given parameters</returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimerFromTemplate``9(VDFramework.Utility.TimerUtil.TimerHandles.Parameters.ParameterTimerHandler{``0,``1,``2,``3,``4,``5,``6,``7,``8})">
+            <summary>
+            Starts a new timer using the data from the given TimerHandle
+            </summary>
+            <typeparam name="TParam1">The type of the first parameter</typeparam>
+            <typeparam name="TParam2">The type of the second parameter</typeparam>
+            <typeparam name="TParam3">The type of the third parameter</typeparam>
+            <typeparam name="TParam4">The type of the fourth parameter</typeparam>
+            <typeparam name="TParam5">The type of the fifth parameter</typeparam>
+            <typeparam name="TParam6">The type of the sixth parameter</typeparam>
+            <typeparam name="TParam7">The type of the seventh parameter</typeparam>
+            <typeparam name="TParam8">The type of the eighth parameter</typeparam>
+            <typeparam name="TParam9">The type of the ninth parameter</typeparam>
+            <returns>A new ParameterTimerHandler with the given parameters</returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimerFromTemplate``10(VDFramework.Utility.TimerUtil.TimerHandles.Parameters.ParameterTimerHandler{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9})">
+            <summary>
+            Starts a new timer using the data from the given TimerHandle
+            </summary>
+            <typeparam name="TParam1">The type of the first parameter</typeparam>
+            <typeparam name="TParam2">The type of the second parameter</typeparam>
+            <typeparam name="TParam3">The type of the third parameter</typeparam>
+            <typeparam name="TParam4">The type of the fourth parameter</typeparam>
+            <typeparam name="TParam5">The type of the fifth parameter</typeparam>
+            <typeparam name="TParam6">The type of the sixth parameter</typeparam>
+            <typeparam name="TParam7">The type of the seventh parameter</typeparam>
+            <typeparam name="TParam8">The type of the eighth parameter</typeparam>
+            <typeparam name="TParam9">The type of the ninth parameter</typeparam>
+            <typeparam name="TParam10">The type of the tenth parameter</typeparam>
+            <returns>A new ParameterTimerHandler with the given parameters</returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimerFromTemplate``11(VDFramework.Utility.TimerUtil.TimerHandles.Parameters.ParameterTimerHandler{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10})">
+            <summary>
+            Starts a new timer using the data from the given TimerHandle
+            </summary>
+            <typeparam name="TParam1">The type of the first parameter</typeparam>
+            <typeparam name="TParam2">The type of the second parameter</typeparam>
+            <typeparam name="TParam3">The type of the third parameter</typeparam>
+            <typeparam name="TParam4">The type of the fourth parameter</typeparam>
+            <typeparam name="TParam5">The type of the fifth parameter</typeparam>
+            <typeparam name="TParam6">The type of the sixth parameter</typeparam>
+            <typeparam name="TParam7">The type of the seventh parameter</typeparam>
+            <typeparam name="TParam8">The type of the eighth parameter</typeparam>
+            <typeparam name="TParam9">The type of the ninth parameter</typeparam>
+            <typeparam name="TParam10">The type of the tenth parameter</typeparam>
+            <typeparam name="TParam11">The type of the eleventh parameter</typeparam>
+            <returns>A new ParameterTimerHandler with the given parameters</returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimerFromTemplate``12(VDFramework.Utility.TimerUtil.TimerHandles.Parameters.ParameterTimerHandler{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11})">
+            <summary>
+            Starts a new timer using the data from the given TimerHandle
+            </summary>
+            <typeparam name="TParam1">The type of the first parameter</typeparam>
+            <typeparam name="TParam2">The type of the second parameter</typeparam>
+            <typeparam name="TParam3">The type of the third parameter</typeparam>
+            <typeparam name="TParam4">The type of the fourth parameter</typeparam>
+            <typeparam name="TParam5">The type of the fifth parameter</typeparam>
+            <typeparam name="TParam6">The type of the sixth parameter</typeparam>
+            <typeparam name="TParam7">The type of the seventh parameter</typeparam>
+            <typeparam name="TParam8">The type of the eighth parameter</typeparam>
+            <typeparam name="TParam9">The type of the ninth parameter</typeparam>
+            <typeparam name="TParam10">The type of the tenth parameter</typeparam>
+            <typeparam name="TParam11">The type of the eleventh parameter</typeparam>
+            <typeparam name="TParam12">The type of the twelfth parameter</typeparam>
+            <returns>A new ParameterTimerHandler with the given parameters</returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimerFromTemplate``13(VDFramework.Utility.TimerUtil.TimerHandles.Parameters.ParameterTimerHandler{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12})">
+            <summary>
+            Starts a new timer using the data from the given TimerHandle
+            </summary>
+            <typeparam name="TParam1">The type of the first parameter</typeparam>
+            <typeparam name="TParam2">The type of the second parameter</typeparam>
+            <typeparam name="TParam3">The type of the third parameter</typeparam>
+            <typeparam name="TParam4">The type of the fourth parameter</typeparam>
+            <typeparam name="TParam5">The type of the fifth parameter</typeparam>
+            <typeparam name="TParam6">The type of the sixth parameter</typeparam>
+            <typeparam name="TParam7">The type of the seventh parameter</typeparam>
+            <typeparam name="TParam8">The type of the eighth parameter</typeparam>
+            <typeparam name="TParam9">The type of the ninth parameter</typeparam>
+            <typeparam name="TParam10">The type of the tenth parameter</typeparam>
+            <typeparam name="TParam11">The type of the eleventh parameter</typeparam>
+            <typeparam name="TParam12">The type of the twelfth parameter</typeparam>
+            <typeparam name="TParam13">The type of the thirteenth parameter</typeparam>
+            <returns>A new ParameterTimerHandler with the given parameters</returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimerFromTemplate``14(VDFramework.Utility.TimerUtil.TimerHandles.Parameters.ParameterTimerHandler{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13})">
+            <summary>
+            Starts a new timer using the data from the given TimerHandle
+            </summary>
+            <typeparam name="TParam1">The type of the first parameter</typeparam>
+            <typeparam name="TParam2">The type of the second parameter</typeparam>
+            <typeparam name="TParam3">The type of the third parameter</typeparam>
+            <typeparam name="TParam4">The type of the fourth parameter</typeparam>
+            <typeparam name="TParam5">The type of the fifth parameter</typeparam>
+            <typeparam name="TParam6">The type of the sixth parameter</typeparam>
+            <typeparam name="TParam7">The type of the seventh parameter</typeparam>
+            <typeparam name="TParam8">The type of the eighth parameter</typeparam>
+            <typeparam name="TParam9">The type of the ninth parameter</typeparam>
+            <typeparam name="TParam10">The type of the tenth parameter</typeparam>
+            <typeparam name="TParam11">The type of the eleventh parameter</typeparam>
+            <typeparam name="TParam12">The type of the twelfth parameter</typeparam>
+            <typeparam name="TParam13">The type of the thirteenth parameter</typeparam>
+            <typeparam name="TParam14">The type of the fourteenth parameter</typeparam>
+            <returns>A new ParameterTimerHandler with the given parameters</returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimerFromTemplate``15(VDFramework.Utility.TimerUtil.TimerHandles.Parameters.ParameterTimerHandler{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14})">
+            <summary>
+            Starts a new timer using the data from the given TimerHandle
+            </summary>
+            <typeparam name="TParam1">The type of the first parameter</typeparam>
+            <typeparam name="TParam2">The type of the second parameter</typeparam>
+            <typeparam name="TParam3">The type of the third parameter</typeparam>
+            <typeparam name="TParam4">The type of the fourth parameter</typeparam>
+            <typeparam name="TParam5">The type of the fifth parameter</typeparam>
+            <typeparam name="TParam6">The type of the sixth parameter</typeparam>
+            <typeparam name="TParam7">The type of the seventh parameter</typeparam>
+            <typeparam name="TParam8">The type of the eighth parameter</typeparam>
+            <typeparam name="TParam9">The type of the ninth parameter</typeparam>
+            <typeparam name="TParam10">The type of the tenth parameter</typeparam>
+            <typeparam name="TParam11">The type of the eleventh parameter</typeparam>
+            <typeparam name="TParam12">The type of the twelfth parameter</typeparam>
+            <typeparam name="TParam13">The type of the thirteenth parameter</typeparam>
+            <typeparam name="TParam14">The type of the fourteenth parameter</typeparam>
+            <typeparam name="TParam15">The type of the fifteenth parameter</typeparam>
+            <returns>A new ParameterTimerHandler with the given parameters</returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimerFromTemplate``16(VDFramework.Utility.TimerUtil.TimerHandles.Parameters.ParameterTimerHandler{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15})">
+            <summary>
+            Starts a new timer using the data from the given TimerHandle
+            </summary>
+            <typeparam name="TParam1">The type of the first parameter</typeparam>
+            <typeparam name="TParam2">The type of the second parameter</typeparam>
+            <typeparam name="TParam3">The type of the third parameter</typeparam>
+            <typeparam name="TParam4">The type of the fourth parameter</typeparam>
+            <typeparam name="TParam5">The type of the fifth parameter</typeparam>
+            <typeparam name="TParam6">The type of the sixth parameter</typeparam>
+            <typeparam name="TParam7">The type of the seventh parameter</typeparam>
+            <typeparam name="TParam8">The type of the eighth parameter</typeparam>
+            <typeparam name="TParam9">The type of the ninth parameter</typeparam>
+            <typeparam name="TParam10">The type of the tenth parameter</typeparam>
+            <typeparam name="TParam11">The type of the eleventh parameter</typeparam>
+            <typeparam name="TParam12">The type of the twelfth parameter</typeparam>
+            <typeparam name="TParam13">The type of the thirteenth parameter</typeparam>
+            <typeparam name="TParam14">The type of the fourteenth parameter</typeparam>
+            <typeparam name="TParam15">The type of the fifteenth parameter</typeparam>
+            <typeparam name="TParam16">The type of the sixteenth parameter</typeparam>
+            <returns>A new ParameterTimerHandler with the given parameters</returns>
         </member>
         <member name="T:VDFramework.Utility.Windows.EnvironmentVariables">
             <summary>
