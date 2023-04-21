@@ -57,12 +57,20 @@
             <param name="newSize">The elements that are in the list</param>
             <typeparam name="TItem">The type of items in the list</typeparam>
         </member>
-        <member name="M:VDFramework.Extensions.ListExtensions.Distinct``1(System.Collections.Generic.List{``0})">
+        <member name="M:VDFramework.Extensions.ListExtensions.MakeDistinct``1(System.Collections.Generic.List{``0})">
             <summary>
-            <para>Removes any duplicate items from the list</para>
-            <para>Equality is measured by value using Equals()</para>
+            Removes all duplicate elements from this list by using the default equality comparer to compare values.
             </summary>
             <param name="list">The list whose duplicates will be removed</param>
+            <typeparam name="TItem">The type of elements in the list</typeparam>
+            <returns>the same list</returns>
+        </member>
+        <member name="M:VDFramework.Extensions.ListExtensions.MakeDistinct``1(System.Collections.Generic.List{``0},System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Removes all duplicate elements from this list by by using a specified <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> to compare values.
+            </summary>
+            <param name="list">The list whose duplicates will be removed</param>
+            <param name="equalityComparer">the <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> that will be used to compare values</param>
             <typeparam name="TItem">The type of elements in the list</typeparam>
             <returns>the same list</returns>
         </member>
