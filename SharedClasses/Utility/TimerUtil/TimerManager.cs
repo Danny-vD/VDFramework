@@ -44,7 +44,7 @@ namespace VDFramework.Utility.TimerUtil
 		/// <returns>A handle to the timer, this can be used to pause the timer or change properties
 		/// <para>It can also be safely ignored if not needed</para></returns>
 		/// <seealso cref="Delegate.DynamicInvoke"/>
-		public static DelegateTimerHandle StartNewTimer(double startTime, Delegate timerExpiredCallback, bool loop, params object[] callbackParameters)
+		public static DelegateTimerHandle StartNewTimerDelegate(double startTime, Delegate timerExpiredCallback, bool loop, params object[] callbackParameters)
 		{
 			DelegateTimerHandle handle = new DelegateTimerHandle(startTime, timerExpiredCallback, loop, callbackParameters);
 
@@ -57,10 +57,9 @@ namespace VDFramework.Utility.TimerUtil
 		/// Start a timer on the given TimerHandle (resets if one is already ticking)
 		/// </summary>
 		/// <param name="handle">The TimerHandle to set the timer on</param>
-		/// <returns>Whether a not a timer was successfully started (will fail if the handle is not valid (i.e. has already been cleaned up after expiring))</returns>
+		/// <returns>The same timerhandle</returns>
 		/// <seealso cref="AbstractTimerHandle.IsTicking"/>
-		/// <seealso cref="AbstractTimerHandle.IsValid"/>
-		public static bool StartNewTimer(AbstractTimerHandle handle)
+		public static AbstractTimerHandle StartNewTimer(AbstractTimerHandle handle)
 		{
 			if (handle.IsTicking) // same as timers.Contains(handle), but a boolean check instead of a list enumaration
 			{
@@ -68,53 +67,40 @@ namespace VDFramework.Utility.TimerUtil
 			}
 			else
 			{
-				if (handle.IsValid)
-				{
-					AddHandleToUpdateList(handle);
-				}
-				else
-				{
-					return false;
-				}
+				AddHandleToUpdateList(handle);
 			}
 
-			return true;
+			return handle;
 		}
 
 		/// <summary>
 		/// <para>Starts a new timer using the data from the given TimerHandle</para>
-		/// <para>A callback has to be provided because the given TimerHandle may not have a valid callback anymore</para>
+		/// <para>use <see cref="StartNewTimerFromTemplate{TDelegate}(VDFramework.Utility.TimerUtil.TimerHandles.AbstractTimerHandle{TDelegate})"/> if you want to reuse the callback from the given handle</para>
 		/// </summary>
 		/// <param name="handle">A TimerHandle whose data will be used to set a new timer</param>
 		/// <param name="timerExpiredCallback">The callback to invoke once the timer expires</param>
 		/// <returns>A handle to the timer, this can be used to pause the timer or change properties
 		/// <para>It can also be safely ignored if not needed</para></returns>
-		/// <seealso cref="AbstractTimerHandle.IsValid"/>
 		public static DelegateTimerHandle StartNewTimerFromTemplate<TDelegate>(AbstractTimerHandle handle, TDelegate timerExpiredCallback) where TDelegate : Delegate
 		{
+			//TODO: Write a StartNewTimerFromTemplate function for every Action<> and return appropriately
+			// Then a switch in the other StartNewTimerFromTemplate will call the respective function
 			if (handle is AbstractParametersTimerHandle<TDelegate> parametersTimerHandle)
 			{
-				return StartNewTimer(handle.StartTime, timerExpiredCallback, handle.IsLooping, parametersTimerHandle.GetParameters());
+				return StartNewTimerDelegate(handle.StartTime, timerExpiredCallback, handle.IsLooping, parametersTimerHandle.GetParameters());
 			}
-			
-			return StartNewTimer(handle.StartTime, timerExpiredCallback, handle.IsLooping);
+
+			return StartNewTimerDelegate(handle.StartTime, timerExpiredCallback, handle.IsLooping);
 		}
-		
+
 		/// <summary>
 		/// <para>Starts a new timer using the data from the given TimerHandle</para>
 		/// </summary>
 		/// <param name="handle">A TimerHandle whose data will be used to set a new timer</param>
 		/// <returns>A handle to the timer, this can be used to pause the timer or change properties
 		/// <para>It can also be safely ignored if not needed</para></returns>
-		/// <exception cref="ArgumentException">Will be thrown if handle does not have a valid callback</exception>
-		/// <seealso cref="AbstractTimerHandle.IsValid"/>
 		public static DelegateTimerHandle StartNewTimerFromTemplate<TDelegate>(AbstractTimerHandle<TDelegate> handle) where TDelegate : Delegate
 		{
-			if (!handle.IsValid)
-			{
-				throw new ArgumentException("The timerhandle is not valid (this happens because the TimerHandle cleans up after itself when the timer expires)", nameof(handle));
-			}
-
 			return StartNewTimerFromTemplate(handle, handle.OnTimerExpire);
 		}
 

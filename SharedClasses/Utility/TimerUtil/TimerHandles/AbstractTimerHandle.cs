@@ -45,11 +45,6 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles
 		/// </summary>
 		/// <seealso cref="IsPaused"/>
 		public bool IsTicking { get; internal set; } = false;
-		
-		/// <summary>
-		/// Whether or not all this the properties of this timer are valid (will be false if a non-looped timer expires)
-		/// </summary>
-		public bool IsValid { get; private set; } = true;
 
 		/// <summary>
 		/// A handle to the timer, this can be used to Pause the timer or change some properties
@@ -139,14 +134,14 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles
 			}
 		}
 
-		private void Cleanup()
+		/// <summary>
+		/// Called when the timer is stopped
+		/// </summary>
+		/// <seealso cref="Stop"/>
+		protected virtual void Cleanup()
 		{
 			OnHandleFinished.Invoke(this);
-
-			SetCallbackToNull();
 			OnHandleFinished = null;
-
-			IsValid = false;
 		}
 
 		/// <summary>

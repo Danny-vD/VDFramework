@@ -11,7 +11,7 @@ namespace VDFramework.Utility.TimerUtil
 		/// <returns>A new ParameterTimerHandler with the given parameters</returns>
 		public static ParameterTimerHandler<TParam1> StartNewTimerFromTemplate<TParam1>(ParameterTimerHandler<TParam1> handle)
 		{
-			return TimerUtil.TimerManager.StartNewTimer(handle.StartTime, handle.OnTimerExpire, handle.IsLooping, handle.GetParameters());
+			return StartNewTimer(handle.StartTime, handle.OnTimerExpire, handle.IsLooping, handle.GetParameters());
 		}
 
 		/// <summary>
@@ -22,7 +22,7 @@ namespace VDFramework.Utility.TimerUtil
 		/// <returns>A new ParameterTimerHandler with the given parameters</returns>
 		public static ParameterTimerHandler<TParam1, TParam2> StartNewTimerFromTemplate<TParam1, TParam2>(ParameterTimerHandler<TParam1, TParam2> handle)
 		{
-			return TimerUtil.TimerManager.StartNewTimer(handle.StartTime, handle.OnTimerExpire, handle.IsLooping, handle.GetParameters());
+			return StartNewTimer(handle.StartTime, handle.OnTimerExpire, handle.IsLooping, handle.GetParameters());
 		}
 
 		/// <summary>
@@ -34,7 +34,7 @@ namespace VDFramework.Utility.TimerUtil
 		/// <returns>A new ParameterTimerHandler with the given parameters</returns>
 		public static ParameterTimerHandler<TParam1, TParam2, TParam3> StartNewTimerFromTemplate<TParam1, TParam2, TParam3>(ParameterTimerHandler<TParam1, TParam2, TParam3> handle)
 		{
-			return TimerUtil.TimerManager.StartNewTimer(handle.StartTime, handle.OnTimerExpire, handle.IsLooping, handle.GetParameters());
+			return StartNewTimer(handle.StartTime, handle.OnTimerExpire, handle.IsLooping, handle.GetParameters());
 		}
 
 		/// <summary>
@@ -48,7 +48,7 @@ namespace VDFramework.Utility.TimerUtil
 		public static ParameterTimerHandler<TParam1, TParam2, TParam3, TParam4> StartNewTimerFromTemplate<TParam1, TParam2, TParam3, TParam4>(
 			ParameterTimerHandler<TParam1, TParam2, TParam3, TParam4> handle)
 		{
-			return TimerUtil.TimerManager.StartNewTimer(handle.StartTime, handle.OnTimerExpire, handle.IsLooping, handle.GetParameters());
+			return StartNewTimer(handle.StartTime, handle.OnTimerExpire, handle.IsLooping, handle.GetParameters());
 		}
 
 		/// <summary>
@@ -63,7 +63,7 @@ namespace VDFramework.Utility.TimerUtil
 		public static ParameterTimerHandler<TParam1, TParam2, TParam3, TParam4, TParam5> StartNewTimerFromTemplate<TParam1, TParam2, TParam3, TParam4, TParam5>(
 			ParameterTimerHandler<TParam1, TParam2, TParam3, TParam4, TParam5> handle)
 		{
-			return TimerUtil.TimerManager.StartNewTimer(handle.StartTime, handle.OnTimerExpire, handle.IsLooping, handle.GetParameters());
+			return StartNewTimer(handle.StartTime, handle.OnTimerExpire, handle.IsLooping, handle.GetParameters());
 		}
 
 		/// <summary>
@@ -79,7 +79,7 @@ namespace VDFramework.Utility.TimerUtil
 		public static ParameterTimerHandler<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6> StartNewTimerFromTemplate<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6>(
 			ParameterTimerHandler<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6> handle)
 		{
-			return TimerUtil.TimerManager.StartNewTimer(handle.StartTime, handle.OnTimerExpire, handle.IsLooping, handle.GetParameters());
+			return StartNewTimer(handle.StartTime, handle.OnTimerExpire, handle.IsLooping, handle.GetParameters());
 		}
 
 		/// <summary>
@@ -96,7 +96,7 @@ namespace VDFramework.Utility.TimerUtil
 		public static ParameterTimerHandler<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7> StartNewTimerFromTemplate<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7>(
 			ParameterTimerHandler<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7> handle)
 		{
-			return TimerUtil.TimerManager.StartNewTimer(handle.StartTime, handle.OnTimerExpire, handle.IsLooping, handle.GetParameters());
+			return StartNewTimer(handle.StartTime, handle.OnTimerExpire, handle.IsLooping, handle.GetParameters());
 		}
 
 		/// <summary>
@@ -114,7 +114,7 @@ namespace VDFramework.Utility.TimerUtil
 		public static ParameterTimerHandler<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8> StartNewTimerFromTemplate<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6,
 			TParam7, TParam8>(ParameterTimerHandler<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8> handle)
 		{
-			return TimerUtil.TimerManager.StartNewTimer(handle.StartTime, handle.OnTimerExpire, handle.IsLooping, handle.GetParameters());
+			return StartNewTimer(handle.StartTime, handle.OnTimerExpire, handle.IsLooping, handle.GetParameters());
 		}
 
 		/// <summary>
@@ -133,7 +133,7 @@ namespace VDFramework.Utility.TimerUtil
 		public static ParameterTimerHandler<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9> StartNewTimerFromTemplate<TParam1, TParam2, TParam3, TParam4, TParam5,
 			TParam6, TParam7, TParam8, TParam9>(ParameterTimerHandler<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9> handle)
 		{
-			return TimerUtil.TimerManager.StartNewTimer(handle.StartTime, handle.OnTimerExpire, handle.IsLooping, handle.GetParameters());
+			return StartNewTimer(handle.StartTime, handle.OnTimerExpire, handle.IsLooping, handle.GetParameters());
 		}
 
 		/// <summary>
@@ -153,7 +153,7 @@ namespace VDFramework.Utility.TimerUtil
 		public static ParameterTimerHandler<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9, TParam10> StartNewTimerFromTemplate<TParam1, TParam2, TParam3, TParam4,
 			TParam5, TParam6, TParam7, TParam8, TParam9, TParam10>(ParameterTimerHandler<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9, TParam10> handle)
 		{
-			return TimerUtil.TimerManager.StartNewTimer(handle.StartTime, handle.OnTimerExpire, handle.IsLooping, handle.GetParameters());
+			return StartNewTimer(handle.StartTime, handle.OnTimerExpire, handle.IsLooping, handle.GetParameters());
 		}
 
 		/// <summary>
@@ -175,7 +175,7 @@ namespace VDFramework.Utility.TimerUtil
 			TParam4, TParam5, TParam6, TParam7, TParam8, TParam9, TParam10, TParam11>(
 			ParameterTimerHandler<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9, TParam10, TParam11> handle)
 		{
-			return TimerUtil.TimerManager.StartNewTimer(handle.StartTime, handle.OnTimerExpire, handle.IsLooping, handle.GetParameters());
+			return StartNewTimer(handle.StartTime, handle.OnTimerExpire, handle.IsLooping, handle.GetParameters());
 		}
 
 		/// <summary>
@@ -198,7 +198,7 @@ namespace VDFramework.Utility.TimerUtil
 			TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9, TParam10, TParam11, TParam12>(
 			ParameterTimerHandler<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9, TParam10, TParam11, TParam12> handle)
 		{
-			return TimerUtil.TimerManager.StartNewTimer(handle.StartTime, handle.OnTimerExpire, handle.IsLooping, handle.GetParameters());
+			return StartNewTimer(handle.StartTime, handle.OnTimerExpire, handle.IsLooping, handle.GetParameters());
 		}
 
 		/// <summary>
@@ -222,7 +222,7 @@ namespace VDFramework.Utility.TimerUtil
 			TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9, TParam10, TParam11, TParam12, TParam13>(
 			ParameterTimerHandler<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9, TParam10, TParam11, TParam12, TParam13> handle)
 		{
-			return TimerUtil.TimerManager.StartNewTimer(handle.StartTime, handle.OnTimerExpire, handle.IsLooping, handle.GetParameters());
+			return StartNewTimer(handle.StartTime, handle.OnTimerExpire, handle.IsLooping, handle.GetParameters());
 		}
 
 		/// <summary>
@@ -247,7 +247,7 @@ namespace VDFramework.Utility.TimerUtil
 			StartNewTimerFromTemplate<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9, TParam10, TParam11, TParam12, TParam13, TParam14>(
 				ParameterTimerHandler<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9, TParam10, TParam11, TParam12, TParam13, TParam14> handle)
 		{
-			return TimerUtil.TimerManager.StartNewTimer(handle.StartTime, handle.OnTimerExpire, handle.IsLooping, handle.GetParameters());
+			return StartNewTimer(handle.StartTime, handle.OnTimerExpire, handle.IsLooping, handle.GetParameters());
 		}
 
 		/// <summary>
@@ -273,7 +273,7 @@ namespace VDFramework.Utility.TimerUtil
 			StartNewTimerFromTemplate<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9, TParam10, TParam11, TParam12, TParam13, TParam14, TParam15>(
 				ParameterTimerHandler<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9, TParam10, TParam11, TParam12, TParam13, TParam14, TParam15> handle)
 		{
-			return TimerUtil.TimerManager.StartNewTimer(handle.StartTime, handle.OnTimerExpire, handle.IsLooping, handle.GetParameters());
+			return StartNewTimer(handle.StartTime, handle.OnTimerExpire, handle.IsLooping, handle.GetParameters());
 		}
 
 		/// <summary>
@@ -300,7 +300,7 @@ namespace VDFramework.Utility.TimerUtil
 			StartNewTimerFromTemplate<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9, TParam10, TParam11, TParam12, TParam13, TParam14, TParam15, TParam16>(
 				ParameterTimerHandler<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9, TParam10, TParam11, TParam12, TParam13, TParam14, TParam15, TParam16> handle)
 		{
-			return TimerUtil.TimerManager.StartNewTimer(handle.StartTime, handle.OnTimerExpire, handle.IsLooping, handle.GetParameters());
+			return StartNewTimer(handle.StartTime, handle.OnTimerExpire, handle.IsLooping, handle.GetParameters());
 		}
 	}
 }
