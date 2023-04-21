@@ -1,5 +1,8 @@
 ﻿namespace VDFramework.Extensions
 {
+	/// <summary>
+	/// Contains Extension methods for 32-bit Integers
+	/// </summary>
 	public static class Int32Extensions
 	{
 		/// <summary>

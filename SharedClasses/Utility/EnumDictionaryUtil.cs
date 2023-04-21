@@ -11,7 +11,8 @@ namespace VDFramework.Utility
 		/// <summary>
 		/// Will add a KeyValuePair for every enumValue to the list
 		/// </summary>
-		public static void PopulateEnumDictionary<TKeyValuePair, TEnum, TValue>(List<TKeyValuePair> list)
+		/// <returns>The same list</returns>
+		public static List<TKeyValuePair> PopulateEnumDictionary<TKeyValuePair, TEnum, TValue>(List<TKeyValuePair> list)
 			where TKeyValuePair : IKeyValuePair<TEnum, TValue>, new()
 			where TEnum : struct, Enum
 		{
@@ -52,20 +53,9 @@ namespace VDFramework.Utility
 			}
 
 			// Remove any duplicates
-			for (int i = 0; i < list.Count; i++)
-			{
-				TKeyValuePair pair = list[i];
+			list.MakeDistinct();
 
-				for (int index = list.Count - 1; index > i; index--)
-				{
-					TKeyValuePair other = list[index];
-
-					if (pair.Key.Equals(other.Key))
-					{
-						list.Remove(other);
-					}
-				}
-			}
+			return list;
 		}
 
 		private static bool ContainsKey<TKeyValuePair, TKey, TValue>(IEnumerable<TKeyValuePair> collection, TKey key)
