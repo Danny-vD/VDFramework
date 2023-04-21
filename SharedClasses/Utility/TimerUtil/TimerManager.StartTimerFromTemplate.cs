@@ -1,9 +1,20 @@
-﻿using VDFramework.Utility.TimerUtil.TimerHandles.Parameters;
+﻿using System;
+using VDFramework.Utility.TimerUtil.TimerHandles;
+using VDFramework.Utility.TimerUtil.TimerHandles.Parameters;
 
 namespace VDFramework.Utility.TimerUtil
 {
 	public static partial class TimerManager
 	{
+		/// <summary>
+		/// Starts a new timer using the data from the given TimerHandle
+		/// </summary>
+		/// <returns>A new TimerHandle</returns>
+		public static TimerHandle StartNewTimerFromTemplate(AbstractTimerHandle<Action> handle)
+		{
+			return StartNewTimer(handle.StartTime, handle.OnTimerExpire, handle.IsLooping);
+		}
+		
 		/// <summary>
 		/// Starts a new timer using the data from the given TimerHandle
 		/// </summary>

@@ -83,8 +83,6 @@ namespace VDFramework.Utility.TimerUtil
 		/// <para>It can also be safely ignored if not needed</para></returns>
 		public static DelegateTimerHandle StartNewTimerFromTemplate<TDelegate>(AbstractTimerHandle handle, TDelegate timerExpiredCallback) where TDelegate : Delegate
 		{
-			//TODO: Write a StartNewTimerFromTemplate function for every Action<> and return appropriately
-			// Then a switch in the other StartNewTimerFromTemplate will call the respective function
 			if (handle is AbstractParametersTimerHandle<TDelegate> parametersTimerHandle)
 			{
 				return StartNewTimerDelegate(handle.StartTime, timerExpiredCallback, handle.IsLooping, parametersTimerHandle.GetParameters());
@@ -99,7 +97,7 @@ namespace VDFramework.Utility.TimerUtil
 		/// <param name="handle">A TimerHandle whose data will be used to set a new timer</param>
 		/// <returns>A handle to the timer, this can be used to pause the timer or change properties
 		/// <para>It can also be safely ignored if not needed</para></returns>
-		public static DelegateTimerHandle StartNewTimerFromTemplate<TDelegate>(AbstractTimerHandle<TDelegate> handle) where TDelegate : Delegate
+		public static AbstractTimerHandle StartNewTimerFromTemplate<TDelegate>(AbstractTimerHandle<TDelegate> handle) where TDelegate : Delegate
 		{
 			return StartNewTimerFromTemplate(handle, handle.OnTimerExpire);
 		}
