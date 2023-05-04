@@ -54,18 +54,16 @@ namespace VDFramework.Utility.TimerUtil
 		}
 
 		/// <summary>
-		/// Start a timer on the given TimerHandle (resets if one is already ticking)
+		/// Start a timer on the given TimerHandle and resets the timer (only resets it is already ticking)
 		/// </summary>
 		/// <param name="handle">The TimerHandle to set the timer on</param>
 		/// <returns>The same timerhandle</returns>
 		/// <seealso cref="AbstractTimerHandle.IsTicking"/>
 		public static AbstractTimerHandle StartNewTimer(AbstractTimerHandle handle)
 		{
-			if (handle.IsTicking) // same as timers.Contains(handle), but a boolean check instead of a list enumaration
-			{
-				handle.ResetTimer();
-			}
-			else
+			handle.ResetTimer();
+			
+			if (!handle.IsTicking) // same as !timers.Contains(handle), but a boolean check instead of a list enumeration
 			{
 				AddHandleToUpdateList(handle);
 			}

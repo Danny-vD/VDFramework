@@ -113,7 +113,7 @@
 
     <ItemGroup>
       <Reference Include="UnityEngine">
-        <HintPath>C:\GameEngines\Unity\2022.2.16f1\Editor\Data\Managed\UnityEngine.dll</HintPath>
+        <HintPath>C:\GameEngines\Unity\2022.2.17f1\Editor\Data\Managed\UnityEngine.dll</HintPath>
       </Reference>
     </ItemGroup>
 </Project>

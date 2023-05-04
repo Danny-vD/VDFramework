@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace VDFramework.Extensions
 {
+	/// <summary>
+	/// Extension methods for collections that allow getting a random element or randomly sorting the collection 
+	/// </summary>
 	public static class RandomElement
 	{
 		private static readonly System.Random random = new System.Random();
@@ -10,6 +13,7 @@ namespace VDFramework.Extensions
 		/// <summary>
 		/// Returns a random element from this collection
 		/// </summary>
+		/// <param name="collection">The collection to return a random element from</param>
 		/// <param name="randomIndex">the index of the element returned</param>
 		/// <param name="ignoreIndices">[OPTIONAL] the indices of elements that cannot be returned by this function</param>
 		public static TElement GetRandomElement<TElement>(this IEnumerable<TElement> collection, out int randomIndex, params int[] ignoreIndices)
@@ -22,14 +26,16 @@ namespace VDFramework.Extensions
 				return default;
 			}
 
+			TElement randomElement;
+			
 			if (ignoreIndices.Length > 0)
 			{
 				List<int> ignore = ignoreIndices.Distinct().ToList();
-				ignore.Sort();
+				ignore.Sort(); // Sort so that we can remove safely from biggest to smallest
 
 				int ignoreCount = ignore.Count;
 
-				if (list.Count - ignoreCount <= 0)
+				if (list.Count - ignoreCount <= 0) // If we ignore more than is present in the list, return default
 				{
 					randomIndex = -1;
 					return default;
@@ -39,16 +45,35 @@ namespace VDFramework.Extensions
 				{
 					list.RemoveAt(ignore[i]);
 				}
+				
+				randomIndex   = random.Next(list.Count);
+				randomElement = list[randomIndex];
+				
+				for (int i = 0; i < ignoreCount; i++) // Calculate the actual index before we removed items
+				{
+					if (ignore[i] <= randomIndex) // Any index in ignore was removed, so if it was smaller, that one came before RandomIndex
+					{
+						randomIndex++;
+					}
+					else
+					{
+						break; // It's sorted, so there will be no more numbers that satisfy the condition
+					}
+				}
+			}
+			else
+			{
+				randomIndex = random.Next(list.Count);
+				randomElement = list[randomIndex];
 			}
 
-			randomIndex = random.Next(list.Count);
-
-			return list[randomIndex];
+			return randomElement;
 		}
 
 		/// <summary>
 		/// Returns a random element from this collection
 		/// </summary>
+		/// <param name="collection">The collection to return a random element from</param>
 		/// <param name="ignoreIndices">[OPTIONAL] the indices of elements that cannot be returned by this function</param>
 		public static TItem GetRandomElement<TItem>(this IEnumerable<TItem> collection, params int[] ignoreIndices)
 		{

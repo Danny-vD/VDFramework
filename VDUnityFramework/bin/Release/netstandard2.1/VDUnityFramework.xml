@@ -355,10 +355,16 @@
             <typeparam name="TItem">The type of elements in the list</typeparam>
             <returns>the same list</returns>
         </member>
+        <member name="T:VDFramework.Extensions.RandomElement">
+            <summary>
+            Extension methods for collections that allow getting a random element or randomly sorting the collection 
+            </summary>
+        </member>
         <member name="M:VDFramework.Extensions.RandomElement.GetRandomElement``1(System.Collections.Generic.IEnumerable{``0},System.Int32@,System.Int32[])">
             <summary>
             Returns a random element from this collection
             </summary>
+            <param name="collection">The collection to return a random element from</param>
             <param name="randomIndex">the index of the element returned</param>
             <param name="ignoreIndices">[OPTIONAL] the indices of elements that cannot be returned by this function</param>
         </member>
@@ -366,6 +372,7 @@
             <summary>
             Returns a random element from this collection
             </summary>
+            <param name="collection">The collection to return a random element from</param>
             <param name="ignoreIndices">[OPTIONAL] the indices of elements that cannot be returned by this function</param>
         </member>
         <member name="M:VDFramework.Extensions.RandomElement.Randomize``1(System.Collections.Generic.IEnumerable{``0})">
@@ -421,6 +428,26 @@
             <summary>
             Get the X coordinates of a 2D curve that crosses y = 0 at [0,0] and [distance,0] with a maxY of height
             </summary>
+        </member>
+        <member name="T:VDFramework.Utility.RandomUtil">
+            <summary>
+            Utility methods to randomly get an item from a given set of objects
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.RandomUtil.RandomBool">
+            <summary>
+            Returns a random bool value
+            </summary>
+            <returns>TRUE or FALSE</returns>
+        </member>
+        <member name="M:VDFramework.Utility.RandomUtil.GetRandom(System.Object[])">
+            <summary>
+            Returns randomly from the parameters given
+            </summary>
+            <returns>Any of the parameters, randomly selected</returns>
+        </member>
+        <member name="M:VDFramework.Utility.RandomUtil.GetRandom``1(``0[])">
+            <inheritdoc cref="M:VDFramework.Utility.RandomUtil.GetRandom(System.Object[])"/>
         </member>
         <member name="T:VDFramework.Utility.TimerUtil.TimerHandles.AbstractTimerHandle">
             <summary>
@@ -2125,7 +2152,7 @@
         </member>
         <member name="M:VDFramework.Utility.TimerUtil.TimerManager.StartNewTimer(VDFramework.Utility.TimerUtil.TimerHandles.AbstractTimerHandle)">
             <summary>
-            Start a timer on the given TimerHandle (resets if one is already ticking)
+            Start a timer on the given TimerHandle and resets the timer (only resets it is already ticking)
             </summary>
             <param name="handle">The TimerHandle to set the timer on</param>
             <returns>The same timerhandle</returns>
