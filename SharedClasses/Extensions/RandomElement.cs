@@ -18,56 +18,21 @@ namespace VDFramework.Extensions
 		/// <param name="ignoreIndices">[OPTIONAL] the indices of elements that cannot be returned by this function</param>
 		public static TElement GetRandomElement<TElement>(this IEnumerable<TElement> collection, out int randomIndex, params int[] ignoreIndices)
 		{
-			List<TElement> list = collection.ToList();
+			// Transform the collection to a collection of Tuples<TElement, OriginalIndex> and then filter
+			List<(TElement item, int i)> filteredList = collection.Select((item, i) => (item, i)).Where(x => !ignoreIndices.Contains(x.i)).ToList();
 
-			if (list.Count == 0)
+			if (filteredList.Count == 0)
 			{
 				randomIndex = -1;
 				return default;
 			}
 
-			TElement randomElement;
-			
-			if (ignoreIndices.Length > 0)
-			{
-				List<int> ignore = ignoreIndices.Distinct().ToList();
-				ignore.Sort(); // Sort so that we can remove safely from biggest to smallest
+			int index = random.Next(filteredList.Count); // Get a random index
 
-				int ignoreCount = ignore.Count;
+			(TElement element, int originalIndex) valueTuple = filteredList[index]; // Get the tuple at that index
 
-				if (list.Count - ignoreCount <= 0) // If we ignore more than is present in the list, return default
-				{
-					randomIndex = -1;
-					return default;
-				}
-				
-				for (int i = ignoreCount - 1; i < ignoreCount; i--)
-				{
-					list.RemoveAt(ignore[i]);
-				}
-				
-				randomIndex   = random.Next(list.Count);
-				randomElement = list[randomIndex];
-				
-				for (int i = 0; i < ignoreCount; i++) // Calculate the actual index before we removed items
-				{
-					if (ignore[i] <= randomIndex) // Any index in ignore was removed, so if it was smaller, that one came before RandomIndex
-					{
-						randomIndex++;
-					}
-					else
-					{
-						break; // It's sorted, so there will be no more numbers that satisfy the condition
-					}
-				}
-			}
-			else
-			{
-				randomIndex = random.Next(list.Count);
-				randomElement = list[randomIndex];
-			}
-
-			return randomElement;
+			randomIndex = valueTuple.originalIndex; // Get the original index from that tuple
+			return valueTuple.element;              // Get the element from the tuple
 		}
 
 		/// <summary>
