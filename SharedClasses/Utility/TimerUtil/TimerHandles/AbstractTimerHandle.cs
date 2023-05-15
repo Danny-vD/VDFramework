@@ -22,7 +22,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles
 		/// <summary>
 		/// A value of [0,1] that represents the % between 0 and the startTime of the timer
 		/// </summary>
-		public double CurrentTimeNormalized => Math.Max(0, Math.Min(CurrentTime / StartTime, 1)); // Math.Clamp does not exist in .NET Standard
+		public double CurrentTimeNormalized => Math.Clamp(CurrentTime / StartTime, 0, 1);
 
 		/// <summary>
 		/// The amount of seconds that the timer started with (will be reset to this value when the timer loops)
@@ -218,7 +218,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles
 		/// <inheritdoc />
 		/// <param name="startTime">The time in seconds after which the callback will be invoked</param>
 		/// <param name="loop">Whether this timer should loop (restart once it ends)</param>
-		/// <param name="callback">The callback that is will be invoked after the timer expires</param>
+		/// <param name="callback">The callback that will be invoked after the timer expires</param>
 		protected AbstractTimerHandle(double startTime, TDelegate callback, bool loop) : base(startTime, loop)
 		{
 			onTimerExpire = callback;

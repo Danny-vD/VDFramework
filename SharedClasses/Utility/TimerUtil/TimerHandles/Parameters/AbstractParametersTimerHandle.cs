@@ -27,7 +27,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// </summary>
 		/// <param name="startTime">The time in seconds after which the callback will be invoked</param>
 		/// <param name="loop">Whether this timer should loop (restart once it ends)</param>
-		/// <param name="callback">The callback that is will be invoked after the timer expires</param>
+		/// <param name="callback">The callback that will be invoked after the timer expires</param>
 		/// <param name="callbackParameters">Parameters that will be used to invoke the callback, any undefined parameters will be their default value and any excess will be ignored</param>
 		protected AbstractParametersTimerHandle(double startTime, TDelegate callback, bool loop, params object[] callbackParameters) : this(startTime, callback, loop)
 		{

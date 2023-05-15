@@ -1,13 +1,16 @@
 ﻿using System;
-using System.Drawing;
 
 namespace VDFramework.Utility
 {
+	/// <summary>
+	/// Static class that contains useful math functions
+	/// </summary>
 	public static class MathUtil
 	{
 		/// <summary>
-		/// Returns the sign of the number, and 0 if input == 0
+		/// Returns a number depending on the sign of the input
 		/// </summary>
+		/// <returns>negative: -1 | zero: 0 | positive: 1</returns>
 		public static int GetSignFactor(float input)
 		{
 			if (input < 0)

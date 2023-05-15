@@ -414,10 +414,16 @@
             </summary>
             <returns>The same list</returns>
         </member>
+        <member name="T:VDFramework.Utility.MathUtil">
+            <summary>
+            Static class that contains useful math functions
+            </summary>
+        </member>
         <member name="M:VDFramework.Utility.MathUtil.GetSignFactor(System.Single)">
             <summary>
-            Returns the sign of the number, and 0 if input == 0
+            Returns a number depending on the sign of the input
             </summary>
+            <returns>negative: -1 | zero: 0 | positive: 1</returns>
         </member>
         <member name="M:VDFramework.Utility.MathUtil.GetYCoordinateOnCurve(System.Single,System.Single,System.Single)">
             <summary>
@@ -572,7 +578,7 @@
             <inheritdoc />
             <param name="startTime">The time in seconds after which the callback will be invoked</param>
             <param name="loop">Whether this timer should loop (restart once it ends)</param>
-            <param name="callback">The callback that is will be invoked after the timer expires</param>
+            <param name="callback">The callback that will be invoked after the timer expires</param>
         </member>
         <member name="T:VDFramework.Utility.TimerUtil.TimerHandles.Parameters.AbstractParametersTimerHandle`1">
             <summary>
@@ -598,7 +604,7 @@
             </summary>
             <param name="startTime">The time in seconds after which the callback will be invoked</param>
             <param name="loop">Whether this timer should loop (restart once it ends)</param>
-            <param name="callback">The callback that is will be invoked after the timer expires</param>
+            <param name="callback">The callback that will be invoked after the timer expires</param>
             <param name="callbackParameters">Parameters that will be used to invoke the callback, any undefined parameters will be their default value and any excess will be ignored</param>
         </member>
         <member name="M:VDFramework.Utility.TimerUtil.TimerHandles.Parameters.AbstractParametersTimerHandle`1.GetParameters">
@@ -649,6 +655,16 @@
             Get the amount of parameters that the callback of this TimerHandle can take
             </summary>
             <returns>The amount of parameters of the callback function</returns>
+        </member>
+        <member name="M:VDFramework.Utility.TimerUtil.TimerHandles.Parameters.DelegateTimerHandle.#ctor(System.Double,System.Delegate,System.Boolean,System.Object[])">
+            <summary>
+            <para>A Handle for a timer that has a callback that has any number of parameters (depends on the given callback)</para>
+            <para>While the Delegate supports any amount of parameters it is encouraged to use another option because <see cref="M:System.Delegate.DynamicInvoke(System.Object[])"/> and the boxing-unboxing of parameters is very slow</para>
+            </summary>
+            <param name="startTime">The time in seconds after which the callback will be invoked</param>
+            <param name="callback">The callback that will be invoked after the timer expires</param>
+            <param name="loop">Whether this timer should loop (restart once it ends)</param>
+            <param name="callbackParameters">Parameters that will be used to invoke the callback, any undefined parameters will be their default value and any excess will be ignored</param>
         </member>
         <member name="M:VDFramework.Utility.TimerUtil.TimerHandles.Parameters.DelegateTimerHandle.GetParameters">
             <inheritdoc />

@@ -30,18 +30,27 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// </summary>
 		/// <returns>The amount of parameters of the callback function</returns>
 		public override int ParameterCount => OnTimerExpire.Method.GetParameters().Length;
-		
+
 		// Does not call Base(double, TDelegate, bool, object[]) because we want to do our own method first before the parameters are set
-		internal DelegateTimerHandle(double startTime, Delegate callback, bool loop, params object[] callbackParameters) : base(startTime, callback, loop)
+
+		/// <summary>
+		/// <para>A Handle for a timer that has a callback that has any number of parameters (depends on the given callback)</para>
+		/// <para>While the Delegate supports any amount of parameters it is encouraged to use another option because <see cref="Delegate.DynamicInvoke"/> and the boxing-unboxing of parameters is very slow</para>
+		/// </summary>
+		/// <param name="startTime">The time in seconds after which the callback will be invoked</param>
+		/// <param name="callback">The callback that will be invoked after the timer expires</param>
+		/// <param name="loop">Whether this timer should loop (restart once it ends)</param>
+		/// <param name="callbackParameters">Parameters that will be used to invoke the callback, any undefined parameters will be their default value and any excess will be ignored</param>
+		public DelegateTimerHandle(double startTime, Delegate callback, bool loop, params object[] callbackParameters) : base(startTime, callback, loop)
 		{
 			ResizeParameterArray();
-			
+
 			if (parameters.Length > 0)
 			{
 				SetParameters(callbackParameters);
 			}
 		}
-		
+
 		/// <inheritdoc />
 		/// <Warning>This array is not a copy, changing the elements changes the actual parameters of the TimerHandle</Warning>
 		public override object[] GetParameters()

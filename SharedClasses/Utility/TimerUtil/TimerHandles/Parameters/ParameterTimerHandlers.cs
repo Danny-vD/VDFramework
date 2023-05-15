@@ -23,7 +23,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// <param name="callback">The callback to invoke once the timer expires</param>
 		/// <param name="loop">Whether this timer should loop (restart once it ends)</param>
 		/// <param name="param1">The parameter that is used to invoke the callback</param>
-		protected internal ParameterTimerHandler(double startTime, Action<TParam1> callback, bool loop, TParam1 param1) : base(startTime, callback, loop)
+		public ParameterTimerHandler(double startTime, Action<TParam1> callback, bool loop, TParam1 param1) : base(startTime, callback, loop)
 		{
 			Param1 = param1;
 		}
@@ -32,7 +32,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// A Handle for a timer that has a callback that has 1 parameter
 		/// </summary>
 		/// <inheritdoc />
-		protected internal ParameterTimerHandler(double startTime, Action<TParam1> callback, bool loop, params object[] callbackParameters) : base(startTime, callback, loop, callbackParameters)
+		public ParameterTimerHandler(double startTime, Action<TParam1> callback, bool loop, params object[] callbackParameters) : base(startTime, callback, loop, callbackParameters)
 		{
 		}
 
@@ -92,7 +92,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// <param name="loop">Whether this timer should loop (restart once it ends)</param>
 		/// <param name="param1">The first parameter that is used to invoke the callback</param>
 		/// <param name="param2">The second parameter that is used to invoke the callback</param>
-		protected internal ParameterTimerHandler(double startTime, Action<TParam1, TParam2> callback, bool loop, TParam1 param1, TParam2 param2) : base(startTime, callback, loop)
+		public ParameterTimerHandler(double startTime, Action<TParam1, TParam2> callback, bool loop, TParam1 param1, TParam2 param2) : base(startTime, callback, loop)
 		{
 			Param1 = param1;
 			Param2 = param2;
@@ -102,7 +102,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// A Handle for a timer that has a callback that has 2 parameters
 		/// </summary>
 		/// <inheritdoc />
-		protected internal ParameterTimerHandler(double startTime, Action<TParam1, TParam2> callback, bool loop, params object[] callbackParameters)
+		public ParameterTimerHandler(double startTime, Action<TParam1, TParam2> callback, bool loop, params object[] callbackParameters)
 			: base(startTime, callback, loop, callbackParameters)
 		{
 		}
@@ -174,7 +174,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// <param name="param1">The first parameter that is used to invoke the callback</param>
 		/// <param name="param2">The second parameter that is used to invoke the callback</param>
 		/// <param name="param3">The third parameter that is used to invoke the callback</param>
-		protected internal ParameterTimerHandler(double startTime, Action<TParam1, TParam2, TParam3> callback, bool loop, TParam1 param1, TParam2 param2, TParam3 param3)
+		public ParameterTimerHandler(double startTime, Action<TParam1, TParam2, TParam3> callback, bool loop, TParam1 param1, TParam2 param2, TParam3 param3)
 			: base(startTime, callback, loop)
 		{
 			Param1 = param1;
@@ -186,7 +186,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// A Handle for a timer that has a callback that has 3 parameters
 		/// </summary>
 		/// <inheritdoc />
-		protected internal ParameterTimerHandler(double startTime, Action<TParam1, TParam2, TParam3> callback, bool loop, params object[] callbackParameters)
+		public ParameterTimerHandler(double startTime, Action<TParam1, TParam2, TParam3> callback, bool loop, params object[] callbackParameters)
 			: base(startTime, callback, loop, callbackParameters)
 		{
 		}
@@ -269,7 +269,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// <param name="param2">The second parameter that is used to invoke the callback</param>
 		/// <param name="param3">The third parameter that is used to invoke the callback</param>
 		/// <param name="param4">The fourth parameter that is used to invoke the callback</param>
-		protected internal ParameterTimerHandler(double startTime, Action<TParam1, TParam2, TParam3, TParam4> callback, bool loop, TParam1 param1, TParam2 param2, TParam3 param3, TParam4 param4)
+		public ParameterTimerHandler(double startTime, Action<TParam1, TParam2, TParam3, TParam4> callback, bool loop, TParam1 param1, TParam2 param2, TParam3 param3, TParam4 param4)
 			: base(startTime, callback, loop)
 		{
 			Param1 = param1;
@@ -282,7 +282,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// A Handle for a timer that has a callback that has 4 parameters
 		/// </summary>
 		/// <inheritdoc />
-		protected internal ParameterTimerHandler(double startTime, Action<TParam1, TParam2, TParam3, TParam4> callback, bool loop, params object[] callbackParameters)
+		public ParameterTimerHandler(double startTime, Action<TParam1, TParam2, TParam3, TParam4> callback, bool loop, params object[] callbackParameters)
 			: base(startTime, callback, loop, callbackParameters)
 		{
 		}
@@ -378,7 +378,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// <param name="param3">The third parameter that is used to invoke the callback</param>
 		/// <param name="param4">The fourth parameter that is used to invoke the callback</param>
 		/// <param name="param5">The fifth parameter that is used to invoke the callback</param>
-		protected internal ParameterTimerHandler(double         startTime,
+		public ParameterTimerHandler(double         startTime,
 			Action<TParam1, TParam2, TParam3, TParam4, TParam5> callback,
 			bool                                                loop,
 			TParam1                                             param1, TParam2 param2, TParam3 param3, TParam4 param4, TParam5 param5)
@@ -395,7 +395,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// A Handle for a timer that has a callback that has 5 parameters
 		/// </summary>
 		/// <inheritdoc />
-		protected internal ParameterTimerHandler(double startTime, Action<TParam1, TParam2, TParam3, TParam4, TParam5> callback, bool loop, params object[] callbackParameters)
+		public ParameterTimerHandler(double startTime, Action<TParam1, TParam2, TParam3, TParam4, TParam5> callback, bool loop, params object[] callbackParameters)
 			: base(startTime, callback, loop, callbackParameters)
 		{
 		}
@@ -501,7 +501,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// <param name="param4">The fourth parameter that is used to invoke the callback</param>
 		/// <param name="param5">The fifth parameter that is used to invoke the callback</param>
 		/// <param name="param6">The sixth parameter that is used to invoke the callback</param>
-		protected internal ParameterTimerHandler(double                  startTime,
+		public ParameterTimerHandler(double                  startTime,
 			Action<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6> callback,
 			bool                                                         loop,
 			TParam1                                                      param1, TParam2 param2, TParam3 param3, TParam4 param4, TParam5 param5, TParam6 param6)
@@ -519,7 +519,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// A Handle for a timer that has a callback that has 6 parameters
 		/// </summary>
 		/// <inheritdoc />
-		protected internal ParameterTimerHandler(double startTime, Action<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6> callback, bool loop, params object[] callbackParameters)
+		public ParameterTimerHandler(double startTime, Action<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6> callback, bool loop, params object[] callbackParameters)
 			: base(startTime, callback, loop, callbackParameters)
 		{
 		}
@@ -636,7 +636,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// <param name="param5">The fifth parameter that is used to invoke the callback</param>
 		/// <param name="param6">The sixth parameter that is used to invoke the callback</param>
 		/// <param name="param7">The seventh parameter that is used to invoke the callback</param>
-		protected internal ParameterTimerHandler(double                           startTime,
+		public ParameterTimerHandler(double                           startTime,
 			Action<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7> callback,
 			bool                                                                  loop,
 			TParam1                                                               param1, TParam2 param2, TParam3 param3, TParam4 param4, TParam5 param5, TParam6 param6, TParam7 param7)
@@ -655,7 +655,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// A Handle for a timer that has a callback that has 7 parameters
 		/// </summary>
 		/// <inheritdoc />
-		protected internal ParameterTimerHandler(double startTime, Action<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7> callback, bool loop, params object[] callbackParameters)
+		public ParameterTimerHandler(double startTime, Action<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7> callback, bool loop, params object[] callbackParameters)
 			: base(startTime, callback, loop, callbackParameters)
 		{
 		}
@@ -783,7 +783,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// <param name="param6">The sixth parameter that is used to invoke the callback</param>
 		/// <param name="param7">The seventh parameter that is used to invoke the callback</param>
 		/// <param name="param8">The eighth parameter that is used to invoke the callback</param>
-		protected internal ParameterTimerHandler(double startTime,
+		public ParameterTimerHandler(double startTime,
 			Action<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8> callback,
 			bool loop, TParam1 param1, TParam2 param2, TParam3 param3, TParam4 param4, TParam5 param5, TParam6 param6, TParam7 param7, TParam8 param8)
 			: base(startTime, callback, loop)
@@ -802,7 +802,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// A Handle for a timer that has a callback that has 8 parameters
 		/// </summary>
 		/// <inheritdoc />
-		protected internal ParameterTimerHandler(double startTime, Action<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8> callback, bool loop,
+		public ParameterTimerHandler(double startTime, Action<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8> callback, bool loop,
 			params object[]                             callbackParameters)
 			: base(startTime, callback, loop, callbackParameters)
 		{
@@ -942,7 +942,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// <param name="param7">The seventh parameter that is used to invoke the callback</param>
 		/// <param name="param8">The eighth parameter that is used to invoke the callback</param>
 		/// <param name="param9">The ninth parameter that is used to invoke the callback</param>
-		protected internal ParameterTimerHandler(double startTime,
+		public ParameterTimerHandler(double startTime,
 			Action<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9> callback,
 			bool loop, TParam1 param1, TParam2 param2, TParam3 param3, TParam4 param4, TParam5 param5, TParam6 param6, TParam7 param7, TParam8 param8, TParam9 param9)
 			: base(startTime, callback, loop)
@@ -962,7 +962,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// A Handle for a timer that has a callback that has 9 parameters
 		/// </summary>
 		/// <inheritdoc />
-		protected internal ParameterTimerHandler(double startTime, Action<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9> callback, bool loop,
+		public ParameterTimerHandler(double startTime, Action<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9> callback, bool loop,
 			params object[]                             callbackParameters)
 			: base(startTime, callback, loop, callbackParameters)
 		{
@@ -1113,7 +1113,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// <param name="param8">The eighth parameter that is used to invoke the callback</param>
 		/// <param name="param9">The ninth parameter that is used to invoke the callback</param>
 		/// <param name="param10">The tenth parameter that is used to invoke the callback</param>
-		protected internal ParameterTimerHandler(double startTime,
+		public ParameterTimerHandler(double startTime,
 			Action<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9, TParam10> callback,
 			bool loop, TParam1 param1, TParam2 param2, TParam3 param3, TParam4 param4, TParam5 param5, TParam6 param6, TParam7 param7, TParam8 param8, TParam9 param9, TParam10 param10)
 			: base(startTime, callback, loop)
@@ -1134,7 +1134,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// A Handle for a timer that has a callback that has 10 parameters
 		/// </summary>
 		/// <inheritdoc />
-		protected internal ParameterTimerHandler(double startTime,
+		public ParameterTimerHandler(double startTime,
 			Action<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9, TParam10> callback,
 			bool loop, params object[] callbackParameters) : base(startTime, callback, loop, callbackParameters)
 		{
@@ -1296,7 +1296,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// <param name="param9">The ninth parameter that is used to invoke the callback</param>
 		/// <param name="param10">The tenth parameter that is used to invoke the callback</param>
 		/// <param name="param11">The eleventh parameter that is used to invoke the callback</param>
-		protected internal ParameterTimerHandler(double startTime,
+		public ParameterTimerHandler(double startTime,
 			Action<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9, TParam10, TParam11> callback,
 			bool loop, TParam1 param1, TParam2 param2, TParam3 param3, TParam4 param4, TParam5 param5, TParam6 param6, TParam7 param7, TParam8 param8, TParam9 param9, TParam10 param10,
 			TParam11 param11)
@@ -1319,7 +1319,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// A Handle for a timer that has a callback that has 11 parameters
 		/// </summary>
 		/// <inheritdoc />
-		protected internal ParameterTimerHandler(double startTime,
+		public ParameterTimerHandler(double startTime,
 			Action<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9, TParam10, TParam11> callback,
 			bool loop, params object[] callbackParameters) : base(startTime, callback, loop, callbackParameters)
 		{
@@ -1492,7 +1492,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// <param name="param10">The tenth parameter that is used to invoke the callback</param>
 		/// <param name="param11">The eleventh parameter that is used to invoke the callback</param>
 		/// <param name="param12">The twelfth parameter that is used to invoke the callback</param>
-		protected internal ParameterTimerHandler(double startTime,
+		public ParameterTimerHandler(double startTime,
 			Action<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9, TParam10, TParam11, TParam12> callback,
 			bool loop, TParam1 param1, TParam2 param2, TParam3 param3, TParam4 param4, TParam5 param5, TParam6 param6, TParam7 param7, TParam8 param8, TParam9 param9, TParam10 param10,
 			TParam11 param11, TParam12 param12)
@@ -1516,7 +1516,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// A Handle for a timer that has a callback that has 12 parameters
 		/// </summary>
 		/// <inheritdoc />
-		protected internal ParameterTimerHandler(double startTime,
+		public ParameterTimerHandler(double startTime,
 			Action<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9, TParam10, TParam11, TParam12> callback,
 			bool loop, params object[] callbackParameters) : base(startTime, callback, loop, callbackParameters)
 		{
@@ -1700,7 +1700,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// <param name="param11">The eleventh parameter that is used to invoke the callback</param>
 		/// <param name="param12">The twelfth parameter that is used to invoke the callback</param>
 		/// <param name="param13">The thirteenth parameter that is used to invoke the callback</param>
-		protected internal ParameterTimerHandler(double startTime,
+		public ParameterTimerHandler(double startTime,
 			Action<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9, TParam10, TParam11, TParam12, TParam13> callback,
 			bool loop, TParam1 param1, TParam2 param2, TParam3 param3, TParam4 param4, TParam5 param5, TParam6 param6, TParam7 param7, TParam8 param8, TParam9 param9, TParam10 param10,
 			TParam11 param11, TParam12 param12, TParam13 param13)
@@ -1725,7 +1725,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// A Handle for a timer that has a callback that has 13 parameters
 		/// </summary>
 		/// <inheritdoc />
-		protected internal ParameterTimerHandler(double startTime,
+		public ParameterTimerHandler(double startTime,
 			Action<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9, TParam10, TParam11, TParam12, TParam13> callback,
 			bool loop, params object[] callbackParameters) : base(startTime, callback, loop, callbackParameters)
 		{
@@ -1904,7 +1904,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// A Handle for a timer that has a callback that has 14 parameters
 		/// </summary>
 		/// <inheritdoc />
-		protected internal ParameterTimerHandler(double startTime,
+		public ParameterTimerHandler(double startTime,
 			Action<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9, TParam10, TParam11, TParam12, TParam13, TParam14> callback,
 			bool loop, TParam1 param1, TParam2 param2, TParam3 param3, TParam4 param4, TParam5 param5, TParam6 param6, TParam7 param7, TParam8 param8, TParam9 param9, TParam10 param10,
 			TParam11 param11, TParam12 param12, TParam13 param13, TParam14 param14)
@@ -1930,7 +1930,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// A Handle for a timer that has a callback that has 14 parameters
 		/// </summary>
 		/// <inheritdoc />
-		protected internal ParameterTimerHandler(double startTime,
+		public ParameterTimerHandler(double startTime,
 			Action<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9, TParam10, TParam11, TParam12, TParam13, TParam14> callback,
 			bool loop, params object[] callbackParameters) : base(startTime, callback, loop, callbackParameters)
 		{
@@ -2136,7 +2136,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// <param name="param13">The thirteenth parameter that is used to invoke the callback</param>
 		/// <param name="param14">The fourteenth parameter that is used to invoke the callback</param>
 		/// <param name="param15">The fifteenth parameter that is used to invoke the callback</param>
-		protected internal ParameterTimerHandler(double startTime,
+		public ParameterTimerHandler(double startTime,
 			Action<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9, TParam10, TParam11, TParam12, TParam13, TParam14, TParam15> callback,
 			bool loop, TParam1 param1, TParam2 param2, TParam3 param3, TParam4 param4, TParam5 param5, TParam6 param6, TParam7 param7, TParam8 param8, TParam9 param9, TParam10 param10,
 			TParam11 param11, TParam12 param12, TParam13 param13, TParam14 param14, TParam15 param15)
@@ -2163,7 +2163,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// A Handle for a timer that has a callback that has 15 parameters
 		/// </summary>
 		/// <inheritdoc />
-		protected internal ParameterTimerHandler(double startTime,
+		public ParameterTimerHandler(double startTime,
 			Action<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9, TParam10, TParam11, TParam12, TParam13, TParam14, TParam15> callback,
 			bool loop, params object[] callbackParameters) : base(startTime, callback, loop, callbackParameters)
 		{
@@ -2380,7 +2380,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// <param name="param14">The fourteenth parameter that is used to invoke the callback</param>
 		/// <param name="param15">The fifteenth parameter that is used to invoke the callback</param>
 		/// <param name="param16">The sixteenth parameter that is used to invoke the callback</param>
-		protected internal ParameterTimerHandler(double startTime,
+		public ParameterTimerHandler(double startTime,
 			Action<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9, TParam10, TParam11, TParam12, TParam13, TParam14, TParam15, TParam16> callback,
 			bool loop, TParam1 param1, TParam2 param2, TParam3 param3, TParam4 param4, TParam5 param5, TParam6 param6, TParam7 param7, TParam8 param8, TParam9 param9, TParam10 param10,
 			TParam11 param11, TParam12 param12, TParam13 param13, TParam14 param14, TParam15 param15, TParam16 param16)
@@ -2408,7 +2408,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// A Handle for a timer that has a callback that has 16 parameters
 		/// </summary>
 		/// <inheritdoc />
-		protected internal ParameterTimerHandler(double startTime,
+		public ParameterTimerHandler(double startTime,
 			Action<TParam1, TParam2, TParam3, TParam4, TParam5, TParam6, TParam7, TParam8, TParam9, TParam10, TParam11, TParam12, TParam13, TParam14, TParam15, TParam16> callback,
 			bool loop, params object[] callbackParameters) : base(startTime, callback, loop, callbackParameters)
 		{
