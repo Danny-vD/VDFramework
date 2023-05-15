@@ -21,6 +21,18 @@
             The gameobject where this component is attached to
             </summary>
         </member>
+        <member name="M:VDFramework.BetterMonoBehaviour.Enable">
+            <summary>
+            Disable this behaviour
+            </summary>
+            <seealso cref="P:UnityEngine.Behaviour.enabled"/>
+        </member>
+        <member name="M:VDFramework.BetterMonoBehaviour.Disable">
+            <summary>
+            Enable this behaviour
+            </summary>
+            <seealso cref="P:UnityEngine.Behaviour.enabled"/>
+        </member>
         <member name="P:VDFramework.BetterMonoBehaviour.transform">
             <summary>
             Overridden to return the CachedTransform
