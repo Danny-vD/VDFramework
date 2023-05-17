@@ -18,7 +18,7 @@ namespace VDFramework.UnityExtensions
 		}
 
 		/// <summary>
-		/// Ensures that the specified <see cref="TComponent"/> is on this <see cref="GameObject"/> by creating it if it doesn not exists
+		/// Ensures that the specified <see cref="TComponent"/> is on this <see cref="GameObject"/> by creating it if it does not exists
 		/// </summary>
 		public static TComponent EnsureComponent<TComponent>(this GameObject gameObject)
 			where TComponent : Component
@@ -29,7 +29,7 @@ namespace VDFramework.UnityExtensions
 		}
 
 		/// <summary>
-		/// Ensures that the specified <see cref="TComponent"/> is on this <see cref="GameObject"/> by creating it if it doesn not exists
+		/// Ensures that the specified <see cref="TComponent"/> is on this <see cref="GameObject"/> by creating it if it does not exists
 		/// </summary>
 		public static TComponent EnsureComponent<TComponent>(this Component monoBehaviour)
 			where TComponent : Component
