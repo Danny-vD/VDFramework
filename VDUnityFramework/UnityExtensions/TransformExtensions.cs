@@ -2,6 +2,9 @@
 
 namespace VDFramework.UnityExtensions
 {
+	/// <summary>
+	/// Contains extension methods for <see cref="UnityEngine.Transform"/>
+	/// </summary>
 	public static class TransformExtensions
 	{
 		/// <summary>

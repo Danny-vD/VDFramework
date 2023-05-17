@@ -4,6 +4,9 @@ using System.Text;
 
 namespace VDFramework.Extensions
 {
+	/// <summary>
+	/// Contains extension methods for <see cref="System.String"/>
+	/// </summary>
 	public static class StringExtensions
 	{
 		/// <summary>
@@ -30,6 +33,9 @@ namespace VDFramework.Extensions
 			return copyText;
 		}
 		
+		/// <summary>
+		/// Replaces all underscores in this string with a space
+		/// </summary>
 		public static string ReplaceUnderscoreWithSpace(this string text)
 		{
 			return text.Replace('_', ' ');
@@ -41,6 +47,7 @@ namespace VDFramework.Extensions
 		/// <param name="desiredLength">The length that you want the returned string to be</param>
 		/// <param name="addCharToEnd">In case the string is too short, add this character to get the desired length</param>
 		/// <param name="countAs1Char">A collection of substrings that will only count as 1 char for the purposes of returning the desired length</param>
+		/// <param name="string">The string whose length to enforce</param>
 		public static string EnforceLength(this string @string, int desiredLength, char addCharToEnd = '_', IReadOnlyCollection<string> countAs1Char = null)
 		{
 			int actualLength = @string.Length;

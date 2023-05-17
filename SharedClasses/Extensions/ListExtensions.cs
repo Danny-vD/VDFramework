@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace VDFramework.Extensions
 {
 	/// <summary>
-	/// Contains Extension methods for Lists
+	/// Contains extension methods for <see cref="List{T}"/>
 	/// </summary>
 	public static class ListExtensions
 	{
 		/// <summary>
-		/// Resize the list so that it holds a <see cref="newSize"/> amount of <see cref="TItem"/>
+		/// Resize the list so that it holds a <paramref name="newSize"/> amount of <typeparamref name="TItem"/>
 		/// <para></para>(will also resize the underlaying array)
 		/// </summary>
 		/// <param name="list">The list to resize</param>
@@ -48,7 +47,8 @@ namespace VDFramework.Extensions
 		/// </summary>
 		/// <param name="list">The list whose duplicates will be removed</param>
 		/// <typeparam name="TItem">The type of elements in the list</typeparam>
-		/// <returns>the same list</returns>
+		/// <returns>the same list to support chaining methods</returns>
+		/// <seealso cref="MakeDistinct{TItem}(System.Collections.Generic.List{TItem}, System.Collections.Generic.IEqualityComparer{TItem})"/>
 		public static List<TItem> MakeDistinct<TItem>(this List<TItem> list)
 		{
 			return list.MakeDistinct(EqualityComparer<TItem>.Default);
@@ -60,7 +60,7 @@ namespace VDFramework.Extensions
 		/// <param name="list">The list whose duplicates will be removed</param>
 		/// <param name="equalityComparer">the <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> that will be used to compare values</param>
 		/// <typeparam name="TItem">The type of elements in the list</typeparam>
-		/// <returns>the same list</returns>
+		/// <returns>the same list to support chaining methods</returns>
 		public static List<TItem> MakeDistinct<TItem>(this List<TItem> list, IEqualityComparer<TItem> equalityComparer)
 		{
 			// Remove any duplicates

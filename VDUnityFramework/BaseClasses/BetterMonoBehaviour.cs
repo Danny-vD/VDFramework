@@ -46,24 +46,6 @@ namespace VDFramework
 			}
 		}
 
-		/// <summary>
-		/// Disable this behaviour
-		/// </summary>
-		/// <seealso cref="Behaviour.enabled"/>
-		public void Enable()
-		{
-			enabled = true;
-		}
-
-		/// <summary>
-		/// Enable this behaviour
-		/// </summary>
-		/// <seealso cref="Behaviour.enabled"/>
-		public void Disable()
-		{
-			enabled = false;
-		}
-
 		//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//
 		//				Hiding inherited members
 		//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//

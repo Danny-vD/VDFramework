@@ -1,7 +1,7 @@
 ﻿namespace VDFramework.Extensions
 {
 	/// <summary>
-	/// Contains Extension methods for 32-bit Integers
+	/// Contains extension methods for 32-bit integers (<see cref="System.Int32"/>)
 	/// </summary>
 	public static class Int32Extensions
 	{
@@ -21,11 +21,17 @@
 			return matchingBit;
 		}
 
+		/// <summary>
+		/// Add the given bitflag to this value
+		/// </summary>
 		public static void AddFlag(this ref int number, int flagToAdd)
 		{
 			number |= flagToAdd;
 		}
 
+		/// <summary>
+		/// Remove the given bitflag from this value
+		/// </summary>
 		public static void RemoveFlag(this ref int number, int flagToRemove)
 		{
 			number &= ~flagToRemove;

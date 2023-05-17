@@ -4,10 +4,16 @@ using System.Linq;
 
 namespace VDFramework.Extensions
 {
+	/// <summary>
+	/// Contains extension methods for <see cref="System.Enum"/>
+	/// </summary>
 	public static class EnumExtensions
 	{
 		private static readonly Dictionary<Type, string[]> namesPerEnum = new Dictionary<Type, string[]>();
 
+		/// <summary>
+		/// Returns an IEnumerable that contains the names of every value of this enum
+		/// </summary>
 		public static IEnumerable<string> GetNames<TEnum>(this TEnum @enum)
 			where TEnum : Enum
 		{
@@ -41,6 +47,9 @@ namespace VDFramework.Extensions
 			return values;
 		}
 
+		/// <summary>
+		/// Returns a random value of this enum
+		/// </summary>
 		public static TEnum GetRandomValue<TEnum>(this TEnum @enum)
 			where TEnum : struct, Enum
 		{

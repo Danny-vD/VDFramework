@@ -2,8 +2,14 @@
 
 namespace VDFramework.UnityExtensions
 {
+	/// <summary>
+	/// Contains extension methods for <see cref="UnityEngine.Color"/>
+	/// </summary>
 	public static class ColorExtensions
 	{
+		/// <summary>
+		/// Returns the raw distance between 2 colours
+		/// </summary>
 		public static float DistanceSquared(this Color referenceColour, Color colour)
 		{
 			float redDelta = colour.r - referenceColour.r;
@@ -13,6 +19,9 @@ namespace VDFramework.UnityExtensions
 			return (redDelta * redDelta) + (greenDelta * greenDelta) + (blueDelta * blueDelta);
 		}
 		
+		/// <summary>
+		/// Returns the raw distance between the HSV of the colours
+		/// </summary>
 		public static float DistanceSquaredHSV(this Color referenceColour, Color colour)
 		{
 			Color.RGBToHSV(referenceColour, out float hue1, out float saturation1, out float value1);

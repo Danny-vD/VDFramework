@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using VDFramework.Utility.TimerUtil;
 
-namespace VDFramework.Monobehaviours
+namespace VDFramework.MonoBehaviours
 {
 	/// <summary>
-	/// A simple utility behaviour for Unity that updates the TimerManager in Update using Time.deltaTime
-	/// (makes the object DontDestroyOnLoad)
+	/// <para>A simple utility behaviour for Unity that updates the TimerManager in Update using Time.deltaTime</para>
+	/// <para>(makes the object DontDestroyOnLoad)</para>
 	/// </summary>
 	public class TimerManagerUpdater : BetterMonoBehaviour
 	{

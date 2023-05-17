@@ -19,14 +19,29 @@
             True if this collection is empty or contains only one element
             </summary>
         </member>
+        <member name="T:VDFramework.Extensions.EnumExtensions">
+            <summary>
+            Contains extension methods for <see cref="T:System.Enum"/>
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.EnumExtensions.GetNames``1(``0)">
+            <summary>
+            Returns an IEnumerable that contains the names of every value of this enum
+            </summary>
+        </member>
         <member name="M:VDFramework.Extensions.EnumExtensions.GetValues``1(``0)">
             <summary>
             Returns an IEnumerable of <see cref="!:TEnum"/> that has all the values of the enum
             </summary>
         </member>
+        <member name="M:VDFramework.Extensions.EnumExtensions.GetRandomValue``1(``0)">
+            <summary>
+            Returns a random value of this enum
+            </summary>
+        </member>
         <member name="T:VDFramework.Extensions.Int32Extensions">
             <summary>
-            Contains Extension methods for 32-bit Integers
+            Contains extension methods for 32-bit integers (<see cref="T:System.Int32"/>)
             </summary>
         </member>
         <member name="M:VDFramework.Extensions.Int32Extensions.HasOneMatchingBit(System.Int32,System.Int32,System.Boolean)">
@@ -34,6 +49,16 @@
             Check every bit one by one to see if they are equal
             </summary>
             <returns>TRUE if at least one bit is equal</returns>
+        </member>
+        <member name="M:VDFramework.Extensions.Int32Extensions.AddFlag(System.Int32@,System.Int32)">
+            <summary>
+            Add the given bitflag to this value
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.Int32Extensions.RemoveFlag(System.Int32@,System.Int32)">
+            <summary>
+            Remove the given bitflag from this value
+            </summary>
         </member>
         <member name="M:VDFramework.Extensions.Int32Extensions.Ordinalize(System.Int32)">
             <summary>
@@ -45,12 +70,12 @@
         </member>
         <member name="T:VDFramework.Extensions.ListExtensions">
             <summary>
-            Contains Extension methods for Lists
+            Contains extension methods for <see cref="T:System.Collections.Generic.List`1"/>
             </summary>
         </member>
         <member name="M:VDFramework.Extensions.ListExtensions.ResizeList``1(System.Collections.Generic.List{``0},System.Int32)">
             <summary>
-            Resize the list so that it holds a <see cref="!:newSize"/> amount of <see cref="!:TItem"/>
+            Resize the list so that it holds a <paramref name="newSize"/> amount of <typeparamref name="TItem"/>
             <para></para>(will also resize the underlaying array)
             </summary>
             <param name="list">The list to resize</param>
@@ -63,7 +88,8 @@
             </summary>
             <param name="list">The list whose duplicates will be removed</param>
             <typeparam name="TItem">The type of elements in the list</typeparam>
-            <returns>the same list</returns>
+            <returns>the same list to support chaining methods</returns>
+            <seealso cref="M:VDFramework.Extensions.ListExtensions.MakeDistinct``1(System.Collections.Generic.List{``0},System.Collections.Generic.IEqualityComparer{``0})"/>
         </member>
         <member name="M:VDFramework.Extensions.ListExtensions.MakeDistinct``1(System.Collections.Generic.List{``0},System.Collections.Generic.IEqualityComparer{``0})">
             <summary>
@@ -72,7 +98,20 @@
             <param name="list">The list whose duplicates will be removed</param>
             <param name="equalityComparer">the <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> that will be used to compare values</param>
             <typeparam name="TItem">The type of elements in the list</typeparam>
-            <returns>the same list</returns>
+            <returns>the same list to support chaining methods</returns>
+        </member>
+        <member name="T:VDFramework.Extensions.ObjectExtensions">
+            <summary>
+            Contains extension methods for System.<see cref="T:System.Object"/>
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.ObjectExtensions.ConvertTo``1(System.Object)">
+            <summary>
+            <para>Converts this type to the specified type</para>
+            <para>WARNING: this method does not support user-defined conversions</para>
+            </summary>
+            <typeparam name="TNewType">The Type to convert to</typeparam>
+            <exception cref="T:System.InvalidCastException">Will be thrown if the conversion is not valid</exception>
         </member>
         <member name="T:VDFramework.Extensions.RandomElement">
             <summary>
@@ -104,9 +143,19 @@
             Randomly sorts the list
             </summary>
         </member>
+        <member name="T:VDFramework.Extensions.StringExtensions">
+            <summary>
+            Contains extension methods for <see cref="T:System.String"/>
+            </summary>
+        </member>
         <member name="M:VDFramework.Extensions.StringExtensions.InsertSpaceBeforeCapitals(System.String)">
             <summary>
             Returns a new string where a space is inserted before each capital, skipping the first char
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.StringExtensions.ReplaceUnderscoreWithSpace(System.String)">
+            <summary>
+            Replaces all underscores in this string with a space
             </summary>
         </member>
         <member name="M:VDFramework.Extensions.StringExtensions.EnforceLength(System.String,System.Int32,System.Char,System.Collections.Generic.IReadOnlyCollection{System.String})">
@@ -116,6 +165,7 @@
             <param name="desiredLength">The length that you want the returned string to be</param>
             <param name="addCharToEnd">In case the string is too short, add this character to get the desired length</param>
             <param name="countAs1Char">A collection of substrings that will only count as 1 char for the purposes of returning the desired length</param>
+            <param name="string">The string whose length to enforce</param>
         </member>
         <member name="M:VDFramework.Extensions.StringExtensions.GetCharsBetweenAandB(System.String,System.Char,System.Char,System.Int32)">
             <summary>

@@ -21,18 +21,6 @@
             The gameobject where this component is attached to
             </summary>
         </member>
-        <member name="M:VDFramework.BetterMonoBehaviour.Enable">
-            <summary>
-            Disable this behaviour
-            </summary>
-            <seealso cref="P:UnityEngine.Behaviour.enabled"/>
-        </member>
-        <member name="M:VDFramework.BetterMonoBehaviour.Disable">
-            <summary>
-            Enable this behaviour
-            </summary>
-            <seealso cref="P:UnityEngine.Behaviour.enabled"/>
-        </member>
         <member name="P:VDFramework.BetterMonoBehaviour.transform">
             <summary>
             Overridden to return the CachedTransform
@@ -43,10 +31,10 @@
             Overridden to return the CachedGameObject
             </summary>
         </member>
-        <member name="T:VDFramework.Monobehaviours.TimerManagerUpdater">
+        <member name="T:VDFramework.MonoBehaviours.TimerManagerUpdater">
             <summary>
-            A simple utility behaviour for Unity that updates the TimerManager in Update using Time.deltaTime
-            (makes the object DontDestroyOnLoad)
+            <para>A simple utility behaviour for Unity that updates the TimerManager in Update using Time.deltaTime</para>
+            <para>(makes the object DontDestroyOnLoad)</para>
             </summary>
         </member>
         <member name="T:VDFramework.Singleton.Singleton`1">
@@ -58,6 +46,65 @@
         <member name="M:VDFramework.Singleton.Singleton`1.DestroyInstance">
             <summary>
             Sets the instance of the singleton to null.
+            </summary>
+        </member>
+        <member name="T:VDFramework.UnityExtensions.BehaviourExtensions">
+            <summary>
+            Contains extension methods for <see cref="T:UnityEngine.Behaviour"/>
+            </summary>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.BehaviourExtensions.Enable(UnityEngine.Behaviour)">
+            <summary>
+            Disable this behaviour
+            </summary>
+            <seealso cref="P:UnityEngine.Behaviour.enabled"/>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.BehaviourExtensions.Disable(UnityEngine.Behaviour)">
+            <summary>
+            Enable this behaviour
+            </summary>
+            <seealso cref="P:UnityEngine.Behaviour.enabled"/>
+        </member>
+        <member name="T:VDFramework.UnityExtensions.ColliderExtensions">
+            <summary>
+            Contains extension methods for <see cref="T:UnityEngine.Collider"/>
+            </summary>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.ColliderExtensions.Enable(UnityEngine.Collider)">
+            <summary>
+            Disable this collider
+            </summary>
+            <seealso cref="P:UnityEngine.Collider.enabled"/>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.ColliderExtensions.Disable(UnityEngine.Collider)">
+            <summary>
+            Enable this collider
+            </summary>
+            <seealso cref="P:UnityEngine.Collider.enabled"/>
+        </member>
+        <member name="T:VDFramework.UnityExtensions.ColorExtensions">
+            <summary>
+            Contains extension methods for <see cref="T:UnityEngine.Color"/>
+            </summary>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.ColorExtensions.DistanceSquared(UnityEngine.Color,UnityEngine.Color)">
+            <summary>
+            Returns the raw distance between 2 colours
+            </summary>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.ColorExtensions.DistanceSquaredHSV(UnityEngine.Color,UnityEngine.Color)">
+            <summary>
+            Returns the raw distance between the HSV of the colours
+            </summary>
+        </member>
+        <member name="T:VDFramework.UnityExtensions.ComponentExtensions">
+            <summary>
+            Contains extension methods for <see cref="T:UnityEngine.Component"/>
+            </summary>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.ComponentExtensions.ToGameObject``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Transforms a collections of components to a collection of their <see cref="T:UnityEngine.GameObject"/>s
             </summary>
         </member>
         <member name="T:VDFramework.UnityExtensions.CoroutineExtensions">
@@ -282,9 +329,30 @@
         <member name="M:VDFramework.UnityExtensions.WhileEnumerable.InnerGetEnumerator">
             <inheritdoc />
         </member>
+        <member name="T:VDFramework.UnityExtensions.GameObjectExtensions">
+            <summary>
+            Contains extension methods for <see cref="T:UnityEngine.GameObject"/>
+            </summary>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.GameObjectExtensions.DestroyOnLoad(UnityEngine.GameObject)">
+            <summary>
+            Mark this object to be destroyed on load (the reverse of DontDestroyOnLoad)
+            </summary>
+            <param name="gameObject"></param>
+        </member>
         <member name="M:VDFramework.UnityExtensions.GameObjectExtensions.EnsureComponent``1(UnityEngine.GameObject)">
             <summary>
-            Ensures that the specified <see cref="!:TComponent"/> is on this <see cref="T:UnityEngine.GameObject"/>.
+            Ensures that the specified <see cref="!:TComponent"/> is on this <see cref="T:UnityEngine.GameObject"/> by creating it if it doesn not exists
+            </summary>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.GameObjectExtensions.EnsureComponent``1(UnityEngine.Component)">
+            <summary>
+            Ensures that the specified <see cref="!:TComponent"/> is on this <see cref="T:UnityEngine.GameObject"/> by creating it if it doesn not exists
+            </summary>
+        </member>
+        <member name="T:VDFramework.UnityExtensions.TransformExtensions">
+            <summary>
+            Contains extension methods for <see cref="T:UnityEngine.Transform"/>
             </summary>
         </member>
         <member name="M:VDFramework.UnityExtensions.TransformExtensions.DestroyChildren(UnityEngine.Transform)">
@@ -295,6 +363,36 @@
         <member name="M:VDFramework.UnityExtensions.TransformExtensions.DestroyChildrenImmediate(UnityEngine.Transform)">
             <summary>
             Destroys all children immediately
+            </summary>
+        </member>
+        <member name="T:VDFramework.UnityExtensions.VectorExtensions">
+            <summary>
+            Contains Extension methods for Vectors
+            </summary>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.VectorExtensions.Abs(UnityEngine.Vector2)">
+            <summary>
+            Return the absolute value of this vector
+            </summary>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.VectorExtensions.Abs(UnityEngine.Vector2Int)">
+            <summary>
+            Return the absolute value of this vector
+            </summary>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.VectorExtensions.Abs(UnityEngine.Vector3)">
+            <summary>
+            Return the absolute value of this vector
+            </summary>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.VectorExtensions.Abs(UnityEngine.Vector3Int)">
+            <summary>
+            Return the absolute value of this vector
+            </summary>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.VectorExtensions.Abs(UnityEngine.Vector4)">
+            <summary>
+            Return the absolute value of this vector
             </summary>
         </member>
         <member name="T:VDFramework.Exceptions.SingletonViolationException">
@@ -312,14 +410,29 @@
             True if this collection is empty or contains only one element
             </summary>
         </member>
+        <member name="T:VDFramework.Extensions.EnumExtensions">
+            <summary>
+            Contains extension methods for <see cref="T:System.Enum"/>
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.EnumExtensions.GetNames``1(``0)">
+            <summary>
+            Returns an IEnumerable that contains the names of every value of this enum
+            </summary>
+        </member>
         <member name="M:VDFramework.Extensions.EnumExtensions.GetValues``1(``0)">
             <summary>
             Returns an IEnumerable of <see cref="!:TEnum"/> that has all the values of the enum
             </summary>
         </member>
+        <member name="M:VDFramework.Extensions.EnumExtensions.GetRandomValue``1(``0)">
+            <summary>
+            Returns a random value of this enum
+            </summary>
+        </member>
         <member name="T:VDFramework.Extensions.Int32Extensions">
             <summary>
-            Contains Extension methods for 32-bit Integers
+            Contains extension methods for 32-bit integers (<see cref="T:System.Int32"/>)
             </summary>
         </member>
         <member name="M:VDFramework.Extensions.Int32Extensions.HasOneMatchingBit(System.Int32,System.Int32,System.Boolean)">
@@ -327,6 +440,16 @@
             Check every bit one by one to see if they are equal
             </summary>
             <returns>TRUE if at least one bit is equal</returns>
+        </member>
+        <member name="M:VDFramework.Extensions.Int32Extensions.AddFlag(System.Int32@,System.Int32)">
+            <summary>
+            Add the given bitflag to this value
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.Int32Extensions.RemoveFlag(System.Int32@,System.Int32)">
+            <summary>
+            Remove the given bitflag from this value
+            </summary>
         </member>
         <member name="M:VDFramework.Extensions.Int32Extensions.Ordinalize(System.Int32)">
             <summary>
@@ -338,12 +461,12 @@
         </member>
         <member name="T:VDFramework.Extensions.ListExtensions">
             <summary>
-            Contains Extension methods for Lists
+            Contains extension methods for <see cref="T:System.Collections.Generic.List`1"/>
             </summary>
         </member>
         <member name="M:VDFramework.Extensions.ListExtensions.ResizeList``1(System.Collections.Generic.List{``0},System.Int32)">
             <summary>
-            Resize the list so that it holds a <see cref="!:newSize"/> amount of <see cref="!:TItem"/>
+            Resize the list so that it holds a <paramref name="newSize"/> amount of <typeparamref name="TItem"/>
             <para></para>(will also resize the underlaying array)
             </summary>
             <param name="list">The list to resize</param>
@@ -356,7 +479,8 @@
             </summary>
             <param name="list">The list whose duplicates will be removed</param>
             <typeparam name="TItem">The type of elements in the list</typeparam>
-            <returns>the same list</returns>
+            <returns>the same list to support chaining methods</returns>
+            <seealso cref="M:VDFramework.Extensions.ListExtensions.MakeDistinct``1(System.Collections.Generic.List{``0},System.Collections.Generic.IEqualityComparer{``0})"/>
         </member>
         <member name="M:VDFramework.Extensions.ListExtensions.MakeDistinct``1(System.Collections.Generic.List{``0},System.Collections.Generic.IEqualityComparer{``0})">
             <summary>
@@ -365,7 +489,20 @@
             <param name="list">The list whose duplicates will be removed</param>
             <param name="equalityComparer">the <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> that will be used to compare values</param>
             <typeparam name="TItem">The type of elements in the list</typeparam>
-            <returns>the same list</returns>
+            <returns>the same list to support chaining methods</returns>
+        </member>
+        <member name="T:VDFramework.Extensions.ObjectExtensions">
+            <summary>
+            Contains extension methods for System.<see cref="T:System.Object"/>
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.ObjectExtensions.ConvertTo``1(System.Object)">
+            <summary>
+            <para>Converts this type to the specified type</para>
+            <para>WARNING: this method does not support user-defined conversions</para>
+            </summary>
+            <typeparam name="TNewType">The Type to convert to</typeparam>
+            <exception cref="T:System.InvalidCastException">Will be thrown if the conversion is not valid</exception>
         </member>
         <member name="T:VDFramework.Extensions.RandomElement">
             <summary>
@@ -397,9 +534,19 @@
             Randomly sorts the list
             </summary>
         </member>
+        <member name="T:VDFramework.Extensions.StringExtensions">
+            <summary>
+            Contains extension methods for <see cref="T:System.String"/>
+            </summary>
+        </member>
         <member name="M:VDFramework.Extensions.StringExtensions.InsertSpaceBeforeCapitals(System.String)">
             <summary>
             Returns a new string where a space is inserted before each capital, skipping the first char
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.StringExtensions.ReplaceUnderscoreWithSpace(System.String)">
+            <summary>
+            Replaces all underscores in this string with a space
             </summary>
         </member>
         <member name="M:VDFramework.Extensions.StringExtensions.EnforceLength(System.String,System.Int32,System.Char,System.Collections.Generic.IReadOnlyCollection{System.String})">
@@ -409,6 +556,7 @@
             <param name="desiredLength">The length that you want the returned string to be</param>
             <param name="addCharToEnd">In case the string is too short, add this character to get the desired length</param>
             <param name="countAs1Char">A collection of substrings that will only count as 1 char for the purposes of returning the desired length</param>
+            <param name="string">The string whose length to enforce</param>
         </member>
         <member name="M:VDFramework.Extensions.StringExtensions.GetCharsBetweenAandB(System.String,System.Char,System.Char,System.Int32)">
             <summary>
