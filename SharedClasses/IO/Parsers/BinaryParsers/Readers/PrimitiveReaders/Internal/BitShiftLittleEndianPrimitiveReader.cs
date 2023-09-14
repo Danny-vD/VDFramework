@@ -1,4 +1,4 @@
-﻿using VDFramework.IO.Parsers.BinaryParsers.Readers.Logic;
+﻿using VDFramework.IO.Parsers.BinaryParsers.Parsers;
 
 namespace VDFramework.IO.Parsers.BinaryParsers.Readers.PrimitiveReaders.Internal
 {
@@ -6,7 +6,7 @@ namespace VDFramework.IO.Parsers.BinaryParsers.Readers.PrimitiveReaders.Internal
 	{
 		public override unsafe ushort ReadUShort(ref byte* pointer)
 		{
-			ushort value = BitShiftEndianParser.GetUShortLittleEndian(pointer, 0);
+			ushort value = BitShiftEndianParser.GetUShortLittleEndian(pointer);
 
 			pointer += sizeof(ushort);
 
@@ -15,7 +15,7 @@ namespace VDFramework.IO.Parsers.BinaryParsers.Readers.PrimitiveReaders.Internal
 
 		public override unsafe short ReadShort(ref byte* pointer)
 		{
-			short value = BitShiftEndianParser.GetShortLittleEndian(pointer, 0);
+			short value = BitShiftEndianParser.GetShortLittleEndian(pointer);
 
 			pointer += sizeof(short);
 
@@ -24,7 +24,7 @@ namespace VDFramework.IO.Parsers.BinaryParsers.Readers.PrimitiveReaders.Internal
 
 		public override unsafe uint ReadUInt(ref byte* pointer)
 		{
-			uint value = BitShiftEndianParser.GetUIntLittleEndian(pointer, 0);
+			uint value = BitShiftEndianParser.GetUIntLittleEndian(pointer);
 
 			pointer += sizeof(uint);
 
@@ -33,7 +33,7 @@ namespace VDFramework.IO.Parsers.BinaryParsers.Readers.PrimitiveReaders.Internal
 
 		public override unsafe int ReadInt(ref byte* pointer)
 		{
-			int value = BitShiftEndianParser.GetIntLittleEndian(pointer, 0);
+			int value = BitShiftEndianParser.GetIntLittleEndian(pointer);
 
 			pointer += sizeof(int);
 
@@ -42,7 +42,7 @@ namespace VDFramework.IO.Parsers.BinaryParsers.Readers.PrimitiveReaders.Internal
 
 		public override unsafe ulong ReadULong(ref byte* pointer)
 		{
-			ulong value = BitShiftEndianParser.GetULongLittleEndian(pointer, 0);
+			ulong value = BitShiftEndianParser.GetULongLittleEndian(pointer);
 
 			pointer += sizeof(ulong);
 
@@ -51,7 +51,7 @@ namespace VDFramework.IO.Parsers.BinaryParsers.Readers.PrimitiveReaders.Internal
 
 		public override unsafe long ReadLong(ref byte* pointer)
 		{
-			long value = BitShiftEndianParser.GetLongLittleEndian(pointer, 0);
+			long value = BitShiftEndianParser.GetLongLittleEndian(pointer);
 
 			pointer += sizeof(long);
 
@@ -60,7 +60,7 @@ namespace VDFramework.IO.Parsers.BinaryParsers.Readers.PrimitiveReaders.Internal
 
 		public override unsafe float ReadFloat(ref byte* pointer)
 		{
-			float value = BitShiftEndianParser.GetFloatLittleEndian(pointer, 0);
+			float value = BitShiftEndianParser.GetFloatLittleEndian(pointer);
 
 			pointer += sizeof(float);
 
@@ -69,7 +69,7 @@ namespace VDFramework.IO.Parsers.BinaryParsers.Readers.PrimitiveReaders.Internal
 
 		public override unsafe double ReadDouble(ref byte* pointer)
 		{
-			double value = BitShiftEndianParser.GetDoubleLittleEndian(pointer, 0);
+			double value = BitShiftEndianParser.GetDoubleLittleEndian(pointer);
 
 			pointer += sizeof(double);
 

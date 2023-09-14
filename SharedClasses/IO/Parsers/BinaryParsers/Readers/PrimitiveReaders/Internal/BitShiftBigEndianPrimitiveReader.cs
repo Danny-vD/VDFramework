@@ -1,4 +1,4 @@
-﻿using VDFramework.IO.Parsers.BinaryParsers.Readers.Logic;
+﻿using VDFramework.IO.Parsers.BinaryParsers.Parsers;
 
 namespace VDFramework.IO.Parsers.BinaryParsers.Readers.PrimitiveReaders.Internal
 {
@@ -6,58 +6,74 @@ namespace VDFramework.IO.Parsers.BinaryParsers.Readers.PrimitiveReaders.Internal
 	{
 		public override unsafe ushort ReadUShort(ref byte* pointer)
 		{
-			ByteReader.ReadBytes(ref pointer, out byte[] array, sizeof(ushort));
+			ushort value = BitShiftEndianParser.GetUShortBigEndian(pointer);
 
-			return BitShiftEndianParser.GetUShortBigEndian(array, 0);
+			pointer += sizeof(ushort);
+
+			return value;
 		}
 
 		public override unsafe short ReadShort(ref byte* pointer)
 		{
-			ByteReader.ReadBytes(ref pointer, out byte[] array, sizeof(short));
+			short value = BitShiftEndianParser.GetShortBigEndian(pointer);
 
-			return BitShiftEndianParser.GetShortBigEndian(array, 0);
+			pointer += sizeof(short);
+
+			return value;
 		}
 
 		public override unsafe uint ReadUInt(ref byte* pointer)
 		{
-			ByteReader.ReadBytes(ref pointer, out byte[] array, sizeof(uint));
+			uint value = BitShiftEndianParser.GetUIntBigEndian(pointer);
 
-			return BitShiftEndianParser.GetUIntBigEndian(array, 0);
+			pointer += sizeof(uint);
+
+			return value;
 		}
 
 		public override unsafe int ReadInt(ref byte* pointer)
 		{
-			ByteReader.ReadBytes(ref pointer, out byte[] array, sizeof(uint));
+			int value = BitShiftEndianParser.GetIntBigEndian(pointer);
 
-			return BitShiftEndianParser.GetIntBigEndian(array, 0);
+			pointer += sizeof(int);
+
+			return value;
 		}
 
 		public override unsafe ulong ReadULong(ref byte* pointer)
 		{
-			ByteReader.ReadBytes(ref pointer, out byte[] array, sizeof(ulong));
+			ulong value = BitShiftEndianParser.GetULongBigEndian(pointer);
 
-			return BitShiftEndianParser.GetULongBigEndian(array, 0);
+			pointer += sizeof(ulong);
+
+			return value;
 		}
 
 		public override unsafe long ReadLong(ref byte* pointer)
 		{
-			ByteReader.ReadBytes(ref pointer, out byte[] array, sizeof(long));
+			long value = BitShiftEndianParser.GetLongBigEndian(pointer);
 
-			return BitShiftEndianParser.GetLongBigEndian(array, 0);
+			pointer += sizeof(long);
+
+			return value;
 		}
 
 		public override unsafe float ReadFloat(ref byte* pointer)
 		{
-			ByteReader.ReadBytes(ref pointer, out byte[] array, sizeof(float));
+			float value = BitShiftEndianParser.GetFloatBigEndian(pointer);
 
-			return BitShiftEndianParser.GetFloatBigEndian(array, 0);
+			pointer += sizeof(float);
+
+			return value;
 		}
 
 		public override unsafe double ReadDouble(ref byte* pointer)
 		{
-			ByteReader.ReadBytes(ref pointer, out byte[] array, sizeof(double));
+			double value = BitShiftEndianParser.GetDoubleBigEndian(pointer);
 
-			return BitShiftEndianParser.GetDoubleBigEndian(array, 0);
+			pointer += sizeof(double);
+
+			return value;
 		}
 	}
 }

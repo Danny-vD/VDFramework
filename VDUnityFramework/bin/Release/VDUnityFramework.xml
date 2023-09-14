@@ -568,17 +568,17 @@
             Get a count of how many times a specific character appears within the string
             </summary>
         </member>
-        <member name="T:VDFramework.IO.Parsers.ByteParsers.EndianParser">
+        <member name="T:VDFramework.IO.Parsers.BinaryParsers.Parsers.BitShiftEndianParser">
             <summary>
-            Contains functions to get primitives from a byte[]
+            Contains functions to get or set primitives from a byte*
             </summary>
         </member>
-        <member name="T:VDFramework.IO.Parsers.ByteParsers.Static.ByteParser">
+        <member name="T:VDFramework.IO.Parsers.BinaryParsers.Readers.ByteReader">
             <summary>
             Contains functions for parsing and reading bytes
             </summary>
         </member>
-        <member name="M:VDFramework.IO.Parsers.ByteParsers.Static.ByteParser.ReadString(System.Byte*@,System.Int32)">
+        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Readers.ByteReader.ReadString(System.Byte*@,System.Int32)">
             <summary>
             Read a null-terminated <see cref="P:System.Text.Encoding.UTF8"/> string with maxCount characters from the byte pointer
             </summary>
@@ -586,7 +586,7 @@
             A string up to a null-character or up to maxCount characters
             </returns>
         </member>
-        <member name="M:VDFramework.IO.Parsers.ByteParsers.Static.ByteParser.ReadString(System.Byte*@,System.UInt64)">
+        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Readers.ByteReader.ReadString(System.Byte*@,System.UInt64)">
             <summary>
             Read a null-terminated <see cref="P:System.Text.Encoding.UTF8"/> string with maxCount characters from the byte pointer
             </summary>
@@ -594,7 +594,7 @@
             A string up to a null-character or up to maxCount characters
             </returns>
         </member>
-        <member name="M:VDFramework.IO.Parsers.ByteParsers.Static.ByteParser.GetString(System.Byte[],System.Int32)">
+        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Readers.ByteReader.GetString(System.Byte[],System.Int32)">
             <summary>
             Read a null-terminated string with maxCount characters from the byte array
             </summary>
@@ -602,7 +602,7 @@
             A string up to a null-character or up to maxCount characters
             </returns>
         </member>
-        <member name="M:VDFramework.IO.Parsers.ByteParsers.Static.ByteParser.GetString(System.Byte[],System.UInt64)">
+        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Readers.ByteReader.GetString(System.Byte[],System.UInt64)">
             <summary>
             Read a null-terminated <see cref="P:System.Text.Encoding.UTF8"/> string with maxCount characters from the byte array
             </summary>
@@ -610,9 +610,35 @@
             A string up to a null-character or up to maxCount characters
             </returns>
         </member>
-        <member name="T:VDFramework.IO.Parsers.ByteParsers.Static.ByteParserLittleEndian">
+        <member name="T:VDFramework.IO.Parsers.BinaryParsers.Readers.PrimitiveReaders.PrimitiveReaderBigEndian">
             <summary>
-            Contains functions for parsing bytes in the little endian format (will automatically pick the algorithm depending on the endianness of the system)
+            Contains functions for reading bytes in the big endian format (will automatically pick the algorithm depending on the endianness of the system)
+            </summary>
+        </member>
+        <member name="T:VDFramework.IO.Parsers.BinaryParsers.Readers.PrimitiveReaders.PrimitiveReaderLittleEndian">
+            <summary>
+            Contains functions for reading bytes in the little endian format (will automatically pick the algorithm depending on the endianness of the system)
+            </summary>
+        </member>
+        <member name="T:VDFramework.IO.Parsers.BinaryParsers.Writers.ByteWriter">
+            <summary>
+            Contains functions for parsing and writing bytes
+            </summary>
+        </member>
+        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Writers.ByteWriter.WriteString(System.Byte*@,System.String,System.Boolean)">
+            <summary>
+            <para>Write an <see cref="P:System.Text.Encoding.UTF8"/> string to the byte pointer</para>
+            <para>Optionally append a NULL-character at the end of the string</para>
+            </summary>
+        </member>
+        <member name="T:VDFramework.IO.Parsers.BinaryParsers.Writers.PrimitiveWriters.PrimitiveWriterBigEndian">
+            <summary>
+            Contains functions for writing bytes in the big endian format (will automatically pick the algorithm depending on the endianness of the system)
+            </summary>
+        </member>
+        <member name="T:VDFramework.IO.Parsers.BinaryParsers.Writers.PrimitiveWriters.PrimitiveWriterLittleEndian">
+            <summary>
+            Contains functions for writing bytes in the little endian format (will automatically pick the algorithm depending on the endianness of the system)
             </summary>
         </member>
         <member name="M:VDFramework.Utility.EnumDictionaryUtil.PopulateEnumDictionary``3(System.Collections.Generic.List{``0})">

@@ -14,6 +14,12 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Reference Include="UnityEngine">
+        <HintPath>bin\Release\netstandard2.1\UnityEngine.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
       <Compile Include="..\SharedClasses\EventSystem\EventHandler.cs">
         <Link>SharedClasses\EventSystem\EventHandler.cs</Link>
       </Compile>
@@ -53,14 +59,11 @@
       <Compile Include="..\SharedClasses\Interfaces\IKeyValuePair.cs">
         <Link>SharedClasses\Interfaces\IKeyValuePair.cs</Link>
       </Compile>
+      <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Parsers\BitShiftEndianParser.cs">
+        <Link>SharedClasses\IO\Parsers\BinaryParsers\Parsers\BitShiftEndianParser.cs</Link>
+      </Compile>
       <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Readers\ByteReader.cs">
         <Link>SharedClasses\IO\Parsers\BinaryParsers\Readers\ByteReader.cs</Link>
-      </Compile>
-      <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Readers\Logic\BitShiftEndianParser.cs">
-        <Link>SharedClasses\IO\Parsers\BinaryParsers\Readers\Logic\BitShiftEndianParser.cs</Link>
-      </Compile>
-      <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Readers\Logic\PointerCastPrimitiveReader.cs">
-        <Link>SharedClasses\IO\Parsers\BinaryParsers\Readers\Logic\PointerCastPrimitiveReader.cs</Link>
       </Compile>
       <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Readers\PrimitiveReaders\Internal\AbstractPrimitiveReader.cs">
         <Link>SharedClasses\IO\Parsers\BinaryParsers\Readers\PrimitiveReaders\Internal\AbstractPrimitiveReader.cs</Link>
@@ -71,6 +74,9 @@
       <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Readers\PrimitiveReaders\Internal\BitShiftLittleEndianPrimitiveReader.cs">
         <Link>SharedClasses\IO\Parsers\BinaryParsers\Readers\PrimitiveReaders\Internal\BitShiftLittleEndianPrimitiveReader.cs</Link>
       </Compile>
+      <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Readers\PrimitiveReaders\Internal\PointerCastPrimitiveReader.cs">
+        <Link>SharedClasses\IO\Parsers\BinaryParsers\Readers\PrimitiveReaders\Internal\PointerCastPrimitiveReader.cs</Link>
+      </Compile>
       <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Readers\PrimitiveReaders\PrimitiveReaderBigEndian.cs">
         <Link>SharedClasses\IO\Parsers\BinaryParsers\Readers\PrimitiveReaders\PrimitiveReaderBigEndian.cs</Link>
       </Compile>
@@ -80,12 +86,6 @@
       <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Writers\ByteWriter.cs">
         <Link>SharedClasses\IO\Parsers\BinaryParsers\Writers\ByteWriter.cs</Link>
       </Compile>
-      <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Writers\Logic\BitShiftEndianParser.cs">
-        <Link>SharedClasses\IO\Parsers\BinaryParsers\Writers\Logic\BitShiftEndianParser.cs</Link>
-      </Compile>
-      <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Writers\Logic\PointerCastPrimitiveWriter.cs">
-        <Link>SharedClasses\IO\Parsers\BinaryParsers\Writers\Logic\PointerCastPrimitiveWriter.cs</Link>
-      </Compile>
       <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Writers\PrimitiveWriters\Internal\AbstractPrimitiveWriter.cs">
         <Link>SharedClasses\IO\Parsers\BinaryParsers\Writers\PrimitiveWriters\Internal\AbstractPrimitiveWriter.cs</Link>
       </Compile>
@@ -94,6 +94,9 @@
       </Compile>
       <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Writers\PrimitiveWriters\Internal\BitShiftLittleEndianPrimitiveWriter.cs">
         <Link>SharedClasses\IO\Parsers\BinaryParsers\Writers\PrimitiveWriters\Internal\BitShiftLittleEndianPrimitiveWriter.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Writers\PrimitiveWriters\Internal\PointerCastPrimitiveWriter.cs">
+        <Link>SharedClasses\IO\Parsers\BinaryParsers\Writers\PrimitiveWriters\Internal\PointerCastPrimitiveWriter.cs</Link>
       </Compile>
       <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Writers\PrimitiveWriters\PrimitiveWriterBigEndian.cs">
         <Link>SharedClasses\IO\Parsers\BinaryParsers\Writers\PrimitiveWriters\PrimitiveWriterBigEndian.cs</Link>
@@ -161,11 +164,5 @@
       <Content Include="..\SharedClasses\Utility\.gitkeep">
         <Link>SharedClasses\Utility\.gitkeep</Link>
       </Content>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Reference Include="UnityEngine">
-        <HintPath>bin\Release\netstandard2.1\UnityEngine.dll</HintPath>
-      </Reference>
     </ItemGroup>
 </Project>

@@ -1,6 +1,4 @@
-﻿using VDFramework.IO.Parsers.BinaryParsers.Readers.PrimitiveReaders.Internal;
-
-namespace VDFramework.IO.Parsers.BinaryParsers.Readers.Logic
+﻿namespace VDFramework.IO.Parsers.BinaryParsers.Readers.PrimitiveReaders.Internal
 {
 	internal class PointerCastPrimitiveReader : AbstractPrimitiveReader
 	{
