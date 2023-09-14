@@ -1,4 +1,4 @@
-﻿namespace VDFramework.IO.Parsers.ByteParsers.Readers
+﻿namespace VDFramework.IO.Parsers.BinaryParsers.Readers.PrimitiveReaders.Internal
 {
 	internal abstract class AbstractPrimitiveReader
 	{

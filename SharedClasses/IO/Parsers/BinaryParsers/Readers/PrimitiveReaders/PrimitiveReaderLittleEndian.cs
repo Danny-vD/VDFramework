@@ -1,25 +1,25 @@
 ﻿using System;
-using VDFramework.IO.Parsers.ByteParsers.Readers.BitShiftReaders;
-using VDFramework.IO.Parsers.ByteParsers.Readers.PointerCastReaders;
+using VDFramework.IO.Parsers.BinaryParsers.Readers.Logic;
+using VDFramework.IO.Parsers.BinaryParsers.Readers.PrimitiveReaders.Internal;
 
-namespace VDFramework.IO.Parsers.ByteParsers.Readers.Static
+namespace VDFramework.IO.Parsers.BinaryParsers.Readers.PrimitiveReaders
 {
 	/// <summary>
-	/// Contains functions for parsing bytes in the big endian format (will automatically pick the algorithm depending on the endianness of the system)
+	/// Contains functions for parsing bytes in the little endian format (will automatically pick the algorithm depending on the endianness of the system)
 	/// </summary>
-	public static class PrimitiveReaderBigEndian
+	public static class PrimitiveReaderLittleEndian
 	{
 		private static readonly AbstractPrimitiveReader primitiveReader;
 		
-		static PrimitiveReaderBigEndian()
+		static PrimitiveReaderLittleEndian()
 		{
 			if (BitConverter.IsLittleEndian)
 			{
-				primitiveReader = new BitShiftBigEndianReader();
+				primitiveReader = new PointerCastPrimitiveReader();
 			}
 			else
 			{
-				primitiveReader = new PointerCastPrimitiveReader();
+				primitiveReader = new BitShiftLittleEndianPrimitiveReader();
 			}
 		}
 

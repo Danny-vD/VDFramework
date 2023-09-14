@@ -1,11 +1,11 @@
 ﻿using VDFramework.Utility.Unsafe;
 
-namespace VDFramework.IO.Parsers.ByteParsers.Readers
+namespace VDFramework.IO.Parsers.BinaryParsers.Readers.Logic
 {
 	/// <summary>
 	/// Contains functions to get primitives from a byte[]
 	/// </summary>
-	public static class EndianReader
+	public static class BitShiftEndianParser
 	{
 		//\\//\\//\\//\\//\\//\\//\\//
 		// Little Endian

@@ -1,7 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace VDFramework.IO.Parsers.ByteParsers.Readers.Static
+namespace VDFramework.IO.Parsers.BinaryParsers.Readers
 {
 	/// <summary>
 	/// Contains functions for parsing and reading bytes
