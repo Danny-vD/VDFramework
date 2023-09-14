@@ -568,6 +568,53 @@
             Get a count of how many times a specific character appears within the string
             </summary>
         </member>
+        <member name="T:VDFramework.IO.Parsers.ByteParsers.EndianParser">
+            <summary>
+            Contains functions to get primitives from a byte[]
+            </summary>
+        </member>
+        <member name="T:VDFramework.IO.Parsers.ByteParsers.Static.ByteParser">
+            <summary>
+            Contains functions for parsing and reading bytes
+            </summary>
+        </member>
+        <member name="M:VDFramework.IO.Parsers.ByteParsers.Static.ByteParser.ReadString(System.Byte*@,System.Int32)">
+            <summary>
+            Read a null-terminated <see cref="P:System.Text.Encoding.UTF8"/> string with maxCount characters from the byte pointer
+            </summary>
+            <returns>
+            A string up to a null-character or up to maxCount characters
+            </returns>
+        </member>
+        <member name="M:VDFramework.IO.Parsers.ByteParsers.Static.ByteParser.ReadString(System.Byte*@,System.UInt64)">
+            <summary>
+            Read a null-terminated <see cref="P:System.Text.Encoding.UTF8"/> string with maxCount characters from the byte pointer
+            </summary>
+            <returns>
+            A string up to a null-character or up to maxCount characters
+            </returns>
+        </member>
+        <member name="M:VDFramework.IO.Parsers.ByteParsers.Static.ByteParser.GetString(System.Byte[],System.Int32)">
+            <summary>
+            Read a null-terminated string with maxCount characters from the byte array
+            </summary>
+            <returns>
+            A string up to a null-character or up to maxCount characters
+            </returns>
+        </member>
+        <member name="M:VDFramework.IO.Parsers.ByteParsers.Static.ByteParser.GetString(System.Byte[],System.UInt64)">
+            <summary>
+            Read a null-terminated <see cref="P:System.Text.Encoding.UTF8"/> string with maxCount characters from the byte array
+            </summary>
+            <returns>
+            A string up to a null-character or up to maxCount characters
+            </returns>
+        </member>
+        <member name="T:VDFramework.IO.Parsers.ByteParsers.Static.ByteParserLittleEndian">
+            <summary>
+            Contains functions for parsing bytes in the little endian format (will automatically pick the algorithm depending on the endianness of the system)
+            </summary>
+        </member>
         <member name="M:VDFramework.Utility.EnumDictionaryUtil.PopulateEnumDictionary``3(System.Collections.Generic.List{``0})">
             <summary>
             Will add a KeyValuePair for every enumValue to the list
@@ -3073,6 +3120,16 @@
             <typeparam name="TParam15">The type of the fifteenth parameter</typeparam>
             <typeparam name="TParam16">The type of the sixteenth parameter</typeparam>
             <returns>A new ParameterTimerHandler with the given parameters</returns>
+        </member>
+        <member name="T:VDFramework.Utility.Unsafe.UnsafeUtil">
+            <summary>
+            Contains utility methods for working with unsafe code
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.Unsafe.UnsafeUtil.reinterpret_cast``2(``0)">
+            <summary>
+            Reinterpret the bits from one type as if it were another
+            </summary>
         </member>
         <member name="T:VDFramework.Utility.Windows.EnvironmentVariables">
             <summary>

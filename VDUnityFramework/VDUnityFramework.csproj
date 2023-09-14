@@ -10,6 +10,7 @@
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
       <DocumentationFile>bin\Release\VDUnityFramework.xml</DocumentationFile>
+      <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <ItemGroup>
@@ -52,6 +53,24 @@
       <Compile Include="..\SharedClasses\Interfaces\IKeyValuePair.cs">
         <Link>SharedClasses\Interfaces\IKeyValuePair.cs</Link>
       </Compile>
+      <Compile Include="..\SharedClasses\IO\Parsers\ByteParsers\AbstractByteParser.cs">
+        <Link>SharedClasses\IO\Parsers\ByteParsers\AbstractByteParser.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\IO\Parsers\ByteParsers\EndianParser.cs">
+        <Link>SharedClasses\IO\Parsers\ByteParsers\EndianParser.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\IO\Parsers\ByteParsers\LittleEndian\BitShiftLittleEndianParser.cs">
+        <Link>SharedClasses\IO\Parsers\ByteParsers\LittleEndian\BitShiftLittleEndianParser.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\IO\Parsers\ByteParsers\PointerCastByteParser.cs">
+        <Link>SharedClasses\IO\Parsers\ByteParsers\PointerCastByteParser.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\IO\Parsers\ByteParsers\Static\ByteParser.cs">
+        <Link>SharedClasses\IO\Parsers\ByteParsers\Static\ByteParser.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\IO\Parsers\ByteParsers\Static\ByteParserLittleEndian.cs">
+        <Link>SharedClasses\IO\Parsers\ByteParsers\Static\ByteParserLittleEndian.cs</Link>
+      </Compile>
       <Compile Include="..\SharedClasses\Utility\EnumDictionaryUtil.cs">
         <Link>SharedClasses\Utility\EnumDictionaryUtil.cs</Link>
       </Compile>
@@ -87,6 +106,9 @@
       </Compile>
       <Compile Include="..\SharedClasses\Utility\TimerUtil\TimerManager.StartTimerFromTemplate.cs">
         <Link>SharedClasses\Utility\TimerUtil\TimerManager.StartTimerFromTemplate.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\Utility\Unsafe\UnsafeUtil.cs">
+        <Link>SharedClasses\Utility\Unsafe\UnsafeUtil.cs</Link>
       </Compile>
       <Compile Include="..\SharedClasses\Utility\Windows\EnvironmentVariables.cs">
         <Link>SharedClasses\Utility\Windows\EnvironmentVariables.cs</Link>
