@@ -53,24 +53,6 @@
       <Compile Include="..\SharedClasses\Interfaces\IKeyValuePair.cs">
         <Link>SharedClasses\Interfaces\IKeyValuePair.cs</Link>
       </Compile>
-      <Compile Include="..\SharedClasses\IO\Parsers\ByteParsers\AbstractByteParser.cs">
-        <Link>SharedClasses\IO\Parsers\ByteParsers\AbstractByteParser.cs</Link>
-      </Compile>
-      <Compile Include="..\SharedClasses\IO\Parsers\ByteParsers\EndianParser.cs">
-        <Link>SharedClasses\IO\Parsers\ByteParsers\EndianParser.cs</Link>
-      </Compile>
-      <Compile Include="..\SharedClasses\IO\Parsers\ByteParsers\LittleEndian\BitShiftLittleEndianParser.cs">
-        <Link>SharedClasses\IO\Parsers\ByteParsers\LittleEndian\BitShiftLittleEndianParser.cs</Link>
-      </Compile>
-      <Compile Include="..\SharedClasses\IO\Parsers\ByteParsers\PointerCastByteParser.cs">
-        <Link>SharedClasses\IO\Parsers\ByteParsers\PointerCastByteParser.cs</Link>
-      </Compile>
-      <Compile Include="..\SharedClasses\IO\Parsers\ByteParsers\Static\ByteParser.cs">
-        <Link>SharedClasses\IO\Parsers\ByteParsers\Static\ByteParser.cs</Link>
-      </Compile>
-      <Compile Include="..\SharedClasses\IO\Parsers\ByteParsers\Static\ByteParserLittleEndian.cs">
-        <Link>SharedClasses\IO\Parsers\ByteParsers\Static\ByteParserLittleEndian.cs</Link>
-      </Compile>
       <Compile Include="..\SharedClasses\Utility\EnumDictionaryUtil.cs">
         <Link>SharedClasses\Utility\EnumDictionaryUtil.cs</Link>
       </Compile>

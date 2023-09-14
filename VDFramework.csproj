@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <Folder Include="SharedClasses\Interfaces" />
-    <Folder Include="SharedClasses\IO\Parsers\ByteParsers\" />
+    <Folder Include="SharedClasses\IO\Parsers\ByteParsers\Writers\" />
     <Folder Include="StandardFramework\Utility" />
   </ItemGroup>
 

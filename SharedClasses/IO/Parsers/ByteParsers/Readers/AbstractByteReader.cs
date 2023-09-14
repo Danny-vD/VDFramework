@@ -1,6 +1,6 @@
-﻿namespace VDFramework.IO.Parsers.ByteParsers
+﻿namespace VDFramework.IO.Parsers.ByteParsers.Readers
 {
-	internal abstract class AbstractByteParser
+	internal abstract class AbstractByteReader
 	{
 		public abstract unsafe ushort ReadUShort(ref byte* pointer);
 

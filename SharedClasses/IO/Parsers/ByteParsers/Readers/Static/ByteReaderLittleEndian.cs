@@ -1,24 +1,24 @@
 ﻿using System;
-using VDFramework.IO.Parsers.ByteParsers.LittleEndian;
+using VDFramework.IO.Parsers.ByteParsers.Readers.BitShiftReaders;
 
-namespace VDFramework.IO.Parsers.ByteParsers.Static
+namespace VDFramework.IO.Parsers.ByteParsers.Readers.Static
 {
 	/// <summary>
 	/// Contains functions for parsing bytes in the little endian format (will automatically pick the algorithm depending on the endianness of the system)
 	/// </summary>
-	public static class ByteParserLittleEndian
+	public static class ByteReaderLittleEndian
 	{
-		private static readonly AbstractByteParser byteParser;
+		private static readonly AbstractByteReader byteParser;
 		
-		static ByteParserLittleEndian()
+		static ByteReaderLittleEndian()
 		{
 			if (BitConverter.IsLittleEndian)
 			{
-				byteParser = new PointerCastByteParser();
+				byteParser = new PointerCastByteReader();
 			}
 			else
 			{
-				byteParser = new BitShiftLittleEndianParser();
+				byteParser = new BitShiftLittleEndianReader();
 			}
 		}
 

@@ -1,12 +1,12 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace VDFramework.IO.Parsers.ByteParsers.Static
+namespace VDFramework.IO.Parsers.ByteParsers.Readers.Static
 {
 	/// <summary>
 	/// Contains functions for parsing and reading bytes
 	/// </summary>
-	public static class ByteParser
+	public static class ByteReader
 	{
 		public static unsafe byte ReadByte(ref byte* pointer)
 		{
