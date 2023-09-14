@@ -53,6 +53,54 @@
       <Compile Include="..\SharedClasses\Interfaces\IKeyValuePair.cs">
         <Link>SharedClasses\Interfaces\IKeyValuePair.cs</Link>
       </Compile>
+      <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Readers\ByteReader.cs">
+        <Link>SharedClasses\IO\Parsers\BinaryParsers\Readers\ByteReader.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Readers\Logic\BitShiftEndianParser.cs">
+        <Link>SharedClasses\IO\Parsers\BinaryParsers\Readers\Logic\BitShiftEndianParser.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Readers\Logic\PointerCastPrimitiveReader.cs">
+        <Link>SharedClasses\IO\Parsers\BinaryParsers\Readers\Logic\PointerCastPrimitiveReader.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Readers\PrimitiveReaders\Internal\AbstractPrimitiveReader.cs">
+        <Link>SharedClasses\IO\Parsers\BinaryParsers\Readers\PrimitiveReaders\Internal\AbstractPrimitiveReader.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Readers\PrimitiveReaders\Internal\BitShiftBigEndianPrimitiveReader.cs">
+        <Link>SharedClasses\IO\Parsers\BinaryParsers\Readers\PrimitiveReaders\Internal\BitShiftBigEndianPrimitiveReader.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Readers\PrimitiveReaders\Internal\BitShiftLittleEndianPrimitiveReader.cs">
+        <Link>SharedClasses\IO\Parsers\BinaryParsers\Readers\PrimitiveReaders\Internal\BitShiftLittleEndianPrimitiveReader.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Readers\PrimitiveReaders\PrimitiveReaderBigEndian.cs">
+        <Link>SharedClasses\IO\Parsers\BinaryParsers\Readers\PrimitiveReaders\PrimitiveReaderBigEndian.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Readers\PrimitiveReaders\PrimitiveReaderLittleEndian.cs">
+        <Link>SharedClasses\IO\Parsers\BinaryParsers\Readers\PrimitiveReaders\PrimitiveReaderLittleEndian.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Writers\ByteWriter.cs">
+        <Link>SharedClasses\IO\Parsers\BinaryParsers\Writers\ByteWriter.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Writers\Logic\BitShiftEndianParser.cs">
+        <Link>SharedClasses\IO\Parsers\BinaryParsers\Writers\Logic\BitShiftEndianParser.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Writers\Logic\PointerCastPrimitiveWriter.cs">
+        <Link>SharedClasses\IO\Parsers\BinaryParsers\Writers\Logic\PointerCastPrimitiveWriter.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Writers\PrimitiveWriters\Internal\AbstractPrimitiveWriter.cs">
+        <Link>SharedClasses\IO\Parsers\BinaryParsers\Writers\PrimitiveWriters\Internal\AbstractPrimitiveWriter.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Writers\PrimitiveWriters\Internal\BitShiftBigEndianPrimitiveWriter.cs">
+        <Link>SharedClasses\IO\Parsers\BinaryParsers\Writers\PrimitiveWriters\Internal\BitShiftBigEndianPrimitiveWriter.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Writers\PrimitiveWriters\Internal\BitShiftLittleEndianPrimitiveWriter.cs">
+        <Link>SharedClasses\IO\Parsers\BinaryParsers\Writers\PrimitiveWriters\Internal\BitShiftLittleEndianPrimitiveWriter.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Writers\PrimitiveWriters\PrimitiveWriterBigEndian.cs">
+        <Link>SharedClasses\IO\Parsers\BinaryParsers\Writers\PrimitiveWriters\PrimitiveWriterBigEndian.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Writers\PrimitiveWriters\PrimitiveWriterLittleEndian.cs">
+        <Link>SharedClasses\IO\Parsers\BinaryParsers\Writers\PrimitiveWriters\PrimitiveWriterLittleEndian.cs</Link>
+      </Compile>
       <Compile Include="..\SharedClasses\Utility\EnumDictionaryUtil.cs">
         <Link>SharedClasses\Utility\EnumDictionaryUtil.cs</Link>
       </Compile>

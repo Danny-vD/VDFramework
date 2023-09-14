@@ -5,7 +5,7 @@ using VDFramework.IO.Parsers.BinaryParsers.Readers.PrimitiveReaders.Internal;
 namespace VDFramework.IO.Parsers.BinaryParsers.Readers.PrimitiveReaders
 {
 	/// <summary>
-	/// Contains functions for parsing bytes in the big endian format (will automatically pick the algorithm depending on the endianness of the system)
+	/// Contains functions for reading bytes in the big endian format (will automatically pick the algorithm depending on the endianness of the system)
 	/// </summary>
 	public static class PrimitiveReaderBigEndian
 	{

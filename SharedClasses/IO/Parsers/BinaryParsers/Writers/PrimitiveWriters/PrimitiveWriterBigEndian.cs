@@ -5,21 +5,21 @@ using VDFramework.IO.Parsers.BinaryParsers.Writers.PrimitiveWriters.Internal;
 namespace VDFramework.IO.Parsers.BinaryParsers.Writers.PrimitiveWriters
 {
 	/// <summary>
-	/// Contains functions for writing bytes in the little endian format (will automatically pick the algorithm depending on the endianness of the system)
+	/// Contains functions for writing bytes in the big endian format (will automatically pick the algorithm depending on the endianness of the system)
 	/// </summary>
-	public static class PrimitiveWriterLittleEndian
+	public static class PrimitiveWriterBigEndian
 	{
 		private static readonly AbstractPrimitiveWriter primitiveWriter;
 		
-		static PrimitiveWriterLittleEndian()
+		static PrimitiveWriterBigEndian()
 		{
 			if (BitConverter.IsLittleEndian)
 			{
-				primitiveWriter = new PointerCastPrimitiveWriter();
+				primitiveWriter = new BitShiftBigEndianPrimitiveWriter();
 			}
 			else
 			{
-				primitiveWriter = new BitShiftLittleEndianPrimitiveWriter();
+				primitiveWriter = new PointerCastPrimitiveWriter();
 			}
 		}
 		

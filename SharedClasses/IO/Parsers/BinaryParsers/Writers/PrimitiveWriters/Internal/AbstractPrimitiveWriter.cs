@@ -2,20 +2,20 @@
 {
 	internal abstract class AbstractPrimitiveWriter
 	{
-		public abstract unsafe ushort WriteUShort(ref byte* pointer);
+		public abstract unsafe void WriteUShort(ref byte* pointer, ushort value);
 
-		public abstract unsafe short WriteShort(ref byte* pointer);
+		public abstract unsafe void WriteShort(ref byte* pointer, short value);
 
-		public abstract unsafe uint WriteUInt(ref byte* pointer);
+		public abstract unsafe void WriteUInt(ref byte* pointer, uint value);
 
-		public abstract unsafe int WriteInt(ref byte* pointer);
+		public abstract unsafe void WriteInt(ref byte* pointer, int value);
 
-		public abstract unsafe ulong WriteULong(ref byte* pointer);
+		public abstract unsafe void WriteULong(ref byte* pointer, ulong value);
 
-		public abstract unsafe long WriteLong(ref byte* pointer);
+		public abstract unsafe void WriteLong(ref byte* pointer, long value);
 
-		public abstract unsafe float WriteFloat(ref byte* pointer);
+		public abstract unsafe void WriteFloat(ref byte* pointer, float value);
 
-		public abstract unsafe double WriteDouble(ref byte* pointer);
+		public abstract unsafe void WriteDouble(ref byte* pointer, double value);
 	}
 }
