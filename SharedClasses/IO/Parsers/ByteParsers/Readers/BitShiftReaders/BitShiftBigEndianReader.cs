@@ -2,7 +2,7 @@
 
 namespace VDFramework.IO.Parsers.ByteParsers.Readers.BitShiftReaders
 {
-	internal class BitShiftBigEndianReader : AbstractByteReader
+	internal class BitShiftBigEndianReader : AbstractPrimitiveReader
 	{
 		public override unsafe ushort ReadUShort(ref byte* pointer)
 		{

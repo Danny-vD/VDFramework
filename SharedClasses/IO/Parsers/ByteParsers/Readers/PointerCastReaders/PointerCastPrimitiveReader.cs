@@ -1,6 +1,6 @@
-﻿namespace VDFramework.IO.Parsers.ByteParsers.Readers
+﻿namespace VDFramework.IO.Parsers.ByteParsers.Readers.PointerCastReaders
 {
-	internal class PointerCastByteReader : AbstractByteReader
+	internal class PointerCastPrimitiveReader : AbstractPrimitiveReader
 	{
 		public override unsafe ushort ReadUShort(ref byte* pointer)
 		{

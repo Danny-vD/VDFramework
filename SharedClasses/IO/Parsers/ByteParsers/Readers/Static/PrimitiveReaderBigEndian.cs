@@ -1,65 +1,66 @@
 ﻿using System;
 using VDFramework.IO.Parsers.ByteParsers.Readers.BitShiftReaders;
+using VDFramework.IO.Parsers.ByteParsers.Readers.PointerCastReaders;
 
 namespace VDFramework.IO.Parsers.ByteParsers.Readers.Static
 {
 	/// <summary>
 	/// Contains functions for parsing bytes in the big endian format (will automatically pick the algorithm depending on the endianness of the system)
 	/// </summary>
-	public static class ByteReaderBigEndian
+	public static class PrimitiveReaderBigEndian
 	{
-		private static readonly AbstractByteReader byteParser;
+		private static readonly AbstractPrimitiveReader primitiveReader;
 		
-		static ByteReaderBigEndian()
+		static PrimitiveReaderBigEndian()
 		{
 			if (BitConverter.IsLittleEndian)
 			{
-				byteParser = new BitShiftBigEndianReader();
+				primitiveReader = new BitShiftBigEndianReader();
 			}
 			else
 			{
-				byteParser = new PointerCastByteReader();
+				primitiveReader = new PointerCastPrimitiveReader();
 			}
 		}
 
 		public static unsafe ushort ReadUShort(ref byte* pointer)
 		{
-			return byteParser.ReadUShort(ref pointer);
+			return primitiveReader.ReadUShort(ref pointer);
 		}
 
 		public static unsafe short ReadShort(ref byte* pointer)
 		{
-			return byteParser.ReadShort(ref pointer);
+			return primitiveReader.ReadShort(ref pointer);
 		}
 
 		public static unsafe uint ReadUInt(ref byte* pointer)
 		{
-			return byteParser.ReadUInt(ref pointer);
+			return primitiveReader.ReadUInt(ref pointer);
 		}
 
 		public static unsafe int ReadInt(ref byte* pointer)
 		{
-			return byteParser.ReadInt(ref pointer);
+			return primitiveReader.ReadInt(ref pointer);
 		}
 
 		public static unsafe ulong ReadULong(ref byte* pointer)
 		{
-			return byteParser.ReadULong(ref pointer);
+			return primitiveReader.ReadULong(ref pointer);
 		}
 
 		public static unsafe long ReadLong(ref byte* pointer)
 		{
-			return byteParser.ReadLong(ref pointer);
+			return primitiveReader.ReadLong(ref pointer);
 		}
 
 		public static unsafe float ReadFloat(ref byte* pointer)
 		{
-			return byteParser.ReadFloat(ref pointer);
+			return primitiveReader.ReadFloat(ref pointer);
 		}
 
 		public static unsafe double ReadDouble(ref byte* pointer)
 		{
-			return byteParser.ReadDouble(ref pointer);
+			return primitiveReader.ReadDouble(ref pointer);
 		}
 	}
 }
