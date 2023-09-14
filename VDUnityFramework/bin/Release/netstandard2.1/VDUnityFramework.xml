@@ -342,12 +342,12 @@
         </member>
         <member name="M:VDFramework.UnityExtensions.GameObjectExtensions.EnsureComponent``1(UnityEngine.GameObject)">
             <summary>
-            Ensures that the specified <see cref="!:TComponent"/> is on this <see cref="T:UnityEngine.GameObject"/> by creating it if it doesn not exists
+            Ensures that the specified <see cref="!:TComponent"/> is on this <see cref="T:UnityEngine.GameObject"/> by creating it if it does not exists
             </summary>
         </member>
         <member name="M:VDFramework.UnityExtensions.GameObjectExtensions.EnsureComponent``1(UnityEngine.Component)">
             <summary>
-            Ensures that the specified <see cref="!:TComponent"/> is on this <see cref="T:UnityEngine.GameObject"/> by creating it if it doesn not exists
+            Ensures that the specified <see cref="!:TComponent"/> is on this <see cref="T:UnityEngine.GameObject"/> by creating it if it does not exists
             </summary>
         </member>
         <member name="T:VDFramework.UnityExtensions.TransformExtensions">
