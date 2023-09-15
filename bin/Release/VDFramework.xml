@@ -179,7 +179,7 @@
         </member>
         <member name="T:VDFramework.IO.Parsers.BinaryParsers.Parsers.BitShiftEndianParser">
             <summary>
-            Contains functions to get or set primitives from a byte*
+            Contains functions to get primitives from or set primitives to a byte*
             </summary>
         </member>
         <member name="T:VDFramework.IO.Parsers.BinaryParsers.Readers.ByteReader">
@@ -189,34 +189,45 @@
         </member>
         <member name="M:VDFramework.IO.Parsers.BinaryParsers.Readers.ByteReader.ReadString(System.Byte*@,System.Int32)">
             <summary>
-            Read a null-terminated <see cref="P:System.Text.Encoding.UTF8"/> string with maxCount characters from the byte pointer
+            Read a NULL-terminated <see cref="P:System.Text.Encoding.UTF8"/> string with maxCount characters from the byte pointer
             </summary>
             <returns>
-            A string up to a null-character or up to maxCount characters
+            A string up to a NULL-character or up to maxCount characters
             </returns>
         </member>
         <member name="M:VDFramework.IO.Parsers.BinaryParsers.Readers.ByteReader.ReadString(System.Byte*@,System.UInt64)">
             <summary>
-            Read a null-terminated <see cref="P:System.Text.Encoding.UTF8"/> string with maxCount characters from the byte pointer
+            Read a NULL-terminated <see cref="P:System.Text.Encoding.UTF8"/> string with maxCount characters from the byte pointer
             </summary>
             <returns>
-            A string up to a null-character or up to maxCount characters
+            A string up to a NULL-character or up to maxCount characters
+            </returns>
+        </member>
+        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Readers.ByteReader.ReadString(System.Byte*@)">
+            <summary>
+            Read a NULL-terminated <see cref="P:System.Text.Encoding.UTF8"/> string with the byte pointer
+            </summary>
+            <warning>
+            There is no predefined limit, it will keep reading until either a NULL-character is found or until it has read Int32.<see cref="F:System.Int32.MaxValue"/> characters
+            </warning>
+            <returns>
+            A string up to a NULL-character
             </returns>
         </member>
         <member name="M:VDFramework.IO.Parsers.BinaryParsers.Readers.ByteReader.GetString(System.Byte[],System.Int32)">
             <summary>
-            Read a null-terminated string with maxCount characters from the byte array
+            Read a NULL-terminated string with maxCount characters from the byte array
             </summary>
             <returns>
-            A string up to a null-character or up to maxCount characters
+            A string up to a NULL-character or up to maxCount characters
             </returns>
         </member>
         <member name="M:VDFramework.IO.Parsers.BinaryParsers.Readers.ByteReader.GetString(System.Byte[],System.UInt64)">
             <summary>
-            Read a null-terminated <see cref="P:System.Text.Encoding.UTF8"/> string with maxCount characters from the byte array
+            Read a NULL-terminated <see cref="P:System.Text.Encoding.UTF8"/> string with maxCount characters from the byte array
             </summary>
             <returns>
-            A string up to a null-character or up to maxCount characters
+            A string up to a NULL-character or up to maxCount characters
             </returns>
         </member>
         <member name="T:VDFramework.IO.Parsers.BinaryParsers.Readers.PrimitiveReaders.PrimitiveReaderBigEndian">
@@ -238,6 +249,12 @@
             <summary>
             <para>Write an <see cref="P:System.Text.Encoding.UTF8"/> string to the byte pointer</para>
             <para>Optionally append a NULL-character at the end of the string</para>
+            </summary>
+        </member>
+        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Writers.ByteWriter.WriteString(System.Byte*@,System.String,System.Int32)">
+            <summary>
+            <para>Write an <see cref="P:System.Text.Encoding.UTF8"/> string to the byte pointer</para>
+            <para>The string will be modified so that it is size <paramref name="bytesToWrite"/> either by cutting it off, or appending NULL-characters</para>
             </summary>
         </member>
         <member name="T:VDFramework.IO.Parsers.BinaryParsers.Writers.PrimitiveWriters.PrimitiveWriterBigEndian">

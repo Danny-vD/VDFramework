@@ -3,9 +3,9 @@
 namespace VDFramework.IO.Parsers.BinaryParsers.Parsers
 {
 	/// <summary>
-	/// Contains functions to get or set primitives from a byte*
+	/// Contains functions to get primitives from or set primitives to a byte*
 	/// </summary>
-	internal static class BitShiftEndianParser
+	public static class BitShiftEndianParser
 	{
 		//\\//\\//\\//\\//\\//\\//\\//
 		//	Getters
