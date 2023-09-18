@@ -83,6 +83,9 @@
       <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Readers\PrimitiveReaders\PrimitiveReaderLittleEndian.cs">
         <Link>SharedClasses\IO\Parsers\BinaryParsers\Readers\PrimitiveReaders\PrimitiveReaderLittleEndian.cs</Link>
       </Compile>
+      <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Readers\StringReader.cs">
+        <Link>SharedClasses\IO\Parsers\BinaryParsers\Readers\StringReader.cs</Link>
+      </Compile>
       <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Writers\ByteWriter.cs">
         <Link>SharedClasses\IO\Parsers\BinaryParsers\Writers\ByteWriter.cs</Link>
       </Compile>
@@ -103,6 +106,9 @@
       </Compile>
       <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Writers\PrimitiveWriters\PrimitiveWriterLittleEndian.cs">
         <Link>SharedClasses\IO\Parsers\BinaryParsers\Writers\PrimitiveWriters\PrimitiveWriterLittleEndian.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Writers\StringWriter.cs">
+        <Link>SharedClasses\IO\Parsers\BinaryParsers\Writers\StringWriter.cs</Link>
       </Compile>
       <Compile Include="..\SharedClasses\Utility\EnumDictionaryUtil.cs">
         <Link>SharedClasses\Utility\EnumDictionaryUtil.cs</Link>

@@ -1,13 +1,13 @@
-﻿using System.Text;
-using VDFramework.Extensions;
-
-namespace VDFramework.IO.Parsers.BinaryParsers.Writers
+﻿namespace VDFramework.IO.Parsers.BinaryParsers.Writers
 {
 	/// <summary>
 	/// Contains functions for parsing and writing bytes
 	/// </summary>
 	public static class ByteWriter
 	{
+		/// <summary>
+		/// Write a byte to the location of the pointer
+		/// </summary>
 		public static unsafe void WriteByte(ref byte* pointer, byte value)
 		{
 			*pointer = value;
@@ -15,6 +15,9 @@ namespace VDFramework.IO.Parsers.BinaryParsers.Writers
 			pointer += sizeof(byte);
 		}
 
+		/// <summary>
+		/// Write a signed byte to the location of the pointer
+		/// </summary>
 		public static unsafe void WriteSByte(ref byte* pointer, sbyte value)
 		{
 			*(sbyte*)pointer = value;
@@ -23,31 +26,8 @@ namespace VDFramework.IO.Parsers.BinaryParsers.Writers
 		}
 
 		/// <summary>
-		/// <para>Write an <see cref="Encoding.UTF8"/> string to the byte pointer</para>
-		/// <para>Optionally append a NULL-character at the end of the string</para>
+		/// Write the data given in the array to the location of the pointer, only a specific part of the given array can be used by using the startIndex and length parameters
 		/// </summary>
-		public static unsafe void WriteString(ref byte* pointer, string value, bool nullTerminated)
-		{
-			string valueToWrite = nullTerminated ? value + '\0' : value;
-
-			byte[] arraytoWrite = Encoding.UTF8.GetBytes(valueToWrite);
-
-			WriteBytes(ref pointer, arraytoWrite, 0);
-		}
-		
-		/// <summary>
-		/// <para>Write an <see cref="Encoding.UTF8"/> string to the byte pointer</para>
-		/// <para>The string will be modified so that it is size <paramref name="bytesToWrite"/> either by cutting it off, or appending NULL-characters</para>
-		/// </summary>
-		public static unsafe void WriteString(ref byte* pointer, string value, int bytesToWrite)
-		{
-			value.EnforceLength(bytesToWrite, '\0');
-
-			byte[] arraytoWrite = Encoding.UTF8.GetBytes(value);
-
-			WriteBytes(ref pointer, arraytoWrite, 0);
-		}
-
 		public static unsafe void WriteBytes(ref byte* pointer, byte[] arrayToWrite, int startIndex = 0, int length = -1)
 		{
 			int arrayLength = arrayToWrite.Length;
@@ -76,6 +56,9 @@ namespace VDFramework.IO.Parsers.BinaryParsers.Writers
 			}
 		}
 
+		/// <summary>
+		/// Write the data given in the array to the location of the pointer, only a specific part of the given array can be used by using the startIndex and length parameters
+		/// </summary>
 		public static unsafe void WriteBytes(ref byte* pointer, byte[] arrayToWrite, ulong startIndex = 0, ulong length = 0)
 		{
 			ulong arrayLength = (ulong)arrayToWrite.LongLength;
