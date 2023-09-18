@@ -707,6 +707,9 @@
             <para>Write an <see cref="P:System.Text.Encoding.UTF8"/> string to the byte pointer</para>
             <para>The string will be modified so that it is size <paramref name="bytesToWrite"/> either by cutting it off, or appending NULL-characters</para>
             </summary>
+            <warning>
+            This function does not gracefully handle cutting off a multi-byte character, it will split the bytes of these characters if it reached the <paramref name="bytesToWrite"/>
+            </warning>
         </member>
         <member name="M:VDFramework.Utility.EnumDictionaryUtil.PopulateEnumDictionary``3(System.Collections.Generic.List{``0})">
             <summary>

@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using VDFramework.Extensions;
 
 namespace VDFramework.IO.Parsers.BinaryParsers.Writers
@@ -25,13 +26,38 @@ namespace VDFramework.IO.Parsers.BinaryParsers.Writers
 		/// <para>Write an <see cref="Encoding.UTF8"/> string to the byte pointer</para>
 		/// <para>The string will be modified so that it is size <paramref name="bytesToWrite"/> either by cutting it off, or appending NULL-characters</para>
 		/// </summary>
+		/// <warning>
+		/// This function does not gracefully handle cutting off a multi-byte character, it will split the bytes of these characters if it reached the <paramref name="bytesToWrite"/>
+		/// </warning>
 		public static unsafe void WriteString(ref byte* pointer, string value, int bytesToWrite)
 		{
-			value.EnforceLength(bytesToWrite, '\0');
+			int currentByteCount = Encoding.UTF8.GetByteCount(value);
 
-			byte[] arraytoWrite = Encoding.UTF8.GetBytes(value);
+			byte[] arrayToWrite;
 
-			ByteWriter.WriteBytes(ref pointer, arraytoWrite, 0);
+			if (currentByteCount < bytesToWrite) // String should be lengthened
+			{
+				while (currentByteCount < bytesToWrite)
+				{
+					value += '\0';
+					++currentByteCount;
+				}
+				
+				arrayToWrite = Encoding.UTF8.GetBytes(value);
+			}
+			else if (currentByteCount > bytesToWrite) // String should be shortened
+			{
+				arrayToWrite = new byte[bytesToWrite];
+				
+				byte[] stringBytes = Encoding.UTF8.GetBytes(value);
+				Buffer.BlockCopy(stringBytes, 0, arrayToWrite, 0, bytesToWrite);
+			}
+			else // String has right size
+			{
+				arrayToWrite = Encoding.UTF8.GetBytes(value);
+			}
+
+			ByteWriter.WriteBytes(ref pointer, arrayToWrite, 0);
 		}
 	}
 }
