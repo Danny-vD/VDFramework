@@ -140,8 +140,11 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles
 		/// <seealso cref="Stop"/>
 		protected virtual void Cleanup()
 		{
-			OnHandleFinished.Invoke(this);
-			OnHandleFinished = null;
+			if (OnHandleFinished != null)
+			{
+				OnHandleFinished.Invoke(this);
+				OnHandleFinished = null;
+			}
 		}
 
 		/// <summary>
@@ -214,7 +217,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles
 		{
 			onTimerExpire = null;
 		}
-		
+
 		/// <inheritdoc />
 		/// <param name="startTime">The time in seconds after which the callback will be invoked</param>
 		/// <param name="loop">Whether this timer should loop (restart once it ends)</param>
