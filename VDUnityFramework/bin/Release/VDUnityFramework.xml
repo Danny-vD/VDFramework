@@ -430,6 +430,23 @@
             Returns a random value of this enum
             </summary>
         </member>
+        <member name="T:VDFramework.Extensions.FloatingPointExtensions">
+            <summary>
+            Contains extension methods for 32-bit and 64-bit floating-point numbers
+            </summary>
+            <seealso cref="T:System.Single"/>
+            <seealso cref="T:System.Double"/>
+        </member>
+        <member name="M:VDFramework.Extensions.FloatingPointExtensions.GetDecimalCount(System.Single)">
+            <summary>
+            Get the amount of decimals after the decimal seperator
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.FloatingPointExtensions.GetDecimalCount(System.Double)">
+            <summary>
+            Get the amount of decimals after the decimal seperator
+            </summary>
+        </member>
         <member name="T:VDFramework.Extensions.Int32Extensions">
             <summary>
             Contains extension methods for 32-bit integers (<see cref="T:System.Int32"/>)
@@ -717,26 +734,64 @@
             </summary>
             <returns>The same list</returns>
         </member>
-        <member name="T:VDFramework.Utility.MathUtil">
+        <member name="T:VDFramework.Utility.MathUtility.MathUtil">
             <summary>
             Static class that contains useful math functions
             </summary>
         </member>
-        <member name="M:VDFramework.Utility.MathUtil.GetSignFactor(System.Single)">
+        <member name="M:VDFramework.Utility.MathUtility.MathUtil.GetSignFactor(System.Single)">
             <summary>
             Returns a number depending on the sign of the input
             </summary>
             <returns>negative: -1 | zero: 0 | positive: 1</returns>
         </member>
-        <member name="M:VDFramework.Utility.MathUtil.GetYCoordinateOnCurve(System.Single,System.Single,System.Single)">
+        <member name="M:VDFramework.Utility.MathUtility.MathUtil.GetYCoordinateOnCurve(System.Single,System.Single,System.Single)">
             <summary>
             Get the Y coordinate of a 2D curve that crosses y = 0 at [0,0] and [distance,0] with a maxY of height
             </summary>
         </member>
-        <member name="M:VDFramework.Utility.MathUtil.GetXCoordinatesOnCurve(System.Single,System.Single,System.Single)">
+        <member name="M:VDFramework.Utility.MathUtility.MathUtil.GetXCoordinatesOnCurve(System.Single,System.Single,System.Single)">
             <summary>
             Get the X coordinates of a 2D curve that crosses y = 0 at [0,0] and [distance,0] with a maxY of height
             </summary>
+        </member>
+        <member name="T:VDFramework.Utility.MathUtility.NumberUtil">
+            <summary>
+            Static class that contains functions for getting data about numbers
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.MathUtility.NumberUtil.ToFraction(System.Single,System.Int64@,System.Int64@)">
+            <summary>
+            Breaks down the given number into a numerator and a denominator and converts it to its simplest form
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.MathUtility.NumberUtil.GetLeastCommonMultiple(System.Single[])">
+            <summary>
+            Returns the Least Common Multiple of the given floating point numbers
+            </summary>
+            <theory>
+            <para>https://en.wikipedia.org/wiki/Euclidean_algorithm</para>
+            <para>https://en.wikipedia.org/wiki/Least_common_multiple</para>
+            </theory>
+        </member>
+        <member name="M:VDFramework.Utility.MathUtility.NumberUtil.GetLeastCommonMultiple(System.Int64[])">
+            <summary>
+            Returns the Least Common Multiple of the given numbers
+            </summary>
+            <credit>https://stackoverflow.com/questions/147515/least-common-multiple-for-3-or-more-numbers/29717490#29717490</credit>
+            <theory>
+            <para>https://en.wikipedia.org/wiki/Euclidean_algorithm</para>
+            <para>https://en.wikipedia.org/wiki/Least_common_multiple</para>
+            </theory>
+        </member>
+        <member name="M:VDFramework.Utility.MathUtility.NumberUtil.GetLeastCommonMultiple(System.Int64,System.Int64)">
+            <summary>
+            Returns the Least Common Multiple of the given numbers
+            </summary>
+            <theory>
+            <para>https://en.wikipedia.org/wiki/Euclidean_algorithm</para>
+            <para>https://en.wikipedia.org/wiki/Least_common_multiple</para>
+            </theory>
         </member>
         <member name="T:VDFramework.Utility.RandomUtil">
             <summary>

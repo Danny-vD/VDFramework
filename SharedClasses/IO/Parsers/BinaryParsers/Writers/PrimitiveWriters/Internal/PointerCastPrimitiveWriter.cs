@@ -1,6 +1,4 @@
-﻿using VDFramework.IO.Parsers.BinaryParsers.Writers.PrimitiveWriters.Internal;
-
-namespace VDFramework.IO.Parsers.BinaryParsers.Writers.Logic
+﻿namespace VDFramework.IO.Parsers.BinaryParsers.Writers.PrimitiveWriters.Internal
 {
 	internal class PointerCastPrimitiveWriter : AbstractPrimitiveWriter
 	{

@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Linq;
 
-namespace VDFramework.Utility
+namespace VDFramework.Utility.MathUtility
 {
 	/// <summary>
 	/// Static class that contains useful math functions

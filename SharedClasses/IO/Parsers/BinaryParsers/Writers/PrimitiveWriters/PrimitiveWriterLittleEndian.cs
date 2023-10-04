@@ -1,5 +1,4 @@
 ﻿using System;
-using VDFramework.IO.Parsers.BinaryParsers.Writers.Logic;
 using VDFramework.IO.Parsers.BinaryParsers.Writers.PrimitiveWriters.Internal;
 
 namespace VDFramework.IO.Parsers.BinaryParsers.Writers.PrimitiveWriters

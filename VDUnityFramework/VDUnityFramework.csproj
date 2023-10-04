@@ -41,6 +41,9 @@
       <Compile Include="..\SharedClasses\Extensions\EnumExtensions.cs">
         <Link>SharedClasses\Extensions\EnumExtensions.cs</Link>
       </Compile>
+      <Compile Include="..\SharedClasses\Extensions\FloatingPointExtensions.cs">
+        <Link>SharedClasses\Extensions\FloatingPointExtensions.cs</Link>
+      </Compile>
       <Compile Include="..\SharedClasses\Extensions\Int32Extensions.cs">
         <Link>SharedClasses\Extensions\Int32Extensions.cs</Link>
       </Compile>
@@ -113,8 +116,11 @@
       <Compile Include="..\SharedClasses\Utility\EnumDictionaryUtil.cs">
         <Link>SharedClasses\Utility\EnumDictionaryUtil.cs</Link>
       </Compile>
-      <Compile Include="..\SharedClasses\Utility\MathUtil.cs">
-        <Link>SharedClasses\Utility\MathUtil.cs</Link>
+      <Compile Include="..\SharedClasses\Utility\MathUtility\MathUtil.cs">
+        <Link>SharedClasses\Utility\MathUtility\MathUtil.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\Utility\MathUtility\NumberUtil.cs">
+        <Link>SharedClasses\Utility\MathUtility\NumberUtil.cs</Link>
       </Compile>
       <Compile Include="..\SharedClasses\Utility\RandomUtil.cs">
         <Link>SharedClasses\Utility\RandomUtil.cs</Link>
