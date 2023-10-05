@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text;
-using VDFramework.Extensions;
 
 namespace VDFramework.IO.Parsers.BinaryParsers.Writers
 {
