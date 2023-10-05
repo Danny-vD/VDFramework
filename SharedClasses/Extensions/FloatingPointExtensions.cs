@@ -15,7 +15,7 @@ namespace VDFramework.Extensions
 		public static int GetDecimalCount(this float number)
 		{
 			string numberString = number.ToString(CultureInfo.InvariantCulture);
-			int index = numberString.IndexOf('.');
+			int index = numberString.IndexOf('.') + 1;
 
 			if (index < 0)
 			{
