@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using VDFramework.Extensions;
 
@@ -31,25 +32,31 @@ namespace VDFramework.Utility.MathUtility
 		/// <summary>
 		/// Breaks down the given number into a numerator and a denominator and converts it to its simplest form
 		/// </summary>
-		public static void ToFraction(float number, out long numerator, out long denominator, int maxDecimalCount = 4)
+		public static void ToFraction(double number, out long numerator, out long denominator, int maxDecimalCount = 6)
 		{
-			int decimalCount = number.GetDecimalCount();
+			decimal decimalNumber = new decimal(number);
 
-			if (maxDecimalCount > 0 && decimalCount > maxDecimalCount)
+			if (maxDecimalCount > 0)
 			{
-				decimalCount = maxDecimalCount;
+				decimalNumber = decimal.Round(decimalNumber, maxDecimalCount);
 			}
 			
-			double factor = Math.Pow(10, decimalCount);
+			ToFraction(decimalNumber, out numerator, out denominator);
+		}
+		
+		/// <summary>
+		/// Breaks down the given number into a numerator and a denominator and converts it to its simplest form
+		/// </summary>
+		public static void ToFraction(float number, out long numerator, out long denominator, int maxDecimalCount = 6)
+		{
+			decimal decimalNumber = new decimal(number);
 
-			numerator   = (long)(number * factor);
-			denominator = (long)factor;
-
-			// convert to the simplest form
-			long gcd = GetGreatestCommonDenominator(numerator, denominator);
-
-			numerator   /= gcd;
-			denominator /= gcd;
+			if (maxDecimalCount > 0)
+			{
+				decimalNumber = decimal.Round(decimalNumber, maxDecimalCount);
+			}
+			
+			ToFraction(decimalNumber, out numerator, out denominator);
 		}
 
 		/// <summary>
@@ -59,7 +66,7 @@ namespace VDFramework.Utility.MathUtility
 		/// <para>https://en.wikipedia.org/wiki/Euclidean_algorithm</para>
 		/// <para>https://en.wikipedia.org/wiki/Least_common_multiple</para>
 		/// </theory>
-		public static long GetLeastCommonMultiple(decimal[] numbers)
+		public static long GetLeastCommonMultiple(IEnumerable<decimal> numbers)
 		{
 			long[] denominators = numbers.Select(number =>
 			{
@@ -77,7 +84,7 @@ namespace VDFramework.Utility.MathUtility
 		/// <para>https://en.wikipedia.org/wiki/Euclidean_algorithm</para>
 		/// <para>https://en.wikipedia.org/wiki/Least_common_multiple</para>
 		/// </theory>
-		public static long GetLeastCommonMultiple(float[] numbers, int maximumDecimalsInFloat = 4)
+		public static long GetLeastCommonMultiple(IEnumerable<float> numbers, int maximumDecimalsInFloat = 4)
 		{
 			long[] denominators = numbers.Select(number =>
 			{
@@ -96,7 +103,7 @@ namespace VDFramework.Utility.MathUtility
 		/// <para>https://en.wikipedia.org/wiki/Euclidean_algorithm</para>
 		/// <para>https://en.wikipedia.org/wiki/Least_common_multiple</para>
 		/// </theory>
-		public static long GetLeastCommonMultiple(long[] numbers)
+		public static long GetLeastCommonMultiple(IEnumerable<long> numbers)
 		{
 			return numbers.Aggregate(GetLeastCommonMultiple);
 		}
