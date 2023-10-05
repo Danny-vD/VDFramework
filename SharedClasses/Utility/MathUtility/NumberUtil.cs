@@ -12,9 +12,35 @@ namespace VDFramework.Utility.MathUtility
 		/// <summary>
 		/// Breaks down the given number into a numerator and a denominator and converts it to its simplest form
 		/// </summary>
-		public static void ToFraction(float number, out long numerator, out long denominator)
+		public static void ToFraction(decimal number, out long numerator, out long denominator)
 		{
-			double factor = Math.Pow(10, number.GetDecimalCount());
+			int decimalCount = number.GetDecimalCount();
+			
+			double factor = Math.Pow(10, decimalCount);
+
+			numerator   = (long)(number * (decimal)factor);
+			denominator = (long)factor;
+
+			// convert to the simplest form
+			long gcd = GetGreatestCommonDenominator(numerator, denominator);
+
+			numerator   /= gcd;
+			denominator /= gcd;
+		}
+		
+		/// <summary>
+		/// Breaks down the given number into a numerator and a denominator and converts it to its simplest form
+		/// </summary>
+		public static void ToFraction(float number, out long numerator, out long denominator, int maxDecimalCount = 4)
+		{
+			int decimalCount = number.GetDecimalCount();
+
+			if (maxDecimalCount > 0 && decimalCount > maxDecimalCount)
+			{
+				decimalCount = maxDecimalCount;
+			}
+			
+			double factor = Math.Pow(10, decimalCount);
 
 			numerator   = (long)(number * factor);
 			denominator = (long)factor;
@@ -33,11 +59,29 @@ namespace VDFramework.Utility.MathUtility
 		/// <para>https://en.wikipedia.org/wiki/Euclidean_algorithm</para>
 		/// <para>https://en.wikipedia.org/wiki/Least_common_multiple</para>
 		/// </theory>
-		public static long GetLeastCommonMultiple(float[] numbers)
+		public static long GetLeastCommonMultiple(decimal[] numbers)
 		{
 			long[] denominators = numbers.Select(number =>
 			{
 				ToFraction(number, out long numerator, out long denominator);
+				return denominator;
+			}).ToArray();
+
+			return GetLeastCommonMultiple(denominators);
+		}
+		
+		/// <summary>
+		/// Returns the Least Common Multiple of the given floating point numbers
+		/// </summary>
+		/// <theory>
+		/// <para>https://en.wikipedia.org/wiki/Euclidean_algorithm</para>
+		/// <para>https://en.wikipedia.org/wiki/Least_common_multiple</para>
+		/// </theory>
+		public static long GetLeastCommonMultiple(float[] numbers, int maximumDecimalsInFloat = 4)
+		{
+			long[] denominators = numbers.Select(number =>
+			{
+				ToFraction(number, out long numerator, out long denominator, maximumDecimalsInFloat);
 				return denominator;
 			}).ToArray();
 

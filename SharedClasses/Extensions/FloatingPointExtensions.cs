@@ -31,7 +31,23 @@ namespace VDFramework.Extensions
 		public static int GetDecimalCount(this double number)
 		{
 			string numberString = number.ToString(CultureInfo.InvariantCulture);
-			int index = numberString.IndexOf('.');
+			int index = numberString.IndexOf('.') + 1;
+
+			if (index < 0)
+			{
+				return 0;
+			}
+
+			return numberString[index..].Length;
+		}
+		
+		/// <summary>
+		/// Get the amount of decimals after the decimal seperator
+		/// </summary>
+		public static int GetDecimalCount(this decimal number)
+		{
+			string numberString = number.ToString(CultureInfo.InvariantCulture);
+			int index = numberString.IndexOf('.') + 1;
 
 			if (index < 0)
 			{

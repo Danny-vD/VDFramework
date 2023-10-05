@@ -56,6 +56,11 @@
             Get the amount of decimals after the decimal seperator
             </summary>
         </member>
+        <member name="M:VDFramework.Extensions.FloatingPointExtensions.GetDecimalCount(System.Decimal)">
+            <summary>
+            Get the amount of decimals after the decimal seperator
+            </summary>
+        </member>
         <member name="T:VDFramework.Extensions.Int32Extensions">
             <summary>
             Contains extension methods for 32-bit integers (<see cref="T:System.Int32"/>)
@@ -369,12 +374,26 @@
             Static class that contains functions for getting data about numbers
             </summary>
         </member>
-        <member name="M:VDFramework.Utility.MathUtility.NumberUtil.ToFraction(System.Single,System.Int64@,System.Int64@)">
+        <member name="M:VDFramework.Utility.MathUtility.NumberUtil.ToFraction(System.Decimal,System.Int64@,System.Int64@)">
             <summary>
             Breaks down the given number into a numerator and a denominator and converts it to its simplest form
             </summary>
         </member>
-        <member name="M:VDFramework.Utility.MathUtility.NumberUtil.GetLeastCommonMultiple(System.Single[])">
+        <member name="M:VDFramework.Utility.MathUtility.NumberUtil.ToFraction(System.Single,System.Int64@,System.Int64@,System.Int32)">
+            <summary>
+            Breaks down the given number into a numerator and a denominator and converts it to its simplest form
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.MathUtility.NumberUtil.GetLeastCommonMultiple(System.Decimal[])">
+            <summary>
+            Returns the Least Common Multiple of the given floating point numbers
+            </summary>
+            <theory>
+            <para>https://en.wikipedia.org/wiki/Euclidean_algorithm</para>
+            <para>https://en.wikipedia.org/wiki/Least_common_multiple</para>
+            </theory>
+        </member>
+        <member name="M:VDFramework.Utility.MathUtility.NumberUtil.GetLeastCommonMultiple(System.Single[],System.Int32)">
             <summary>
             Returns the Least Common Multiple of the given floating point numbers
             </summary>
