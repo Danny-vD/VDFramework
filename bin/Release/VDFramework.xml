@@ -379,12 +379,17 @@
             Breaks down the given number into a numerator and a denominator and converts it to its simplest form
             </summary>
         </member>
+        <member name="M:VDFramework.Utility.MathUtility.NumberUtil.ToFraction(System.Double,System.Int64@,System.Int64@,System.Int32)">
+            <summary>
+            Breaks down the given number into a numerator and a denominator and converts it to its simplest form
+            </summary>
+        </member>
         <member name="M:VDFramework.Utility.MathUtility.NumberUtil.ToFraction(System.Single,System.Int64@,System.Int64@,System.Int32)">
             <summary>
             Breaks down the given number into a numerator and a denominator and converts it to its simplest form
             </summary>
         </member>
-        <member name="M:VDFramework.Utility.MathUtility.NumberUtil.GetLeastCommonMultiple(System.Decimal[])">
+        <member name="M:VDFramework.Utility.MathUtility.NumberUtil.GetLeastCommonMultiple(System.Collections.Generic.IEnumerable{System.Decimal})">
             <summary>
             Returns the Least Common Multiple of the given floating point numbers
             </summary>
@@ -393,7 +398,7 @@
             <para>https://en.wikipedia.org/wiki/Least_common_multiple</para>
             </theory>
         </member>
-        <member name="M:VDFramework.Utility.MathUtility.NumberUtil.GetLeastCommonMultiple(System.Single[],System.Int32)">
+        <member name="M:VDFramework.Utility.MathUtility.NumberUtil.GetLeastCommonMultiple(System.Collections.Generic.IEnumerable{System.Single},System.Int32)">
             <summary>
             Returns the Least Common Multiple of the given floating point numbers
             </summary>
@@ -402,7 +407,7 @@
             <para>https://en.wikipedia.org/wiki/Least_common_multiple</para>
             </theory>
         </member>
-        <member name="M:VDFramework.Utility.MathUtility.NumberUtil.GetLeastCommonMultiple(System.Int64[])">
+        <member name="M:VDFramework.Utility.MathUtility.NumberUtil.GetLeastCommonMultiple(System.Collections.Generic.IEnumerable{System.Int64})">
             <summary>
             Returns the Least Common Multiple of the given numbers
             </summary>

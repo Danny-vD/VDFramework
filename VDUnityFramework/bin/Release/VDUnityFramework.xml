@@ -31,6 +31,28 @@
             Overridden to return the CachedGameObject
             </summary>
         </member>
+        <member name="T:VDFramework.SafeEnableBehaviour">
+            <summary>
+            <para>A variation of an <see cref="T:VDFramework.BetterMonoBehaviour"/> that does <b>not</b> invoke <see cref="M:VDFramework.SafeEnableBehaviour.OnEnabled"/> before <see cref="M:VDFramework.SafeEnableBehaviour.Start"/></para>
+            <para>Set <seealso cref="F:VDFramework.SafeEnableBehaviour.invokeOnEnabledAfterStart"/> to false if you do not want to immediately invoke <see cref="M:VDFramework.SafeEnableBehaviour.OnEnabled"/></para>
+            </summary>
+            <order>Awake() → Start() → OnEnabled()</order>
+        </member>
+        <member name="F:VDFramework.SafeEnableBehaviour.invokeOnEnabledAfterStart">
+            <summary>
+            If true, <see cref="M:VDFramework.SafeEnableBehaviour.OnEnabled"/> will be invoked immediately after <see cref="M:VDFramework.SafeEnableBehaviour.Start"/> (instead of waiting until the object is enabled again)
+            </summary>
+        </member>
+        <member name="M:VDFramework.SafeEnableBehaviour.OnEnabled">
+            <summary>
+            This function is called when the object becomes enabled and active, but never before <see cref="M:VDFramework.SafeEnableBehaviour.Start"/>
+            </summary>
+        </member>
+        <member name="M:VDFramework.SafeEnableBehaviour.Start">
+            <summary>
+            Unity's start function
+            </summary>
+        </member>
         <member name="T:VDFramework.MonoBehaviours.TimerManagerUpdater">
             <summary>
             <para>A simple utility behaviour for Unity that updates the TimerManager in Update using Time.deltaTime</para>
@@ -770,12 +792,17 @@
             Breaks down the given number into a numerator and a denominator and converts it to its simplest form
             </summary>
         </member>
+        <member name="M:VDFramework.Utility.MathUtility.NumberUtil.ToFraction(System.Double,System.Int64@,System.Int64@,System.Int32)">
+            <summary>
+            Breaks down the given number into a numerator and a denominator and converts it to its simplest form
+            </summary>
+        </member>
         <member name="M:VDFramework.Utility.MathUtility.NumberUtil.ToFraction(System.Single,System.Int64@,System.Int64@,System.Int32)">
             <summary>
             Breaks down the given number into a numerator and a denominator and converts it to its simplest form
             </summary>
         </member>
-        <member name="M:VDFramework.Utility.MathUtility.NumberUtil.GetLeastCommonMultiple(System.Decimal[])">
+        <member name="M:VDFramework.Utility.MathUtility.NumberUtil.GetLeastCommonMultiple(System.Collections.Generic.IEnumerable{System.Decimal})">
             <summary>
             Returns the Least Common Multiple of the given floating point numbers
             </summary>
@@ -784,7 +811,7 @@
             <para>https://en.wikipedia.org/wiki/Least_common_multiple</para>
             </theory>
         </member>
-        <member name="M:VDFramework.Utility.MathUtility.NumberUtil.GetLeastCommonMultiple(System.Single[],System.Int32)">
+        <member name="M:VDFramework.Utility.MathUtility.NumberUtil.GetLeastCommonMultiple(System.Collections.Generic.IEnumerable{System.Single},System.Int32)">
             <summary>
             Returns the Least Common Multiple of the given floating point numbers
             </summary>
@@ -793,7 +820,7 @@
             <para>https://en.wikipedia.org/wiki/Least_common_multiple</para>
             </theory>
         </member>
-        <member name="M:VDFramework.Utility.MathUtility.NumberUtil.GetLeastCommonMultiple(System.Int64[])">
+        <member name="M:VDFramework.Utility.MathUtility.NumberUtil.GetLeastCommonMultiple(System.Collections.Generic.IEnumerable{System.Int64})">
             <summary>
             Returns the Least Common Multiple of the given numbers
             </summary>
