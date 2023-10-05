@@ -73,5 +73,14 @@
 
 			return value;
 		}
+		
+		public override unsafe decimal ReadDecimal(ref byte* pointer)
+		{
+			decimal value = *(decimal*)pointer;
+
+			pointer += sizeof(decimal);
+
+			return value;
+		}
 	}
 }

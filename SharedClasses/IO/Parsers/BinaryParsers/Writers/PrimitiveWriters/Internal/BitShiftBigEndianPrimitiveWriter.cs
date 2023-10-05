@@ -69,5 +69,12 @@ namespace VDFramework.IO.Parsers.BinaryParsers.Writers.PrimitiveWriters.Internal
             
             pointer += sizeof(double);
 		}
+		
+		public override unsafe void WriteDecimal(ref byte* pointer, decimal value)
+		{
+			BitShiftEndianParser.SetDecimalBigEndian(pointer, value);
+            
+			pointer += sizeof(decimal);
+		}
 	}
 }

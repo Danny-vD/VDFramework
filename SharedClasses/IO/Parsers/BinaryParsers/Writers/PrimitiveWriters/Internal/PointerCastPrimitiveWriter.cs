@@ -57,5 +57,12 @@
             
             pointer += sizeof(double);
 		}
+		
+		public override unsafe void WriteDecimal(ref byte* pointer, decimal value)
+		{
+			*(decimal*)pointer = value;
+            
+			pointer += sizeof(decimal);
+		}
 	}
 }

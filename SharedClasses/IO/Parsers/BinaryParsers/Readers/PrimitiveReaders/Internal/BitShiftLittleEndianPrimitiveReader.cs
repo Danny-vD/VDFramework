@@ -75,5 +75,14 @@ namespace VDFramework.IO.Parsers.BinaryParsers.Readers.PrimitiveReaders.Internal
 
 			return value;
 		}
+		
+		public override unsafe decimal ReadDecimal(ref byte* pointer)
+		{
+			decimal value = BitShiftEndianParser.GetDecimalLittleEndian(pointer);
+
+			pointer += sizeof(decimal);
+
+			return value;
+		}
 	}
 }

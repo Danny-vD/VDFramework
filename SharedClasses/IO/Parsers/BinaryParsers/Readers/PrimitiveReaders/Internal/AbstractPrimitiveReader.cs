@@ -17,5 +17,7 @@
 		public abstract unsafe float ReadFloat(ref byte* pointer);
 
 		public abstract unsafe double ReadDouble(ref byte* pointer);
+		
+		public abstract unsafe decimal ReadDecimal(ref byte* pointer);
 	}
 }

@@ -61,5 +61,10 @@ namespace VDFramework.IO.Parsers.BinaryParsers.Writers.PrimitiveWriters
 		{
 			primitiveWriter.WriteDouble(ref pointer, value);
 		}
+		
+		public static unsafe void WriteDecimal(ref byte* pointer, decimal value)
+		{
+			primitiveWriter.WriteDecimal(ref pointer, value);
+		}
 	}
 }

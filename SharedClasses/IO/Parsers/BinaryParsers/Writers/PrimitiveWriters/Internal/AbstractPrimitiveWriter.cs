@@ -17,5 +17,7 @@
 		public abstract unsafe void WriteFloat(ref byte* pointer, float value);
 
 		public abstract unsafe void WriteDouble(ref byte* pointer, double value);
+		
+		public abstract unsafe void WriteDecimal(ref byte* pointer, decimal value);
 	}
 }

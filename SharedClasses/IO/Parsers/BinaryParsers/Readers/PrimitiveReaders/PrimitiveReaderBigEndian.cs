@@ -6,7 +6,7 @@ namespace VDFramework.IO.Parsers.BinaryParsers.Readers.PrimitiveReaders
 	/// <summary>
 	/// Contains functions for reading bytes in the big endian format (will automatically pick the algorithm depending on the endianness of the system)
 	/// </summary>
-	public static class PrimitiveReaderBigEndian
+	public static class PrimitiveReaderBigEndian // TODO: Too similar to PrimitiveReaderLittleEndian
 	{
 		private static readonly AbstractPrimitiveReader primitiveReader;
 		
@@ -60,6 +60,11 @@ namespace VDFramework.IO.Parsers.BinaryParsers.Readers.PrimitiveReaders
 		public static unsafe double ReadDouble(ref byte* pointer)
 		{
 			return primitiveReader.ReadDouble(ref pointer);
+		}
+
+		public static unsafe decimal ReadDecimal(ref byte* pointer)
+		{
+			return primitiveReader.ReadDecimal(ref pointer);
 		}
 	}
 }

@@ -62,6 +62,16 @@ namespace VDFramework.IO.Parsers.BinaryParsers.Parsers
 			return UnsafeUtil.reinterpret_cast<long, double>(GetLongLittleEndian(pointer));
 		}
 
+		public static unsafe decimal GetDecimalLittleEndian(byte* pointer)
+		{
+			int low = GetIntLittleEndian(pointer);
+			int mid = GetIntLittleEndian(pointer + 4);
+			int high = GetIntLittleEndian(pointer + 8);
+			int flags = GetIntLittleEndian(pointer + 12);
+
+			return new decimal(new int[] { low, mid, high, flags });
+		}
+
 		//\\//\\//\\//\\//\\//\\//\\//
 		// Big Endian
 		//\\//\\//\\//\\//\\//\\//\\//
@@ -111,6 +121,16 @@ namespace VDFramework.IO.Parsers.BinaryParsers.Parsers
 		public static unsafe double GetDoubleBigEndian(byte* pointer)
 		{
 			return UnsafeUtil.reinterpret_cast<long, double>(GetLongBigEndian(pointer));
+		}
+
+		public static unsafe decimal GetDecimalBigEndian(byte* pointer)
+		{
+			int flags = GetIntBigEndian(pointer);
+			int high = GetIntBigEndian(pointer + 4);
+			int mid = GetIntBigEndian(pointer + 8);
+			int low = GetIntBigEndian(pointer + 12);
+
+			return new decimal(new int[] { low, mid, high, flags });
 		}
 
 		//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//
@@ -193,6 +213,17 @@ namespace VDFramework.IO.Parsers.BinaryParsers.Parsers
 			SetLongLittleEndian(pointer, UnsafeUtil.reinterpret_cast<double, long>(value));
 		}
 
+		public static unsafe void SetDecimalLittleEndian(byte* pointer, decimal value)
+		{
+			// [0] = low, [1] = mid, [2] = high, [3] = flags
+			int[] bits = decimal.GetBits(value);
+
+			SetIntLittleEndian(pointer, bits[0]);
+			SetIntLittleEndian(pointer + 4, bits[1]);
+			SetIntLittleEndian(pointer + 8, bits[2]);
+			SetIntLittleEndian(pointer + 12, bits[3]);
+		}
+
 		//\\//\\//\\//\\//\\//\\//\\//
 		// Big Endian
 		//\\//\\//\\//\\//\\//\\//\\//
@@ -266,6 +297,17 @@ namespace VDFramework.IO.Parsers.BinaryParsers.Parsers
 		public static unsafe void SetDoubleBigEndian(byte* pointer, double value)
 		{
 			SetLongBigEndian(pointer, UnsafeUtil.reinterpret_cast<double, long>(value));
+		}
+
+		public static unsafe void SetDecimalBigEndian(byte* pointer, decimal value)
+		{
+			// [0] = low, [1] = mid, [2] = high, [3] = flags
+			int[] bits = decimal.GetBits(value);
+
+			SetIntBigEndian(pointer, bits[3]);
+			SetIntBigEndian(pointer + 4, bits[2]);
+			SetIntBigEndian(pointer + 8, bits[1]);
+			SetIntBigEndian(pointer + 12, bits[0]);
 		}
 	}
 }
