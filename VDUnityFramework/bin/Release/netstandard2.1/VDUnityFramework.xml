@@ -432,6 +432,15 @@
             True if this collection is empty or contains only one element
             </summary>
         </member>
+        <member name="M:VDFramework.Extensions.EnumerableExtensions.GetMinMax``1(System.Collections.Generic.IEnumerable{``0},``0@,``0@)">
+            <summary>
+            Calculate the Min and the Max values in the collection using <see cref="T:System.IComparable`1"/>
+            </summary>
+            <param name="collection"></param>
+            <param name="minElement">The element in the collection that precedes all other elements in the sort order</param>
+            <param name="maxElement">The element in the collection that follows all other elements in the sort order</param>
+            <returns>A value indicating whether calculating the Min and Max was successful</returns>
+        </member>
         <member name="T:VDFramework.Extensions.EnumExtensions">
             <summary>
             Contains extension methods for <see cref="T:System.Enum"/>
@@ -454,10 +463,11 @@
         </member>
         <member name="T:VDFramework.Extensions.FloatingPointExtensions">
             <summary>
-            Contains extension methods for 32-bit and 64-bit floating-point numbers
+            Contains extension methods for floating-point numbers
             </summary>
             <seealso cref="T:System.Single"/>
             <seealso cref="T:System.Double"/>
+            <seealso cref="T:System.Decimal"/>
         </member>
         <member name="M:VDFramework.Extensions.FloatingPointExtensions.GetDecimalCount(System.Single)">
             <summary>
