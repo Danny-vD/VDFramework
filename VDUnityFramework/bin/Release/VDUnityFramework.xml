@@ -553,6 +553,19 @@
             Extension methods for collections that allow getting a random element or randomly sorting the collection 
             </summary>
         </member>
+        <member name="M:VDFramework.Extensions.RandomElement.GetRandomElement``1(System.Collections.Generic.IEnumerable{``0},System.Int32@)">
+            <summary>
+            Returns a random element from this collection
+            </summary>
+            <param name="collection">The collection to return a random element from</param>
+            <param name="randomIndex">the index of the element returned</param>
+        </member>
+        <member name="M:VDFramework.Extensions.RandomElement.GetRandomElement``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Returns a random element from this collection
+            </summary>
+            <param name="collection">The collection to return a random element from</param>
+        </member>
         <member name="M:VDFramework.Extensions.RandomElement.GetRandomElement``1(System.Collections.Generic.IEnumerable{``0},System.Int32@,System.Int32[])">
             <summary>
             Returns a random element from this collection

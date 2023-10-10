@@ -15,6 +15,33 @@ namespace VDFramework.Extensions
 		/// </summary>
 		/// <param name="collection">The collection to return a random element from</param>
 		/// <param name="randomIndex">the index of the element returned</param>
+		public static TElement GetRandomElement<TElement>(this IEnumerable<TElement> collection, out int randomIndex)
+		{
+			// Transform the collection to a collection of Tuples<TElement, OriginalIndex> and then filter
+			List<TElement> list = collection.ToList();
+
+			int index = random.Next(list.Count); // Get a random index
+
+			TElement value = list[index]; // Get the tuple at that index
+
+			randomIndex = index;
+			return value;
+		}
+		
+		/// <summary>
+		/// Returns a random element from this collection
+		/// </summary>
+		/// <param name="collection">The collection to return a random element from</param>
+		public static TElement GetRandomElement<TElement>(this IEnumerable<TElement> collection)
+		{
+			return collection.GetRandomElement(out _);
+		}
+		
+		/// <summary>
+		/// Returns a random element from this collection
+		/// </summary>
+		/// <param name="collection">The collection to return a random element from</param>
+		/// <param name="randomIndex">the index of the element returned</param>
 		/// <param name="ignoreIndices">[OPTIONAL] the indices of elements that cannot be returned by this function</param>
 		public static TElement GetRandomElement<TElement>(this IEnumerable<TElement> collection, out int randomIndex, params int[] ignoreIndices)
 		{
