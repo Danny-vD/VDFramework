@@ -2,7 +2,7 @@
 {
 	/// <summary>
 	/// <para>A variation of an <see cref="BetterMonoBehaviour"/> that does <b>not</b> invoke <see cref="OnEnabled"/> before <see cref="Start"/></para>
-	/// <para>Set <seealso cref="invokeOnEnabledAfterStart"/> to false if you do not want to immediately invoke <see cref="OnEnabled"/></para>
+	/// <para>Set <see cref="invokeOnEnabledAfterStart"/> to false if you do not want to immediately invoke <see cref="OnEnabled"/></para>
 	/// </summary>
 	/// <order>Awake() → Start() → OnEnabled()</order>
 	public class SafeEnableBehaviour : BetterMonoBehaviour

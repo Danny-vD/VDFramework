@@ -34,7 +34,7 @@
         <member name="T:VDFramework.SafeEnableBehaviour">
             <summary>
             <para>A variation of an <see cref="T:VDFramework.BetterMonoBehaviour"/> that does <b>not</b> invoke <see cref="M:VDFramework.SafeEnableBehaviour.OnEnabled"/> before <see cref="M:VDFramework.SafeEnableBehaviour.Start"/></para>
-            <para>Set <seealso cref="F:VDFramework.SafeEnableBehaviour.invokeOnEnabledAfterStart"/> to false if you do not want to immediately invoke <see cref="M:VDFramework.SafeEnableBehaviour.OnEnabled"/></para>
+            <para>Set <see cref="F:VDFramework.SafeEnableBehaviour.invokeOnEnabledAfterStart"/> to false if you do not want to immediately invoke <see cref="M:VDFramework.SafeEnableBehaviour.OnEnabled"/></para>
             </summary>
             <order>Awake() → Start() → OnEnabled()</order>
         </member>
