@@ -4,6 +4,14 @@
         <name>VDFramework</name>
     </assembly>
     <members>
+        <member name="T:VDFramework.EventSystem.EventManager">
+            <summary>
+            The manager class for the global event system, use this class to add and remove listeners from events and to raise an event
+            </summary>
+            <seealso cref="M:VDFramework.EventSystem.EventManager.AddListener``1(System.Action,System.Int32)"/>
+            <seealso cref="M:VDFramework.EventSystem.EventManager.RemoveListener``1(System.Action)"/>
+            <seealso cref="M:VDFramework.EventSystem.EventManager.RaiseEvent``1(``0)"/>
+        </member>
         <member name="T:VDFramework.Exceptions.SingletonViolationException">
             <summary>
             The exception that is thrown once you create a 2nd instance of a singleton
