@@ -19,8 +19,8 @@ namespace VDFramework
 		{
 			get
 			{
-				// Using ReferenceEquals so we don't have the overhead from Unity's lifetime check
-				if (ReferenceEquals(cachedTransform, null))
+				// Will be true the first time we perform this check and when the transform changes between a normal transform and a RectTransform
+				if (cachedTransform == null)
 				{
 					cachedTransform = base.transform;
 				}
