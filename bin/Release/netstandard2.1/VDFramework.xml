@@ -373,6 +373,54 @@
             This function does not gracefully handle cutting off a multi-byte character, it will split the bytes of these characters if it reached the <paramref name="bytesToWrite"/>
             </warning>
         </member>
+        <member name="T:VDFramework.LootTables.Interfaces.ILoot`1">
+            <summary>
+            Represents an object that returns loot in some way
+            </summary>
+        </member>
+        <member name="M:VDFramework.LootTables.Interfaces.ILoot`1.GetLoot">
+            <summary>
+            Retrieves or calculates the loot and returns it
+            </summary>
+        </member>
+        <member name="T:VDFramework.LootTables.LootTableItems.LootTableItem`1">
+            <summary>
+            The simplest implementation of the <see cref="T:VDFramework.LootTables.Interfaces.ILoot`1"/> interface
+            </summary>
+        </member>
+        <member name="M:VDFramework.LootTables.LootTableItems.LootTableItem`1.#ctor(`0)">
+            <summary>
+            Creates a new instance of this class with the loot set to <paramref name="loot"/>
+            </summary>
+        </member>
+        <member name="M:VDFramework.LootTables.LootTableItems.LootTableItem`1.GetLoot">
+            <inheritdoc/>
+        </member>
+        <member name="M:VDFramework.LootTables.LootTableItems.LootTableItem`1.Equals(VDFramework.LootTables.LootTableItems.LootTableItem{`0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:VDFramework.LootTables.LootTableItems.LootTableItem`1.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:VDFramework.LootTables.LootTableItems.LootTableItem`1.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:VDFramework.LootTables.Variations.PercentageLootTable`1.EnsureValidPercentages">
+            <summary>
+            Grab the first N percentages until we reached 100%, or increase the last percentage if the total is below 100%
+            </summary>
+        </member>
+        <member name="M:VDFramework.LootTables.Variations.PercentageLootTable`1.ConvertPercentagesToWeightAndAddToTable(System.Collections.Generic.List{VDFramework.LootTables.Structs.PercentageLootTablePair{`0}})">
+            <summary>
+            Convert percentages to weight and add them to the lootTable
+            </summary>
+        </member>
+        <member name="M:VDFramework.LootTables.WeightedLootTable`1.CalculateIndexArray">
+            <summary>
+            <para>Calculate an array of indices from the Loot Table</para>
+            <para>The amount of duplicate values is dependent on the weight</para>
+            </summary>
+        </member>
         <member name="M:VDFramework.Utility.EnumDictionaryUtil.PopulateEnumDictionary``3(System.Collections.Generic.List{``0})">
             <summary>
             Will add a KeyValuePair for every enumValue to the list

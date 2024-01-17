@@ -113,6 +113,24 @@
       <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Writers\StringWriter.cs">
         <Link>SharedClasses\IO\Parsers\BinaryParsers\Writers\StringWriter.cs</Link>
       </Compile>
+      <Compile Include="..\SharedClasses\LootTables\Interfaces\ILoot.cs">
+        <Link>SharedClasses\LootTables\Interfaces\ILoot.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\LootTables\LootTableItems\LootTableItem.cs">
+        <Link>SharedClasses\LootTables\LootTableItems\LootTableItem.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\LootTables\Structs\LootTablePair.cs">
+        <Link>SharedClasses\LootTables\Structs\LootTablePair.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\LootTables\Structs\PercentageLootTablePair.cs">
+        <Link>SharedClasses\LootTables\Structs\PercentageLootTablePair.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\LootTables\Variations\PercentageLootTable.cs">
+        <Link>SharedClasses\LootTables\Variations\PercentageLootTable.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\LootTables\WeightedLootTable.cs">
+        <Link>SharedClasses\LootTables\WeightedLootTable.cs</Link>
+      </Compile>
       <Compile Include="..\SharedClasses\Utility\EnumDictionaryUtil.cs">
         <Link>SharedClasses\Utility\EnumDictionaryUtil.cs</Link>
       </Compile>
@@ -172,6 +190,21 @@
     <ItemGroup>
       <Content Include="..\SharedClasses\Interfaces\.gitkeep">
         <Link>SharedClasses\Interfaces\.gitkeep</Link>
+      </Content>
+      <Content Include="..\SharedClasses\LootTables\Interfaces\ILoot.cs.meta">
+        <Link>SharedClasses\LootTables\Interfaces\ILoot.cs.meta</Link>
+      </Content>
+      <Content Include="..\SharedClasses\LootTables\LootTableItems\LootTableItem.cs.meta">
+        <Link>SharedClasses\LootTables\LootTableItems\LootTableItem.cs.meta</Link>
+      </Content>
+      <Content Include="..\SharedClasses\LootTables\Structs\LootTablePair.cs.meta">
+        <Link>SharedClasses\LootTables\Structs\LootTablePair.cs.meta</Link>
+      </Content>
+      <Content Include="..\SharedClasses\LootTables\Structs\PercentageLootTablePair.cs.meta">
+        <Link>SharedClasses\LootTables\Structs\PercentageLootTablePair.cs.meta</Link>
+      </Content>
+      <Content Include="..\SharedClasses\LootTables\Variations\PercentageLootTable.cs.meta">
+        <Link>SharedClasses\LootTables\Variations\PercentageLootTable.cs.meta</Link>
       </Content>
       <Content Include="..\SharedClasses\Utility\.gitkeep">
         <Link>SharedClasses\Utility\.gitkeep</Link>
