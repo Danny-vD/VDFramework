@@ -2,4 +2,7 @@
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=C_003A_005CGameEngines_005CUnity_005C2022_002E2_002E16f1_005CEditor_005CData_005CManaged_005CUnityEngine_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=C_003A_005CGameEngines_005CUnity_005C2022_002E2_002E17f1_005CEditor_005CData_005CManaged_005CUnityEngine_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005CIDE_005CProjects_005CVDFramework_005CVDUnityFramework_005Cbin_005CRelease_005Cnetstandard2_002E0_005CUnityEngine_002Edll/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005CProjects_005CVDFramework_005CVDUnityFramework_005Cbin_005CRelease_005Cnetstandard2_002E1_005CUnityEngine_002Edll/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005CProjects_005CVDFramework_005CVDUnityFramework_005Cbin_005CRelease_005Cnetstandard2_002E1_005CUnityEngine_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
+  &lt;Assembly Path="C:\Program Files\dotnet\packs\NETStandard.Library.Ref\2.1.0\ref\netstandard2.1\netstandard.dll" /&gt;&#xD;
+&lt;/AssemblyExplorer&gt;</s:String></wpf:ResourceDictionary>

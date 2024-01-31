@@ -12,6 +12,60 @@
             <seealso cref="M:VDFramework.EventSystem.EventManager.RemoveListener``1(System.Action)"/>
             <seealso cref="M:VDFramework.EventSystem.EventManager.RaiseEvent``1(``0)"/>
         </member>
+        <member name="T:VDFramework.EventSystem.VDEvent`1">
+            <summary>
+            An abstract representation of a global event that provides an easier way to add/remove listeners 
+            </summary>
+        </member>
+        <member name="E:VDFramework.EventSystem.VDEvent`1.Listeners">
+            <summary>
+            The listeners to this global event that take in an instance of this event as a parameter
+            </summary>
+        </member>
+        <member name="E:VDFramework.EventSystem.VDEvent`1.ParameterlessListeners">
+            <summary>
+            The listeners to this global event that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.EventSystem.VDEvent`1.AddListener(System.Action{`0},System.Int32)">
+            <summary>
+            A shortcut to add a listener with a given priority to this event
+            </summary>
+            <param name="handler">The function that will be invoked when this event is raised</param>
+            <param name="priorityOrder">Higher priority will be invoked over lower priority</param>
+        </member>
+        <member name="M:VDFramework.EventSystem.VDEvent`1.AddListener(System.Action,System.Int32)">
+            <summary>
+            A shortcut to add a listener with a given priority to this event
+            </summary>
+            <param name="handler">The function that will be invoked when this event is raised</param>
+            <param name="priorityOrder">Higher priority will be invoked over lower priority</param>
+        </member>
+        <member name="M:VDFramework.EventSystem.VDEvent`1.RemoveListener(System.Action{`0})">
+            <summary>
+            A shortcut to remove a listener from this event
+            </summary>
+        </member>
+        <member name="M:VDFramework.EventSystem.VDEvent`1.RemoveListener(System.Action)">
+            <summary>
+            A shortcut to remove a listener from this event
+            </summary>
+        </member>
+        <member name="T:VDFramework.EventSystem.VDEvent">
+            <summary>
+            An abstract representation of a global event
+            </summary>
+        </member>
+        <member name="P:VDFramework.EventSystem.VDEvent.Consumed">
+            <summary>
+            If an event is consumed it will invoke no more listeners
+            </summary>
+        </member>
+        <member name="M:VDFramework.EventSystem.VDEvent.Consume">
+            <summary>
+            Consume this event and prevent any additional listeners from being invoked
+            </summary>
+        </member>
         <member name="T:VDFramework.Exceptions.SingletonViolationException">
             <summary>
             The exception that is thrown once you create a 2nd instance of a singleton
@@ -404,6 +458,11 @@
         </member>
         <member name="M:VDFramework.LootTables.LootTableItems.LootTableItem`1.GetHashCode">
             <inheritdoc/>
+        </member>
+        <member name="M:VDFramework.LootTables.Variations.PercentageLootTable`1.TryGetPair(VDFramework.LootTables.Interfaces.ILoot{`0},VDFramework.LootTables.Structs.PercentageLootTablePair{`0}@)">
+            <summary>
+            Attempt to get the LootTablePair whose loot matches the given loot
+            </summary>
         </member>
         <member name="M:VDFramework.LootTables.Variations.PercentageLootTable`1.EnsureValidPercentages">
             <summary>

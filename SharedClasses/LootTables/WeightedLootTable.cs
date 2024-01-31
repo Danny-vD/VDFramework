@@ -76,9 +76,17 @@ namespace VDFramework.LootTables
 			return TryGetLootTablePair(loot, out _);
 		}
 
-		public void Add(ILoot<TLootType> loot, long weight)
+		public bool TryAdd(ILoot<TLootType> loot, long weight)
 		{
-			TryAdd(loot, weight);
+			if (Contains(loot))
+			{
+				return false;
+			}
+
+			ShouldRecalculateIndices = true; // Reset the indexArray because the totalWeight might have changed
+
+			lootTable.Add(new LootTablePair<TLootType>(loot, weight));
+			return true;
 		}
 		
 		public void Add(IEnumerable<KeyValuePair<ILoot<TLootType>, long>> collection)
@@ -147,19 +155,6 @@ namespace VDFramework.LootTables
 			}
 
 			return indexArray;
-		}
-
-		protected bool TryAdd(ILoot<TLootType> loot, long weight)
-		{
-			if (Contains(loot))
-			{
-				return false;
-			}
-
-			ShouldRecalculateIndices = true; // Reset the indexArray because the totalWeight might have changed
-
-			lootTable.Add(new LootTablePair<TLootType>(loot, weight));
-			return true;
 		}
 
 		protected bool TryGetLootTablePair(ILoot<TLootType> loot, out LootTablePair<TLootType> lootTablePair)

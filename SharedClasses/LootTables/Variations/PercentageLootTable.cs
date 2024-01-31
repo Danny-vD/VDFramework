@@ -12,7 +12,7 @@ namespace VDFramework.LootTables.Variations
 	{
 		private const int maximumNumberOfDecimalsForPercentage = 6;
 
-		private List<PercentageLootTablePair<TLootType>> internalPercentageLootTable = new List<PercentageLootTablePair<TLootType>>();
+		private readonly List<PercentageLootTablePair<TLootType>> internalPercentageLootTable = new List<PercentageLootTablePair<TLootType>>();
 
 		public PercentageLootTable()
 		{
@@ -33,10 +33,38 @@ namespace VDFramework.LootTables.Variations
 			return internalPercentageLootTable.Any(pair => pair.Loot.Equals(loot));
 		}
 
-		public void Add(ILoot<TLootType> loot, float percentage)
+		/// <summary>
+		/// Attempt to get the LootTablePair whose loot matches the given loot
+		/// </summary>
+		public bool TryGetPair(ILoot<TLootType> loot, out PercentageLootTablePair<TLootType> lootTablePair)
 		{
-			TryAdd(loot, percentage);
+			lootTablePair = default;
+			
+			foreach (PercentageLootTablePair<TLootType> pair in internalPercentageLootTable)
+			{
+				if (pair.Loot.Equals(loot))
+				{
+					lootTablePair = pair;
+					return true;
+				}
+			}
+
+			return false;
 		}
+		
+		public bool TryAdd(ILoot<TLootType> loot, float percentage)
+		{
+			if (Contains(loot))
+			{
+				return false;
+			}
+
+			ShouldRecalculateIndices = true; // The internal collection changed, so next time we try to GetLoot() we should recalculate the weights
+			
+			internalPercentageLootTable.Add(new PercentageLootTablePair<TLootType>(loot, PercentageFloatToDecimal(percentage)));
+			return true;
+		}
+
 		
 		public void Add(IEnumerable<KeyValuePair<ILoot<TLootType>, float>> collection)
 		{
@@ -52,6 +80,37 @@ namespace VDFramework.LootTables.Variations
 			{
 				TryAdd(new LootTableItem<TLootType>(pair.Key), pair.Value);
 			}
+		}
+		
+		public bool TryRemove(PercentageLootTablePair<TLootType> pair)
+		{
+			if (!internalPercentageLootTable.Contains(pair))
+			{
+				return false;
+			}
+
+			ShouldRecalculateIndices = true; // The internal collection changed, so next time we try to GetLoot() we should recalculate the weights
+			
+			internalPercentageLootTable.Remove(pair);
+			return true;
+		}
+		
+		public bool TryRemove(ILoot<TLootType> loot)
+		{
+			if (!TryGetPair(loot, out PercentageLootTablePair<TLootType> pair))
+			{
+				return false;
+			}
+
+			ShouldRecalculateIndices = true; // The internal collection changed, so next time we try to GetLoot() we should recalculate the weights
+			
+			internalPercentageLootTable.Remove(pair);
+			return true;
+		}
+		
+		public bool TryRemove(TLootType loot)
+		{
+			return TryRemove(new LootTableItem<TLootType>(loot));
 		}
 
 		public override void ClearTable()
@@ -142,19 +201,6 @@ namespace VDFramework.LootTables.Variations
 			IEnumerable<decimal> percentages = percentageLootTable.Select(pair => pair.Percentage);
 
 			return NumberUtil.GetLeastCommonMultiple(percentages);
-		}
-
-		private bool TryAdd(ILoot<TLootType> loot, float percentage)
-		{
-			if (Contains(loot))
-			{
-				return false;
-			}
-
-			ShouldRecalculateIndices = true; // The internal collection changed, so next time we try to GetLoot() we should recalculate the weights
-			
-			internalPercentageLootTable.Add(new PercentageLootTablePair<TLootType>(loot, PercentageFloatToDecimal(percentage)));
-			return true;
 		}
 		
 		private static decimal PercentageFloatToDecimal(float percentage)

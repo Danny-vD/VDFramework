@@ -417,422 +417,22 @@
             Return the absolute value of this vector
             </summary>
         </member>
-        <member name="T:VDFramework.EventSystem.EventManager">
+        <member name="T:VDFramework.Utility.QuaternionMathUtil">
             <summary>
-            The manager class for the global event system, use this class to add and remove listeners from events and to raise an event
+            Contains helper functions for <see cref="T:UnityEngine.Quaternion"/> math
             </summary>
-            <seealso cref="M:VDFramework.EventSystem.EventManager.AddListener``1(System.Action,System.Int32)"/>
-            <seealso cref="M:VDFramework.EventSystem.EventManager.RemoveListener``1(System.Action)"/>
-            <seealso cref="M:VDFramework.EventSystem.EventManager.RaiseEvent``1(``0)"/>
         </member>
-        <member name="T:VDFramework.Exceptions.SingletonViolationException">
+        <member name="M:VDFramework.Utility.QuaternionMathUtil.IsApproximate(UnityEngine.Quaternion,UnityEngine.Quaternion,System.Single)">
             <summary>
-            The exception that is thrown once you create a 2nd instance of a singleton
+            Checks if two quaternions are approximately the same
             </summary>
-        </member>
-        <member name="T:VDFramework.Extensions.EnumerableExtensions">
-            <summary>
-            Contains Extension methods for IEnumerables
-            </summary>
-        </member>
-        <member name="M:VDFramework.Extensions.EnumerableExtensions.CountIsZeroOrOne``1(System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            True if this collection is empty or contains only one element
-            </summary>
-        </member>
-        <member name="M:VDFramework.Extensions.EnumerableExtensions.GetMinMax``1(System.Collections.Generic.IEnumerable{``0},``0@,``0@)">
-            <summary>
-            Calculate the Min and the Max values in the collection using <see cref="T:System.IComparable`1"/>
-            </summary>
-            <param name="collection">The collection to calculate the Min and Max against</param>
-            <param name="minElement">The element in the collection that precedes all other elements in the sort order</param>
-            <param name="maxElement">The element in the collection that follows all other elements in the sort order</param>
-            <returns>A value indicating whether calculating the Min and Max was successful</returns>
-        </member>
-        <member name="T:VDFramework.Extensions.EnumExtensions">
-            <summary>
-            Contains extension methods for <see cref="T:System.Enum"/>
-            </summary>
-        </member>
-        <member name="M:VDFramework.Extensions.EnumExtensions.GetNames``1(``0)">
-            <summary>
-            Returns an IEnumerable that contains the names of every value of this enum
-            </summary>
-        </member>
-        <member name="M:VDFramework.Extensions.EnumExtensions.GetValues``1(``0)">
-            <summary>
-            Returns an IEnumerable of <see cref="!:TEnum"/> that has all the values of the enum
-            </summary>
-        </member>
-        <member name="M:VDFramework.Extensions.EnumExtensions.GetRandomValue``1(``0)">
-            <summary>
-            Returns a random value of this enum
-            </summary>
-        </member>
-        <member name="T:VDFramework.Extensions.FloatingPointExtensions">
-            <summary>
-            Contains extension methods for floating-point numbers
-            </summary>
-            <seealso cref="T:System.Single"/>
-            <seealso cref="T:System.Double"/>
-            <seealso cref="T:System.Decimal"/>
-        </member>
-        <member name="M:VDFramework.Extensions.FloatingPointExtensions.GetDecimalCount(System.Single)">
-            <summary>
-            Get the amount of decimals after the decimal seperator
-            </summary>
-        </member>
-        <member name="M:VDFramework.Extensions.FloatingPointExtensions.GetDecimalCount(System.Double)">
-            <summary>
-            Get the amount of decimals after the decimal seperator
-            </summary>
-        </member>
-        <member name="M:VDFramework.Extensions.FloatingPointExtensions.GetDecimalCount(System.Decimal)">
-            <summary>
-            Get the amount of decimals after the decimal seperator
-            </summary>
-        </member>
-        <member name="T:VDFramework.Extensions.Int32Extensions">
-            <summary>
-            Contains extension methods for 32-bit integers (<see cref="T:System.Int32"/>)
-            </summary>
-        </member>
-        <member name="M:VDFramework.Extensions.Int32Extensions.HasOneMatchingBit(System.Int32,System.Int32,System.Boolean)">
-            <summary>
-            Check every bit one by one to see if they are equal
-            </summary>
-            <returns>TRUE if at least one bit is equal</returns>
-        </member>
-        <member name="M:VDFramework.Extensions.Int32Extensions.AddFlag(System.Int32@,System.Int32)">
-            <summary>
-            Add the given bitflag to this value
-            </summary>
-        </member>
-        <member name="M:VDFramework.Extensions.Int32Extensions.RemoveFlag(System.Int32@,System.Int32)">
-            <summary>
-            Remove the given bitflag from this value
-            </summary>
-        </member>
-        <member name="M:VDFramework.Extensions.Int32Extensions.Ordinalize(System.Int32)">
-            <summary>
-            <para>Returns the ordinal version of this number</para>
-            <para>Only supports 0-16 at the moment, higher than that will return number.ToString</para>
-            </summary>
-            <param name="number">The number to ordinalise</param>
-            <returns>A string that respresents the ordinal version of the given number (e.g. 3 -> "third")</returns>
-        </member>
-        <member name="T:VDFramework.Extensions.ListExtensions">
-            <summary>
-            Contains extension methods for <see cref="T:System.Collections.Generic.List`1"/>
-            </summary>
-        </member>
-        <member name="M:VDFramework.Extensions.ListExtensions.ResizeList``1(System.Collections.Generic.List{``0},System.Int32)">
-            <summary>
-            Resize the list so that it holds a <paramref name="newSize"/> amount of <typeparamref name="TItem"/>
-            <para></para>(will also resize the underlaying array)
-            </summary>
-            <param name="list">The list to resize</param>
-            <param name="newSize">The elements that are in the list</param>
-            <typeparam name="TItem">The type of items in the list</typeparam>
-        </member>
-        <member name="M:VDFramework.Extensions.ListExtensions.MakeDistinct``1(System.Collections.Generic.List{``0})">
-            <summary>
-            Removes all duplicate elements from this list by using the default equality comparer to compare values.
-            </summary>
-            <param name="list">The list whose duplicates will be removed</param>
-            <typeparam name="TItem">The type of elements in the list</typeparam>
-            <returns>the same list to support chaining methods</returns>
-            <seealso cref="M:VDFramework.Extensions.ListExtensions.MakeDistinct``1(System.Collections.Generic.List{``0},System.Collections.Generic.IEqualityComparer{``0})"/>
-        </member>
-        <member name="M:VDFramework.Extensions.ListExtensions.MakeDistinct``1(System.Collections.Generic.List{``0},System.Collections.Generic.IEqualityComparer{``0})">
-            <summary>
-            Removes all duplicate elements from this list by by using a specified <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> to compare values.
-            </summary>
-            <param name="list">The list whose duplicates will be removed</param>
-            <param name="equalityComparer">the <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> that will be used to compare values</param>
-            <typeparam name="TItem">The type of elements in the list</typeparam>
-            <returns>the same list to support chaining methods</returns>
-        </member>
-        <member name="T:VDFramework.Extensions.ObjectExtensions">
-            <summary>
-            Contains extension methods for System.<see cref="T:System.Object"/>
-            </summary>
-        </member>
-        <member name="M:VDFramework.Extensions.ObjectExtensions.ConvertTo``1(System.Object)">
-            <summary>
-            <para>Converts this type to the specified type</para>
-            <para>WARNING: this method does not support user-defined conversions</para>
-            </summary>
-            <typeparam name="TNewType">The Type to convert to</typeparam>
-            <exception cref="T:System.InvalidCastException">Will be thrown if the conversion is not valid</exception>
-        </member>
-        <member name="T:VDFramework.Extensions.RandomElement">
-            <summary>
-            Extension methods for collections that allow getting a random element or randomly sorting the collection 
-            </summary>
-        </member>
-        <member name="M:VDFramework.Extensions.RandomElement.GetRandomElement``1(System.Collections.Generic.IEnumerable{``0},System.Int32@)">
-            <summary>
-            Returns a random element from this collection
-            </summary>
-            <param name="collection">The collection to return a random element from</param>
-            <param name="randomIndex">the index of the element returned</param>
-        </member>
-        <member name="M:VDFramework.Extensions.RandomElement.GetRandomElement``1(System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            Returns a random element from this collection
-            </summary>
-            <param name="collection">The collection to return a random element from</param>
-        </member>
-        <member name="M:VDFramework.Extensions.RandomElement.GetRandomElement``1(System.Collections.Generic.IEnumerable{``0},System.Int32@,System.Int32[])">
-            <summary>
-            Returns a random element from this collection
-            </summary>
-            <param name="collection">The collection to return a random element from</param>
-            <param name="randomIndex">the index of the element returned</param>
-            <param name="ignoreIndices">[OPTIONAL] the indices of elements that cannot be returned by this function</param>
-        </member>
-        <member name="M:VDFramework.Extensions.RandomElement.GetRandomElement``1(System.Collections.Generic.IEnumerable{``0},System.Int32[])">
-            <summary>
-            Returns a random element from this collection
-            </summary>
-            <param name="collection">The collection to return a random element from</param>
-            <param name="ignoreIndices">[OPTIONAL] the indices of elements that cannot be returned by this function</param>
-        </member>
-        <member name="M:VDFramework.Extensions.RandomElement.Randomize``1(System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            Randomly sorts the IEnumberable
-            </summary>
-        </member>
-        <member name="M:VDFramework.Extensions.RandomElement.Randomize``1(System.Collections.Generic.List{``0})">
-            <summary>
-            Randomly sorts the list
-            </summary>
-        </member>
-        <member name="T:VDFramework.Extensions.StringExtensions">
-            <summary>
-            Contains extension methods for <see cref="T:System.String"/>
-            </summary>
-        </member>
-        <member name="M:VDFramework.Extensions.StringExtensions.InsertSpaceBeforeCapitals(System.String)">
-            <summary>
-            Returns a new string where a space is inserted before each capital, skipping the first char
-            </summary>
-        </member>
-        <member name="M:VDFramework.Extensions.StringExtensions.ReplaceUnderscoreWithSpace(System.String)">
-            <summary>
-            Replaces all underscores in this string with a space
-            </summary>
-        </member>
-        <member name="M:VDFramework.Extensions.StringExtensions.EnforceLength(System.String,System.Int32,System.Char,System.Collections.Generic.IReadOnlyCollection{System.String})">
-            <summary>
-            Returns a string with specified length where certain substrings will only count as 1 char
-            </summary>
-            <param name="desiredLength">The length that you want the returned string to be</param>
-            <param name="addCharToEnd">In case the string is too short, add this character to get the desired length</param>
-            <param name="countAs1Char">A collection of substrings that will only count as 1 char for the purposes of returning the desired length</param>
-            <param name="string">The string whose length to enforce</param>
-        </member>
-        <member name="M:VDFramework.Extensions.StringExtensions.GetCharsBetweenAandB(System.String,System.Char,System.Char,System.Int32)">
-            <summary>
-            Get all characters between two characters including the two characters (will not return correctly if another pair is nested within a pair)
-            </summary>
-        </member>
-        <member name="M:VDFramework.Extensions.StringExtensions.CharCount(System.String,System.Char)">
-            <summary>
-            Get a count of how many times a specific character appears within the string
-            </summary>
-        </member>
-        <member name="T:VDFramework.IO.Parsers.BinaryParsers.Parsers.BitShiftEndianParser">
-            <summary>
-            Contains functions to get primitives from or set primitives to a byte*
-            </summary>
-        </member>
-        <member name="T:VDFramework.IO.Parsers.BinaryParsers.Readers.ByteReader">
-            <summary>
-            Contains functions for parsing and reading bytes
-            </summary>
-        </member>
-        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Readers.ByteReader.ReadByte(System.Byte*@)">
-            <summary>
-            Read a byte from the location of the pointer
-            </summary>
-        </member>
-        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Readers.ByteReader.ReadSByte(System.Byte*@)">
-            <summary>
-            Read a signed byte from the location of the pointer
-            </summary>
-        </member>
-        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Readers.ByteReader.ReadBytes(System.Byte*@,System.Byte[]@,System.Int32)">
-            <summary>
-            Read a specified amount of bytes from the location of the pointer and store them in the given byte[]
-            </summary>
-        </member>
-        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Readers.ByteReader.ReadBytes(System.Byte*@,System.Byte[]@,System.UInt64)">
-            <summary>
-            Read a specified amount of bytes from the location of the pointer and store them in the given byte[]
-            </summary>
-        </member>
-        <member name="T:VDFramework.IO.Parsers.BinaryParsers.Readers.PrimitiveReaders.PrimitiveReaderBigEndian">
-            <summary>
-            Contains functions for reading bytes in the big endian format (will automatically pick the algorithm depending on the endianness of the system)
-            </summary>
-        </member>
-        <member name="T:VDFramework.IO.Parsers.BinaryParsers.Readers.PrimitiveReaders.PrimitiveReaderLittleEndian">
-            <summary>
-            Contains functions for reading bytes in the little endian format (will automatically pick the algorithm depending on the endianness of the system)
-            </summary>
-        </member>
-        <member name="T:VDFramework.IO.Parsers.BinaryParsers.Readers.StringReader">
-            <summary>
-            Contains functions for parsing and reading strings
-            </summary>
-        </member>
-        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Readers.StringReader.ReadString(System.Byte*@,System.Int32)">
-            <summary>
-            Read a NULL-terminated <see cref="P:System.Text.Encoding.UTF8"/> string with maxCount characters from the byte pointer
-            </summary>
-            <returns>
-            A string up to a NULL-character or up to maxCount characters
-            </returns>
-        </member>
-        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Readers.StringReader.ReadString(System.Byte*@,System.UInt64)">
-            <summary>
-            Read a NULL-terminated <see cref="P:System.Text.Encoding.UTF8"/> string with maxCount characters from the byte pointer
-            </summary>
-            <returns>
-            A string up to a NULL-character or up to maxCount characters
-            </returns>
-        </member>
-        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Readers.StringReader.ReadString(System.Byte*@)">
-            <summary>
-            Read a NULL-terminated <see cref="P:System.Text.Encoding.UTF8"/> string with the byte pointer
-            </summary>
-            <warning>
-            There is no predefined limit, it will keep reading until either a NULL-character is found or until it has read Int32.<see cref="F:System.Int32.MaxValue"/> characters
-            </warning>
-            <returns>
-            A string up to a NULL-character
-            </returns>
-        </member>
-        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Readers.StringReader.GetString(System.Byte[],System.Int32)">
-            <summary>
-            Read a NULL-terminated string with maxCount characters from the byte array
-            </summary>
-            <returns>
-            A string up to a NULL-character or up to maxCount characters
-            </returns>
-        </member>
-        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Readers.StringReader.GetString(System.Byte[],System.UInt64)">
-            <summary>
-            Read a NULL-terminated <see cref="P:System.Text.Encoding.UTF8"/> string with maxCount characters from the byte array
-            </summary>
-            <returns>
-            A string up to a NULL-character or up to maxCount characters
-            </returns>
-        </member>
-        <member name="T:VDFramework.IO.Parsers.BinaryParsers.Writers.ByteWriter">
-            <summary>
-            Contains functions for parsing and writing bytes
-            </summary>
-        </member>
-        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Writers.ByteWriter.WriteByte(System.Byte*@,System.Byte)">
-            <summary>
-            Write a byte to the location of the pointer
-            </summary>
-        </member>
-        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Writers.ByteWriter.WriteSByte(System.Byte*@,System.SByte)">
-            <summary>
-            Write a signed byte to the location of the pointer
-            </summary>
-        </member>
-        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Writers.ByteWriter.WriteBytes(System.Byte*@,System.Byte[],System.Int32,System.Int32)">
-            <summary>
-            Write the data given in the array to the location of the pointer, only a specific part of the given array can be used by using the startIndex and length parameters
-            </summary>
-        </member>
-        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Writers.ByteWriter.WriteBytes(System.Byte*@,System.Byte[],System.UInt64,System.UInt64)">
-            <summary>
-            Write the data given in the array to the location of the pointer, only a specific part of the given array can be used by using the startIndex and length parameters
-            </summary>
-        </member>
-        <member name="T:VDFramework.IO.Parsers.BinaryParsers.Writers.PrimitiveWriters.PrimitiveWriterBigEndian">
-            <summary>
-            Contains functions for writing bytes in the big endian format (will automatically pick the algorithm depending on the endianness of the system)
-            </summary>
-        </member>
-        <member name="T:VDFramework.IO.Parsers.BinaryParsers.Writers.PrimitiveWriters.PrimitiveWriterLittleEndian">
-            <summary>
-            Contains functions for writing bytes in the little endian format (will automatically pick the algorithm depending on the endianness of the system)
-            </summary>
-        </member>
-        <member name="T:VDFramework.IO.Parsers.BinaryParsers.Writers.StringWriter">
-            <summary>
-            Contains functions for parsing and writing strings
-            </summary>
-        </member>
-        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Writers.StringWriter.WriteString(System.Byte*@,System.String,System.Boolean)">
-            <summary>
-            <para>Write an <see cref="P:System.Text.Encoding.UTF8"/> string to the byte pointer</para>
-            <para>Optionally append a NULL-character at the end of the string</para>
-            </summary>
-        </member>
-        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Writers.StringWriter.WriteString(System.Byte*@,System.String,System.Int32)">
-            <summary>
-            <para>Write an <see cref="P:System.Text.Encoding.UTF8"/> string to the byte pointer</para>
-            <para>The string will be modified so that it is size <paramref name="bytesToWrite"/> either by cutting it off, or appending NULL-characters</para>
-            </summary>
-            <warning>
-            This function does not gracefully handle cutting off a multi-byte character, it will split the bytes of these characters if it reached the <paramref name="bytesToWrite"/>
-            </warning>
-        </member>
-        <member name="T:VDFramework.LootTables.Interfaces.ILoot`1">
-            <summary>
-            Represents an object that returns loot in some way
-            </summary>
-        </member>
-        <member name="M:VDFramework.LootTables.Interfaces.ILoot`1.GetLoot">
-            <summary>
-            Retrieves or calculates the loot and returns it
-            </summary>
-        </member>
-        <member name="T:VDFramework.LootTables.LootTableItems.LootTableItem`1">
-            <summary>
-            The simplest implementation of the <see cref="T:VDFramework.LootTables.Interfaces.ILoot`1"/> interface
-            </summary>
-        </member>
-        <member name="M:VDFramework.LootTables.LootTableItems.LootTableItem`1.#ctor(`0)">
-            <summary>
-            Creates a new instance of this class with the loot set to <paramref name="loot"/>
-            </summary>
-        </member>
-        <member name="M:VDFramework.LootTables.LootTableItems.LootTableItem`1.GetLoot">
-            <inheritdoc/>
-        </member>
-        <member name="M:VDFramework.LootTables.LootTableItems.LootTableItem`1.Equals(VDFramework.LootTables.LootTableItems.LootTableItem{`0})">
-            <inheritdoc/>
-        </member>
-        <member name="M:VDFramework.LootTables.LootTableItems.LootTableItem`1.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:VDFramework.LootTables.LootTableItems.LootTableItem`1.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:VDFramework.LootTables.Variations.PercentageLootTable`1.EnsureValidPercentages">
-            <summary>
-            Grab the first N percentages until we reached 100%, or increase the last percentage if the total is below 100%
-            </summary>
-        </member>
-        <member name="M:VDFramework.LootTables.Variations.PercentageLootTable`1.ConvertPercentagesToWeightAndAddToTable(System.Collections.Generic.List{VDFramework.LootTables.Structs.PercentageLootTablePair{`0}})">
-            <summary>
-            Convert percentages to weight and add them to the lootTable
-            </summary>
-        </member>
-        <member name="M:VDFramework.LootTables.WeightedLootTable`1.CalculateIndexArray">
-            <summary>
-            <para>Calculate an array of indices from the Loot Table</para>
-            <para>The amount of duplicate values is dependent on the weight</para>
-            </summary>
+            <param name="lhs">The first quaternion to compare</param>
+            <param name="rhs">The second quaternion to compare</param>
+            <param name="precision">
+            <para>An acceptable range for quaternions to still be counted as equal</para>
+            <para>0.1 degree difference is a difference of 0.0000004f</para>
+            </param>
+            <credit>https://discussions.unity.com/t/how-do-i-compare-quaternions/47274/6</credit>
         </member>
         <member name="M:VDFramework.Utility.EnumDictionaryUtil.PopulateEnumDictionary``3(System.Collections.Generic.List{``0})">
             <summary>
@@ -3610,6 +3210,482 @@
         <member name="F:VDFramework.Utility.Windows.SpecialFolders.UsersLibraries">
             <summary>
             <para>VIRTUAL FOLDER: no path available</para>
+            </summary>
+        </member>
+        <member name="T:VDFramework.EventSystem.EventManager">
+            <summary>
+            The manager class for the global event system, use this class to add and remove listeners from events and to raise an event
+            </summary>
+            <seealso cref="M:VDFramework.EventSystem.EventManager.AddListener``1(System.Action,System.Int32)"/>
+            <seealso cref="M:VDFramework.EventSystem.EventManager.RemoveListener``1(System.Action)"/>
+            <seealso cref="M:VDFramework.EventSystem.EventManager.RaiseEvent``1(``0)"/>
+        </member>
+        <member name="T:VDFramework.EventSystem.VDEvent`1">
+            <summary>
+            An abstract representation of a global event that provides an easier way to add/remove listeners 
+            </summary>
+        </member>
+        <member name="E:VDFramework.EventSystem.VDEvent`1.Listeners">
+            <summary>
+            The listeners to this global event that take in an instance of this event as a parameter
+            </summary>
+        </member>
+        <member name="E:VDFramework.EventSystem.VDEvent`1.ParameterlessListeners">
+            <summary>
+            The listeners to this global event that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.EventSystem.VDEvent`1.AddListener(System.Action{`0},System.Int32)">
+            <summary>
+            A shortcut to add a listener with a given priority to this event
+            </summary>
+            <param name="handler">The function that will be invoked when this event is raised</param>
+            <param name="priorityOrder">Higher priority will be invoked over lower priority</param>
+        </member>
+        <member name="M:VDFramework.EventSystem.VDEvent`1.AddListener(System.Action,System.Int32)">
+            <summary>
+            A shortcut to add a listener with a given priority to this event
+            </summary>
+            <param name="handler">The function that will be invoked when this event is raised</param>
+            <param name="priorityOrder">Higher priority will be invoked over lower priority</param>
+        </member>
+        <member name="M:VDFramework.EventSystem.VDEvent`1.RemoveListener(System.Action{`0})">
+            <summary>
+            A shortcut to remove a listener from this event
+            </summary>
+        </member>
+        <member name="M:VDFramework.EventSystem.VDEvent`1.RemoveListener(System.Action)">
+            <summary>
+            A shortcut to remove a listener from this event
+            </summary>
+        </member>
+        <member name="T:VDFramework.EventSystem.VDEvent">
+            <summary>
+            An abstract representation of a global event
+            </summary>
+        </member>
+        <member name="P:VDFramework.EventSystem.VDEvent.Consumed">
+            <summary>
+            If an event is consumed it will invoke no more listeners
+            </summary>
+        </member>
+        <member name="M:VDFramework.EventSystem.VDEvent.Consume">
+            <summary>
+            Consume this event and prevent any additional listeners from being invoked
+            </summary>
+        </member>
+        <member name="T:VDFramework.Exceptions.SingletonViolationException">
+            <summary>
+            The exception that is thrown once you create a 2nd instance of a singleton
+            </summary>
+        </member>
+        <member name="T:VDFramework.Extensions.EnumerableExtensions">
+            <summary>
+            Contains Extension methods for IEnumerables
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.EnumerableExtensions.CountIsZeroOrOne``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            True if this collection is empty or contains only one element
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.EnumerableExtensions.GetMinMax``1(System.Collections.Generic.IEnumerable{``0},``0@,``0@)">
+            <summary>
+            Calculate the Min and the Max values in the collection using <see cref="T:System.IComparable`1"/>
+            </summary>
+            <param name="collection">The collection to calculate the Min and Max against</param>
+            <param name="minElement">The element in the collection that precedes all other elements in the sort order</param>
+            <param name="maxElement">The element in the collection that follows all other elements in the sort order</param>
+            <returns>A value indicating whether calculating the Min and Max was successful</returns>
+        </member>
+        <member name="T:VDFramework.Extensions.EnumExtensions">
+            <summary>
+            Contains extension methods for <see cref="T:System.Enum"/>
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.EnumExtensions.GetNames``1(``0)">
+            <summary>
+            Returns an IEnumerable that contains the names of every value of this enum
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.EnumExtensions.GetValues``1(``0)">
+            <summary>
+            Returns an IEnumerable of <see cref="!:TEnum"/> that has all the values of the enum
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.EnumExtensions.GetRandomValue``1(``0)">
+            <summary>
+            Returns a random value of this enum
+            </summary>
+        </member>
+        <member name="T:VDFramework.Extensions.FloatingPointExtensions">
+            <summary>
+            Contains extension methods for floating-point numbers
+            </summary>
+            <seealso cref="T:System.Single"/>
+            <seealso cref="T:System.Double"/>
+            <seealso cref="T:System.Decimal"/>
+        </member>
+        <member name="M:VDFramework.Extensions.FloatingPointExtensions.GetDecimalCount(System.Single)">
+            <summary>
+            Get the amount of decimals after the decimal seperator
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.FloatingPointExtensions.GetDecimalCount(System.Double)">
+            <summary>
+            Get the amount of decimals after the decimal seperator
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.FloatingPointExtensions.GetDecimalCount(System.Decimal)">
+            <summary>
+            Get the amount of decimals after the decimal seperator
+            </summary>
+        </member>
+        <member name="T:VDFramework.Extensions.Int32Extensions">
+            <summary>
+            Contains extension methods for 32-bit integers (<see cref="T:System.Int32"/>)
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.Int32Extensions.HasOneMatchingBit(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Check every bit one by one to see if they are equal
+            </summary>
+            <returns>TRUE if at least one bit is equal</returns>
+        </member>
+        <member name="M:VDFramework.Extensions.Int32Extensions.AddFlag(System.Int32@,System.Int32)">
+            <summary>
+            Add the given bitflag to this value
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.Int32Extensions.RemoveFlag(System.Int32@,System.Int32)">
+            <summary>
+            Remove the given bitflag from this value
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.Int32Extensions.Ordinalize(System.Int32)">
+            <summary>
+            <para>Returns the ordinal version of this number</para>
+            <para>Only supports 0-16 at the moment, higher than that will return number.ToString</para>
+            </summary>
+            <param name="number">The number to ordinalise</param>
+            <returns>A string that respresents the ordinal version of the given number (e.g. 3 -> "third")</returns>
+        </member>
+        <member name="T:VDFramework.Extensions.ListExtensions">
+            <summary>
+            Contains extension methods for <see cref="T:System.Collections.Generic.List`1"/>
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.ListExtensions.ResizeList``1(System.Collections.Generic.List{``0},System.Int32)">
+            <summary>
+            Resize the list so that it holds a <paramref name="newSize"/> amount of <typeparamref name="TItem"/>
+            <para></para>(will also resize the underlaying array)
+            </summary>
+            <param name="list">The list to resize</param>
+            <param name="newSize">The elements that are in the list</param>
+            <typeparam name="TItem">The type of items in the list</typeparam>
+        </member>
+        <member name="M:VDFramework.Extensions.ListExtensions.MakeDistinct``1(System.Collections.Generic.List{``0})">
+            <summary>
+            Removes all duplicate elements from this list by using the default equality comparer to compare values.
+            </summary>
+            <param name="list">The list whose duplicates will be removed</param>
+            <typeparam name="TItem">The type of elements in the list</typeparam>
+            <returns>the same list to support chaining methods</returns>
+            <seealso cref="M:VDFramework.Extensions.ListExtensions.MakeDistinct``1(System.Collections.Generic.List{``0},System.Collections.Generic.IEqualityComparer{``0})"/>
+        </member>
+        <member name="M:VDFramework.Extensions.ListExtensions.MakeDistinct``1(System.Collections.Generic.List{``0},System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Removes all duplicate elements from this list by by using a specified <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> to compare values.
+            </summary>
+            <param name="list">The list whose duplicates will be removed</param>
+            <param name="equalityComparer">the <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> that will be used to compare values</param>
+            <typeparam name="TItem">The type of elements in the list</typeparam>
+            <returns>the same list to support chaining methods</returns>
+        </member>
+        <member name="T:VDFramework.Extensions.ObjectExtensions">
+            <summary>
+            Contains extension methods for System.<see cref="T:System.Object"/>
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.ObjectExtensions.ConvertTo``1(System.Object)">
+            <summary>
+            <para>Converts this type to the specified type</para>
+            <para>WARNING: this method does not support user-defined conversions</para>
+            </summary>
+            <typeparam name="TNewType">The Type to convert to</typeparam>
+            <exception cref="T:System.InvalidCastException">Will be thrown if the conversion is not valid</exception>
+        </member>
+        <member name="T:VDFramework.Extensions.RandomElement">
+            <summary>
+            Extension methods for collections that allow getting a random element or randomly sorting the collection 
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.RandomElement.GetRandomElement``1(System.Collections.Generic.IEnumerable{``0},System.Int32@)">
+            <summary>
+            Returns a random element from this collection
+            </summary>
+            <param name="collection">The collection to return a random element from</param>
+            <param name="randomIndex">the index of the element returned</param>
+        </member>
+        <member name="M:VDFramework.Extensions.RandomElement.GetRandomElement``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Returns a random element from this collection
+            </summary>
+            <param name="collection">The collection to return a random element from</param>
+        </member>
+        <member name="M:VDFramework.Extensions.RandomElement.GetRandomElement``1(System.Collections.Generic.IEnumerable{``0},System.Int32@,System.Int32[])">
+            <summary>
+            Returns a random element from this collection
+            </summary>
+            <param name="collection">The collection to return a random element from</param>
+            <param name="randomIndex">the index of the element returned</param>
+            <param name="ignoreIndices">[OPTIONAL] the indices of elements that cannot be returned by this function</param>
+        </member>
+        <member name="M:VDFramework.Extensions.RandomElement.GetRandomElement``1(System.Collections.Generic.IEnumerable{``0},System.Int32[])">
+            <summary>
+            Returns a random element from this collection
+            </summary>
+            <param name="collection">The collection to return a random element from</param>
+            <param name="ignoreIndices">[OPTIONAL] the indices of elements that cannot be returned by this function</param>
+        </member>
+        <member name="M:VDFramework.Extensions.RandomElement.Randomize``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Randomly sorts the IEnumberable
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.RandomElement.Randomize``1(System.Collections.Generic.List{``0})">
+            <summary>
+            Randomly sorts the list
+            </summary>
+        </member>
+        <member name="T:VDFramework.Extensions.StringExtensions">
+            <summary>
+            Contains extension methods for <see cref="T:System.String"/>
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.StringExtensions.InsertSpaceBeforeCapitals(System.String)">
+            <summary>
+            Returns a new string where a space is inserted before each capital, skipping the first char
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.StringExtensions.ReplaceUnderscoreWithSpace(System.String)">
+            <summary>
+            Replaces all underscores in this string with a space
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.StringExtensions.EnforceLength(System.String,System.Int32,System.Char,System.Collections.Generic.IReadOnlyCollection{System.String})">
+            <summary>
+            Returns a string with specified length where certain substrings will only count as 1 char
+            </summary>
+            <param name="desiredLength">The length that you want the returned string to be</param>
+            <param name="addCharToEnd">In case the string is too short, add this character to get the desired length</param>
+            <param name="countAs1Char">A collection of substrings that will only count as 1 char for the purposes of returning the desired length</param>
+            <param name="string">The string whose length to enforce</param>
+        </member>
+        <member name="M:VDFramework.Extensions.StringExtensions.GetCharsBetweenAandB(System.String,System.Char,System.Char,System.Int32)">
+            <summary>
+            Get all characters between two characters including the two characters (will not return correctly if another pair is nested within a pair)
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.StringExtensions.CharCount(System.String,System.Char)">
+            <summary>
+            Get a count of how many times a specific character appears within the string
+            </summary>
+        </member>
+        <member name="T:VDFramework.IO.Parsers.BinaryParsers.Parsers.BitShiftEndianParser">
+            <summary>
+            Contains functions to get primitives from or set primitives to a byte*
+            </summary>
+        </member>
+        <member name="T:VDFramework.IO.Parsers.BinaryParsers.Readers.ByteReader">
+            <summary>
+            Contains functions for parsing and reading bytes
+            </summary>
+        </member>
+        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Readers.ByteReader.ReadByte(System.Byte*@)">
+            <summary>
+            Read a byte from the location of the pointer
+            </summary>
+        </member>
+        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Readers.ByteReader.ReadSByte(System.Byte*@)">
+            <summary>
+            Read a signed byte from the location of the pointer
+            </summary>
+        </member>
+        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Readers.ByteReader.ReadBytes(System.Byte*@,System.Byte[]@,System.Int32)">
+            <summary>
+            Read a specified amount of bytes from the location of the pointer and store them in the given byte[]
+            </summary>
+        </member>
+        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Readers.ByteReader.ReadBytes(System.Byte*@,System.Byte[]@,System.UInt64)">
+            <summary>
+            Read a specified amount of bytes from the location of the pointer and store them in the given byte[]
+            </summary>
+        </member>
+        <member name="T:VDFramework.IO.Parsers.BinaryParsers.Readers.PrimitiveReaders.PrimitiveReaderBigEndian">
+            <summary>
+            Contains functions for reading bytes in the big endian format (will automatically pick the algorithm depending on the endianness of the system)
+            </summary>
+        </member>
+        <member name="T:VDFramework.IO.Parsers.BinaryParsers.Readers.PrimitiveReaders.PrimitiveReaderLittleEndian">
+            <summary>
+            Contains functions for reading bytes in the little endian format (will automatically pick the algorithm depending on the endianness of the system)
+            </summary>
+        </member>
+        <member name="T:VDFramework.IO.Parsers.BinaryParsers.Readers.StringReader">
+            <summary>
+            Contains functions for parsing and reading strings
+            </summary>
+        </member>
+        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Readers.StringReader.ReadString(System.Byte*@,System.Int32)">
+            <summary>
+            Read a NULL-terminated <see cref="P:System.Text.Encoding.UTF8"/> string with maxCount characters from the byte pointer
+            </summary>
+            <returns>
+            A string up to a NULL-character or up to maxCount characters
+            </returns>
+        </member>
+        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Readers.StringReader.ReadString(System.Byte*@,System.UInt64)">
+            <summary>
+            Read a NULL-terminated <see cref="P:System.Text.Encoding.UTF8"/> string with maxCount characters from the byte pointer
+            </summary>
+            <returns>
+            A string up to a NULL-character or up to maxCount characters
+            </returns>
+        </member>
+        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Readers.StringReader.ReadString(System.Byte*@)">
+            <summary>
+            Read a NULL-terminated <see cref="P:System.Text.Encoding.UTF8"/> string with the byte pointer
+            </summary>
+            <warning>
+            There is no predefined limit, it will keep reading until either a NULL-character is found or until it has read Int32.<see cref="F:System.Int32.MaxValue"/> characters
+            </warning>
+            <returns>
+            A string up to a NULL-character
+            </returns>
+        </member>
+        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Readers.StringReader.GetString(System.Byte[],System.Int32)">
+            <summary>
+            Read a NULL-terminated string with maxCount characters from the byte array
+            </summary>
+            <returns>
+            A string up to a NULL-character or up to maxCount characters
+            </returns>
+        </member>
+        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Readers.StringReader.GetString(System.Byte[],System.UInt64)">
+            <summary>
+            Read a NULL-terminated <see cref="P:System.Text.Encoding.UTF8"/> string with maxCount characters from the byte array
+            </summary>
+            <returns>
+            A string up to a NULL-character or up to maxCount characters
+            </returns>
+        </member>
+        <member name="T:VDFramework.IO.Parsers.BinaryParsers.Writers.ByteWriter">
+            <summary>
+            Contains functions for parsing and writing bytes
+            </summary>
+        </member>
+        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Writers.ByteWriter.WriteByte(System.Byte*@,System.Byte)">
+            <summary>
+            Write a byte to the location of the pointer
+            </summary>
+        </member>
+        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Writers.ByteWriter.WriteSByte(System.Byte*@,System.SByte)">
+            <summary>
+            Write a signed byte to the location of the pointer
+            </summary>
+        </member>
+        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Writers.ByteWriter.WriteBytes(System.Byte*@,System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Write the data given in the array to the location of the pointer, only a specific part of the given array can be used by using the startIndex and length parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Writers.ByteWriter.WriteBytes(System.Byte*@,System.Byte[],System.UInt64,System.UInt64)">
+            <summary>
+            Write the data given in the array to the location of the pointer, only a specific part of the given array can be used by using the startIndex and length parameters
+            </summary>
+        </member>
+        <member name="T:VDFramework.IO.Parsers.BinaryParsers.Writers.PrimitiveWriters.PrimitiveWriterBigEndian">
+            <summary>
+            Contains functions for writing bytes in the big endian format (will automatically pick the algorithm depending on the endianness of the system)
+            </summary>
+        </member>
+        <member name="T:VDFramework.IO.Parsers.BinaryParsers.Writers.PrimitiveWriters.PrimitiveWriterLittleEndian">
+            <summary>
+            Contains functions for writing bytes in the little endian format (will automatically pick the algorithm depending on the endianness of the system)
+            </summary>
+        </member>
+        <member name="T:VDFramework.IO.Parsers.BinaryParsers.Writers.StringWriter">
+            <summary>
+            Contains functions for parsing and writing strings
+            </summary>
+        </member>
+        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Writers.StringWriter.WriteString(System.Byte*@,System.String,System.Boolean)">
+            <summary>
+            <para>Write an <see cref="P:System.Text.Encoding.UTF8"/> string to the byte pointer</para>
+            <para>Optionally append a NULL-character at the end of the string</para>
+            </summary>
+        </member>
+        <member name="M:VDFramework.IO.Parsers.BinaryParsers.Writers.StringWriter.WriteString(System.Byte*@,System.String,System.Int32)">
+            <summary>
+            <para>Write an <see cref="P:System.Text.Encoding.UTF8"/> string to the byte pointer</para>
+            <para>The string will be modified so that it is size <paramref name="bytesToWrite"/> either by cutting it off, or appending NULL-characters</para>
+            </summary>
+            <warning>
+            This function does not gracefully handle cutting off a multi-byte character, it will split the bytes of these characters if it reached the <paramref name="bytesToWrite"/>
+            </warning>
+        </member>
+        <member name="T:VDFramework.LootTables.Interfaces.ILoot`1">
+            <summary>
+            Represents an object that returns loot in some way
+            </summary>
+        </member>
+        <member name="M:VDFramework.LootTables.Interfaces.ILoot`1.GetLoot">
+            <summary>
+            Retrieves or calculates the loot and returns it
+            </summary>
+        </member>
+        <member name="T:VDFramework.LootTables.LootTableItems.LootTableItem`1">
+            <summary>
+            The simplest implementation of the <see cref="T:VDFramework.LootTables.Interfaces.ILoot`1"/> interface
+            </summary>
+        </member>
+        <member name="M:VDFramework.LootTables.LootTableItems.LootTableItem`1.#ctor(`0)">
+            <summary>
+            Creates a new instance of this class with the loot set to <paramref name="loot"/>
+            </summary>
+        </member>
+        <member name="M:VDFramework.LootTables.LootTableItems.LootTableItem`1.GetLoot">
+            <inheritdoc/>
+        </member>
+        <member name="M:VDFramework.LootTables.LootTableItems.LootTableItem`1.Equals(VDFramework.LootTables.LootTableItems.LootTableItem{`0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:VDFramework.LootTables.LootTableItems.LootTableItem`1.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:VDFramework.LootTables.LootTableItems.LootTableItem`1.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:VDFramework.LootTables.Variations.PercentageLootTable`1.TryGetPair(VDFramework.LootTables.Interfaces.ILoot{`0},VDFramework.LootTables.Structs.PercentageLootTablePair{`0}@)">
+            <summary>
+            Attempt to get the LootTablePair whose loot matches the given loot
+            </summary>
+        </member>
+        <member name="M:VDFramework.LootTables.Variations.PercentageLootTable`1.EnsureValidPercentages">
+            <summary>
+            Grab the first N percentages until we reached 100%, or increase the last percentage if the total is below 100%
+            </summary>
+        </member>
+        <member name="M:VDFramework.LootTables.Variations.PercentageLootTable`1.ConvertPercentagesToWeightAndAddToTable(System.Collections.Generic.List{VDFramework.LootTables.Structs.PercentageLootTablePair{`0}})">
+            <summary>
+            Convert percentages to weight and add them to the lootTable
+            </summary>
+        </member>
+        <member name="M:VDFramework.LootTables.WeightedLootTable`1.CalculateIndexArray">
+            <summary>
+            <para>Calculate an array of indices from the Loot Table</para>
+            <para>The amount of duplicate values is dependent on the weight</para>
             </summary>
         </member>
     </members>
