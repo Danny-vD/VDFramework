@@ -30,9 +30,20 @@ namespace VDFramework.LootTables.Variations
 
 		public List<PercentageLootTablePair<TLootType>> GetPercentageLootList()
 		{
-			return new List<PercentageLootTablePair<TLootType>>(internalPercentageLootTable);
+			return EnsureValidPercentages();
 		}
-		
+
+		public override List<LootTablePair<TLootType>> GetLootList()
+		{
+			if (ShouldRecalculateIndices)
+			{
+				// Add the correct values to the base.lootTable
+				CalculateIndexArray();
+			}
+			
+			return base.GetLootList();
+		}
+
 		public new bool Contains(ILoot<TLootType> loot)
 		{
 			return internalPercentageLootTable.Any(pair => pair.Loot.Equals(loot));

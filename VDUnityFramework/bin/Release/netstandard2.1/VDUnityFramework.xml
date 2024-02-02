@@ -3682,6 +3682,11 @@
             Convert percentages to weight and add them to the lootTable
             </summary>
         </member>
+        <member name="M:VDFramework.LootTables.WeightedLootTable`1.GetLoot">
+            <summary>
+            Grabs a random ILoot from the table based on the weights and returns it
+            </summary>
+        </member>
         <member name="M:VDFramework.LootTables.WeightedLootTable`1.CalculateIndexArray">
             <summary>
             <para>Calculate an array of indices from the Loot Table</para>

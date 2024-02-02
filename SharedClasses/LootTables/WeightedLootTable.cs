@@ -56,7 +56,7 @@ namespace VDFramework.LootTables
 			Add(collection);
 		}
 
-		public List<LootTablePair<TLootType>> GetLootList()
+		public virtual List<LootTablePair<TLootType>> GetLootList()
 		{
 			return new List<LootTablePair<TLootType>>(lootTable);
 		}
@@ -144,7 +144,10 @@ namespace VDFramework.LootTables
 			lootTable.Clear();
 			ShouldRecalculateIndices = true;
 		}
-
+		
+		/// <summary>
+		/// Grabs a random ILoot from the table based on the weights and returns it
+		/// </summary>
 		public virtual TLootType GetLoot()
 		{
 			int index = GetIndexArray().GetRandomElement();
