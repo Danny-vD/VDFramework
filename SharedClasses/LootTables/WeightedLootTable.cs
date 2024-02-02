@@ -56,6 +56,11 @@ namespace VDFramework.LootTables
 			Add(collection);
 		}
 
+		public List<LootTablePair<TLootType>> GetLootList()
+		{
+			return new List<LootTablePair<TLootType>>(lootTable);
+		}
+
 		public decimal GetLootDropChance(ILoot<TLootType> loot)
 		{
 			return GetLootWeight(loot) / (decimal)TotalWeight;

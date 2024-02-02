@@ -27,6 +27,11 @@ namespace VDFramework.LootTables.Variations
 		{
 			Add(collection);
 		}
+
+		public List<PercentageLootTablePair<TLootType>> GetPercentageLootList()
+		{
+			return new List<PercentageLootTablePair<TLootType>>(internalPercentageLootTable);
+		}
 		
 		public new bool Contains(ILoot<TLootType> loot)
 		{
