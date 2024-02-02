@@ -105,6 +105,35 @@ namespace VDFramework.LootTables
 			}
 		}
 
+		public bool TryRemove(LootTablePair<TLootType> pair)
+		{
+			if (!lootTable.Contains(pair))
+			{
+				return false;
+			}
+
+			lootTable.Remove(pair);
+			return true;
+		}
+
+		public bool TryRemove(ILoot<TLootType> loot)
+		{
+			if (!TryGetLootTablePair(loot, out LootTablePair<TLootType> pair))
+			{
+				return false;
+			}
+
+			ShouldRecalculateIndices = true; // The internal collection changed, so next time GetLoot() is called we should recalculate the weights
+
+			lootTable.Remove(pair);
+			return true;
+		}
+		
+		public bool TryRemove(TLootType loot)
+		{
+			return TryRemove(new LootTableItem<TLootType>(loot));
+		}
+
 		public virtual void ClearTable()
 		{
 			lootTable.Clear();

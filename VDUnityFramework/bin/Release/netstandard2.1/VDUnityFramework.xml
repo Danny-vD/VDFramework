@@ -707,7 +707,7 @@
             <summary>
             <para>Set parameters that will be used to invoke the callback</para>
             <para>Setting this to more than the <see cref="P:VDFramework.Utility.TimerUtil.TimerHandles.Parameters.AbstractParametersTimerHandle`1.ParameterCount"/> will not cause an out of bounds exception because any excess will be ignored</para>
-            <para>Setting this to less than the <see cref="P:VDFramework.Utility.TimerUtil.TimerHandles.Parameters.AbstractParametersTimerHandle`1.ParameterCount"/> will only change the parameters up to <paramref name="callbackParameters.Length.Length"/></para>
+            <para>Setting this to less than the <see cref="P:VDFramework.Utility.TimerUtil.TimerHandles.Parameters.AbstractParametersTimerHandle`1.ParameterCount"/> will only change the parameters up to callbackParameters.Length</para>
             </summary>
             <param name="callbackParameters">The new parameters to be used for invoking the callback</param>
         </member>

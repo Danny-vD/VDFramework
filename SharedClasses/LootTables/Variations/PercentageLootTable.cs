@@ -32,25 +32,6 @@ namespace VDFramework.LootTables.Variations
 		{
 			return internalPercentageLootTable.Any(pair => pair.Loot.Equals(loot));
 		}
-
-		/// <summary>
-		/// Attempt to get the LootTablePair whose loot matches the given loot
-		/// </summary>
-		public bool TryGetPair(ILoot<TLootType> loot, out PercentageLootTablePair<TLootType> lootTablePair)
-		{
-			lootTablePair = default;
-			
-			foreach (PercentageLootTablePair<TLootType> pair in internalPercentageLootTable)
-			{
-				if (pair.Loot.Equals(loot))
-				{
-					lootTablePair = pair;
-					return true;
-				}
-			}
-
-			return false;
-		}
 		
 		public bool TryAdd(ILoot<TLootType> loot, float percentage)
 		{
@@ -89,7 +70,7 @@ namespace VDFramework.LootTables.Variations
 				return false;
 			}
 
-			ShouldRecalculateIndices = true; // The internal collection changed, so next time we try to GetLoot() we should recalculate the weights
+			ShouldRecalculateIndices = true; // The internal collection changed, so next time GetLoot() is called we should recalculate the weights
 			
 			internalPercentageLootTable.Remove(pair);
 			return true;
@@ -102,7 +83,7 @@ namespace VDFramework.LootTables.Variations
 				return false;
 			}
 
-			ShouldRecalculateIndices = true; // The internal collection changed, so next time we try to GetLoot() we should recalculate the weights
+			ShouldRecalculateIndices = true; // The internal collection changed, so next time GetLoot() is called we should recalculate the weights
 			
 			internalPercentageLootTable.Remove(pair);
 			return true;
@@ -127,6 +108,25 @@ namespace VDFramework.LootTables.Variations
 			ConvertPercentagesToWeightAndAddToTable(percentageLootTable);
 
 			return base.CalculateIndexArray();
+		}
+		
+		/// <summary>
+		/// Attempt to get the LootTablePair whose loot matches the given loot
+		/// </summary>
+		private bool TryGetPair(ILoot<TLootType> loot, out PercentageLootTablePair<TLootType> lootTablePair)
+		{
+			lootTablePair = default;
+			
+			foreach (PercentageLootTablePair<TLootType> pair in internalPercentageLootTable)
+			{
+				if (pair.Loot.Equals(loot))
+				{
+					lootTablePair = pair;
+					return true;
+				}
+			}
+
+			return false;
 		}
 
 		/// <summary>

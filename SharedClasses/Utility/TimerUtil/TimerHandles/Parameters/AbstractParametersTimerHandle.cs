@@ -60,7 +60,7 @@ namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
 		/// <summary>
 		/// <para>Set parameters that will be used to invoke the callback</para>
 		/// <para>Setting this to more than the <see cref="ParameterCount"/> will not cause an out of bounds exception because any excess will be ignored</para>
-		/// <para>Setting this to less than the <see cref="ParameterCount"/> will only change the parameters up to <paramref name="callbackParameters.Length"/></para>
+		/// <para>Setting this to less than the <see cref="ParameterCount"/> will only change the parameters up to callbackParameters.Length</para>
 		/// </summary>
 		/// <param name="callbackParameters">The new parameters to be used for invoking the callback</param>
 		public void SetParameters(object[] callbackParameters)
