@@ -11,7 +11,6 @@ namespace VDFramework.UnityExtensions
 		/// <summary>
 		/// Mark this object to be destroyed on load (the reverse of DontDestroyOnLoad)
 		/// </summary>
-		/// <param name="gameObject"></param>
 		public static void DestroyOnLoad(this GameObject gameObject)
 		{
 			SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetActiveScene());

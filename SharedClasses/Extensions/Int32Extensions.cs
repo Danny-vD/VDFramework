@@ -9,13 +9,13 @@
 		/// Check every bit one by one to see if they are equal
 		/// </summary>
 		/// <returns>TRUE if at least one bit is equal</returns>
-		public static bool HasOneMatchingBit(this int number, int toCheck, bool shouldCheckZero = false)
+		public static bool HasAtLeastOneMatchingBit(this int number, int toCheck, bool shouldCheckZero = false)
 		{
 			bool matchingBit = (number & toCheck) != 0;
 
 			if (shouldCheckZero)
 			{
-				return matchingBit || HasOneMatchingBit(~number, ~toCheck);
+				return matchingBit || HasAtLeastOneMatchingBit(~number, ~toCheck);
 			}
 
 			return matchingBit;
