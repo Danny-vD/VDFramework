@@ -138,7 +138,7 @@
             Contains extension methods for 32-bit integers (<see cref="T:System.Int32"/>)
             </summary>
         </member>
-        <member name="M:VDFramework.Extensions.Int32Extensions.HasOneMatchingBit(System.Int32,System.Int32,System.Boolean)">
+        <member name="M:VDFramework.Extensions.Int32Extensions.HasAtLeastOneMatchingBit(System.Int32,System.Int32,System.Boolean)">
             <summary>
             Check every bit one by one to see if they are equal
             </summary>

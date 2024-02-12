@@ -360,16 +360,35 @@
             <summary>
             Mark this object to be destroyed on load (the reverse of DontDestroyOnLoad)
             </summary>
-            <param name="gameObject"></param>
         </member>
         <member name="M:VDFramework.UnityExtensions.GameObjectExtensions.EnsureComponent``1(UnityEngine.GameObject)">
             <summary>
-            Ensures that the specified <see cref="!:TComponent"/> is on this <see cref="T:UnityEngine.GameObject"/> by creating it if it does not exists
+            Ensures that the specified <see cref="T:UnityEngine.Component"/> is on this <see cref="T:UnityEngine.GameObject"/> by creating it if it does not exists
             </summary>
         </member>
         <member name="M:VDFramework.UnityExtensions.GameObjectExtensions.EnsureComponent``1(UnityEngine.Component)">
             <summary>
-            Ensures that the specified <see cref="!:TComponent"/> is on this <see cref="T:UnityEngine.GameObject"/> by creating it if it does not exists
+            Ensures that the specified <see cref="T:UnityEngine.Component"/> is on this <see cref="T:UnityEngine.GameObject"/> by creating it if it does not exists
+            </summary>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.GameObjectExtensions.TryGetComponentInChildren``1(UnityEngine.GameObject,``0@,System.Boolean)">
+            <summary>
+            Attempts to get the specified <see cref="T:UnityEngine.Component"/> in one of the children and returns whether one was found
+            </summary>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.GameObjectExtensions.TryGetComponentInChildren``1(UnityEngine.Component,``0@,System.Boolean)">
+            <summary>
+            Attempts to get the specified <see cref="T:UnityEngine.Component"/> in one of the children and returns whether one was found
+            </summary>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.GameObjectExtensions.TryGetComponentInParent``1(UnityEngine.GameObject,``0@,System.Boolean)">
+            <summary>
+            Attempts to get the specified <see cref="T:UnityEngine.Component"/> in one of the parents and returns whether one was found
+            </summary>
+        </member>
+        <member name="M:VDFramework.UnityExtensions.GameObjectExtensions.TryGetComponentInParent``1(UnityEngine.Component,``0@,System.Boolean)">
+            <summary>
+            Attempts to get the specified <see cref="T:UnityEngine.Component"/> in one of the parents and returns whether one was found
             </summary>
         </member>
         <member name="T:VDFramework.UnityExtensions.TransformExtensions">
@@ -3346,7 +3365,7 @@
             Contains extension methods for 32-bit integers (<see cref="T:System.Int32"/>)
             </summary>
         </member>
-        <member name="M:VDFramework.Extensions.Int32Extensions.HasOneMatchingBit(System.Int32,System.Int32,System.Boolean)">
+        <member name="M:VDFramework.Extensions.Int32Extensions.HasAtLeastOneMatchingBit(System.Int32,System.Int32,System.Boolean)">
             <summary>
             Check every bit one by one to see if they are equal
             </summary>
