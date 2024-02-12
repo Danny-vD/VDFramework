@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,12 +18,12 @@ namespace VDFramework.Extensions
 		/// <param name="randomIndex">the index of the element returned</param>
 		public static TElement GetRandomElement<TElement>(this IEnumerable<TElement> collection, out int randomIndex)
 		{
-			// Transform the collection to a collection of Tuples<TElement, OriginalIndex> and then filter
+			// Convert to a List<T> to prevent multiple enumeration
 			List<TElement> list = collection.ToList();
 
 			int index = random.Next(list.Count); // Get a random index
 
-			TElement value = list[index]; // Get the tuple at that index
+			TElement value = list[index]; // Get the element at that index
 
 			randomIndex = index;
 			return value;
@@ -46,7 +47,7 @@ namespace VDFramework.Extensions
 		public static TElement GetRandomElement<TElement>(this IEnumerable<TElement> collection, out int randomIndex, params int[] ignoreIndices)
 		{
 			// Transform the collection to a collection of Tuples<TElement, OriginalIndex> and then filter
-			List<(TElement item, int i)> filteredList = collection.Select((item, i) => (item, i)).Where(x => !ignoreIndices.Contains(x.i)).ToList();
+			List<(TElement item, int i)> filteredList = collection.Select((element, index) => (element, index)).Where(tuple => !ignoreIndices.Contains(tuple.index)).ToList();
 
 			if (filteredList.Count == 0)
 			{
@@ -55,7 +56,7 @@ namespace VDFramework.Extensions
 			}
 
 			int index = random.Next(filteredList.Count); // Get a random index
-
+			
 			(TElement element, int originalIndex) valueTuple = filteredList[index]; // Get the tuple at that index
 
 			randomIndex = valueTuple.originalIndex; // Get the original index from that tuple

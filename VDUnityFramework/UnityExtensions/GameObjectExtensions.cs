@@ -17,7 +17,7 @@ namespace VDFramework.UnityExtensions
 		}
 
 		/// <summary>
-		/// Ensures that the specified <see cref="TComponent"/> is on this <see cref="GameObject"/> by creating it if it does not exists
+		/// Ensures that the specified <see cref="Component"/> is on this <see cref="GameObject"/> by creating it if it does not exists
 		/// </summary>
 		public static TComponent EnsureComponent<TComponent>(this GameObject gameObject)
 			where TComponent : Component
@@ -28,12 +28,52 @@ namespace VDFramework.UnityExtensions
 		}
 
 		/// <summary>
-		/// Ensures that the specified <see cref="TComponent"/> is on this <see cref="GameObject"/> by creating it if it does not exists
+		/// Ensures that the specified <see cref="Component"/> is on this <see cref="GameObject"/> by creating it if it does not exists
 		/// </summary>
-		public static TComponent EnsureComponent<TComponent>(this Component monoBehaviour)
+		public static TComponent EnsureComponent<TComponent>(this Component myComponent)
 			where TComponent : Component
 		{
-			return monoBehaviour.gameObject.EnsureComponent<TComponent>();
+			return myComponent.gameObject.EnsureComponent<TComponent>();
+		}
+		
+		/// <summary>
+		/// Attempts to get the specified <see cref="Component"/> in one of the children and returns whether one was found
+		/// </summary>
+		public static bool TryGetComponentInChildren<TComponent>(this GameObject gameObject, out TComponent component, bool includeInactive = false)
+			where TComponent : Component
+		{
+			component = gameObject.GetComponentInChildren<TComponent>(includeInactive);
+
+			return !ReferenceEquals(component, null);
+		}
+		
+		/// <summary>
+		/// Attempts to get the specified <see cref="Component"/> in one of the children and returns whether one was found
+		/// </summary>
+		public static bool TryGetComponentInChildren<TComponent>(this Component myComponent, out TComponent component, bool includeInactive = false)
+			where TComponent : Component
+		{
+			return myComponent.gameObject.TryGetComponentInChildren(out component, includeInactive);
+		}
+		
+		/// <summary>
+		/// Attempts to get the specified <see cref="Component"/> in one of the parents and returns whether one was found
+		/// </summary>
+		public static bool TryGetComponentInParent<TComponent>(this GameObject gameObject, out TComponent component, bool includeInactive = false)
+			where TComponent : Component
+		{
+			component = gameObject.GetComponentInParent<TComponent>(includeInactive);
+
+			return !ReferenceEquals(component, null);
+		}
+		
+		/// <summary>
+		/// Attempts to get the specified <see cref="Component"/> in one of the parents and returns whether one was found
+		/// </summary>
+		public static bool TryGetComponentInParent<TComponent>(this Component myComponent, out TComponent component, bool includeInactive = false)
+			where TComponent : Component
+		{
+			return myComponent.gameObject.TryGetComponentInParent(out component, includeInactive);
 		}
 	}
 }
