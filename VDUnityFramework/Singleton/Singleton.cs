@@ -16,6 +16,9 @@ namespace VDFramework.Singleton
 
 		private static volatile TSingleton instance;
 
+		/// <summary>
+		/// Returns an instance of this Singleton or initializes it if it does not exist yet (lazy-initialization)
+		/// </summary>
 		public static TSingleton Instance
 		{
 			get

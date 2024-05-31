@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -14,7 +15,6 @@ namespace VDFramework.Extensions
 		/// </summary>
 		public static string InsertSpaceBeforeCapitals(this string text)
 		{
-			string capitals = text.ToUpper();
 			string copyText = text;
 
 			if (text.CountIsZeroOrOne())
@@ -22,9 +22,9 @@ namespace VDFramework.Extensions
 				return copyText;
 			}
 
-			for (int i = text.Length - 1; i >= 1; i--)
+			for (int i = text.Length - 1; i >= 1; --i)
 			{
-				if (text[i] == capitals[i])
+				if (char.IsUpper(text[i]))
 				{
 					copyText = copyText.Insert(i, " ");
 				}
@@ -164,6 +164,35 @@ namespace VDFramework.Extensions
 		public static int CharCount(this string input, char character)
 		{
 			return input.Count(c => c == character);
+		}
+		
+		/// <summary>
+		/// Get a count of how many times a specific string appears within the string
+		/// </summary>
+		public static int StringCount(this string input, string tofind, StringComparison stringComparison = StringComparison.Ordinal)
+		{
+			if (input.Length == 0 || tofind == null || tofind.Length == 0)
+			{
+				return 0;
+			}
+			
+			int index = input.IndexOf(tofind, stringComparison);
+			int count = 0;
+
+			while (index != -1)
+			{
+				++count;
+				index += tofind.Length;
+
+				if (index == input.Length)
+				{
+					break;
+				}
+				
+				index = input.IndexOf(tofind, index, stringComparison);
+			}
+
+			return count;
 		}
 	}
 }
