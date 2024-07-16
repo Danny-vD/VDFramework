@@ -141,9 +141,9 @@ namespace VDFramework.Extensions
 			int depth = 0; // Used to keep track of nested pairs
 
 			int endIndex = -1;
-			int searchIndex = beginIndex + 1;
+			int searchIndex = beginIndex + a.Length;
 
-			while (searchIndex < input.Length) // [ [ [ xxx ] yyy ] ]
+			while (searchIndex < input.Length)
 			{
 				int pairEndIndex = input.IndexOf(b, searchIndex, StringComparison.InvariantCulture);
 
@@ -159,29 +159,29 @@ namespace VDFramework.Extensions
 				{
 					++depth;
 
-					searchIndex = pairStartIndex + 1;
+					searchIndex = pairStartIndex + a.Length;
 				}
 				else // No As before B
 				{
-					--depth;
-
 					if (depth == 0)
 					{
 						endIndex = pairEndIndex;
 						break;
 					}
+					
+					--depth;
 
-					searchIndex = pairEndIndex + 1;
+					searchIndex = pairEndIndex + b.Length;
 				}
 			}
 
 			if (includeAandB)
 			{
-				endIndex += 1; // Make sure the length calculation is 1 longer so it includes the last character
+				endIndex += b.Length; // Make sure the length calculation is 1 longer so it includes the last character
 			}
 			else
 			{
-				beginIndex += 1; // Make sure the length calculation is 1 shorter so it excludes the first character
+				beginIndex += a.Length; // Make sure the length calculation is 1 shorter so it excludes the first character
 			}
 
 			int length = endIndex - beginIndex;
