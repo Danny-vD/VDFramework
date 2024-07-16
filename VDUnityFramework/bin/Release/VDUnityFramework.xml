@@ -4,6 +4,55 @@
         <name>VDUnityFramework</name>
     </assembly>
     <members>
+        <member name="T:VDFramework.AssetBundles.AssetBundleUtil">
+            <summary>
+            Utility class that helps with the loading and unloading of <see cref="T:UnityEngine.AssetBundle"/>s and the assets therein
+            </summary>
+        </member>
+        <member name="M:VDFramework.AssetBundles.AssetBundleUtil.TryLoadAsset``1(System.String,System.String,``0@)">
+            <summary>
+            <para>Attempts to load the asset with the given name in the given bundle</para>
+            <para>It will load the bundle fisrt if it was not already loaded</para>
+            </summary>
+            <param name="bundleName">The name of the bundle to load the asset from</param>
+            <param name="assetPath">The relative path of the asset within the bundle</param>
+            <param name="asset">The asset that was loaded</param>
+            <typeparam name="TAssetType">The type of the asset to load</typeparam>
+            <returns>Whether the asset succesfully loaded</returns>
+        </member>
+        <member name="M:VDFramework.AssetBundles.AssetBundleUtil.TryLoadAllAssets``1(System.String,``0[]@)">
+            <summary>
+            <para>Attempts to load all assets of a given type in the given bundle</para>
+            <para>It will load the bundle first if it was not already loaded</para>
+            </summary>
+            <param name="bundleName">The name of the bundle to load the assets from</param>
+            <param name="assets">An array of assets that were loaded</param>
+            <typeparam name="TAssetType">The type of the assets to load</typeparam>
+            <returns>Whether at least 1 asset succesfully loaded</returns>
+        </member>
+        <member name="M:VDFramework.AssetBundles.AssetBundleUtil.TryLoadAssetBundle(System.String,UnityEngine.AssetBundle@)">
+            <summary>
+            Attempts to load the <see cref="T:UnityEngine.AssetBundle"/>
+            </summary>
+            <param name="bundleName">The name of the bundle to load</param>
+            <param name="assetBundle">The <see cref="T:UnityEngine.AssetBundle"/> that was loaded</param>
+            <returns>Whether the bundle succesfully loaded</returns>
+        </member>
+        <member name="M:VDFramework.AssetBundles.AssetBundleUtil.TryUnloadAssetBundle(System.String,System.Boolean)">
+            <summary>
+            <para>Attempts to unload the <see cref="T:UnityEngine.AssetBundle"/></para>
+            <para>This will fail if the bundle was not loaded</para>
+            </summary>
+            <param name="bundleName">The name of the bundle to unload</param>
+            <param name="unloadAllLoadedObjects">Should the already loaded assets from this bundle also be unloaded?</param>
+            <returns>Whether the bundle succesfully unloaded</returns>
+        </member>
+        <member name="M:VDFramework.AssetBundles.AssetBundleUtil.UnloadAllAssetBundles(System.Boolean)">
+            <summary>
+            Unloads all loaded <see cref="T:UnityEngine.AssetBundle"/>s
+            </summary>
+            <param name="unloadAllLoadedObjects">Should the already loaded assets from this bundle also be unloaded?</param>
+        </member>
         <member name="T:VDFramework.BetterMonoBehaviour">
              <summary>
             <para>An 'improved' <see cref="T:UnityEngine.MonoBehaviour"/> which caches often used properties</para>
@@ -64,6 +113,11 @@
             A abstract generic implementation of the singleton pattern
             </summary>
             <typeparam name="TSingleton">The type to create a singleton of</typeparam>
+        </member>
+        <member name="P:VDFramework.Singleton.Singleton`1.Instance">
+            <summary>
+            Returns an instance of this Singleton or initializes it if it does not exist yet (lazy-initialization)
+            </summary>
         </member>
         <member name="M:VDFramework.Singleton.Singleton`1.DestroyInstance">
             <summary>
@@ -3501,14 +3555,51 @@
             <param name="countAs1Char">A collection of substrings that will only count as 1 char for the purposes of returning the desired length</param>
             <param name="string">The string whose length to enforce</param>
         </member>
-        <member name="M:VDFramework.Extensions.StringExtensions.GetCharsBetweenAandB(System.String,System.Char,System.Char,System.Int32)">
+        <member name="M:VDFramework.Extensions.StringExtensions.GetStringBetweenAandB(System.String,System.String,System.String,System.Int32,System.Boolean)">
             <summary>
-            Get all characters between two characters including the two characters (will not return correctly if another pair is nested within a pair)
+            Get the string between two given strings, optionally including the two strings
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.StringExtensions.GetStringBetweenAandB(System.String,System.Char,System.Char,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Get all characters between two characters, optionally including the two characters
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.StringExtensions.GetStringsBetweenAandB(System.String,System.Char,System.Char,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Get the strings between all pairs of two characters, optionally including the two characters
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.StringExtensions.GetStringsBetweenAandB(System.String,System.String,System.String,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Get the strings between all pairs of two strings, optionally including the two strings
             </summary>
         </member>
         <member name="M:VDFramework.Extensions.StringExtensions.CharCount(System.String,System.Char)">
             <summary>
             Get a count of how many times a specific character appears within the string
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.StringExtensions.StringCount(System.String,System.String,System.StringComparison)">
+            <summary>
+            Get a count of how many times a specific string appears within the string
+            </summary>
+        </member>
+        <member name="T:VDFramework.Interfaces.IKeyValuePair`2">
+            <summary>
+            Represents a Key-value pair with a public getter and setter for the Key and Value
+            </summary>
+            <typeparam name="TKey">The type of the key</typeparam>
+            <typeparam name="TValue">The type of the value</typeparam>
+        </member>
+        <member name="P:VDFramework.Interfaces.IKeyValuePair`2.Key">
+            <summary>
+            The key of this Key-value pair
+            </summary>
+        </member>
+        <member name="P:VDFramework.Interfaces.IKeyValuePair`2.Value">
+            <summary>
+            The value of this Key-value pair
             </summary>
         </member>
         <member name="T:VDFramework.IO.Parsers.BinaryParsers.Parsers.BitShiftEndianParser">

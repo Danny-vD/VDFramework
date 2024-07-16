@@ -274,14 +274,51 @@
             <param name="countAs1Char">A collection of substrings that will only count as 1 char for the purposes of returning the desired length</param>
             <param name="string">The string whose length to enforce</param>
         </member>
-        <member name="M:VDFramework.Extensions.StringExtensions.GetCharsBetweenAandB(System.String,System.Char,System.Char,System.Int32)">
+        <member name="M:VDFramework.Extensions.StringExtensions.GetStringBetweenAandB(System.String,System.String,System.String,System.Int32,System.Boolean)">
             <summary>
-            Get all characters between two characters including the two characters (will not return correctly if another pair is nested within a pair)
+            Get the string between two given strings, optionally including the two strings
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.StringExtensions.GetStringBetweenAandB(System.String,System.Char,System.Char,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Get all characters between two characters, optionally including the two characters
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.StringExtensions.GetStringsBetweenAandB(System.String,System.Char,System.Char,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Get the strings between all pairs of two characters, optionally including the two characters
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.StringExtensions.GetStringsBetweenAandB(System.String,System.String,System.String,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Get the strings between all pairs of two strings, optionally including the two strings
             </summary>
         </member>
         <member name="M:VDFramework.Extensions.StringExtensions.CharCount(System.String,System.Char)">
             <summary>
             Get a count of how many times a specific character appears within the string
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.StringExtensions.StringCount(System.String,System.String,System.StringComparison)">
+            <summary>
+            Get a count of how many times a specific string appears within the string
+            </summary>
+        </member>
+        <member name="T:VDFramework.Interfaces.IKeyValuePair`2">
+            <summary>
+            Represents a Key-value pair with a public getter and setter for the Key and Value
+            </summary>
+            <typeparam name="TKey">The type of the key</typeparam>
+            <typeparam name="TValue">The type of the value</typeparam>
+        </member>
+        <member name="P:VDFramework.Interfaces.IKeyValuePair`2.Key">
+            <summary>
+            The key of this Key-value pair
+            </summary>
+        </member>
+        <member name="P:VDFramework.Interfaces.IKeyValuePair`2.Value">
+            <summary>
+            The value of this Key-value pair
             </summary>
         </member>
         <member name="T:VDFramework.IO.Parsers.BinaryParsers.Parsers.BitShiftEndianParser">

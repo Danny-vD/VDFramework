@@ -10,6 +10,8 @@ namespace VDFramework.Extensions
 	/// </summary>
 	public static class StringExtensions
 	{
+		private const char escapeCharacter = '\\';
+
 		/// <summary>
 		/// Returns a new string where a space is inserted before each capital, skipping the first char
 		/// </summary>
@@ -32,7 +34,7 @@ namespace VDFramework.Extensions
 
 			return copyText;
 		}
-		
+
 		/// <summary>
 		/// Replaces all underscores in this string with a space
 		/// </summary>
@@ -40,7 +42,7 @@ namespace VDFramework.Extensions
 		{
 			return text.Replace('_', ' ');
 		}
-		
+
 		/// <summary>
 		/// Returns a string with specified length where certain substrings will only count as 1 char
 		/// </summary>
@@ -77,22 +79,22 @@ namespace VDFramework.Extensions
 
 			List<string> specialStrings = countAs1Char.ToList();
 			specialStrings.RemoveAll(substring => !@string.Contains(substring));
-			
+
 			StringBuilder stringBuilder = new StringBuilder(desiredLength);
 			int currentLength = 0;
 
 			int stringLength = @string.Length;
-			
+
 			for (int i = 0; i < stringLength; i++)
 			{
 				char letter = @string[i];
 
 				bool addedSpecialString = false;
-					
+
 				foreach (string specialString in specialStrings.Where(specialString => specialString[0] == letter))
 				{
 					int specialStringLength = specialString.Length;
-					
+
 					if (i + specialStringLength >= stringLength)
 					{
 						continue;
@@ -125,39 +127,188 @@ namespace VDFramework.Extensions
 		}
 
 		/// <summary>
-		/// Get all characters between two characters including the two characters (will not return correctly if another pair is nested within a pair)
+		/// Get the string between two given strings, optionally including the two strings
 		/// </summary>
-		public static string[] GetCharsBetweenAandB(this string input, char a, char b, int startIndex = 0)
+		public static string GetStringBetweenAandB(this string input, string a, string b, int startIndex = 0, bool includeAandB = true)
 		{
-			int count = input.CharCount(a);
-			List<string> betweenCollection = new List<string>(2);
+			int beginIndex = input.IndexOf(a, startIndex, StringComparison.InvariantCulture);
 
-			int indexB = startIndex; // Make sure we start at startindex [[]]_
-
-			for (int i = 0; i < count; i++)
+			if (beginIndex == -1) // No beginning found
 			{
-				int indexA = input.IndexOf(a, indexB);
+				return string.Empty;
+			}
 
-				if (indexA < startIndex || indexB == input.Length - 1)
+			int depth = 0; // Used to keep track of nested pairs
+
+			int endIndex = -1;
+			int searchIndex = beginIndex + 1;
+
+			while (searchIndex < input.Length) // [ [ [ xxx ] yyy ] ]
+			{
+				int pairEndIndex = input.IndexOf(b, searchIndex, StringComparison.InvariantCulture);
+
+				if (pairEndIndex == -1) // No valid B remaining, return empty string
 				{
+					return string.Empty;
+				}
+
+				int count = pairEndIndex - searchIndex;
+				int pairStartIndex = input.IndexOf(a, searchIndex, count, StringComparison.InvariantCulture);
+
+				if (pairStartIndex != -1 && pairStartIndex < pairEndIndex) // Another A before the B
+				{
+					++depth;
+
+					searchIndex = pairStartIndex + 1;
+				}
+				else // No As before B
+				{
+					--depth;
+
+					if (depth == 0)
+					{
+						endIndex = pairEndIndex;
+						break;
+					}
+
+					searchIndex = pairEndIndex + 1;
+				}
+			}
+
+			if (includeAandB)
+			{
+				endIndex += 1; // Make sure the length calculation is 1 longer so it includes the last character
+			}
+			else
+			{
+				beginIndex += 1; // Make sure the length calculation is 1 shorter so it excludes the first character
+			}
+
+			int length = endIndex - beginIndex;
+
+			if (length == 0) // If we cannot find the beginning, the end or if there's nothing in between, return an empty string
+			{
+				return string.Empty;
+			}
+
+			return input.Substring(beginIndex, length);
+		}
+
+		/// <summary>
+		/// Get all characters between two characters, optionally including the two characters
+		/// </summary>
+		public static string GetStringBetweenAandB(this string input, char a, char b, int startIndex = 0, bool ignoreEscaped = true, bool includeAandB = true)
+		{
+			int depth = -1; // Used to keep track of nested pairs
+
+			bool isEscaped = false;
+
+			int beginIndex = -1;
+			int endIndex = -1;
+
+			for (int i = startIndex; i < input.Length; i++)
+			{
+				char character = input[i];
+
+				if (ignoreEscaped && isEscaped)
+				{
+					isEscaped = false;
 					continue;
 				}
 
-				indexB = input.IndexOf(b, indexB + 1);
-
-				if (indexB == -1) // not found
+				if (character == a)
 				{
-					// No more B, so we can stop searching
-					break;
-				}
+					++depth;
 
-				string inBetween = input.Substring(indexA, indexB - indexA + 1);
-				betweenCollection.Add(inBetween);
+					if (depth == 0)
+					{
+						beginIndex = i;
+					}
+				}
+				else if (character == b && beginIndex != -1) // Only care about the end of a pair if we found the beginning
+				{
+					if (depth == 0)
+					{
+						endIndex = i;
+						break;
+					}
+
+					--depth;
+				}
+				else if (character == escapeCharacter)
+				{
+					isEscaped = true;
+					continue;
+				}
 			}
 
-			return betweenCollection.ToArray();
+			if (includeAandB)
+			{
+				endIndex += 1; // Make sure the length calculation is 1 longer so it includes the last character
+			}
+			else
+			{
+				beginIndex += 1; // Make sure the length calculation is 1 shorter so it excludes the first character
+			}
+
+			int length = endIndex - beginIndex;
+
+			if (length == 0 || beginIndex == -1 || endIndex == -1) // If we cannot find the beginning, the end or if there's nothing in between, return an empty string
+			{
+				return string.Empty;
+			}
+
+			return input.Substring(beginIndex, length);
 		}
-		
+
+		/// <summary>
+		/// Get the strings between all pairs of two characters, optionally including the two characters
+		/// </summary>
+		public static List<string> GetStringsBetweenAandB(this string input, char a, char b, int startIndex = 0, bool ignoreEscaped = true, bool includeAandB = true)
+		{
+			List<string> pairs = new List<string>();
+
+			int searchIndex = input.IndexOf(a, startIndex);
+
+			while (searchIndex != -1)
+			{
+				string pair = input.GetStringBetweenAandB(a, b, searchIndex, ignoreEscaped, includeAandB);
+
+				if (!pair.Equals(string.Empty))
+				{
+					pairs.Add(pair);
+				}
+
+				searchIndex = input.IndexOf(a, searchIndex + 1);
+			}
+
+			return pairs;
+		}
+
+		/// <summary>
+		/// Get the strings between all pairs of two strings, optionally including the two strings
+		/// </summary>
+		public static List<string> GetStringsBetweenAandB(this string input, string a, string b, int startIndex = 0, bool ignoreEscaped = true, bool includeAandB = true)
+		{
+			List<string> pairs = new List<string>();
+
+			int searchIndex = input.IndexOf(a, startIndex, StringComparison.InvariantCulture);
+
+			while (searchIndex != -1)
+			{
+				string pair = input.GetStringBetweenAandB(a, b, searchIndex, includeAandB);
+
+				if (!pair.Equals(string.Empty))
+				{
+					pairs.Add(pair);
+				}
+
+				searchIndex = input.IndexOf(a, searchIndex + 1, StringComparison.InvariantCulture);
+			}
+
+			return pairs;
+		}
+
 		/// <summary>
 		/// Get a count of how many times a specific character appears within the string
 		/// </summary>
@@ -165,7 +316,7 @@ namespace VDFramework.Extensions
 		{
 			return input.Count(c => c == character);
 		}
-		
+
 		/// <summary>
 		/// Get a count of how many times a specific string appears within the string
 		/// </summary>
@@ -175,7 +326,7 @@ namespace VDFramework.Extensions
 			{
 				return 0;
 			}
-			
+
 			int index = input.IndexOf(tofind, stringComparison);
 			int count = 0;
 
@@ -188,7 +339,7 @@ namespace VDFramework.Extensions
 				{
 					break;
 				}
-				
+
 				index = input.IndexOf(tofind, index, stringComparison);
 			}
 
