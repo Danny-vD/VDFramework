@@ -4,6 +4,12 @@
         <name>VDFramework</name>
     </assembly>
     <members>
+        <member name="T:VDFramework.EventSystem.EventHandler`1">
+            <summary>
+            Wrapper class for a <see cref="T:VDFramework.ObserverPattern.CallbackHandler"/> that uses a callback that takes an eventInstance as parameter
+            </summary>
+            <typeparam name="TEvent">The type of the event</typeparam>
+        </member>
         <member name="T:VDFramework.EventSystem.EventManager">
             <summary>
             The manager class for the global event system, use this class to add and remove listeners from events and to raise an event
@@ -265,35 +271,6 @@
             Replaces all underscores in this string with a space
             </summary>
         </member>
-        <member name="M:VDFramework.Extensions.StringExtensions.EnforceLength(System.String,System.Int32,System.Char,System.Collections.Generic.IReadOnlyCollection{System.String})">
-            <summary>
-            Returns a string with specified length where certain substrings will only count as 1 char
-            </summary>
-            <param name="desiredLength">The length that you want the returned string to be</param>
-            <param name="addCharToEnd">In case the string is too short, add this character to get the desired length</param>
-            <param name="countAs1Char">A collection of substrings that will only count as 1 char for the purposes of returning the desired length</param>
-            <param name="string">The string whose length to enforce</param>
-        </member>
-        <member name="M:VDFramework.Extensions.StringExtensions.GetStringBetweenAandB(System.String,System.String,System.String,System.Int32,System.Boolean)">
-            <summary>
-            Get the string between two given strings, optionally including the two strings
-            </summary>
-        </member>
-        <member name="M:VDFramework.Extensions.StringExtensions.GetStringBetweenAandB(System.String,System.Char,System.Char,System.Int32,System.Boolean,System.Boolean)">
-            <summary>
-            Get all characters between two characters, optionally including the two characters
-            </summary>
-        </member>
-        <member name="M:VDFramework.Extensions.StringExtensions.GetStringsBetweenAandB(System.String,System.Char,System.Char,System.Int32,System.Boolean,System.Boolean)">
-            <summary>
-            Get the strings between all pairs of two characters, optionally including the two characters
-            </summary>
-        </member>
-        <member name="M:VDFramework.Extensions.StringExtensions.GetStringsBetweenAandB(System.String,System.String,System.String,System.Int32,System.Boolean,System.Boolean)">
-            <summary>
-            Get the strings between all pairs of two strings, optionally including the two strings
-            </summary>
-        </member>
         <member name="M:VDFramework.Extensions.StringExtensions.CharCount(System.String,System.Char)">
             <summary>
             Get a count of how many times a specific character appears within the string
@@ -520,6 +497,1571 @@
             <summary>
             <para>Calculate an array of indices from the Loot Table</para>
             <para>The amount of duplicate values is dependent on the weight</para>
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.Constants.Priority">
+            <summary>
+            A helper class that provides constants for priorities (can be used in for example the <see cref="T:VDFramework.EventSystem.EventManager"/> and <see cref="T:VDFramework.ObserverPattern.PrioritisedAction"/>
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.CallbackHandler">
+            <summary>
+            A wrapper class for a callback with priority
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.PrioritisedAction">
+            <summary>
+            A class that mimics System.Action but allows giving a priority to the callbacks
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedAction.Callbacks">
+            <summary>
+            The callbacks associated with this delegate
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedAction.ParameterlessCallbacks">
+            <summary>
+            The callbacks associated with this delegate that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction.AddCallback(System.Action,System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction.RemoveCallback(System.Action)">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction.Invoke">
+            <summary>
+            Invoke the callbacks according to their priority
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.PrioritisedAction`1">
+            <summary>
+            A class that mimics System.Action but allows giving a priority to the callbacks
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedAction`1.Callbacks">
+            <summary>
+            The callbacks associated with this delegate
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedAction`1.ParameterlessCallbacks">
+            <summary>
+            The callbacks associated with this delegate that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`1.AddCallback(System.Action{`0},System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`1.RemoveCallback(System.Action{`0})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+            <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`1.AddCallback(System.Action,System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`1.RemoveCallback(System.Action)">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+            <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`1.Invoke(`0)">
+            <summary>
+            Invoke the callbacks according to their priority
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.PrioritisedAction`2">
+            <summary>
+            A class that mimics System.Action but allows giving a priority to the callbacks
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedAction`2.Callbacks">
+            <summary>
+            The callbacks associated with this delegate
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedAction`2.ParameterlessCallbacks">
+            <summary>
+            The callbacks associated with this delegate that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`2.AddCallback(System.Action{`0,`1},System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`2.RemoveCallback(System.Action{`0,`1})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+            <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`2.AddCallback(System.Action,System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`2.RemoveCallback(System.Action)">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+            <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`2.Invoke(`0,`1)">
+            <summary>
+            Invoke the callbacks according to their priority
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.PrioritisedAction`3">
+            <summary>
+            A class that mimics System.Action but allows giving a priority to the callbacks
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedAction`3.Callbacks">
+            <summary>
+            The callbacks associated with this delegate
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedAction`3.ParameterlessCallbacks">
+            <summary>
+            The callbacks associated with this delegate that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`3.AddCallback(System.Action{`0,`1,`2},System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`3.RemoveCallback(System.Action{`0,`1,`2})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+            <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`3.AddCallback(System.Action,System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`3.RemoveCallback(System.Action)">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+            <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`3.Invoke(`0,`1,`2)">
+            <summary>
+            Invoke the callbacks according to their priority
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.PrioritisedAction`4">
+            <summary>
+            A class that mimics System.Action but allows giving a priority to the callbacks
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedAction`4.Callbacks">
+            <summary>
+            The callbacks associated with this delegate
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedAction`4.ParameterlessCallbacks">
+            <summary>
+            The callbacks associated with this delegate that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`4.AddCallback(System.Action{`0,`1,`2,`3},System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`4.RemoveCallback(System.Action{`0,`1,`2,`3})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+            <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`4.AddCallback(System.Action,System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`4.RemoveCallback(System.Action)">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+            <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`4.Invoke(`0,`1,`2,`3)">
+            <summary>
+            Invoke the callbacks according to their priority
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.PrioritisedAction`5">
+            <summary>
+            A class that mimics System.Action but allows giving a priority to the callbacks
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedAction`5.Callbacks">
+            <summary>
+            The callbacks associated with this delegate
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedAction`5.ParameterlessCallbacks">
+            <summary>
+            The callbacks associated with this delegate that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`5.AddCallback(System.Action{`0,`1,`2,`3,`4},System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`5.RemoveCallback(System.Action{`0,`1,`2,`3,`4})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+            <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`5.AddCallback(System.Action,System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`5.RemoveCallback(System.Action)">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+            <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`5.Invoke(`0,`1,`2,`3,`4)">
+            <summary>
+            Invoke the callbacks according to their priority
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.PrioritisedAction`6">
+            <summary>
+            A class that mimics System.Action but allows giving a priority to the callbacks
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedAction`6.Callbacks">
+            <summary>
+            The callbacks associated with this delegate
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedAction`6.ParameterlessCallbacks">
+            <summary>
+            The callbacks associated with this delegate that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`6.AddCallback(System.Action{`0,`1,`2,`3,`4,`5},System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`6.RemoveCallback(System.Action{`0,`1,`2,`3,`4,`5})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+            <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`6.AddCallback(System.Action,System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`6.RemoveCallback(System.Action)">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+            <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`6.Invoke(`0,`1,`2,`3,`4,`5)">
+            <summary>
+            Invoke the callbacks according to their priority
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.PrioritisedAction`7">
+            <summary>
+            A class that mimics System.Action but allows giving a priority to the callbacks
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedAction`7.Callbacks">
+            <summary>
+            The callbacks associated with this delegate
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedAction`7.ParameterlessCallbacks">
+            <summary>
+            The callbacks associated with this delegate that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`7.AddCallback(System.Action{`0,`1,`2,`3,`4,`5,`6},System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`7.RemoveCallback(System.Action{`0,`1,`2,`3,`4,`5,`6})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+            <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`7.AddCallback(System.Action,System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`7.RemoveCallback(System.Action)">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+            <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`7.Invoke(`0,`1,`2,`3,`4,`5,`6)">
+            <summary>
+            Invoke the callbacks according to their priority
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.PrioritisedAction`8">
+            <summary>
+            A class that mimics System.Action but allows giving a priority to the callbacks
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedAction`8.Callbacks">
+            <summary>
+            The callbacks associated with this delegate
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedAction`8.ParameterlessCallbacks">
+            <summary>
+            The callbacks associated with this delegate that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`8.AddCallback(System.Action{`0,`1,`2,`3,`4,`5,`6,`7},System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`8.RemoveCallback(System.Action{`0,`1,`2,`3,`4,`5,`6,`7})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+            <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`8.AddCallback(System.Action,System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`8.RemoveCallback(System.Action)">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+            <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`8.Invoke(`0,`1,`2,`3,`4,`5,`6,`7)">
+            <summary>
+            Invoke the callbacks according to their priority
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.PrioritisedAction`9">
+            <summary>
+            A class that mimics System.Action but allows giving a priority to the callbacks
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedAction`9.Callbacks">
+            <summary>
+            The callbacks associated with this delegate
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedAction`9.ParameterlessCallbacks">
+            <summary>
+            The callbacks associated with this delegate that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`9.AddCallback(System.Action{`0,`1,`2,`3,`4,`5,`6,`7,`8},System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`9.RemoveCallback(System.Action{`0,`1,`2,`3,`4,`5,`6,`7,`8})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+            <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`9.AddCallback(System.Action,System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`9.RemoveCallback(System.Action)">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+            <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`9.Invoke(`0,`1,`2,`3,`4,`5,`6,`7,`8)">
+            <summary>
+            Invoke the callbacks according to their priority
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.PrioritisedAction`10">
+            <summary>
+            A class that mimics System.Action but allows giving a priority to the callbacks
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedAction`10.Callbacks">
+            <summary>
+            The callbacks associated with this delegate
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedAction`10.ParameterlessCallbacks">
+            <summary>
+            The callbacks associated with this delegate that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`10.AddCallback(System.Action{`0,`1,`2,`3,`4,`5,`6,`7,`8,`9},System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`10.RemoveCallback(System.Action{`0,`1,`2,`3,`4,`5,`6,`7,`8,`9})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+            <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`10.AddCallback(System.Action,System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`10.RemoveCallback(System.Action)">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+            <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`10.Invoke(`0,`1,`2,`3,`4,`5,`6,`7,`8,`9)">
+            <summary>
+            Invoke the callbacks according to their priority
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.PrioritisedAction`11">
+            <summary>
+            A class that mimics System.Action but allows giving a priority to the callbacks
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedAction`11.Callbacks">
+            <summary>
+            The callbacks associated with this delegate
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedAction`11.ParameterlessCallbacks">
+            <summary>
+            The callbacks associated with this delegate that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`11.AddCallback(System.Action{`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10},System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`11.RemoveCallback(System.Action{`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+            <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`11.AddCallback(System.Action,System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`11.RemoveCallback(System.Action)">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+            <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`11.Invoke(`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10)">
+            <summary>
+            Invoke the callbacks according to their priority
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.PrioritisedAction`12">
+            <summary>
+            A class that mimics System.Action but allows giving a priority to the callbacks
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedAction`12.Callbacks">
+            <summary>
+            The callbacks associated with this delegate
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedAction`12.ParameterlessCallbacks">
+            <summary>
+            The callbacks associated with this delegate that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`12.AddCallback(System.Action{`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11},System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`12.RemoveCallback(System.Action{`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+            <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`12.AddCallback(System.Action,System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`12.RemoveCallback(System.Action)">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+            <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`12.Invoke(`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11)">
+            <summary>
+            Invoke the callbacks according to their priority
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.PrioritisedAction`13">
+            <summary>
+            A class that mimics System.Action but allows giving a priority to the callbacks
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedAction`13.Callbacks">
+            <summary>
+            The callbacks associated with this delegate
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedAction`13.ParameterlessCallbacks">
+            <summary>
+            The callbacks associated with this delegate that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`13.AddCallback(System.Action{`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11,`12},System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`13.RemoveCallback(System.Action{`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11,`12})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+            <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`13.AddCallback(System.Action,System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`13.RemoveCallback(System.Action)">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+            <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`13.Invoke(`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11,`12)">
+            <summary>
+            Invoke the callbacks according to their priority
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.PrioritisedAction`14">
+            <summary>
+            A class that mimics System.Action but allows giving a priority to the callbacks
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedAction`14.Callbacks">
+            <summary>
+            The callbacks associated with this delegate
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedAction`14.ParameterlessCallbacks">
+            <summary>
+            The callbacks associated with this delegate that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`14.AddCallback(System.Action{`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11,`12,`13},System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`14.RemoveCallback(System.Action{`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11,`12,`13})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+            <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`14.AddCallback(System.Action,System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`14.RemoveCallback(System.Action)">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+            <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`14.Invoke(`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11,`12,`13)">
+            <summary>
+            Invoke the callbacks according to their priority
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.PrioritisedAction`15">
+            <summary>
+            A class that mimics System.Action but allows giving a priority to the callbacks
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedAction`15.Callbacks">
+            <summary>
+            The callbacks associated with this delegate
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedAction`15.ParameterlessCallbacks">
+            <summary>
+            The callbacks associated with this delegate that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`15.AddCallback(System.Action{`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11,`12,`13,`14},System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`15.RemoveCallback(System.Action{`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11,`12,`13,`14})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+            <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`15.AddCallback(System.Action,System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`15.RemoveCallback(System.Action)">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+            <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`15.Invoke(`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11,`12,`13,`14)">
+            <summary>
+            Invoke the callbacks according to their priority
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.PrioritisedAction`16">
+            <summary>
+            A class that mimics System.Action but allows giving a priority to the callbacks
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedAction`16.Callbacks">
+            <summary>
+            The callbacks associated with this delegate
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedAction`16.ParameterlessCallbacks">
+            <summary>
+            The callbacks associated with this delegate that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`16.AddCallback(System.Action{`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11,`12,`13,`14,`15},System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`16.RemoveCallback(System.Action{`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11,`12,`13,`14,`15})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+            <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`16.AddCallback(System.Action,System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`16.RemoveCallback(System.Action)">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+            <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`16.Invoke(`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11,`12,`13,`14,`15)">
+            <summary>
+            Invoke the callbacks according to their priority
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.PrioritisedFunc`1">
+            <summary>
+            A class that mimics System.Func but allows giving a priority to the callbacks
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedFunc`1.Callbacks">
+            <summary>
+            The callbacks associated with this delegate
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedFunc`1.ParameterlessCallbacks">
+            <summary>
+            The callbacks associated with this delegate that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`1.AddCallback(System.Func{`0},System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`1.RemoveCallback(System.Func{`0})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`1.Invoke">
+            <summary>
+            Invoke the callbacks according to their priority <br/>
+            Only the last result will be returned
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.PrioritisedFunc`2">
+            <summary>
+            A class that mimics System.Func but allows giving a priority to the callbacks
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedFunc`2.Callbacks">
+            <summary>
+            The callbacks associated with this delegate
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedFunc`2.ParameterlessCallbacks">
+            <summary>
+            The callbacks associated with this delegate that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`2.AddCallback(System.Func{`0,`1},System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`2.RemoveCallback(System.Func{`0,`1})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`2.AddCallback(System.Func{`1},System.Int32)">
+            <summary>
+            Add a new callback without parameters to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`2.RemoveCallback(System.Func{`1})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`2.Invoke(`0)">
+            <summary>
+            Invoke the callbacks according to their priority <br/>
+            Only the last result will be returned
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.PrioritisedFunc`3">
+            <summary>
+            A class that mimics System.Func but allows giving a priority to the callbacks
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedFunc`3.Callbacks">
+            <summary>
+            The callbacks associated with this delegate
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedFunc`3.ParameterlessCallbacks">
+            <summary>
+            The callbacks associated with this delegate that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`3.AddCallback(System.Func{`0,`1,`2},System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`3.RemoveCallback(System.Func{`0,`1,`2})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`3.AddCallback(System.Func{`2},System.Int32)">
+            <summary>
+            Add a new callback without parameters to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`3.RemoveCallback(System.Func{`2})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`3.Invoke(`0,`1)">
+            <summary>
+            Invoke the callbacks according to their priority <br/>
+            Only the last result will be returned
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.PrioritisedFunc`4">
+            <summary>
+            A class that mimics System.Func but allows giving a priority to the callbacks
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedFunc`4.Callbacks">
+            <summary>
+            The callbacks associated with this delegate
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedFunc`4.ParameterlessCallbacks">
+            <summary>
+            The callbacks associated with this delegate that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`4.AddCallback(System.Func{`0,`1,`2,`3},System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`4.RemoveCallback(System.Func{`0,`1,`2,`3})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`4.AddCallback(System.Func{`3},System.Int32)">
+            <summary>
+            Add a new callback without parameters to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`4.RemoveCallback(System.Func{`3})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`4.Invoke(`0,`1,`2)">
+            <summary>
+            Invoke the callbacks according to their priority <br/>
+            Only the last result will be returned
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.PrioritisedFunc`5">
+            <summary>
+            A class that mimics System.Func but allows giving a priority to the callbacks
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedFunc`5.Callbacks">
+            <summary>
+            The callbacks associated with this delegate
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedFunc`5.ParameterlessCallbacks">
+            <summary>
+            The callbacks associated with this delegate that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`5.AddCallback(System.Func{`0,`1,`2,`3,`4},System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`5.RemoveCallback(System.Func{`0,`1,`2,`3,`4})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`5.AddCallback(System.Func{`4},System.Int32)">
+            <summary>
+            Add a new callback without parameters to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`5.RemoveCallback(System.Func{`4})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`5.Invoke(`0,`1,`2,`3)">
+            <summary>
+            Invoke the callbacks according to their priority <br/>
+            Only the last result will be returned
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.PrioritisedFunc`6">
+            <summary>
+            A class that mimics System.Func but allows giving a priority to the callbacks
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedFunc`6.Callbacks">
+            <summary>
+            The callbacks associated with this delegate
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedFunc`6.ParameterlessCallbacks">
+            <summary>
+            The callbacks associated with this delegate that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`6.AddCallback(System.Func{`0,`1,`2,`3,`4,`5},System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`6.RemoveCallback(System.Func{`0,`1,`2,`3,`4,`5})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`6.AddCallback(System.Func{`5},System.Int32)">
+            <summary>
+            Add a new callback without parameters to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`6.RemoveCallback(System.Func{`5})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`6.Invoke(`0,`1,`2,`3,`4)">
+            <summary>
+            Invoke the callbacks according to their priority <br/>
+            Only the last result will be returned
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.PrioritisedFunc`7">
+            <summary>
+            A class that mimics System.Func but allows giving a priority to the callbacks
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedFunc`7.Callbacks">
+            <summary>
+            The callbacks associated with this delegate
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedFunc`7.ParameterlessCallbacks">
+            <summary>
+            The callbacks associated with this delegate that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`7.AddCallback(System.Func{`0,`1,`2,`3,`4,`5,`6},System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`7.RemoveCallback(System.Func{`0,`1,`2,`3,`4,`5,`6})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`7.AddCallback(System.Func{`6},System.Int32)">
+            <summary>
+            Add a new callback without parameters to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`7.RemoveCallback(System.Func{`6})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`7.Invoke(`0,`1,`2,`3,`4,`5)">
+            <summary>
+            Invoke the callbacks according to their priority <br/>
+            Only the last result will be returned
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.PrioritisedFunc`8">
+            <summary>
+            A class that mimics System.Func but allows giving a priority to the callbacks
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedFunc`8.Callbacks">
+            <summary>
+            The callbacks associated with this delegate
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedFunc`8.ParameterlessCallbacks">
+            <summary>
+            The callbacks associated with this delegate that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`8.AddCallback(System.Func{`0,`1,`2,`3,`4,`5,`6,`7},System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`8.RemoveCallback(System.Func{`0,`1,`2,`3,`4,`5,`6,`7})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`8.AddCallback(System.Func{`7},System.Int32)">
+            <summary>
+            Add a new callback without parameters to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`8.RemoveCallback(System.Func{`7})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`8.Invoke(`0,`1,`2,`3,`4,`5,`6)">
+            <summary>
+            Invoke the callbacks according to their priority <br/>
+            Only the last result will be returned
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.PrioritisedFunc`9">
+            <summary>
+            A class that mimics System.Func but allows giving a priority to the callbacks
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedFunc`9.Callbacks">
+            <summary>
+            The callbacks associated with this delegate
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedFunc`9.ParameterlessCallbacks">
+            <summary>
+            The callbacks associated with this delegate that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`9.AddCallback(System.Func{`0,`1,`2,`3,`4,`5,`6,`7,`8},System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`9.RemoveCallback(System.Func{`0,`1,`2,`3,`4,`5,`6,`7,`8})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`9.AddCallback(System.Func{`8},System.Int32)">
+            <summary>
+            Add a new callback without parameters to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`9.RemoveCallback(System.Func{`8})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`9.Invoke(`0,`1,`2,`3,`4,`5,`6,`7)">
+            <summary>
+            Invoke the callbacks according to their priority <br/>
+            Only the last result will be returned
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.PrioritisedFunc`10">
+            <summary>
+            A class that mimics System.Func but allows giving a priority to the callbacks
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedFunc`10.Callbacks">
+            <summary>
+            The callbacks associated with this delegate
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedFunc`10.ParameterlessCallbacks">
+            <summary>
+            The callbacks associated with this delegate that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`10.AddCallback(System.Func{`0,`1,`2,`3,`4,`5,`6,`7,`8,`9},System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`10.RemoveCallback(System.Func{`0,`1,`2,`3,`4,`5,`6,`7,`8,`9})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`10.AddCallback(System.Func{`9},System.Int32)">
+            <summary>
+            Add a new callback without parameters to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`10.RemoveCallback(System.Func{`9})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`10.Invoke(`0,`1,`2,`3,`4,`5,`6,`7,`8)">
+            <summary>
+            Invoke the callbacks according to their priority <br/>
+            Only the last result will be returned
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.PrioritisedFunc`11">
+            <summary>
+            A class that mimics System.Func but allows giving a priority to the callbacks
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedFunc`11.Callbacks">
+            <summary>
+            The callbacks associated with this delegate
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedFunc`11.ParameterlessCallbacks">
+            <summary>
+            The callbacks associated with this delegate that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`11.AddCallback(System.Func{`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10},System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`11.RemoveCallback(System.Func{`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`11.AddCallback(System.Func{`10},System.Int32)">
+            <summary>
+            Add a new callback without parameters to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`11.RemoveCallback(System.Func{`10})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`11.Invoke(`0,`1,`2,`3,`4,`5,`6,`7,`8,`9)">
+            <summary>
+            Invoke the callbacks according to their priority <br/>
+            Only the last result will be returned
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.PrioritisedFunc`12">
+            <summary>
+            A class that mimics System.Func but allows giving a priority to the callbacks
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedFunc`12.Callbacks">
+            <summary>
+            The callbacks associated with this delegate
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedFunc`12.ParameterlessCallbacks">
+            <summary>
+            The callbacks associated with this delegate that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`12.AddCallback(System.Func{`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11},System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`12.RemoveCallback(System.Func{`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`12.AddCallback(System.Func{`11},System.Int32)">
+            <summary>
+            Add a new callback without parameters to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`12.RemoveCallback(System.Func{`11})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`12.Invoke(`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10)">
+            <summary>
+            Invoke the callbacks according to their priority <br/>
+            Only the last result will be returned
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.PrioritisedFunc`13">
+            <summary>
+            A class that mimics System.Func but allows giving a priority to the callbacks
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedFunc`13.Callbacks">
+            <summary>
+            The callbacks associated with this delegate
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedFunc`13.ParameterlessCallbacks">
+            <summary>
+            The callbacks associated with this delegate that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`13.AddCallback(System.Func{`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11,`12},System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`13.RemoveCallback(System.Func{`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11,`12})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`13.AddCallback(System.Func{`12},System.Int32)">
+            <summary>
+            Add a new callback without parameters to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`13.RemoveCallback(System.Func{`12})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`13.Invoke(`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11)">
+            <summary>
+            Invoke the callbacks according to their priority <br/>
+            Only the last result will be returned
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.PrioritisedFunc`14">
+            <summary>
+            A class that mimics System.Func but allows giving a priority to the callbacks
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedFunc`14.Callbacks">
+            <summary>
+            The callbacks associated with this delegate
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedFunc`14.ParameterlessCallbacks">
+            <summary>
+            The callbacks associated with this delegate that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`14.AddCallback(System.Func{`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11,`12,`13},System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`14.RemoveCallback(System.Func{`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11,`12,`13})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`14.AddCallback(System.Func{`13},System.Int32)">
+            <summary>
+            Add a new callback without parameters to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`14.RemoveCallback(System.Func{`13})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`14.Invoke(`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11,`12)">
+            <summary>
+            Invoke the callbacks according to their priority <br/>
+            Only the last result will be returned
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.PrioritisedFunc`15">
+            <summary>
+            A class that mimics System.Func but allows giving a priority to the callbacks
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedFunc`15.Callbacks">
+            <summary>
+            The callbacks associated with this delegate
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedFunc`15.ParameterlessCallbacks">
+            <summary>
+            The callbacks associated with this delegate that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`15.AddCallback(System.Func{`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11,`12,`13,`14},System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`15.RemoveCallback(System.Func{`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11,`12,`13,`14})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`15.AddCallback(System.Func{`14},System.Int32)">
+            <summary>
+            Add a new callback without parameters to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`15.RemoveCallback(System.Func{`14})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`15.Invoke(`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11,`12,`13)">
+            <summary>
+            Invoke the callbacks according to their priority <br/>
+            Only the last result will be returned
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.PrioritisedFunc`16">
+            <summary>
+            A class that mimics System.Func but allows giving a priority to the callbacks
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedFunc`16.Callbacks">
+            <summary>
+            The callbacks associated with this delegate
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedFunc`16.ParameterlessCallbacks">
+            <summary>
+            The callbacks associated with this delegate that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`16.AddCallback(System.Func{`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11,`12,`13,`14,`15},System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`16.RemoveCallback(System.Func{`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11,`12,`13,`14,`15})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`16.AddCallback(System.Func{`15},System.Int32)">
+            <summary>
+            Add a new callback without parameters to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`16.RemoveCallback(System.Func{`15})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`16.Invoke(`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11,`12,`13,`14)">
+            <summary>
+            Invoke the callbacks according to their priority <br/>
+            Only the last result will be returned
+            </summary>
+        </member>
+        <member name="T:VDFramework.ObserverPattern.PrioritisedFunc`17">
+            <summary>
+            A class that mimics System.Func but allows giving a priority to the callbacks
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedFunc`17.Callbacks">
+            <summary>
+            The callbacks associated with this delegate
+            </summary>
+        </member>
+        <member name="E:VDFramework.ObserverPattern.PrioritisedFunc`17.ParameterlessCallbacks">
+            <summary>
+            The callbacks associated with this delegate that have no parameters
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`17.AddCallback(System.Func{`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11,`12,`13,`14,`15,`16},System.Int32)">
+            <summary>
+            Add a new callback to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`17.RemoveCallback(System.Func{`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11,`12,`13,`14,`15,`16})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`17.AddCallback(System.Func{`16},System.Int32)">
+            <summary>
+            Add a new callback without parameters to this delegate
+            </summary>
+            <param name="callback">The callback to add</param>
+            <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`17.RemoveCallback(System.Func{`16})">
+            <summary>
+            Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`17.Invoke(`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11,`12,`13,`14,`15)">
+            <summary>
+            Invoke the callbacks according to their priority <br/>
+            Only the last result will be returned
+            </summary>
+        </member>
+        <member name="T:VDFramework.Utility.DataTypes.StringUtil">
+            <summary>
+            Contains utility functions for the built-in <see cref="T:System.String"/> type
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.StringUtil.EnforceLength(System.String,System.Int32,System.Char,System.Collections.Generic.IReadOnlyCollection{System.String})">
+            <summary>
+            Returns a string with specified length where certain substrings will only count as 1 char
+            </summary>
+            <param name="desiredLength">The length that you want the returned string to be</param>
+            <param name="addCharToEnd">In case the string is too short, add character to get the desired length</param>
+            <param name="countAs1Char">A collection of substrings that will only count as 1 char for the purposes of returning the desired length</param>
+            <param name="string">The string whose length to enforce</param>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.StringUtil.GetStringBetweenAandB(System.String,System.String,System.String,System.Int32,System.Boolean)">
+            <summary>
+            Get the string between two given strings, optionally including the two strings
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.StringUtil.GetStringBetweenAandB(System.String,System.Char,System.Char,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Get all characters between two characters, optionally including the two characters
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.StringUtil.GetStringsBetweenAandB(System.String,System.Char,System.Char,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Get the strings between all pairs of two characters, optionally including the two characters
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.StringUtil.GetStringsBetweenAandB(System.String,System.String,System.String,System.Int32,System.Boolean)">
+            <summary>
+            Get the strings between all pairs of two strings, optionally including the two strings
             </summary>
         </member>
         <member name="M:VDFramework.Utility.EnumDictionaryUtil.PopulateEnumDictionary``3(System.Collections.Generic.List{``0})">

@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using VDFramework.ObserverPattern;
+using VDFramework.ObserverPattern.Constants;
 
 namespace VDFramework.EventSystem
 {
@@ -14,7 +16,7 @@ namespace VDFramework.EventSystem
 	public static class EventManager
 	{
 		// A dictionary of EventHandlers per Event Type
-		private static readonly Dictionary<Type, List<EventHandler>> eventHandlersPerEventType = new Dictionary<Type, List<EventHandler>>();
+		private static readonly Dictionary<Type, List<CallbackHandler>> eventHandlersPerEventType = new Dictionary<Type, List<CallbackHandler>>();
 
 		// Used by the non-generic RaiseEvent(Type) function to construct a RaiseEvent<T> where T is the type of the given event
 		private static readonly MethodInfo genericRaiseEventMethodInfo = typeof(EventManager).GetMethod(nameof(RaiseEvent), BindingFlags.Static);
@@ -23,7 +25,7 @@ namespace VDFramework.EventSystem
 		/////////////////////////////////////RaiseEvent/////////////////////////////////////
 		public static void RaiseEvent<TEvent>(TEvent eventToRaise) where TEvent : VDEvent
 		{
-			List<EventHandler> handlers = GetEventHandlers<TEvent>();
+			List<CallbackHandler> handlers = GetEventHandlers<TEvent>();
 
 			if (handlers.Count == 0 || eventToRaise.Consumed)
 			{
@@ -31,7 +33,7 @@ namespace VDFramework.EventSystem
 			}
 
 			// Copy so that we can add and remove from the original list without editing the list we loop through
-			foreach (EventHandler handler in new List<EventHandler>(handlers).Where(handler => handler != null))
+			foreach (CallbackHandler handler in new List<CallbackHandler>(handlers).Where(handler => handler != null))
 			{
 				if (eventToRaise.Consumed)
 				{
@@ -43,7 +45,7 @@ namespace VDFramework.EventSystem
 					case EventHandler<TEvent> eventHandler:
 						eventHandler.Invoke(eventToRaise);
 						break;
-					case ParameterlessEventHandler parameterlessEventHandler:
+					case ParameterlessCallbackHandler parameterlessEventHandler:
 						parameterlessEventHandler.Invoke();
 						break;
 				}
@@ -71,21 +73,23 @@ namespace VDFramework.EventSystem
 		}
 
 		/////////////////////////////////////AddListener/////////////////////////////////////
-		public static void AddListener<TEvent>(Action<TEvent> listener, int priorityOrder = 0) where TEvent : VDEvent
+		public static void AddListener<TEvent>(Action<TEvent> listener, int priorityOrder = Priority.Default) where TEvent : VDEvent
 		{
-			EventHandler handler = new EventHandler<TEvent>(listener, priorityOrder);
+			CallbackHandler handler = new EventHandler<TEvent>(listener, priorityOrder);
 
 			AddListenerInternal<TEvent>(handler);
 		}
 
-		public static void AddListener<TEvent>(Action listener, int priorityOrder = 0) where TEvent : VDEvent
+		public static void AddListener<TEvent>(Action listener, int priorityOrder = Priority.Default) where TEvent : VDEvent
 		{
-			AddListener(typeof(TEvent), listener, priorityOrder);
+			CallbackHandler handler = new ParameterlessCallbackHandler(listener, priorityOrder);
+			
+			AddListenerInternal<TEvent>(handler);
 		}
 
-		public static void AddListener(Type eventType, Action listener, int priorityOrder = 0)
+		public static void AddListener(Type eventType, Action listener, int priorityOrder = Priority.Default)
 		{
-			EventHandler handler = new ParameterlessEventHandler(listener, priorityOrder);
+			CallbackHandler handler = new ParameterlessCallbackHandler(listener, priorityOrder);
 			AddListenerInternal(eventType, handler);
 		}
 
@@ -121,19 +125,19 @@ namespace VDFramework.EventSystem
 		}
 
 		/////////////////////////////////////AddListenerInternal/////////////////////////////////////
-		private static void AddListenerInternal<TEvent>(EventHandler handler)
+		private static void AddListenerInternal<TEvent>(CallbackHandler handler)
 		{
 			AddListenerInternal(typeof(TEvent), handler);
 		}
 
-		private static void AddListenerInternal(Type eventType, EventHandler handler)
+		private static void AddListenerInternal(Type eventType, CallbackHandler handler)
 		{
 			if (!eventHandlersPerEventType.ContainsKey(eventType))
 			{
-				eventHandlersPerEventType.Add(eventType, new List<EventHandler>());
+				eventHandlersPerEventType.Add(eventType, new List<CallbackHandler>());
 			}
 
-			List<EventHandler> eventHandlers = eventHandlersPerEventType[eventType];
+			List<CallbackHandler> eventHandlers = eventHandlersPerEventType[eventType];
 			eventHandlers.Add(handler);
 
 			eventHandlers.Sort();
@@ -147,21 +151,21 @@ namespace VDFramework.EventSystem
 
 		private static void RemoveListenerInternal(Type eventType, Delegate listener)
 		{
-			List<EventHandler> eventHandlers = GetEventHandlers(eventType);
+			List<CallbackHandler> eventHandlers = GetEventHandlers(eventType);
 
 			if (eventHandlers.Count == 0)
 			{
 				return;
 			}
 
-			EventHandler handler = eventHandlers.FirstOrDefault(handlerInList => handlerInList == listener);
+			CallbackHandler handler = eventHandlers.FirstOrDefault(handlerInList => handlerInList == listener);
 
 			eventHandlers.Remove(handler);
 		}
 
 		private static void RemoveAllListenersInternal(Type eventType)
 		{
-			if (!eventHandlersPerEventType.TryGetValue(eventType, out List<EventHandler> eventHandlers))
+			if (!eventHandlersPerEventType.TryGetValue(eventType, out List<CallbackHandler> eventHandlers))
 			{
 				return;
 			}
@@ -170,14 +174,14 @@ namespace VDFramework.EventSystem
 		}
 
 		/////////////////////////////////////GetEventHandlers/////////////////////////////////////
-		private static List<EventHandler> GetEventHandlers<TEvent>() where TEvent : VDEvent
+		private static List<CallbackHandler> GetEventHandlers<TEvent>() where TEvent : VDEvent
 		{
 			return GetEventHandlers(typeof(TEvent));
 		}
 
-		private static List<EventHandler> GetEventHandlers(Type eventType)
+		private static List<CallbackHandler> GetEventHandlers(Type eventType)
 		{
-			return eventHandlersPerEventType.TryGetValue(eventType, out List<EventHandler> handlers) ? handlers : new List<EventHandler>();
+			return eventHandlersPerEventType.TryGetValue(eventType, out List<CallbackHandler> handlers) ? handlers : new List<CallbackHandler>();
 		}
 	}
 }

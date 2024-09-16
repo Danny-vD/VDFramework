@@ -1,4 +1,5 @@
 ﻿using System;
+using VDFramework.ObserverPattern.Constants;
 
 namespace VDFramework.EventSystem
 {
@@ -30,7 +31,7 @@ namespace VDFramework.EventSystem
 		/// </summary>
 		/// <param name="handler">The function that will be invoked when this event is raised</param>
 		/// <param name="priorityOrder">Higher priority will be invoked over lower priority</param>
-		public static void AddListener(Action<TEvent> handler, int priorityOrder = 0)
+		public static void AddListener(Action<TEvent> handler, int priorityOrder = Priority.Default)
 		{
 			EventManager.AddListener(handler, priorityOrder);
 		}
@@ -40,7 +41,7 @@ namespace VDFramework.EventSystem
 		/// </summary>
 		/// <param name="handler">The function that will be invoked when this event is raised</param>
 		/// <param name="priorityOrder">Higher priority will be invoked over lower priority</param>
-		public static void AddListener(Action handler, int priorityOrder = 0)
+		public static void AddListener(Action handler, int priorityOrder = Priority.Default)
 		{
 			EventManager.AddListener<TEvent>(handler, priorityOrder);
 		}

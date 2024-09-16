@@ -26,9 +26,6 @@
       <Compile Include="..\SharedClasses\EventSystem\EventManager.cs">
         <Link>SharedClasses\EventSystem\EventManager.cs</Link>
       </Compile>
-      <Compile Include="..\SharedClasses\EventSystem\ParameterlessEventHandler.cs">
-        <Link>SharedClasses\EventSystem\ParameterlessEventHandler.cs</Link>
-      </Compile>
       <Compile Include="..\SharedClasses\EventSystem\VDEvent.cs">
         <Link>SharedClasses\EventSystem\VDEvent.cs</Link>
       </Compile>
@@ -131,6 +128,27 @@
       <Compile Include="..\SharedClasses\LootTables\WeightedLootTable.cs">
         <Link>SharedClasses\LootTables\WeightedLootTable.cs</Link>
       </Compile>
+      <Compile Include="..\SharedClasses\ObserverPattern\Constants\Priority.cs">
+        <Link>SharedClasses\ObserverPattern\Constants\Priority.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\ObserverPattern\Internal\CallbackHandler.cs">
+        <Link>SharedClasses\ObserverPattern\Internal\CallbackHandler.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\ObserverPattern\Internal\CallbackHandlers.cs">
+        <Link>SharedClasses\ObserverPattern\Internal\CallbackHandlers.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\ObserverPattern\Internal\CallbackHandlersWithReturnType.cs">
+        <Link>SharedClasses\ObserverPattern\Internal\CallbackHandlersWithReturnType.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\ObserverPattern\PrioritisedAction.cs">
+        <Link>SharedClasses\ObserverPattern\PrioritisedAction.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\ObserverPattern\PrioritisedFunc.cs">
+        <Link>SharedClasses\ObserverPattern\PrioritisedFunc.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\Utility\DataTypes\StringUtil.cs">
+        <Link>SharedClasses\Utility\DataTypes\StringUtil.cs</Link>
+      </Compile>
       <Compile Include="..\SharedClasses\Utility\EnumDictionaryUtil.cs">
         <Link>SharedClasses\Utility\EnumDictionaryUtil.cs</Link>
       </Compile>
@@ -190,21 +208,6 @@
     <ItemGroup>
       <Content Include="..\SharedClasses\Interfaces\.gitkeep">
         <Link>SharedClasses\Interfaces\.gitkeep</Link>
-      </Content>
-      <Content Include="..\SharedClasses\LootTables\Interfaces\ILoot.cs.meta">
-        <Link>SharedClasses\LootTables\Interfaces\ILoot.cs.meta</Link>
-      </Content>
-      <Content Include="..\SharedClasses\LootTables\LootTableItems\LootTableItem.cs.meta">
-        <Link>SharedClasses\LootTables\LootTableItems\LootTableItem.cs.meta</Link>
-      </Content>
-      <Content Include="..\SharedClasses\LootTables\Structs\LootTablePair.cs.meta">
-        <Link>SharedClasses\LootTables\Structs\LootTablePair.cs.meta</Link>
-      </Content>
-      <Content Include="..\SharedClasses\LootTables\Structs\PercentageLootTablePair.cs.meta">
-        <Link>SharedClasses\LootTables\Structs\PercentageLootTablePair.cs.meta</Link>
-      </Content>
-      <Content Include="..\SharedClasses\LootTables\Variations\PercentageLootTable.cs.meta">
-        <Link>SharedClasses\LootTables\Variations\PercentageLootTable.cs.meta</Link>
       </Content>
       <Content Include="..\SharedClasses\Utility\.gitkeep">
         <Link>SharedClasses\Utility\.gitkeep</Link>
