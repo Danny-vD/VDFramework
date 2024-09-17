@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace VDFramework.Extensions
 {
@@ -80,6 +81,33 @@ namespace VDFramework.Extensions
 			}
 
 			return list;
+		}
+
+		/// <summary>
+		/// Insert the item in a location so that the list remains sorted (insertionSort) <br/>
+		/// The comparisions are made using the <see cref="IComparable{T}.CompareTo"/> function
+		/// </summary>
+		/// <param name="list">The list to insert the item in</param>
+		/// <param name="itemToAdd">The item to insert into the list</param>
+		/// <param name="addToEndOfEquals">If true, the item will be inserted after all other items that are equal. Otherwise at the beginning</param>
+		/// <typeparam name="TItem">The type of elements in the list</typeparam>
+		public static void AddSorted<TItem>(this List<TItem> list, TItem itemToAdd, bool addToEndOfEquals = true) where TItem : IComparable<TItem>
+		{
+			for (int i = 0; i < list.Count; i++)
+			{
+				TItem currentItem = list[i];
+
+				int compareResult = currentItem.CompareTo(itemToAdd);
+
+				// If the current item is bigger than the item we should add, or if we want to add it to the beginning of the group of equals and the current item is an equal: add the item
+				if (compareResult > 0 || !addToEndOfEquals && compareResult == 0)
+				{
+					list.Insert(i, itemToAdd);
+					return;
+				}
+			}
+			
+			list.Add(itemToAdd);
 		}
 	}
 }

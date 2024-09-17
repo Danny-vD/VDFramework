@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using VDFramework.Extensions;
 using VDFramework.ObserverPattern;
 using VDFramework.ObserverPattern.Constants;
 
@@ -73,21 +74,21 @@ namespace VDFramework.EventSystem
 		}
 
 		/////////////////////////////////////AddListener/////////////////////////////////////
-		public static void AddListener<TEvent>(Action<TEvent> listener, int priorityOrder = Priority.Default) where TEvent : VDEvent
+		public static void AddListener<TEvent>(Action<TEvent> listener, int priorityOrder = Priority.DEFAULT) where TEvent : VDEvent
 		{
 			CallbackHandler handler = new EventHandler<TEvent>(listener, priorityOrder);
 
 			AddListenerInternal<TEvent>(handler);
 		}
 
-		public static void AddListener<TEvent>(Action listener, int priorityOrder = Priority.Default) where TEvent : VDEvent
+		public static void AddListener<TEvent>(Action listener, int priorityOrder = Priority.DEFAULT) where TEvent : VDEvent
 		{
 			CallbackHandler handler = new ParameterlessCallbackHandler(listener, priorityOrder);
 			
 			AddListenerInternal<TEvent>(handler);
 		}
 
-		public static void AddListener(Type eventType, Action listener, int priorityOrder = Priority.Default)
+		public static void AddListener(Type eventType, Action listener, int priorityOrder = Priority.DEFAULT)
 		{
 			CallbackHandler handler = new ParameterlessCallbackHandler(listener, priorityOrder);
 			AddListenerInternal(eventType, handler);
@@ -138,9 +139,7 @@ namespace VDFramework.EventSystem
 			}
 
 			List<CallbackHandler> eventHandlers = eventHandlersPerEventType[eventType];
-			eventHandlers.Add(handler);
-
-			eventHandlers.Sort();
+			eventHandlers.AddSorted(handler);
 		}
 
 		/////////////////////////////////////RemoveListenerInternal/////////////////////////////////////

@@ -200,6 +200,16 @@
             <typeparam name="TItem">The type of elements in the list</typeparam>
             <returns>the same list to support chaining methods</returns>
         </member>
+        <member name="M:VDFramework.Extensions.ListExtensions.AddSorted``1(System.Collections.Generic.List{``0},``0,System.Boolean)">
+            <summary>
+            Insert the item in a location so that the list remains sorted (insertionSort) <br/>
+            The comparisions are made using the <see cref="M:System.IComparable`1.CompareTo(`0)"/> function
+            </summary>
+            <param name="list">The list to insert the item in</param>
+            <param name="itemToAdd">The item to insert into the list</param>
+            <param name="addToEndOfEquals">If true, the item will be inserted after all other items that are equal. Otherwise at the beginning</param>
+            <typeparam name="TItem">The type of elements in the list</typeparam>
+        </member>
         <member name="T:VDFramework.Extensions.ObjectExtensions">
             <summary>
             Contains extension methods for System.<see cref="T:System.Object"/>
@@ -502,6 +512,36 @@
         <member name="T:VDFramework.ObserverPattern.Constants.Priority">
             <summary>
             A helper class that provides constants for priorities (can be used in for example the <see cref="T:VDFramework.EventSystem.EventManager"/> and <see cref="T:VDFramework.ObserverPattern.PrioritisedAction"/>
+            </summary>
+        </member>
+        <member name="F:VDFramework.ObserverPattern.Constants.Priority.HIGHEST">
+            <summary>
+            The highest possible priority, should always be first
+            </summary>
+        </member>
+        <member name="F:VDFramework.ObserverPattern.Constants.Priority.HIGH">
+            <summary>
+            A higher than default priority
+            </summary>
+        </member>
+        <member name="F:VDFramework.ObserverPattern.Constants.Priority.DEFAULT">
+            <summary>
+            The default priority
+            </summary>
+        </member>
+        <member name="F:VDFramework.ObserverPattern.Constants.Priority.LOW">
+            <summary>
+            A lower than default priority
+            </summary>
+        </member>
+        <member name="F:VDFramework.ObserverPattern.Constants.Priority.UI">
+            <summary>
+            The priority for UI based systems (low so it can use changes from other systems)
+            </summary>
+        </member>
+        <member name="F:VDFramework.ObserverPattern.Constants.Priority.LOWEST">
+            <summary>
+            The lowest possible priority, should always be last
             </summary>
         </member>
         <member name="T:VDFramework.ObserverPattern.CallbackHandler">

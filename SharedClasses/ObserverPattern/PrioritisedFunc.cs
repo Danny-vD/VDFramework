@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using VDFramework.Extensions;
 using VDFramework.ObserverPattern.Constants;
 
 namespace VDFramework.ObserverPattern
@@ -35,9 +36,9 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		/// <param name="callback">The callback to add</param>
 		/// <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
-		public void AddCallback(Func<TResult> callback, int priority = Priority.Default)
+		public void AddCallback(Func<TResult> callback, int priority = Priority.DEFAULT)
 		{
-			eventHandlers.Add(new CallbackHandlerWithReturnType<TResult>(callback, priority));
+			eventHandlers.AddSorted(new CallbackHandlerWithReturnType<TResult>(callback, priority));
 		}
 
 		/// <summary>
@@ -95,9 +96,9 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		/// <param name="callback">The callback to add</param>
 		/// <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
-		public void AddCallback(Func<T1, TResult> callback, int priority = Priority.Default)
+		public void AddCallback(Func<T1, TResult> callback, int priority = Priority.DEFAULT)
 		{
-			eventHandlers.Add(new CallbackHandlerWithReturnType<T1, TResult>(callback, priority));
+			eventHandlers.AddSorted(new CallbackHandlerWithReturnType<T1, TResult>(callback, priority));
 		}
 
 		/// <summary>
@@ -113,9 +114,9 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		/// <param name="callback">The callback to add</param>
 		/// <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
-		public void AddCallback(Func<TResult> callback, int priority = Priority.Default)
+		public void AddCallback(Func<TResult> callback, int priority = Priority.DEFAULT)
 		{
-			eventHandlers.Add(new CallbackHandlerWithReturnType<TResult>(callback, priority));
+			eventHandlers.AddSorted(new CallbackHandlerWithReturnType<TResult>(callback, priority));
 		}
 
 		/// <summary>
@@ -178,9 +179,9 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		/// <param name="callback">The callback to add</param>
 		/// <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
-		public void AddCallback(Func<T1, T2, TResult> callback, int priority = Priority.Default)
+		public void AddCallback(Func<T1, T2, TResult> callback, int priority = Priority.DEFAULT)
 		{
-			eventHandlers.Add(new CallbackHandlerWithReturnType<T1, T2, TResult>(callback, priority));
+			eventHandlers.AddSorted(new CallbackHandlerWithReturnType<T1, T2, TResult>(callback, priority));
 		}
 
 		/// <summary>
@@ -196,9 +197,9 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		/// <param name="callback">The callback to add</param>
 		/// <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
-		public void AddCallback(Func<TResult> callback, int priority = Priority.Default)
+		public void AddCallback(Func<TResult> callback, int priority = Priority.DEFAULT)
 		{
-			eventHandlers.Add(new CallbackHandlerWithReturnType<TResult>(callback, priority));
+			eventHandlers.AddSorted(new CallbackHandlerWithReturnType<TResult>(callback, priority));
 		}
 
 		/// <summary>
@@ -261,9 +262,9 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		/// <param name="callback">The callback to add</param>
 		/// <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
-		public void AddCallback(Func<T1, T2, T3, TResult> callback, int priority = Priority.Default)
+		public void AddCallback(Func<T1, T2, T3, TResult> callback, int priority = Priority.DEFAULT)
 		{
-			eventHandlers.Add(new CallbackHandlerWithReturnType<T1, T2, T3, TResult>(callback, priority));
+			eventHandlers.AddSorted(new CallbackHandlerWithReturnType<T1, T2, T3, TResult>(callback, priority));
 		}
 
 		/// <summary>
@@ -279,9 +280,9 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		/// <param name="callback">The callback to add</param>
 		/// <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
-		public void AddCallback(Func<TResult> callback, int priority = Priority.Default)
+		public void AddCallback(Func<TResult> callback, int priority = Priority.DEFAULT)
 		{
-			eventHandlers.Add(new CallbackHandlerWithReturnType<TResult>(callback, priority));
+			eventHandlers.AddSorted(new CallbackHandlerWithReturnType<TResult>(callback, priority));
 		}
 
 		/// <summary>
@@ -344,9 +345,9 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		/// <param name="callback">The callback to add</param>
 		/// <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
-		public void AddCallback(Func<T1, T2, T3, T4, TResult> callback, int priority = Priority.Default)
+		public void AddCallback(Func<T1, T2, T3, T4, TResult> callback, int priority = Priority.DEFAULT)
 		{
-			eventHandlers.Add(new CallbackHandlerWithReturnType<T1, T2, T3, T4, TResult>(callback, priority));
+			eventHandlers.AddSorted(new CallbackHandlerWithReturnType<T1, T2, T3, T4, TResult>(callback, priority));
 		}
 
 		/// <summary>
@@ -362,9 +363,9 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		/// <param name="callback">The callback to add</param>
 		/// <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
-		public void AddCallback(Func<TResult> callback, int priority = Priority.Default)
+		public void AddCallback(Func<TResult> callback, int priority = Priority.DEFAULT)
 		{
-			eventHandlers.Add(new CallbackHandlerWithReturnType<TResult>(callback, priority));
+			eventHandlers.AddSorted(new CallbackHandlerWithReturnType<TResult>(callback, priority));
 		}
 
 		/// <summary>
@@ -427,9 +428,9 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		/// <param name="callback">The callback to add</param>
 		/// <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
-		public void AddCallback(Func<T1, T2, T3, T4, T5, TResult> callback, int priority = Priority.Default)
+		public void AddCallback(Func<T1, T2, T3, T4, T5, TResult> callback, int priority = Priority.DEFAULT)
 		{
-			eventHandlers.Add(new CallbackHandlerWithReturnType<T1, T2, T3, T4, T5, TResult>(callback, priority));
+			eventHandlers.AddSorted(new CallbackHandlerWithReturnType<T1, T2, T3, T4, T5, TResult>(callback, priority));
 		}
 
 		/// <summary>
@@ -445,9 +446,9 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		/// <param name="callback">The callback to add</param>
 		/// <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
-		public void AddCallback(Func<TResult> callback, int priority = Priority.Default)
+		public void AddCallback(Func<TResult> callback, int priority = Priority.DEFAULT)
 		{
-			eventHandlers.Add(new CallbackHandlerWithReturnType<TResult>(callback, priority));
+			eventHandlers.AddSorted(new CallbackHandlerWithReturnType<TResult>(callback, priority));
 		}
 
 		/// <summary>
@@ -510,9 +511,9 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		/// <param name="callback">The callback to add</param>
 		/// <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
-		public void AddCallback(Func<T1, T2, T3, T4, T5, T6, TResult> callback, int priority = Priority.Default)
+		public void AddCallback(Func<T1, T2, T3, T4, T5, T6, TResult> callback, int priority = Priority.DEFAULT)
 		{
-			eventHandlers.Add(new CallbackHandlerWithReturnType<T1, T2, T3, T4, T5, T6, TResult>(callback, priority));
+			eventHandlers.AddSorted(new CallbackHandlerWithReturnType<T1, T2, T3, T4, T5, T6, TResult>(callback, priority));
 		}
 
 		/// <summary>
@@ -528,9 +529,9 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		/// <param name="callback">The callback to add</param>
 		/// <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
-		public void AddCallback(Func<TResult> callback, int priority = Priority.Default)
+		public void AddCallback(Func<TResult> callback, int priority = Priority.DEFAULT)
 		{
-			eventHandlers.Add(new CallbackHandlerWithReturnType<TResult>(callback, priority));
+			eventHandlers.AddSorted(new CallbackHandlerWithReturnType<TResult>(callback, priority));
 		}
 
 		/// <summary>
@@ -593,9 +594,9 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		/// <param name="callback">The callback to add</param>
 		/// <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
-		public void AddCallback(Func<T1, T2, T3, T4, T5, T6, T7, TResult> callback, int priority = Priority.Default)
+		public void AddCallback(Func<T1, T2, T3, T4, T5, T6, T7, TResult> callback, int priority = Priority.DEFAULT)
 		{
-			eventHandlers.Add(new CallbackHandlerWithReturnType<T1, T2, T3, T4, T5, T6, T7, TResult>(callback, priority));
+			eventHandlers.AddSorted(new CallbackHandlerWithReturnType<T1, T2, T3, T4, T5, T6, T7, TResult>(callback, priority));
 		}
 
 		/// <summary>
@@ -611,9 +612,9 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		/// <param name="callback">The callback to add</param>
 		/// <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
-		public void AddCallback(Func<TResult> callback, int priority = Priority.Default)
+		public void AddCallback(Func<TResult> callback, int priority = Priority.DEFAULT)
 		{
-			eventHandlers.Add(new CallbackHandlerWithReturnType<TResult>(callback, priority));
+			eventHandlers.AddSorted(new CallbackHandlerWithReturnType<TResult>(callback, priority));
 		}
 
 		/// <summary>
@@ -676,9 +677,9 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		/// <param name="callback">The callback to add</param>
 		/// <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
-		public void AddCallback(Func<T1, T2, T3, T4, T5, T6, T7, T8, TResult> callback, int priority = Priority.Default)
+		public void AddCallback(Func<T1, T2, T3, T4, T5, T6, T7, T8, TResult> callback, int priority = Priority.DEFAULT)
 		{
-			eventHandlers.Add(new CallbackHandlerWithReturnType<T1, T2, T3, T4, T5, T6, T7, T8, TResult>(callback, priority));
+			eventHandlers.AddSorted(new CallbackHandlerWithReturnType<T1, T2, T3, T4, T5, T6, T7, T8, TResult>(callback, priority));
 		}
 
 		/// <summary>
@@ -694,9 +695,9 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		/// <param name="callback">The callback to add</param>
 		/// <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
-		public void AddCallback(Func<TResult> callback, int priority = Priority.Default)
+		public void AddCallback(Func<TResult> callback, int priority = Priority.DEFAULT)
 		{
-			eventHandlers.Add(new CallbackHandlerWithReturnType<TResult>(callback, priority));
+			eventHandlers.AddSorted(new CallbackHandlerWithReturnType<TResult>(callback, priority));
 		}
 
 		/// <summary>
@@ -759,9 +760,9 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		/// <param name="callback">The callback to add</param>
 		/// <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
-		public void AddCallback(Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, TResult> callback, int priority = Priority.Default)
+		public void AddCallback(Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, TResult> callback, int priority = Priority.DEFAULT)
 		{
-			eventHandlers.Add(new CallbackHandlerWithReturnType<T1, T2, T3, T4, T5, T6, T7, T8, T9, TResult>(callback, priority));
+			eventHandlers.AddSorted(new CallbackHandlerWithReturnType<T1, T2, T3, T4, T5, T6, T7, T8, T9, TResult>(callback, priority));
 		}
 
 		/// <summary>
@@ -777,9 +778,9 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		/// <param name="callback">The callback to add</param>
 		/// <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
-		public void AddCallback(Func<TResult> callback, int priority = Priority.Default)
+		public void AddCallback(Func<TResult> callback, int priority = Priority.DEFAULT)
 		{
-			eventHandlers.Add(new CallbackHandlerWithReturnType<TResult>(callback, priority));
+			eventHandlers.AddSorted(new CallbackHandlerWithReturnType<TResult>(callback, priority));
 		}
 
 		/// <summary>
@@ -842,9 +843,9 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		/// <param name="callback">The callback to add</param>
 		/// <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
-		public void AddCallback(Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, TResult> callback, int priority = Priority.Default)
+		public void AddCallback(Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, TResult> callback, int priority = Priority.DEFAULT)
 		{
-			eventHandlers.Add(new CallbackHandlerWithReturnType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, TResult>(callback, priority));
+			eventHandlers.AddSorted(new CallbackHandlerWithReturnType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, TResult>(callback, priority));
 		}
 
 		/// <summary>
@@ -860,9 +861,9 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		/// <param name="callback">The callback to add</param>
 		/// <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
-		public void AddCallback(Func<TResult> callback, int priority = Priority.Default)
+		public void AddCallback(Func<TResult> callback, int priority = Priority.DEFAULT)
 		{
-			eventHandlers.Add(new CallbackHandlerWithReturnType<TResult>(callback, priority));
+			eventHandlers.AddSorted(new CallbackHandlerWithReturnType<TResult>(callback, priority));
 		}
 
 		/// <summary>
@@ -925,9 +926,9 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		/// <param name="callback">The callback to add</param>
 		/// <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
-		public void AddCallback(Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, TResult> callback, int priority = Priority.Default)
+		public void AddCallback(Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, TResult> callback, int priority = Priority.DEFAULT)
 		{
-			eventHandlers.Add(new CallbackHandlerWithReturnType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, TResult>(callback, priority));
+			eventHandlers.AddSorted(new CallbackHandlerWithReturnType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, TResult>(callback, priority));
 		}
 
 		/// <summary>
@@ -943,9 +944,9 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		/// <param name="callback">The callback to add</param>
 		/// <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
-		public void AddCallback(Func<TResult> callback, int priority = Priority.Default)
+		public void AddCallback(Func<TResult> callback, int priority = Priority.DEFAULT)
 		{
-			eventHandlers.Add(new CallbackHandlerWithReturnType<TResult>(callback, priority));
+			eventHandlers.AddSorted(new CallbackHandlerWithReturnType<TResult>(callback, priority));
 		}
 
 		/// <summary>
@@ -1008,9 +1009,9 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		/// <param name="callback">The callback to add</param>
 		/// <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
-		public void AddCallback(Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, TResult> callback, int priority = Priority.Default)
+		public void AddCallback(Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, TResult> callback, int priority = Priority.DEFAULT)
 		{
-			eventHandlers.Add(new CallbackHandlerWithReturnType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, TResult>(callback, priority));
+			eventHandlers.AddSorted(new CallbackHandlerWithReturnType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, TResult>(callback, priority));
 		}
 
 		/// <summary>
@@ -1026,9 +1027,9 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		/// <param name="callback">The callback to add</param>
 		/// <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
-		public void AddCallback(Func<TResult> callback, int priority = Priority.Default)
+		public void AddCallback(Func<TResult> callback, int priority = Priority.DEFAULT)
 		{
-			eventHandlers.Add(new CallbackHandlerWithReturnType<TResult>(callback, priority));
+			eventHandlers.AddSorted(new CallbackHandlerWithReturnType<TResult>(callback, priority));
 		}
 
 		/// <summary>
@@ -1091,9 +1092,9 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		/// <param name="callback">The callback to add</param>
 		/// <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
-		public void AddCallback(Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, TResult> callback, int priority = Priority.Default)
+		public void AddCallback(Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, TResult> callback, int priority = Priority.DEFAULT)
 		{
-			eventHandlers.Add(new CallbackHandlerWithReturnType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, TResult>(callback, priority));
+			eventHandlers.AddSorted(new CallbackHandlerWithReturnType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, TResult>(callback, priority));
 		}
 
 		/// <summary>
@@ -1109,9 +1110,9 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		/// <param name="callback">The callback to add</param>
 		/// <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
-		public void AddCallback(Func<TResult> callback, int priority = Priority.Default)
+		public void AddCallback(Func<TResult> callback, int priority = Priority.DEFAULT)
 		{
-			eventHandlers.Add(new CallbackHandlerWithReturnType<TResult>(callback, priority));
+			eventHandlers.AddSorted(new CallbackHandlerWithReturnType<TResult>(callback, priority));
 		}
 
 		/// <summary>
@@ -1175,9 +1176,9 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		/// <param name="callback">The callback to add</param>
 		/// <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
-		public void AddCallback(Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, TResult> callback, int priority = Priority.Default)
+		public void AddCallback(Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, TResult> callback, int priority = Priority.DEFAULT)
 		{
-			eventHandlers.Add(new CallbackHandlerWithReturnType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, TResult>(callback, priority));
+			eventHandlers.AddSorted(new CallbackHandlerWithReturnType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, TResult>(callback, priority));
 		}
 
 		/// <summary>
@@ -1193,9 +1194,9 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		/// <param name="callback">The callback to add</param>
 		/// <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
-		public void AddCallback(Func<TResult> callback, int priority = Priority.Default)
+		public void AddCallback(Func<TResult> callback, int priority = Priority.DEFAULT)
 		{
-			eventHandlers.Add(new CallbackHandlerWithReturnType<TResult>(callback, priority));
+			eventHandlers.AddSorted(new CallbackHandlerWithReturnType<TResult>(callback, priority));
 		}
 
 		/// <summary>
@@ -1259,9 +1260,9 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		/// <param name="callback">The callback to add</param>
 		/// <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
-		public void AddCallback(Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, TResult> callback, int priority = Priority.Default)
+		public void AddCallback(Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, TResult> callback, int priority = Priority.DEFAULT)
 		{
-			eventHandlers.Add(new CallbackHandlerWithReturnType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, TResult>(callback, priority));
+			eventHandlers.AddSorted(new CallbackHandlerWithReturnType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, TResult>(callback, priority));
 		}
 
 		/// <summary>
@@ -1277,9 +1278,9 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		/// <param name="callback">The callback to add</param>
 		/// <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
-		public void AddCallback(Func<TResult> callback, int priority = Priority.Default)
+		public void AddCallback(Func<TResult> callback, int priority = Priority.DEFAULT)
 		{
-			eventHandlers.Add(new CallbackHandlerWithReturnType<TResult>(callback, priority));
+			eventHandlers.AddSorted(new CallbackHandlerWithReturnType<TResult>(callback, priority));
 		}
 
 		/// <summary>
@@ -1343,9 +1344,9 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		/// <param name="callback">The callback to add</param>
 		/// <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
-		public void AddCallback(Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, TResult> callback, int priority = Priority.Default)
+		public void AddCallback(Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, TResult> callback, int priority = Priority.DEFAULT)
 		{
-			eventHandlers.Add(new CallbackHandlerWithReturnType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, TResult>(callback, priority));
+			eventHandlers.AddSorted(new CallbackHandlerWithReturnType<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, TResult>(callback, priority));
 		}
 
 		/// <summary>
@@ -1361,9 +1362,9 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		/// <param name="callback">The callback to add</param>
 		/// <param name="priority">The priority of this callback, higher priority will be invoked before lower</param>
-		public void AddCallback(Func<TResult> callback, int priority = Priority.Default)
+		public void AddCallback(Func<TResult> callback, int priority = Priority.DEFAULT)
 		{
-			eventHandlers.Add(new CallbackHandlerWithReturnType<TResult>(callback, priority));
+			eventHandlers.AddSorted(new CallbackHandlerWithReturnType<TResult>(callback, priority));
 		}
 
 		/// <summary>

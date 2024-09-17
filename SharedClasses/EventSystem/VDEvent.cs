@@ -31,7 +31,7 @@ namespace VDFramework.EventSystem
 		/// </summary>
 		/// <param name="handler">The function that will be invoked when this event is raised</param>
 		/// <param name="priorityOrder">Higher priority will be invoked over lower priority</param>
-		public static void AddListener(Action<TEvent> handler, int priorityOrder = Priority.Default)
+		public static void AddListener(Action<TEvent> handler, int priorityOrder = Priority.DEFAULT)
 		{
 			EventManager.AddListener(handler, priorityOrder);
 		}
@@ -41,7 +41,7 @@ namespace VDFramework.EventSystem
 		/// </summary>
 		/// <param name="handler">The function that will be invoked when this event is raised</param>
 		/// <param name="priorityOrder">Higher priority will be invoked over lower priority</param>
-		public static void AddListener(Action handler, int priorityOrder = Priority.Default)
+		public static void AddListener(Action handler, int priorityOrder = Priority.DEFAULT)
 		{
 			EventManager.AddListener<TEvent>(handler, priorityOrder);
 		}
