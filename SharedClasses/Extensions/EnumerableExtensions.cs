@@ -19,7 +19,7 @@ namespace VDFramework.Extensions
 		}
 
 		/// <summary>
-		/// Calculate the Min and the Max values in the collection using <see cref="IComparable{TElement}"/>
+		/// Calculate the Min and the Max values in the collection using <see cref="IComparable{TElement}.CompareTo"/>
 		/// </summary>
 		/// <param name="collection">The collection to calculate the Min and Max against</param>
 		/// <param name="minElement">The element in the collection that precedes all other elements in the sort order</param>

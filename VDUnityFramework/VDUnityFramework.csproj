@@ -146,6 +146,12 @@
       <Compile Include="..\SharedClasses\ObserverPattern\PrioritisedFunc.cs">
         <Link>SharedClasses\ObserverPattern\PrioritisedFunc.cs</Link>
       </Compile>
+      <Compile Include="..\SharedClasses\RandomWrapper\Interface\IRandomNumberGenerator.cs">
+        <Link>SharedClasses\RandomWrapper\Interface\IRandomNumberGenerator.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\RandomWrapper\SystemRandom.cs">
+        <Link>SharedClasses\RandomWrapper\SystemRandom.cs</Link>
+      </Compile>
       <Compile Include="..\SharedClasses\Utility\DataTypes\StringUtil.cs">
         <Link>SharedClasses\Utility\DataTypes\StringUtil.cs</Link>
       </Compile>
