@@ -49,6 +49,14 @@ namespace VDFramework.ObserverPattern
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
 
+		///<summary>
+		/// Removes all the callbacks from this delegate
+		///</summary>
+		public void ClearCallbacks()
+		{
+			eventHandlers.Clear();
+		}
+		
 		/// <summary>
 		/// Invoke the callbacks according to their priority <br/>
 		/// Only the last result will be returned
@@ -127,6 +135,14 @@ namespace VDFramework.ObserverPattern
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
 
+		///<summary>
+		/// Removes all the callbacks from this delegate
+		///</summary>
+		public void ClearCallbacks()
+		{
+			eventHandlers.Clear();
+		}
+		
 		/// <summary>
 		/// Invoke the callbacks according to their priority <br/>
 		/// Only the last result will be returned
@@ -210,6 +226,14 @@ namespace VDFramework.ObserverPattern
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
 
+		///<summary>
+		/// Removes all the callbacks from this delegate
+		///</summary>
+		public void ClearCallbacks()
+		{
+			eventHandlers.Clear();
+		}
+		
 		/// <summary>
 		/// Invoke the callbacks according to their priority <br/>
 		/// Only the last result will be returned
@@ -293,6 +317,14 @@ namespace VDFramework.ObserverPattern
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
 
+		///<summary>
+		/// Removes all the callbacks from this delegate
+		///</summary>
+		public void ClearCallbacks()
+		{
+			eventHandlers.Clear();
+		}
+		
 		/// <summary>
 		/// Invoke the callbacks according to their priority <br/>
 		/// Only the last result will be returned
@@ -376,6 +408,14 @@ namespace VDFramework.ObserverPattern
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
 
+		///<summary>
+		/// Removes all the callbacks from this delegate
+		///</summary>
+		public void ClearCallbacks()
+		{
+			eventHandlers.Clear();
+		}
+		
 		/// <summary>
 		/// Invoke the callbacks according to their priority <br/>
 		/// Only the last result will be returned
@@ -459,6 +499,14 @@ namespace VDFramework.ObserverPattern
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
 
+		///<summary>
+		/// Removes all the callbacks from this delegate
+		///</summary>
+		public void ClearCallbacks()
+		{
+			eventHandlers.Clear();
+		}
+		
 		/// <summary>
 		/// Invoke the callbacks according to their priority <br/>
 		/// Only the last result will be returned
@@ -542,6 +590,14 @@ namespace VDFramework.ObserverPattern
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
 
+		///<summary>
+		/// Removes all the callbacks from this delegate
+		///</summary>
+		public void ClearCallbacks()
+		{
+			eventHandlers.Clear();
+		}
+		
 		/// <summary>
 		/// Invoke the callbacks according to their priority <br/>
 		/// Only the last result will be returned
@@ -625,6 +681,14 @@ namespace VDFramework.ObserverPattern
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
 
+		///<summary>
+		/// Removes all the callbacks from this delegate
+		///</summary>
+		public void ClearCallbacks()
+		{
+			eventHandlers.Clear();
+		}
+		
 		/// <summary>
 		/// Invoke the callbacks according to their priority <br/>
 		/// Only the last result will be returned
@@ -708,6 +772,14 @@ namespace VDFramework.ObserverPattern
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
 
+		///<summary>
+		/// Removes all the callbacks from this delegate
+		///</summary>
+		public void ClearCallbacks()
+		{
+			eventHandlers.Clear();
+		}
+		
 		/// <summary>
 		/// Invoke the callbacks according to their priority <br/>
 		/// Only the last result will be returned
@@ -791,6 +863,14 @@ namespace VDFramework.ObserverPattern
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
 
+		///<summary>
+		/// Removes all the callbacks from this delegate
+		///</summary>
+		public void ClearCallbacks()
+		{
+			eventHandlers.Clear();
+		}
+		
 		/// <summary>
 		/// Invoke the callbacks according to their priority <br/>
 		/// Only the last result will be returned
@@ -874,6 +954,14 @@ namespace VDFramework.ObserverPattern
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
 
+		///<summary>
+		/// Removes all the callbacks from this delegate
+		///</summary>
+		public void ClearCallbacks()
+		{
+			eventHandlers.Clear();
+		}
+		
 		/// <summary>
 		/// Invoke the callbacks according to their priority <br/>
 		/// Only the last result will be returned
@@ -957,6 +1045,14 @@ namespace VDFramework.ObserverPattern
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
 
+		///<summary>
+		/// Removes all the callbacks from this delegate
+		///</summary>
+		public void ClearCallbacks()
+		{
+			eventHandlers.Clear();
+		}
+		
 		/// <summary>
 		/// Invoke the callbacks according to their priority <br/>
 		/// Only the last result will be returned
@@ -1040,6 +1136,14 @@ namespace VDFramework.ObserverPattern
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
 
+		///<summary>
+		/// Removes all the callbacks from this delegate
+		///</summary>
+		public void ClearCallbacks()
+		{
+			eventHandlers.Clear();
+		}
+		
 		/// <summary>
 		/// Invoke the callbacks according to their priority <br/>
 		/// Only the last result will be returned
@@ -1123,6 +1227,14 @@ namespace VDFramework.ObserverPattern
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
 
+		///<summary>
+		/// Removes all the callbacks from this delegate
+		///</summary>
+		public void ClearCallbacks()
+		{
+			eventHandlers.Clear();
+		}
+		
 		/// <summary>
 		/// Invoke the callbacks according to their priority <br/>
 		/// Only the last result will be returned
@@ -1207,6 +1319,14 @@ namespace VDFramework.ObserverPattern
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
 
+		///<summary>
+		/// Removes all the callbacks from this delegate
+		///</summary>
+		public void ClearCallbacks()
+		{
+			eventHandlers.Clear();
+		}
+		
 		/// <summary>
 		/// Invoke the callbacks according to their priority <br/>
 		/// Only the last result will be returned
@@ -1291,6 +1411,14 @@ namespace VDFramework.ObserverPattern
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
 
+		///<summary>
+		/// Removes all the callbacks from this delegate
+		///</summary>
+		public void ClearCallbacks()
+		{
+			eventHandlers.Clear();
+		}
+		
 		/// <summary>
 		/// Invoke the callbacks according to their priority <br/>
 		/// Only the last result will be returned
@@ -1375,6 +1503,14 @@ namespace VDFramework.ObserverPattern
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
 
+		///<summary>
+		/// Removes all the callbacks from this delegate
+		///</summary>
+		public void ClearCallbacks()
+		{
+			eventHandlers.Clear();
+		}
+		
 		/// <summary>
 		/// Invoke the callbacks according to their priority <br/>
 		/// Only the last result will be returned

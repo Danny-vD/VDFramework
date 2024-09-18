@@ -9,18 +9,6 @@ namespace VDFramework.LootTables
 {
 	public class WeightedLootTable<TLootType> : ILoot<TLootType>
 	{
-		protected bool ShouldRecalculateIndices
-		{
-			get => indexArray == null;
-			set
-			{
-				if (value)
-				{
-					indexArray = null;
-				}
-			}
-		}
-
 		private long totalWeight;
 
 		public long TotalWeight
@@ -33,6 +21,18 @@ namespace VDFramework.LootTables
 				}
 
 				return totalWeight;
+			}
+		}
+		
+		protected bool ShouldRecalculateIndices
+		{
+			get => indexArray == null;
+			set
+			{
+				if (value)
+				{
+					indexArray = null;
+				}
 			}
 		}
 

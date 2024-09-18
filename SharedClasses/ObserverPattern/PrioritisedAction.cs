@@ -12,7 +12,7 @@ namespace VDFramework.ObserverPattern
 	public class PrioritisedAction
 	{
 		private readonly List<CallbackHandler> eventHandlers = new List<CallbackHandler>();
-		
+
 		/// <summary>
 		/// The callbacks associated with this delegate
 		/// </summary>
@@ -40,13 +40,21 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.AddSorted(new ParameterlessCallbackHandler(callback, priority));
 		}
-		
+
 		/// <summary>
 		/// Remove a callback from this delegate
 		/// </summary>
 		public void RemoveCallback(Action callback)
 		{
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
+		}
+
+		///<summary>
+		/// Removes all the callbacks from this delegate
+		///</summary>
+		public void ClearCallbacks()
+		{
+			eventHandlers.Clear();
 		}
 
 		/// <summary>
@@ -60,14 +68,14 @@ namespace VDFramework.ObserverPattern
 			}
 		}
 	}
-	
+
 	/// <summary>
 	/// A class that mimics System.Action but allows giving a priority to the callbacks
 	/// </summary>
 	public class PrioritisedAction<T1>
 	{
 		private readonly List<CallbackHandler> eventHandlers = new List<CallbackHandler>();
-		
+
 		/// <summary>
 		/// The callbacks associated with this delegate
 		/// </summary>
@@ -95,7 +103,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.AddSorted(new CallbackHandler<T1>(callback, priority));
 		}
-		
+
 		/// <summary>
 		/// Remove a callback from this delegate
 		/// </summary>
@@ -104,7 +112,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
-		
+
 		/// <summary>
 		/// Add a new callback to this delegate
 		/// </summary>
@@ -114,7 +122,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.AddSorted(new ParameterlessCallbackHandler(callback, priority));
 		}
-		
+
 		/// <summary>
 		/// Remove a callback from this delegate
 		/// </summary>
@@ -123,7 +131,15 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
-		
+
+		///<summary>
+		/// Removes all the callbacks from this delegate
+		///</summary>
+		public void ClearCallbacks()
+		{
+			eventHandlers.Clear();
+		}
+
 		/// <summary>
 		/// Invoke the callbacks according to their priority
 		/// </summary>
@@ -144,13 +160,13 @@ namespace VDFramework.ObserverPattern
 		}
 	}
 
-    /// <summary>
+	/// <summary>
 	/// A class that mimics System.Action but allows giving a priority to the callbacks
 	/// </summary>
 	public class PrioritisedAction<T1, T2>
 	{
 		private readonly List<CallbackHandler> eventHandlers = new List<CallbackHandler>();
-		
+
 		/// <summary>
 		/// The callbacks associated with this delegate
 		/// </summary>
@@ -178,7 +194,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.AddSorted(new CallbackHandler<T1, T2>(callback, priority));
 		}
-		
+
 		/// <summary>
 		/// Remove a callback from this delegate
 		/// </summary>
@@ -187,7 +203,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
-		
+
 		/// <summary>
 		/// Add a new callback to this delegate
 		/// </summary>
@@ -197,7 +213,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.AddSorted(new ParameterlessCallbackHandler(callback, priority));
 		}
-		
+
 		/// <summary>
 		/// Remove a callback from this delegate
 		/// </summary>
@@ -206,7 +222,15 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
-		
+
+		///<summary>
+		/// Removes all the callbacks from this delegate
+		///</summary>
+		public void ClearCallbacks()
+		{
+			eventHandlers.Clear();
+		}
+
 		/// <summary>
 		/// Invoke the callbacks according to their priority
 		/// </summary>
@@ -227,13 +251,13 @@ namespace VDFramework.ObserverPattern
 		}
 	}
 
-    /// <summary>
+	/// <summary>
 	/// A class that mimics System.Action but allows giving a priority to the callbacks
 	/// </summary>
 	public class PrioritisedAction<T1, T2, T3>
 	{
 		private readonly List<CallbackHandler> eventHandlers = new List<CallbackHandler>();
-		
+
 		/// <summary>
 		/// The callbacks associated with this delegate
 		/// </summary>
@@ -261,7 +285,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.AddSorted(new CallbackHandler<T1, T2, T3>(callback, priority));
 		}
-		
+
 		/// <summary>
 		/// Remove a callback from this delegate
 		/// </summary>
@@ -270,7 +294,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
-		
+
 		/// <summary>
 		/// Add a new callback to this delegate
 		/// </summary>
@@ -280,7 +304,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.AddSorted(new ParameterlessCallbackHandler(callback, priority));
 		}
-		
+
 		/// <summary>
 		/// Remove a callback from this delegate
 		/// </summary>
@@ -289,7 +313,15 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
-		
+
+		///<summary>
+		/// Removes all the callbacks from this delegate
+		///</summary>
+		public void ClearCallbacks()
+		{
+			eventHandlers.Clear();
+		}
+
 		/// <summary>
 		/// Invoke the callbacks according to their priority
 		/// </summary>
@@ -310,13 +342,13 @@ namespace VDFramework.ObserverPattern
 		}
 	}
 
-    /// <summary>
+	/// <summary>
 	/// A class that mimics System.Action but allows giving a priority to the callbacks
 	/// </summary>
 	public class PrioritisedAction<T1, T2, T3, T4>
 	{
 		private readonly List<CallbackHandler> eventHandlers = new List<CallbackHandler>();
-		
+
 		/// <summary>
 		/// The callbacks associated with this delegate
 		/// </summary>
@@ -344,7 +376,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.AddSorted(new CallbackHandler<T1, T2, T3, T4>(callback, priority));
 		}
-		
+
 		/// <summary>
 		/// Remove a callback from this delegate
 		/// </summary>
@@ -353,7 +385,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
-		
+
 		/// <summary>
 		/// Add a new callback to this delegate
 		/// </summary>
@@ -363,7 +395,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.AddSorted(new ParameterlessCallbackHandler(callback, priority));
 		}
-		
+
 		/// <summary>
 		/// Remove a callback from this delegate
 		/// </summary>
@@ -372,7 +404,15 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
-		
+
+		///<summary>
+		/// Removes all the callbacks from this delegate
+		///</summary>
+		public void ClearCallbacks()
+		{
+			eventHandlers.Clear();
+		}
+
 		/// <summary>
 		/// Invoke the callbacks according to their priority
 		/// </summary>
@@ -393,13 +433,13 @@ namespace VDFramework.ObserverPattern
 		}
 	}
 
-    /// <summary>
+	/// <summary>
 	/// A class that mimics System.Action but allows giving a priority to the callbacks
 	/// </summary>
 	public class PrioritisedAction<T1, T2, T3, T4, T5>
 	{
 		private readonly List<CallbackHandler> eventHandlers = new List<CallbackHandler>();
-		
+
 		/// <summary>
 		/// The callbacks associated with this delegate
 		/// </summary>
@@ -427,7 +467,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.AddSorted(new CallbackHandler<T1, T2, T3, T4, T5>(callback, priority));
 		}
-		
+
 		/// <summary>
 		/// Remove a callback from this delegate
 		/// </summary>
@@ -436,7 +476,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
-		
+
 		/// <summary>
 		/// Add a new callback to this delegate
 		/// </summary>
@@ -446,7 +486,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.AddSorted(new ParameterlessCallbackHandler(callback, priority));
 		}
-		
+
 		/// <summary>
 		/// Remove a callback from this delegate
 		/// </summary>
@@ -455,7 +495,15 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
-		
+
+		///<summary>
+		/// Removes all the callbacks from this delegate
+		///</summary>
+		public void ClearCallbacks()
+		{
+			eventHandlers.Clear();
+		}
+
 		/// <summary>
 		/// Invoke the callbacks according to their priority
 		/// </summary>
@@ -476,13 +524,13 @@ namespace VDFramework.ObserverPattern
 		}
 	}
 
-    /// <summary>
+	/// <summary>
 	/// A class that mimics System.Action but allows giving a priority to the callbacks
 	/// </summary>
 	public class PrioritisedAction<T1, T2, T3, T4, T5, T6>
 	{
 		private readonly List<CallbackHandler> eventHandlers = new List<CallbackHandler>();
-		
+
 		/// <summary>
 		/// The callbacks associated with this delegate
 		/// </summary>
@@ -510,7 +558,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.AddSorted(new CallbackHandler<T1, T2, T3, T4, T5, T6>(callback, priority));
 		}
-		
+
 		/// <summary>
 		/// Remove a callback from this delegate
 		/// </summary>
@@ -519,7 +567,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
-		
+
 		/// <summary>
 		/// Add a new callback to this delegate
 		/// </summary>
@@ -529,7 +577,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.AddSorted(new ParameterlessCallbackHandler(callback, priority));
 		}
-		
+
 		/// <summary>
 		/// Remove a callback from this delegate
 		/// </summary>
@@ -538,7 +586,15 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
-		
+
+		///<summary>
+		/// Removes all the callbacks from this delegate
+		///</summary>
+		public void ClearCallbacks()
+		{
+			eventHandlers.Clear();
+		}
+
 		/// <summary>
 		/// Invoke the callbacks according to their priority
 		/// </summary>
@@ -559,13 +615,13 @@ namespace VDFramework.ObserverPattern
 		}
 	}
 
-    /// <summary>
+	/// <summary>
 	/// A class that mimics System.Action but allows giving a priority to the callbacks
 	/// </summary>
 	public class PrioritisedAction<T1, T2, T3, T4, T5, T6, T7>
 	{
 		private readonly List<CallbackHandler> eventHandlers = new List<CallbackHandler>();
-		
+
 		/// <summary>
 		/// The callbacks associated with this delegate
 		/// </summary>
@@ -593,7 +649,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.AddSorted(new CallbackHandler<T1, T2, T3, T4, T5, T6, T7>(callback, priority));
 		}
-		
+
 		/// <summary>
 		/// Remove a callback from this delegate
 		/// </summary>
@@ -602,7 +658,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
-		
+
 		/// <summary>
 		/// Add a new callback to this delegate
 		/// </summary>
@@ -612,7 +668,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.AddSorted(new ParameterlessCallbackHandler(callback, priority));
 		}
-		
+
 		/// <summary>
 		/// Remove a callback from this delegate
 		/// </summary>
@@ -621,7 +677,15 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
-		
+
+		///<summary>
+		/// Removes all the callbacks from this delegate
+		///</summary>
+		public void ClearCallbacks()
+		{
+			eventHandlers.Clear();
+		}
+
 		/// <summary>
 		/// Invoke the callbacks according to their priority
 		/// </summary>
@@ -642,13 +706,13 @@ namespace VDFramework.ObserverPattern
 		}
 	}
 
-    /// <summary>
+	/// <summary>
 	/// A class that mimics System.Action but allows giving a priority to the callbacks
 	/// </summary>
 	public class PrioritisedAction<T1, T2, T3, T4, T5, T6, T7, T8>
 	{
 		private readonly List<CallbackHandler> eventHandlers = new List<CallbackHandler>();
-		
+
 		/// <summary>
 		/// The callbacks associated with this delegate
 		/// </summary>
@@ -676,7 +740,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.AddSorted(new CallbackHandler<T1, T2, T3, T4, T5, T6, T7, T8>(callback, priority));
 		}
-		
+
 		/// <summary>
 		/// Remove a callback from this delegate
 		/// </summary>
@@ -685,7 +749,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
-		
+
 		/// <summary>
 		/// Add a new callback to this delegate
 		/// </summary>
@@ -695,7 +759,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.AddSorted(new ParameterlessCallbackHandler(callback, priority));
 		}
-		
+
 		/// <summary>
 		/// Remove a callback from this delegate
 		/// </summary>
@@ -704,7 +768,15 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
-		
+
+		///<summary>
+		/// Removes all the callbacks from this delegate
+		///</summary>
+		public void ClearCallbacks()
+		{
+			eventHandlers.Clear();
+		}
+
 		/// <summary>
 		/// Invoke the callbacks according to their priority
 		/// </summary>
@@ -725,13 +797,13 @@ namespace VDFramework.ObserverPattern
 		}
 	}
 
-    /// <summary>
+	/// <summary>
 	/// A class that mimics System.Action but allows giving a priority to the callbacks
 	/// </summary>
 	public class PrioritisedAction<T1, T2, T3, T4, T5, T6, T7, T8, T9>
 	{
 		private readonly List<CallbackHandler> eventHandlers = new List<CallbackHandler>();
-		
+
 		/// <summary>
 		/// The callbacks associated with this delegate
 		/// </summary>
@@ -759,7 +831,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.AddSorted(new CallbackHandler<T1, T2, T3, T4, T5, T6, T7, T8, T9>(callback, priority));
 		}
-		
+
 		/// <summary>
 		/// Remove a callback from this delegate
 		/// </summary>
@@ -768,7 +840,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
-		
+
 		/// <summary>
 		/// Add a new callback to this delegate
 		/// </summary>
@@ -778,7 +850,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.AddSorted(new ParameterlessCallbackHandler(callback, priority));
 		}
-		
+
 		/// <summary>
 		/// Remove a callback from this delegate
 		/// </summary>
@@ -787,7 +859,15 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
-		
+
+		///<summary>
+		/// Removes all the callbacks from this delegate
+		///</summary>
+		public void ClearCallbacks()
+		{
+			eventHandlers.Clear();
+		}
+
 		/// <summary>
 		/// Invoke the callbacks according to their priority
 		/// </summary>
@@ -808,13 +888,13 @@ namespace VDFramework.ObserverPattern
 		}
 	}
 
-    /// <summary>
+	/// <summary>
 	/// A class that mimics System.Action but allows giving a priority to the callbacks
 	/// </summary>
 	public class PrioritisedAction<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>
 	{
 		private readonly List<CallbackHandler> eventHandlers = new List<CallbackHandler>();
-		
+
 		/// <summary>
 		/// The callbacks associated with this delegate
 		/// </summary>
@@ -842,7 +922,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.AddSorted(new CallbackHandler<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(callback, priority));
 		}
-		
+
 		/// <summary>
 		/// Remove a callback from this delegate
 		/// </summary>
@@ -851,7 +931,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
-		
+
 		/// <summary>
 		/// Add a new callback to this delegate
 		/// </summary>
@@ -861,7 +941,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.AddSorted(new ParameterlessCallbackHandler(callback, priority));
 		}
-		
+
 		/// <summary>
 		/// Remove a callback from this delegate
 		/// </summary>
@@ -870,7 +950,15 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
-		
+
+		///<summary>
+		/// Removes all the callbacks from this delegate
+		///</summary>
+		public void ClearCallbacks()
+		{
+			eventHandlers.Clear();
+		}
+
 		/// <summary>
 		/// Invoke the callbacks according to their priority
 		/// </summary>
@@ -891,13 +979,13 @@ namespace VDFramework.ObserverPattern
 		}
 	}
 
-    /// <summary>
+	/// <summary>
 	/// A class that mimics System.Action but allows giving a priority to the callbacks
 	/// </summary>
 	public class PrioritisedAction<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>
 	{
 		private readonly List<CallbackHandler> eventHandlers = new List<CallbackHandler>();
-		
+
 		/// <summary>
 		/// The callbacks associated with this delegate
 		/// </summary>
@@ -925,7 +1013,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.AddSorted(new CallbackHandler<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(callback, priority));
 		}
-		
+
 		/// <summary>
 		/// Remove a callback from this delegate
 		/// </summary>
@@ -934,7 +1022,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
-		
+
 		/// <summary>
 		/// Add a new callback to this delegate
 		/// </summary>
@@ -944,7 +1032,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.AddSorted(new ParameterlessCallbackHandler(callback, priority));
 		}
-		
+
 		/// <summary>
 		/// Remove a callback from this delegate
 		/// </summary>
@@ -953,7 +1041,15 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
-		
+
+		///<summary>
+		/// Removes all the callbacks from this delegate
+		///</summary>
+		public void ClearCallbacks()
+		{
+			eventHandlers.Clear();
+		}
+
 		/// <summary>
 		/// Invoke the callbacks according to their priority
 		/// </summary>
@@ -974,13 +1070,13 @@ namespace VDFramework.ObserverPattern
 		}
 	}
 
-    /// <summary>
+	/// <summary>
 	/// A class that mimics System.Action but allows giving a priority to the callbacks
 	/// </summary>
 	public class PrioritisedAction<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>
 	{
 		private readonly List<CallbackHandler> eventHandlers = new List<CallbackHandler>();
-		
+
 		/// <summary>
 		/// The callbacks associated with this delegate
 		/// </summary>
@@ -1008,7 +1104,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.AddSorted(new CallbackHandler<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(callback, priority));
 		}
-		
+
 		/// <summary>
 		/// Remove a callback from this delegate
 		/// </summary>
@@ -1017,7 +1113,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
-		
+
 		/// <summary>
 		/// Add a new callback to this delegate
 		/// </summary>
@@ -1027,7 +1123,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.AddSorted(new ParameterlessCallbackHandler(callback, priority));
 		}
-		
+
 		/// <summary>
 		/// Remove a callback from this delegate
 		/// </summary>
@@ -1036,7 +1132,15 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
-		
+
+		///<summary>
+		/// Removes all the callbacks from this delegate
+		///</summary>
+		public void ClearCallbacks()
+		{
+			eventHandlers.Clear();
+		}
+
 		/// <summary>
 		/// Invoke the callbacks according to their priority
 		/// </summary>
@@ -1057,13 +1161,13 @@ namespace VDFramework.ObserverPattern
 		}
 	}
 
-    /// <summary>
+	/// <summary>
 	/// A class that mimics System.Action but allows giving a priority to the callbacks
 	/// </summary>
 	public class PrioritisedAction<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>
 	{
 		private readonly List<CallbackHandler> eventHandlers = new List<CallbackHandler>();
-		
+
 		/// <summary>
 		/// The callbacks associated with this delegate
 		/// </summary>
@@ -1091,7 +1195,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.AddSorted(new CallbackHandler<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(callback, priority));
 		}
-		
+
 		/// <summary>
 		/// Remove a callback from this delegate
 		/// </summary>
@@ -1100,7 +1204,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
-		
+
 		/// <summary>
 		/// Add a new callback to this delegate
 		/// </summary>
@@ -1110,7 +1214,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.AddSorted(new ParameterlessCallbackHandler(callback, priority));
 		}
-		
+
 		/// <summary>
 		/// Remove a callback from this delegate
 		/// </summary>
@@ -1119,7 +1223,15 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
-		
+
+		///<summary>
+		/// Removes all the callbacks from this delegate
+		///</summary>
+		public void ClearCallbacks()
+		{
+			eventHandlers.Clear();
+		}
+
 		/// <summary>
 		/// Invoke the callbacks according to their priority
 		/// </summary>
@@ -1140,13 +1252,13 @@ namespace VDFramework.ObserverPattern
 		}
 	}
 
-    /// <summary>
+	/// <summary>
 	/// A class that mimics System.Action but allows giving a priority to the callbacks
 	/// </summary>
 	public class PrioritisedAction<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>
 	{
 		private readonly List<CallbackHandler> eventHandlers = new List<CallbackHandler>();
-		
+
 		/// <summary>
 		/// The callbacks associated with this delegate
 		/// </summary>
@@ -1174,7 +1286,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.AddSorted(new CallbackHandler<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(callback, priority));
 		}
-		
+
 		/// <summary>
 		/// Remove a callback from this delegate
 		/// </summary>
@@ -1183,7 +1295,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
-		
+
 		/// <summary>
 		/// Add a new callback to this delegate
 		/// </summary>
@@ -1193,7 +1305,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.AddSorted(new ParameterlessCallbackHandler(callback, priority));
 		}
-		
+
 		/// <summary>
 		/// Remove a callback from this delegate
 		/// </summary>
@@ -1202,7 +1314,15 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
-		
+
+		///<summary>
+		/// Removes all the callbacks from this delegate
+		///</summary>
+		public void ClearCallbacks()
+		{
+			eventHandlers.Clear();
+		}
+
 		/// <summary>
 		/// Invoke the callbacks according to their priority
 		/// </summary>
@@ -1223,13 +1343,13 @@ namespace VDFramework.ObserverPattern
 		}
 	}
 
-    /// <summary>
+	/// <summary>
 	/// A class that mimics System.Action but allows giving a priority to the callbacks
 	/// </summary>
 	public class PrioritisedAction<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>
 	{
 		private readonly List<CallbackHandler> eventHandlers = new List<CallbackHandler>();
-		
+
 		/// <summary>
 		/// The callbacks associated with this delegate
 		/// </summary>
@@ -1257,7 +1377,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.AddSorted(new CallbackHandler<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(callback, priority));
 		}
-		
+
 		/// <summary>
 		/// Remove a callback from this delegate
 		/// </summary>
@@ -1266,7 +1386,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
-		
+
 		/// <summary>
 		/// Add a new callback to this delegate
 		/// </summary>
@@ -1276,7 +1396,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.AddSorted(new ParameterlessCallbackHandler(callback, priority));
 		}
-		
+
 		/// <summary>
 		/// Remove a callback from this delegate
 		/// </summary>
@@ -1285,7 +1405,15 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
-		
+
+		///<summary>
+		/// Removes all the callbacks from this delegate
+		///</summary>
+		public void ClearCallbacks()
+		{
+			eventHandlers.Clear();
+		}
+
 		/// <summary>
 		/// Invoke the callbacks according to their priority
 		/// </summary>
@@ -1306,13 +1434,13 @@ namespace VDFramework.ObserverPattern
 		}
 	}
 
-    /// <summary>
+	/// <summary>
 	/// A class that mimics System.Action but allows giving a priority to the callbacks
 	/// </summary>
 	public class PrioritisedAction<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>
 	{
 		private readonly List<CallbackHandler> eventHandlers = new List<CallbackHandler>();
-		
+
 		/// <summary>
 		/// The callbacks associated with this delegate
 		/// </summary>
@@ -1340,7 +1468,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.AddSorted(new CallbackHandler<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(callback, priority));
 		}
-		
+
 		/// <summary>
 		/// Remove a callback from this delegate
 		/// </summary>
@@ -1349,7 +1477,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
-		
+
 		/// <summary>
 		/// Add a new callback to this delegate
 		/// </summary>
@@ -1359,7 +1487,7 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.AddSorted(new ParameterlessCallbackHandler(callback, priority));
 		}
-		
+
 		/// <summary>
 		/// Remove a callback from this delegate
 		/// </summary>
@@ -1368,7 +1496,15 @@ namespace VDFramework.ObserverPattern
 		{
 			eventHandlers.Remove(eventHandlers.FirstOrDefault(handler => handler == callback));
 		}
-		
+
+		///<summary>
+		/// Removes all the callbacks from this delegate
+		///</summary>
+		public void ClearCallbacks()
+		{
+			eventHandlers.Clear();
+		}
+
 		/// <summary>
 		/// Invoke the callbacks according to their priority
 		/// </summary>
