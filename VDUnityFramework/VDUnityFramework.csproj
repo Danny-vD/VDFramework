@@ -53,6 +53,9 @@
       <Compile Include="..\SharedClasses\Extensions\RandomElement.cs">
         <Link>SharedClasses\Extensions\RandomElement.cs</Link>
       </Compile>
+      <Compile Include="..\SharedClasses\Extensions\RandomElement\RandomElement.DefaultRNG.cs">
+        <Link>SharedClasses\Extensions\RandomElement\RandomElement.DefaultRNG.cs</Link>
+      </Compile>
       <Compile Include="..\SharedClasses\Extensions\StringExtensions.cs">
         <Link>SharedClasses\Extensions\StringExtensions.cs</Link>
       </Compile>

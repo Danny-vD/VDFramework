@@ -8,7 +8,7 @@ namespace VDFramework.Extensions
 	/// <summary>
 	/// Extension methods for collections that allow getting a random element or randomly sorting the collection 
 	/// </summary>
-	public static class RandomElement
+	public static partial class RandomElement
 	{
 		/// <summary>
 		/// Returns a random element from this collection
@@ -30,16 +30,6 @@ namespace VDFramework.Extensions
 		}
 		
 		/// <summary>
-		/// Returns a random element from this collection (using <see cref="System.Random">System.Random</see>)
-		/// </summary>
-		/// <param name="collection">The collection to return a random element from</param>
-		/// <param name="randomIndex">the index of the element returned</param>
-		public static TElement GetRandomElement<TElement>(this IEnumerable<TElement> collection, out int randomIndex)
-		{
-			return collection.GetRandomElement(SystemRandom.StaticInstance, out randomIndex);
-		}
-		
-		/// <summary>
 		/// Returns a random element from this collection
 		/// </summary>
 		/// <param name="collection">The collection to return a random element from</param>
@@ -47,15 +37,6 @@ namespace VDFramework.Extensions
 		public static TElement GetRandomElement<TElement>(this IEnumerable<TElement> collection, IRandomNumberGenerator rng)
 		{
 			return collection.GetRandomElement(rng, out _);
-		}
-		
-		/// <summary>
-		/// Returns a random element from this collection
-		/// </summary>
-		/// <param name="collection">The collection to return a random element from</param>
-		public static TElement GetRandomElement<TElement>(this IEnumerable<TElement> collection)
-		{
-			return collection.GetRandomElement(SystemRandom.StaticInstance);
 		}
 		
 		/// <summary>
@@ -81,17 +62,6 @@ namespace VDFramework.Extensions
 			randomIndex = valueTuple.originalIndex; // Get the original index from that tuple
 			return valueTuple.element;              // Get the element from the tuple
 		}
-		
-		/// <summary>
-		/// Returns a random element from this collection
-		/// </summary>
-		/// <param name="collection">The collection to return a random element from</param>
-		/// <param name="randomIndex">the index of the element returned</param>
-		/// <param name="ignoreIndices">[OPTIONAL] the indices of elements that cannot be returned by this function</param>
-		public static TElement GetRandomElement<TElement>(this IEnumerable<TElement> collection, out int randomIndex, params int[] ignoreIndices)
-		{
-			return collection.GetRandomElement(SystemRandom.StaticInstance, out randomIndex, ignoreIndices);
-		}
 
 		/// <summary>
 		/// Returns a random element from this collection
@@ -103,16 +73,6 @@ namespace VDFramework.Extensions
 		{
 			return collection.GetRandomElement(rng, out _, ignoreIndices);
 		}
-		
-		/// <summary>
-		/// Returns a random element from this collection
-		/// </summary>
-		/// <param name="collection">The collection to return a random element from</param>
-		/// <param name="ignoreIndices">[OPTIONAL] the indices of elements that cannot be returned by this function</param>
-		public static TItem GetRandomElement<TItem>(this IEnumerable<TItem> collection, params int[] ignoreIndices)
-		{
-			return collection.GetRandomElement(SystemRandom.StaticInstance, ignoreIndices);
-		}
 
 		/// <summary>
 		/// Randomly sorts the IEnumerable
@@ -122,15 +82,6 @@ namespace VDFramework.Extensions
 		{
 			List<TItem> list = collection.ToList();
 			return list.Randomize(random);
-		}
-		
-		/// <summary>
-		/// Randomly sorts the IEnumerable
-		/// </summary>
-		/// <returns>The same list, for the purposes of chaining</returns>
-		public static IEnumerable<TItem> Randomize<TItem>(this IEnumerable<TItem> collection)
-		{
-			return collection.Randomize(SystemRandom.StaticInstance);
 		}
 
 		/// <summary>
@@ -149,7 +100,7 @@ namespace VDFramework.Extensions
 
 			while (tempList.Count > 0)
 			{
-				TItem randomItem = tempList.GetRandomElement(random);
+				TItem randomItem = tempList.GetRandomElement(random, out _);
 
 				tempList.Remove(randomItem);
 				list.Add(randomItem);

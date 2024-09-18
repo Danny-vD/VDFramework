@@ -108,6 +108,171 @@
             <para>(makes the object DontDestroyOnLoad)</para>
             </summary>
         </member>
+        <member name="T:VDFramework.RandomWrapper.UnityRandom">
+            <summary>
+            Provides a implementation of <see cref="T:VDFramework.RandomWrapper.Interface.IRandomNumberGenerator"/> using <see cref="T:UnityEngine.Random">UnityEngine.Random</see>
+            </summary>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.UnityRandom.SetSeed(System.Int32)">
+            <inheritdoc cref="M:UnityEngine.Random.InitState(System.Int32)" />
+            <seealso cref="P:UnityEngine.Random.state"/>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.UnityRandom.GetSeed">
+            <inheritdoc />
+            <seealso cref="P:UnityEngine.Random.state"/>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.UnityRandom.Next">
+            <inheritdoc cref="M:System.Random.Next" />
+        </member>
+        <member name="M:VDFramework.RandomWrapper.UnityRandom.Next(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.RandomWrapper.UnityRandom.Next(System.Int32,System.Int32)">
+            <inheritdoc cref="M:UnityEngine.Random.Range(System.Int32,System.Int32)"/>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.UnityRandom.Next(System.Single)">
+            <summary>
+            Returns a random non-negative floating point number between 0 (inclusive) and the upper bound (inclusive)
+            </summary>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.UnityRandom.Next(System.Single,System.Single)">
+            <inheritdoc cref="M:UnityEngine.Random.Range(System.Single,System.Single)"/>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.UnityRandom.NextBytes(System.Span{System.Byte})">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.RandomWrapper.UnityRandom.NextBytes(System.Byte[])">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.RandomWrapper.UnityRandom.NextDouble">
+            <summary>
+            Returns a random double precision floating-point number between 0 (inclusive) and 1 (inclusive)
+            </summary>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.UnityRandom.NextFloat">
+            <summary>
+            Returns a random single precision floating-point number between 0 (inclusive) and 1 (inclusive)
+            </summary>
+        </member>
+        <member name="T:VDFramework.RandomWrapper.Interface.IRandomNumberGenerator">
+            <summary>
+            Provides an interface for an RNG so that it is easy to swap it out with a different implementation
+            </summary>
+            <seealso cref="T:VDFramework.RandomWrapper.SystemRandom"/>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.Interface.IRandomNumberGenerator.SetSeed(System.Int32)">
+            <summary>
+            Set the seed of the associated random number generator
+            </summary>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.Interface.IRandomNumberGenerator.GetSeed">
+            <summary>
+            Get the seed of the associated random number generator
+            </summary>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.Interface.IRandomNumberGenerator.Next">
+            <summary>
+            Returns a random integer<br/>
+            The bounds are implementation defined
+            </summary>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.Interface.IRandomNumberGenerator.Next(System.Int32)">
+            <summary>
+            Returns a random non-negative integer between 0 and the upper bound (exclusive)
+            </summary>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.Interface.IRandomNumberGenerator.Next(System.Int32,System.Int32)">
+            <summary>
+            Returns a random integer between the lower bound (inclusive) and the upper bound (exclusive)
+            </summary>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.Interface.IRandomNumberGenerator.Next(System.Single)">
+            <summary>
+            Returns a random non-negative floating point number between 0 and the upper bound<br/>
+            Which bounds are inclusive and exclusive is implementation defined
+            </summary>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.Interface.IRandomNumberGenerator.Next(System.Single,System.Single)">
+            <summary>
+            Returns a random floating point number between the lower bound and the upper bound<br/>
+            Which bounds are inclusive and exclusive is implementation defined
+            </summary>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.Interface.IRandomNumberGenerator.NextBytes(System.Span{System.Byte})">
+            <summary>
+            Fills the elements of a specified span of bytes with random numbers
+            </summary>
+            <param name="buffer">The span to be filled with random numbers.</param>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.Interface.IRandomNumberGenerator.NextBytes(System.Byte[])">
+            <summary>
+            Fills the elements of a specified array of bytes with random numbers.
+            </summary>
+            <param name="buffer">The array to be filled with random numbers.</param>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.Interface.IRandomNumberGenerator.NextDouble">
+            <summary>
+            Returns a random double precision floating-point number between 0 and 1<br/>
+            Which bounds are inclusive and exclusive is implementation defined
+            </summary>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.Interface.IRandomNumberGenerator.NextFloat">
+            <summary>
+            Returns a random single precision floating-point number between 0 and 1<br/>
+            Which bounds are inclusive and exclusive is implementation defined
+            </summary>
+        </member>
+        <member name="T:VDFramework.RandomWrapper.SystemRandom">
+            <summary>
+            Provides a implementation of <see cref="T:VDFramework.RandomWrapper.Interface.IRandomNumberGenerator"/> using <see cref="T:System.Random">System.Random</see>
+            </summary>
+            <seealso cref="P:VDFramework.RandomWrapper.SystemRandom.StaticInstance">SystemRandom.StaticInstance</seealso>
+        </member>
+        <member name="P:VDFramework.RandomWrapper.SystemRandom.StaticInstance">
+            <summary>
+            Returns a static instance of this class <br/>
+            A new instance will be created the first time this field is used
+            </summary>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.SystemRandom.SetSeed(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.RandomWrapper.SystemRandom.GetSeed">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.RandomWrapper.SystemRandom.Next">
+            <inheritdoc cref="M:System.Random.Next" />
+        </member>
+        <member name="M:VDFramework.RandomWrapper.SystemRandom.Next(System.Int32)">
+            <inheritdoc cref="M:System.Random.Next(System.Int32)" />
+        </member>
+        <member name="M:VDFramework.RandomWrapper.SystemRandom.Next(System.Int32,System.Int32)">
+            <inheritdoc cref="M:System.Random.Next(System.Int32,System.Int32)" />
+        </member>
+        <member name="M:VDFramework.RandomWrapper.SystemRandom.Next(System.Single)">
+            <summary>
+            Returns a random non-negative floating point number between 0 and the upper bound (exclusive)
+            </summary>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.SystemRandom.Next(System.Single,System.Single)">
+            <summary>
+            Returns a random floating point number between the lower bound (inclusive) and the upper bound (exclusive)
+            </summary>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.SystemRandom.NextBytes(System.Span{System.Byte})">
+            <summary>Fills the elements of a specified span of bytes with random numbers.</summary>
+            <param name="buffer">The span to be filled with random numbers.</param>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.SystemRandom.NextBytes(System.Byte[])">
+            <inheritdoc cref="M:System.Random.NextBytes(System.Byte[])" />
+        </member>
+        <member name="M:VDFramework.RandomWrapper.SystemRandom.NextDouble">
+            <inheritdoc cref="M:System.Random.NextDouble" />
+        </member>
+        <member name="M:VDFramework.RandomWrapper.SystemRandom.NextFloat">
+            <inheritdoc cref="M:System.Random.NextDouble" />
+            <returns>A single-precision floating point number that is greater than or equal to 0.0, and less than 1.0.</returns>
+        </member>
         <member name="T:VDFramework.Singleton.Singleton`1">
             <summary>
             A abstract generic implementation of the singleton pattern
@@ -630,17 +795,36 @@
             Utility methods to randomly get an item from a given set of objects
             </summary>
         </member>
-        <member name="M:VDFramework.Utility.RandomUtil.RandomBool">
+        <member name="M:VDFramework.Utility.RandomUtil.RandomBool(VDFramework.RandomWrapper.Interface.IRandomNumberGenerator)">
             <summary>
             Returns a random bool value
             </summary>
+            <param name="rng">The random number generator to use</param>
             <returns>TRUE or FALSE</returns>
         </member>
-        <member name="M:VDFramework.Utility.RandomUtil.GetRandom(System.Object[])">
+        <member name="M:VDFramework.Utility.RandomUtil.RandomBool">
+            <summary>
+            Returns a random bool value (using <see cref="T:System.Random">System.Random</see>)
+            </summary>
+            <returns>TRUE or FALSE</returns>
+        </member>
+        <member name="M:VDFramework.Utility.RandomUtil.GetRandom(VDFramework.RandomWrapper.Interface.IRandomNumberGenerator,System.Object[])">
             <summary>
             Returns randomly from the parameters given
             </summary>
-            <returns>Any of the parameters, randomly selected</returns>
+            <param name="rng">The random number generator to use</param>
+            <param name="array">The collection to randomly select an object from</param>
+            <returns>Any of the given objects, randomly selected</returns>
+        </member>
+        <member name="M:VDFramework.Utility.RandomUtil.GetRandom``1(VDFramework.RandomWrapper.Interface.IRandomNumberGenerator,``0[])">
+            <inheritdoc cref="M:VDFramework.Utility.RandomUtil.GetRandom(VDFramework.RandomWrapper.Interface.IRandomNumberGenerator,System.Object[])"/>
+        </member>
+        <member name="M:VDFramework.Utility.RandomUtil.GetRandom(System.Object[])">
+            <summary>
+            Returns randomly from the parameters given (using <see cref="T:System.Random">System.Random</see>)
+            </summary>
+            <param name="array">The collection to randomly select an object from</param>
+            <returns>Any of the given objects, randomly selected</returns>
         </member>
         <member name="M:VDFramework.Utility.RandomUtil.GetRandom``1(``0[])">
             <inheritdoc cref="M:VDFramework.Utility.RandomUtil.GetRandom(System.Object[])"/>
@@ -3404,7 +3588,7 @@
         </member>
         <member name="M:VDFramework.Extensions.EnumerableExtensions.GetMinMax``1(System.Collections.Generic.IEnumerable{``0},``0@,``0@)">
             <summary>
-            Calculate the Min and the Max values in the collection using <see cref="T:System.IComparable`1"/>
+            Calculate the Min and the Max values in the collection using <see cref="M:System.IComparable`1.CompareTo(`0)"/>
             </summary>
             <param name="collection">The collection to calculate the Min and Max against</param>
             <param name="minElement">The element in the collection that precedes all other elements in the sort order</param>
@@ -3543,22 +3727,72 @@
             Extension methods for collections that allow getting a random element or randomly sorting the collection 
             </summary>
         </member>
-        <member name="M:VDFramework.Extensions.RandomElement.GetRandomElement``1(System.Collections.Generic.IEnumerable{``0},System.Int32@)">
+        <member name="M:VDFramework.Extensions.RandomElement.GetRandomElement``1(System.Collections.Generic.IEnumerable{``0},VDFramework.RandomWrapper.Interface.IRandomNumberGenerator,System.Int32@)">
             <summary>
             Returns a random element from this collection
+            </summary>
+            <param name="collection">The collection to return a random element from</param>
+            <param name="rng">The random number generator to use</param>
+            <param name="randomIndex">the index of the element returned</param>
+        </member>
+        <member name="M:VDFramework.Extensions.RandomElement.GetRandomElement``1(System.Collections.Generic.IEnumerable{``0},VDFramework.RandomWrapper.Interface.IRandomNumberGenerator)">
+            <summary>
+            Returns a random element from this collection
+            </summary>
+            <param name="collection">The collection to return a random element from</param>
+            <param name="rng">The random number generator to use</param>
+        </member>
+        <member name="M:VDFramework.Extensions.RandomElement.GetRandomElement``1(System.Collections.Generic.IEnumerable{``0},VDFramework.RandomWrapper.Interface.IRandomNumberGenerator,System.Int32@,System.Int32[])">
+            <summary>
+            Returns a random element from this collection
+            </summary>
+            <param name="collection">The collection to return a random element from</param>
+            <param name="rng">The random number generator to use</param>
+            <param name="randomIndex">the index of the element returned</param>
+            <param name="ignoreIndices">[OPTIONAL] the indices of elements that cannot be returned by this function</param>
+        </member>
+        <member name="M:VDFramework.Extensions.RandomElement.GetRandomElement``1(System.Collections.Generic.IEnumerable{``0},VDFramework.RandomWrapper.Interface.IRandomNumberGenerator,System.Int32[])">
+            <summary>
+            Returns a random element from this collection
+            </summary>
+            <param name="collection">The collection to return a random element from</param>
+            <param name="rng">The random number generator to use</param>
+            <param name="ignoreIndices">[OPTIONAL] the indices of elements that cannot be returned by this function</param>
+        </member>
+        <member name="M:VDFramework.Extensions.RandomElement.Randomize``1(System.Collections.Generic.IEnumerable{``0},VDFramework.RandomWrapper.Interface.IRandomNumberGenerator)">
+            <summary>
+            Randomly sorts the IEnumerable
+            </summary>
+            <returns>The same list, for the purposes of chaining</returns>
+        </member>
+        <member name="M:VDFramework.Extensions.RandomElement.Randomize``1(System.Collections.Generic.List{``0},VDFramework.RandomWrapper.Interface.IRandomNumberGenerator)">
+            <summary>
+            Randomly sorts the list
+            </summary>
+            <returns>The same list, for the purposes of chaining</returns>
+        </member>
+        <member name="M:VDFramework.Extensions.RandomElement.Randomize``1(System.Collections.Generic.List{``0})">
+            <summary>
+            Randomly sorts the list
+            </summary>
+            <returns>The same list, for the purposes of chaining</returns>
+        </member>
+        <member name="M:VDFramework.Extensions.RandomElement.GetRandomElement``1(System.Collections.Generic.IEnumerable{``0},System.Int32@)">
+            <summary>
+            Returns a random element from this collection (using <see cref="T:System.Random">System.Random</see>)
             </summary>
             <param name="collection">The collection to return a random element from</param>
             <param name="randomIndex">the index of the element returned</param>
         </member>
         <member name="M:VDFramework.Extensions.RandomElement.GetRandomElement``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
-            Returns a random element from this collection
+            Returns a random element from this collection (using <see cref="T:System.Random">System.Random</see>)
             </summary>
             <param name="collection">The collection to return a random element from</param>
         </member>
         <member name="M:VDFramework.Extensions.RandomElement.GetRandomElement``1(System.Collections.Generic.IEnumerable{``0},System.Int32@,System.Int32[])">
             <summary>
-            Returns a random element from this collection
+            Returns a random element from this collection (using <see cref="T:System.Random">System.Random</see>)
             </summary>
             <param name="collection">The collection to return a random element from</param>
             <param name="randomIndex">the index of the element returned</param>
@@ -3566,20 +3800,16 @@
         </member>
         <member name="M:VDFramework.Extensions.RandomElement.GetRandomElement``1(System.Collections.Generic.IEnumerable{``0},System.Int32[])">
             <summary>
-            Returns a random element from this collection
+            Returns a random element from this collection (using <see cref="T:System.Random">System.Random</see>)
             </summary>
             <param name="collection">The collection to return a random element from</param>
             <param name="ignoreIndices">[OPTIONAL] the indices of elements that cannot be returned by this function</param>
         </member>
         <member name="M:VDFramework.Extensions.RandomElement.Randomize``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
-            Randomly sorts the IEnumberable
+            Randomly sorts the IEnumerable (using <see cref="T:System.Random">System.Random</see>)
             </summary>
-        </member>
-        <member name="M:VDFramework.Extensions.RandomElement.Randomize``1(System.Collections.Generic.List{``0})">
-            <summary>
-            Randomly sorts the list
-            </summary>
+            <returns>The same list, for the purposes of chaining</returns>
         </member>
         <member name="T:VDFramework.Extensions.StringExtensions">
             <summary>
