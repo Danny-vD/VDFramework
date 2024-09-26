@@ -96,14 +96,14 @@ namespace VDFramework.LootTables.Variations
 				if (overrideWeightIfAlreadyPresent)
 				{
 					internalPercentageLootTable[index] = pair;
+					
+					ShouldRecalculateIndices = true;
 				}
 
 				return false;
 			}
 
-			ShouldRecalculateIndices = true;
-			
-			internalPercentageLootTable.Add(pair);
+			InternalAdd(pair);
 
 			return true;
 		}
@@ -117,12 +117,12 @@ namespace VDFramework.LootTables.Variations
 					pair.Percentage = PercentageFloatToDecimal(percentage);
 
 					internalPercentageLootTable[index] = pair;
+					
+					ShouldRecalculateIndices = true;
 				}
 				
 				return false;
 			}
-
-			ShouldRecalculateIndices = true; // The internal collection changed, so next time we try to GetLoot() we should recalculate the weights
 
 			InternalAdd(loot, percentage);
 			return true;
@@ -156,13 +156,13 @@ namespace VDFramework.LootTables.Variations
 				pair.Percentage = PercentageFloatToDecimal(percentage);
 
 				internalPercentageLootTable[index] = pair;
+				
+				ShouldRecalculateIndices = true; // The internal collection changed, so next time GetLoot() is called we should recalculate the weights
 			}
 			else
 			{
 				InternalAdd(loot, percentage);
 			}
-
-			ShouldRecalculateIndices = true; // The internal collection changed, so next time GetLoot() is called we should recalculate the weights
 		}
 
 		public void SetPercentage(TLootType loot, float percentage)
@@ -300,13 +300,20 @@ namespace VDFramework.LootTables.Variations
 
 				long weight = (long)(totalWeight * percentage);
 
-				base.TryAdd(percentageLootTable[i].Loot, weight);
+				base.InternalAdd(percentageLootTable[i].Loot, weight);
 			}
 		}
 
+		private void InternalAdd(PercentageLootTablePair<TLootType> loot)
+		{
+			ShouldRecalculateIndices = true; // The internal collection changed, so next time we try to GetLoot() we should recalculate the weights
+			
+			internalPercentageLootTable.Add(loot);
+		}
+		
 		private void InternalAdd(ILoot<TLootType> loot, float percentage)
 		{
-			internalPercentageLootTable.Add(new PercentageLootTablePair<TLootType>(loot, PercentageFloatToDecimal(percentage)));
+			InternalAdd(new PercentageLootTablePair<TLootType>(loot, PercentageFloatToDecimal(percentage)));
 		}
 
 		private long CalculateTotalWeight(IEnumerable<PercentageLootTablePair<TLootType>> percentageLootTable)

@@ -111,13 +111,13 @@ namespace VDFramework.LootTables
 			if (TryGetLootTablePair(pair.Loot, out LootTablePair<TLootType> _, out int index))
 			{
 				lootTable[index] = pair;
+				
+				ShouldRecalculateIndices = true;
 			}
 			else
 			{
-				lootTable.Add(pair);
+				InternalAdd(pair);
 			}
-
-			ShouldRecalculateIndices = true;
 		}
 
 		public bool TryAdd(LootTablePair<TLootType> pair, bool overrideWeightIfAlreadyPresent = false)
@@ -127,14 +127,14 @@ namespace VDFramework.LootTables
 				if (overrideWeightIfAlreadyPresent)
 				{
 					lootTable[index] = pair;
+					
+					ShouldRecalculateIndices = true;
 				}
 
 				return false;
 			}
-
-			ShouldRecalculateIndices = true;
 			
-			lootTable.Add(pair);
+			InternalAdd(pair);
 
 			return true;
 		}
@@ -148,12 +148,12 @@ namespace VDFramework.LootTables
 					pair.Weight = weight;
 
 					lootTable[index] = pair;
+					
+					ShouldRecalculateIndices = true;
 				}
 
 				return false;
 			}
-
-			ShouldRecalculateIndices = true; // Reset the indexArray because the totalWeight might have changed
 
 			InternalAdd(loot, weight);
 			return true;
@@ -187,13 +187,13 @@ namespace VDFramework.LootTables
 				pair.Weight = weight;
 
 				lootTable[index] = pair;
+				
+				ShouldRecalculateIndices = true;
 			}
 			else
 			{
 				InternalAdd(loot, weight);
 			}
-
-			ShouldRecalculateIndices = true;
 		}
 
 		public void SetWeight(TLootType loot, long weight)
@@ -310,10 +310,17 @@ namespace VDFramework.LootTables
 			lootTablePair = default;
 			return false;
 		}
-
-		private void InternalAdd(ILoot<TLootType> loot, long weight)
+		
+		protected void InternalAdd(LootTablePair<TLootType> loot)
 		{
-			lootTable.Add(new LootTablePair<TLootType>(loot, weight));
+			ShouldRecalculateIndices = true; // Reset the indexArray because the totalWeight might have changed
+			
+			lootTable.AddSorted(loot);
+		}
+		
+		protected void InternalAdd(ILoot<TLootType> loot, long weight)
+		{
+			InternalAdd(new LootTablePair<TLootType>(loot, weight));
 		}
 
 		/// <inheritdoc />

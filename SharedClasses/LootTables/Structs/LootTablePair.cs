@@ -4,7 +4,7 @@ using VDFramework.LootTables.Interfaces;
 
 namespace VDFramework.LootTables.Structs
 {
-	public struct LootTablePair<TLootType> : IEquatable<LootTablePair<TLootType>>
+	public struct LootTablePair<TLootType> : IEquatable<LootTablePair<TLootType>>, IComparable<LootTablePair<TLootType>>
 	{
 		public readonly ILoot<TLootType> Loot;
 		public long Weight;
@@ -33,6 +33,11 @@ namespace VDFramework.LootTables.Structs
 		public override int GetHashCode()
 		{
 			return Loot.GetHashCode();
+		}
+
+		public int CompareTo(LootTablePair<TLootType> other)
+		{
+			return Weight.CompareTo(other.Weight);
 		}
 	}
 }
