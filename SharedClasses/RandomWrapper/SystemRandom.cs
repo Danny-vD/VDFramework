@@ -94,5 +94,11 @@ namespace VDFramework.RandomWrapper
 		{
 			return (float)random.NextDouble();
 		}
+
+		/// <inheritdoc />
+		public double GetPercentage()
+		{
+			return random.NextDouble();
+		}
 	}
 }

@@ -91,5 +91,19 @@ namespace VDFramework.RandomWrapper
 		{
 			return Random.value;
 		}
+
+		/// <inheritdoc />
+		public double GetPercentage()
+		{
+			double random = NextDouble();
+
+			// ReSharper disable once CompareOfFloatsByEqualityOperator | Reason: I want to check if the result is exactly 1
+			if (random == 1)
+			{
+				random -= double.Epsilon; // This technically skews the probability in favour of (1 - epsilon), but the chance is astromically small so it is acceptable. I still hate it though.
+			}
+
+			return random;
+		}
 	}
 }

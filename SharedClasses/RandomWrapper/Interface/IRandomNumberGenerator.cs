@@ -69,5 +69,12 @@ namespace VDFramework.RandomWrapper.Interface
 		/// Which bounds are inclusive and exclusive is implementation defined
 		/// </summary>
 		public float NextFloat();
+
+		/// <summary>
+		/// Returns a random double precision floating-point number between 0 (inclusive) and 1 (exclusive)<br/>
+		/// This allows for a reliable range for the purposes of, for example, a % chance
+		/// </summary>
+		/// <returns>A double-precision floating point number that is greater than or equal to 0.0, and less than 1.0.</returns>
+		public double GetPercentage();
 	}
 }
