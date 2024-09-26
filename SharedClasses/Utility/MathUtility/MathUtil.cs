@@ -59,6 +59,7 @@ namespace VDFramework.Utility.MathUtility
 				throw new ArgumentException("Height cannot be 0, the result would be a straight horizontal line", nameof(height));
 			}
 
+			// ReSharper disable once CompareOfFloatsByEqualityOperator | Reason: Not a problem here, we actually want to check if the same value was passed in as an argument
 			if (y == height) // in this case, the peak of the curve will be the requested coordinate
 			{
 				float halfDistance = distance / 2;

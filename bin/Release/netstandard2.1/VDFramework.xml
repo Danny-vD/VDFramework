@@ -529,7 +529,10 @@
         <member name="M:VDFramework.LootTables.LootTableItems.LootTableItem`1.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:VDFramework.LootTables.Variations.PercentageLootTable`1.TryGetPair(VDFramework.LootTables.Interfaces.ILoot{`0},VDFramework.LootTables.Structs.PercentageLootTablePair{`0}@)">
+        <member name="M:VDFramework.LootTables.Variations.PercentageLootTable`1.GetLootList">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.LootTables.Variations.PercentageLootTable`1.TryGetLootTablePair(VDFramework.LootTables.Interfaces.ILoot{`0},VDFramework.LootTables.Structs.PercentageLootTablePair{`0}@,System.Int32@)">
             <summary>
             Attempt to get the LootTablePair whose loot matches the given loot
             </summary>
@@ -544,16 +547,40 @@
             Convert percentages to weight and add them to the lootTable
             </summary>
         </member>
+        <member name="M:VDFramework.LootTables.Variations.PercentageLootTable`1.PercentageFloatToDecimal(System.Single)">
+            <summary>
+            Converts a float percentage (0% - 100%) to a decimal percentage factor (0 - 1)
+            </summary>
+        </member>
+        <member name="M:VDFramework.LootTables.Variations.PercentageLootTable`1.GetEnumerator">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.LootTables.WeightedLootTable`1.GetLootList">
+            <summary>
+            Returns a copy of the loot table as a list
+            </summary>
+        </member>
         <member name="M:VDFramework.LootTables.WeightedLootTable`1.GetLoot">
+            <summary>
+            Grabs a random ILoot from the table based on the weights and returns it.<br/>
+            Uses <see cref="T:System.Random">System.Random</see>
+            </summary>
+        </member>
+        <member name="M:VDFramework.LootTables.WeightedLootTable`1.GetLoot(VDFramework.RandomWrapper.Interface.IRandomNumberGenerator)">
             <summary>
             Grabs a random ILoot from the table based on the weights and returns it
             </summary>
         </member>
         <member name="M:VDFramework.LootTables.WeightedLootTable`1.CalculateIndexArray">
             <summary>
-            <para>Calculate an array of indices from the Loot Table</para>
-            <para>The amount of duplicate values is dependent on the weight</para>
+            Calculate an array of indices from the Loot Table <br/>
             </summary>
+        </member>
+        <member name="M:VDFramework.LootTables.WeightedLootTable`1.GetEnumerator">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.LootTables.WeightedLootTable`1.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc />
         </member>
         <member name="T:VDFramework.ObserverPattern.Constants.Priority">
             <summary>
@@ -622,6 +649,11 @@
             Remove a callback from this delegate
             </summary>
         </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction.ClearCallbacks">
+            <summary>
+             Removes all the callbacks from this delegate
+            </summary>
+        </member>
         <member name="M:VDFramework.ObserverPattern.PrioritisedAction.Invoke">
             <summary>
             Invoke the callbacks according to their priority
@@ -667,6 +699,11 @@
             Remove a callback from this delegate
             </summary>
             <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`1.ClearCallbacks">
+            <summary>
+             Removes all the callbacks from this delegate
+            </summary>
         </member>
         <member name="M:VDFramework.ObserverPattern.PrioritisedAction`1.Invoke(`0)">
             <summary>
@@ -714,6 +751,11 @@
             </summary>
             <param name="callback">The callback to remove</param>
         </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`2.ClearCallbacks">
+            <summary>
+             Removes all the callbacks from this delegate
+            </summary>
+        </member>
         <member name="M:VDFramework.ObserverPattern.PrioritisedAction`2.Invoke(`0,`1)">
             <summary>
             Invoke the callbacks according to their priority
@@ -759,6 +801,11 @@
             Remove a callback from this delegate
             </summary>
             <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`3.ClearCallbacks">
+            <summary>
+             Removes all the callbacks from this delegate
+            </summary>
         </member>
         <member name="M:VDFramework.ObserverPattern.PrioritisedAction`3.Invoke(`0,`1,`2)">
             <summary>
@@ -806,6 +853,11 @@
             </summary>
             <param name="callback">The callback to remove</param>
         </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`4.ClearCallbacks">
+            <summary>
+             Removes all the callbacks from this delegate
+            </summary>
+        </member>
         <member name="M:VDFramework.ObserverPattern.PrioritisedAction`4.Invoke(`0,`1,`2,`3)">
             <summary>
             Invoke the callbacks according to their priority
@@ -851,6 +903,11 @@
             Remove a callback from this delegate
             </summary>
             <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`5.ClearCallbacks">
+            <summary>
+             Removes all the callbacks from this delegate
+            </summary>
         </member>
         <member name="M:VDFramework.ObserverPattern.PrioritisedAction`5.Invoke(`0,`1,`2,`3,`4)">
             <summary>
@@ -898,6 +955,11 @@
             </summary>
             <param name="callback">The callback to remove</param>
         </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`6.ClearCallbacks">
+            <summary>
+             Removes all the callbacks from this delegate
+            </summary>
+        </member>
         <member name="M:VDFramework.ObserverPattern.PrioritisedAction`6.Invoke(`0,`1,`2,`3,`4,`5)">
             <summary>
             Invoke the callbacks according to their priority
@@ -943,6 +1005,11 @@
             Remove a callback from this delegate
             </summary>
             <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`7.ClearCallbacks">
+            <summary>
+             Removes all the callbacks from this delegate
+            </summary>
         </member>
         <member name="M:VDFramework.ObserverPattern.PrioritisedAction`7.Invoke(`0,`1,`2,`3,`4,`5,`6)">
             <summary>
@@ -990,6 +1057,11 @@
             </summary>
             <param name="callback">The callback to remove</param>
         </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`8.ClearCallbacks">
+            <summary>
+             Removes all the callbacks from this delegate
+            </summary>
+        </member>
         <member name="M:VDFramework.ObserverPattern.PrioritisedAction`8.Invoke(`0,`1,`2,`3,`4,`5,`6,`7)">
             <summary>
             Invoke the callbacks according to their priority
@@ -1035,6 +1107,11 @@
             Remove a callback from this delegate
             </summary>
             <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`9.ClearCallbacks">
+            <summary>
+             Removes all the callbacks from this delegate
+            </summary>
         </member>
         <member name="M:VDFramework.ObserverPattern.PrioritisedAction`9.Invoke(`0,`1,`2,`3,`4,`5,`6,`7,`8)">
             <summary>
@@ -1082,6 +1159,11 @@
             </summary>
             <param name="callback">The callback to remove</param>
         </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`10.ClearCallbacks">
+            <summary>
+             Removes all the callbacks from this delegate
+            </summary>
+        </member>
         <member name="M:VDFramework.ObserverPattern.PrioritisedAction`10.Invoke(`0,`1,`2,`3,`4,`5,`6,`7,`8,`9)">
             <summary>
             Invoke the callbacks according to their priority
@@ -1127,6 +1209,11 @@
             Remove a callback from this delegate
             </summary>
             <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`11.ClearCallbacks">
+            <summary>
+             Removes all the callbacks from this delegate
+            </summary>
         </member>
         <member name="M:VDFramework.ObserverPattern.PrioritisedAction`11.Invoke(`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10)">
             <summary>
@@ -1174,6 +1261,11 @@
             </summary>
             <param name="callback">The callback to remove</param>
         </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`12.ClearCallbacks">
+            <summary>
+             Removes all the callbacks from this delegate
+            </summary>
+        </member>
         <member name="M:VDFramework.ObserverPattern.PrioritisedAction`12.Invoke(`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11)">
             <summary>
             Invoke the callbacks according to their priority
@@ -1219,6 +1311,11 @@
             Remove a callback from this delegate
             </summary>
             <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`13.ClearCallbacks">
+            <summary>
+             Removes all the callbacks from this delegate
+            </summary>
         </member>
         <member name="M:VDFramework.ObserverPattern.PrioritisedAction`13.Invoke(`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11,`12)">
             <summary>
@@ -1266,6 +1363,11 @@
             </summary>
             <param name="callback">The callback to remove</param>
         </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`14.ClearCallbacks">
+            <summary>
+             Removes all the callbacks from this delegate
+            </summary>
+        </member>
         <member name="M:VDFramework.ObserverPattern.PrioritisedAction`14.Invoke(`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11,`12,`13)">
             <summary>
             Invoke the callbacks according to their priority
@@ -1311,6 +1413,11 @@
             Remove a callback from this delegate
             </summary>
             <param name="callback">The callback to remove</param>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`15.ClearCallbacks">
+            <summary>
+             Removes all the callbacks from this delegate
+            </summary>
         </member>
         <member name="M:VDFramework.ObserverPattern.PrioritisedAction`15.Invoke(`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11,`12,`13,`14)">
             <summary>
@@ -1358,6 +1465,11 @@
             </summary>
             <param name="callback">The callback to remove</param>
         </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedAction`16.ClearCallbacks">
+            <summary>
+             Removes all the callbacks from this delegate
+            </summary>
+        </member>
         <member name="M:VDFramework.ObserverPattern.PrioritisedAction`16.Invoke(`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11,`12,`13,`14,`15)">
             <summary>
             Invoke the callbacks according to their priority
@@ -1388,6 +1500,11 @@
         <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`1.RemoveCallback(System.Func{`0})">
             <summary>
             Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`1.ClearCallbacks">
+            <summary>
+             Removes all the callbacks from this delegate
             </summary>
         </member>
         <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`1.Invoke">
@@ -1435,6 +1552,11 @@
             Remove a callback from this delegate
             </summary>
         </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`2.ClearCallbacks">
+            <summary>
+             Removes all the callbacks from this delegate
+            </summary>
+        </member>
         <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`2.Invoke(`0)">
             <summary>
             Invoke the callbacks according to their priority <br/>
@@ -1478,6 +1600,11 @@
         <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`3.RemoveCallback(System.Func{`2})">
             <summary>
             Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`3.ClearCallbacks">
+            <summary>
+             Removes all the callbacks from this delegate
             </summary>
         </member>
         <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`3.Invoke(`0,`1)">
@@ -1525,6 +1652,11 @@
             Remove a callback from this delegate
             </summary>
         </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`4.ClearCallbacks">
+            <summary>
+             Removes all the callbacks from this delegate
+            </summary>
+        </member>
         <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`4.Invoke(`0,`1,`2)">
             <summary>
             Invoke the callbacks according to their priority <br/>
@@ -1568,6 +1700,11 @@
         <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`5.RemoveCallback(System.Func{`4})">
             <summary>
             Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`5.ClearCallbacks">
+            <summary>
+             Removes all the callbacks from this delegate
             </summary>
         </member>
         <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`5.Invoke(`0,`1,`2,`3)">
@@ -1615,6 +1752,11 @@
             Remove a callback from this delegate
             </summary>
         </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`6.ClearCallbacks">
+            <summary>
+             Removes all the callbacks from this delegate
+            </summary>
+        </member>
         <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`6.Invoke(`0,`1,`2,`3,`4)">
             <summary>
             Invoke the callbacks according to their priority <br/>
@@ -1658,6 +1800,11 @@
         <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`7.RemoveCallback(System.Func{`6})">
             <summary>
             Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`7.ClearCallbacks">
+            <summary>
+             Removes all the callbacks from this delegate
             </summary>
         </member>
         <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`7.Invoke(`0,`1,`2,`3,`4,`5)">
@@ -1705,6 +1852,11 @@
             Remove a callback from this delegate
             </summary>
         </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`8.ClearCallbacks">
+            <summary>
+             Removes all the callbacks from this delegate
+            </summary>
+        </member>
         <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`8.Invoke(`0,`1,`2,`3,`4,`5,`6)">
             <summary>
             Invoke the callbacks according to their priority <br/>
@@ -1748,6 +1900,11 @@
         <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`9.RemoveCallback(System.Func{`8})">
             <summary>
             Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`9.ClearCallbacks">
+            <summary>
+             Removes all the callbacks from this delegate
             </summary>
         </member>
         <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`9.Invoke(`0,`1,`2,`3,`4,`5,`6,`7)">
@@ -1795,6 +1952,11 @@
             Remove a callback from this delegate
             </summary>
         </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`10.ClearCallbacks">
+            <summary>
+             Removes all the callbacks from this delegate
+            </summary>
+        </member>
         <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`10.Invoke(`0,`1,`2,`3,`4,`5,`6,`7,`8)">
             <summary>
             Invoke the callbacks according to their priority <br/>
@@ -1838,6 +2000,11 @@
         <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`11.RemoveCallback(System.Func{`10})">
             <summary>
             Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`11.ClearCallbacks">
+            <summary>
+             Removes all the callbacks from this delegate
             </summary>
         </member>
         <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`11.Invoke(`0,`1,`2,`3,`4,`5,`6,`7,`8,`9)">
@@ -1885,6 +2052,11 @@
             Remove a callback from this delegate
             </summary>
         </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`12.ClearCallbacks">
+            <summary>
+             Removes all the callbacks from this delegate
+            </summary>
+        </member>
         <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`12.Invoke(`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10)">
             <summary>
             Invoke the callbacks according to their priority <br/>
@@ -1928,6 +2100,11 @@
         <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`13.RemoveCallback(System.Func{`12})">
             <summary>
             Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`13.ClearCallbacks">
+            <summary>
+             Removes all the callbacks from this delegate
             </summary>
         </member>
         <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`13.Invoke(`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11)">
@@ -1975,6 +2152,11 @@
             Remove a callback from this delegate
             </summary>
         </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`14.ClearCallbacks">
+            <summary>
+             Removes all the callbacks from this delegate
+            </summary>
+        </member>
         <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`14.Invoke(`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11,`12)">
             <summary>
             Invoke the callbacks according to their priority <br/>
@@ -2018,6 +2200,11 @@
         <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`15.RemoveCallback(System.Func{`14})">
             <summary>
             Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`15.ClearCallbacks">
+            <summary>
+             Removes all the callbacks from this delegate
             </summary>
         </member>
         <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`15.Invoke(`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11,`12,`13)">
@@ -2065,6 +2252,11 @@
             Remove a callback from this delegate
             </summary>
         </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`16.ClearCallbacks">
+            <summary>
+             Removes all the callbacks from this delegate
+            </summary>
+        </member>
         <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`16.Invoke(`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11,`12,`13,`14)">
             <summary>
             Invoke the callbacks according to their priority <br/>
@@ -2108,6 +2300,11 @@
         <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`17.RemoveCallback(System.Func{`16})">
             <summary>
             Remove a callback from this delegate
+            </summary>
+        </member>
+        <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`17.ClearCallbacks">
+            <summary>
+             Removes all the callbacks from this delegate
             </summary>
         </member>
         <member name="M:VDFramework.ObserverPattern.PrioritisedFunc`17.Invoke(`0,`1,`2,`3,`4,`5,`6,`7,`8,`9,`10,`11,`12,`13,`14,`15)">
