@@ -154,6 +154,9 @@
             Returns a random single precision floating-point number between 0 (inclusive) and 1 (inclusive)
             </summary>
         </member>
+        <member name="M:VDFramework.RandomWrapper.UnityRandom.GetPercentage">
+            <inheritdoc />
+        </member>
         <member name="T:VDFramework.RandomWrapper.Interface.IRandomNumberGenerator">
             <summary>
             Provides an interface for an RNG so that it is easy to swap it out with a different implementation
@@ -222,6 +225,65 @@
             Which bounds are inclusive and exclusive is implementation defined
             </summary>
         </member>
+        <member name="M:VDFramework.RandomWrapper.Interface.IRandomNumberGenerator.GetPercentage">
+            <summary>
+            Returns a random double precision floating-point number between 0 (inclusive) and 1 (exclusive)<br/>
+            This allows for a reliable range for the purposes of, for example, a % chance
+            </summary>
+            <returns>A double-precision floating point number that is greater than or equal to 0.0, and less than 1.0.</returns>
+        </member>
+        <member name="T:VDFramework.RandomWrapper.RandomDelegator">
+            <summary>
+            Provides an implementation of <see cref="T:VDFramework.RandomWrapper.Interface.IRandomNumberGenerator"/> that delegates all implementation to an underlying field.<br/>
+            The idea is that you can reuse a single instance but still change the implementation of the random
+            </summary>
+        </member>
+        <member name="F:VDFramework.RandomWrapper.RandomDelegator.RandomNumberGenerator">
+            <summary>
+            The implementation of <see cref="T:VDFramework.RandomWrapper.Interface.IRandomNumberGenerator"/> that is used for all the functions
+            </summary>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.RandomDelegator.#ctor(VDFramework.RandomWrapper.Interface.IRandomNumberGenerator)">
+            <summary>
+            Create a new instance of this class using the provided <see cref="T:VDFramework.RandomWrapper.Interface.IRandomNumberGenerator"/> implementation
+            </summary>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.RandomDelegator.SetSeed(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.RandomWrapper.RandomDelegator.GetSeed">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.RandomWrapper.RandomDelegator.Next">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.RandomWrapper.RandomDelegator.Next(System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.RandomWrapper.RandomDelegator.Next(System.Int32,System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.RandomWrapper.RandomDelegator.Next(System.Single)">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.RandomWrapper.RandomDelegator.Next(System.Single,System.Single)">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.RandomWrapper.RandomDelegator.NextBytes(System.Span{System.Byte})">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.RandomWrapper.RandomDelegator.NextBytes(System.Byte[])">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.RandomWrapper.RandomDelegator.NextDouble">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.RandomWrapper.RandomDelegator.NextFloat">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.RandomWrapper.RandomDelegator.GetPercentage">
+            <inheritdoc />
+        </member>
         <member name="T:VDFramework.RandomWrapper.SystemRandom">
             <summary>
             Provides a implementation of <see cref="T:VDFramework.RandomWrapper.Interface.IRandomNumberGenerator"/> using <see cref="T:System.Random">System.Random</see>
@@ -272,6 +334,9 @@
         <member name="M:VDFramework.RandomWrapper.SystemRandom.NextFloat">
             <inheritdoc cref="M:System.Random.NextDouble" />
             <returns>A single-precision floating point number that is greater than or equal to 0.0, and less than 1.0.</returns>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.SystemRandom.GetPercentage">
+            <inheritdoc />
         </member>
         <member name="T:VDFramework.Singleton.Singleton`1">
             <summary>
@@ -672,6 +737,73 @@
             </param>
             <credit>https://discussions.unity.com/t/how-do-i-compare-quaternions/47274/6</credit>
         </member>
+        <member name="T:VDFramework.Utility.AliasMethod.AliasTable`1">
+            <summary>
+            Provides an implementation of a Alias table for the purposes of sampling discrete distributions.
+            </summary>
+            <theory>
+            https://research.nvidia.com/labs/rtr/publication/wyman2021alias/
+            </theory>
+        </member>
+        <member name="P:VDFramework.Utility.AliasMethod.AliasTable`1.TotalWeight">
+            <summary>
+            The combined weight of every sample in the table.
+            </summary>
+        </member>
+        <member name="P:VDFramework.Utility.AliasMethod.AliasTable`1.AverageWeight">
+            <summary>
+            The average weight per sample in the table.
+            </summary>
+        </member>
+        <member name="P:VDFramework.Utility.AliasMethod.AliasTable`1.IsValid">
+            <summary>
+            Whether or not the table is empty.
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.AliasMethod.AliasTable`1.#ctor(System.Collections.Generic.IEnumerable{VDFramework.LootTables.Structs.LootTablePair{`0}})">
+            <summary>
+            A constructor that immediately constructs the alias table using the given collection.
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.AliasMethod.AliasTable`1.#ctor">
+            <summary>
+            The default constructor that does not immediately construct a table.
+            </summary>
+            <seealso cref="M:VDFramework.Utility.AliasMethod.AliasTable`1.Construct(System.Collections.Generic.IEnumerable{VDFramework.LootTables.Structs.LootTablePair{`0}})"/>
+        </member>
+        <member name="M:VDFramework.Utility.AliasMethod.AliasTable`1.Construct(System.Collections.Generic.IEnumerable{VDFramework.LootTables.Structs.LootTablePair{`0}})">
+            <summary>
+            Construct an alias table from the given pairs of {<see cref="T:VDFramework.LootTables.Interfaces.ILoot`1"/>, Weight}
+            </summary>
+            <param name="sortedCollection">A collection of {<see cref="T:VDFramework.LootTables.Interfaces.ILoot`1"/>, Weight} pairs</param>
+        </member>
+        <member name="M:VDFramework.Utility.AliasMethod.AliasTable`1.Sample(VDFramework.RandomWrapper.Interface.IRandomNumberGenerator)">
+            <summary>
+            Sample the alias table based on the weights and returns the result.<br/>
+            Uses the <paramref name="rng"/> or <see cref="T:VDFramework.RandomWrapper.SystemRandom"/> if that is null
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.AliasMethod.AliasTable`1.Sample">
+            <summary>
+            Sample the alias table based on the weights and returns the result.<br/>
+            Uses <see cref="T:System.Random">System.Random</see>
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.AliasMethod.AliasTable`1.Clear">
+            <summary>
+            Clears the entire alias table
+            </summary>
+        </member>
+        <member name="T:VDFramework.Utility.AliasMethod.AliasTableEntry`1">
+            <summary>
+            An entry of an Alias table
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.AliasMethod.AliasTableEntry`1.Threshold">
+            <summary>
+            Value in the range of [0, 1) that is used to determine whether to use <see cref="F:VDFramework.Utility.AliasMethod.AliasTableEntry`1.LowerSample"/> or <see cref="F:VDFramework.Utility.AliasMethod.AliasTableEntry`1.HigherSample"/>
+            </summary>
+        </member>
         <member name="T:VDFramework.Utility.DataTypes.StringUtil">
             <summary>
             Contains utility functions for the built-in <see cref="T:System.String"/> type
@@ -758,8 +890,8 @@
             Returns the Least Common Multiple of the given floating point numbers
             </summary>
             <theory>
-            <para>https://en.wikipedia.org/wiki/Euclidean_algorithm</para>
-            <para>https://en.wikipedia.org/wiki/Least_common_multiple</para>
+            https://en.wikipedia.org/wiki/Euclidean_algorithm<br/>
+            https://en.wikipedia.org/wiki/Least_common_multiple
             </theory>
         </member>
         <member name="M:VDFramework.Utility.MathUtility.NumberUtil.GetLeastCommonMultiple(System.Collections.Generic.IEnumerable{System.Single},System.Int32)">
@@ -767,8 +899,8 @@
             Returns the Least Common Multiple of the given floating point numbers
             </summary>
             <theory>
-            <para>https://en.wikipedia.org/wiki/Euclidean_algorithm</para>
-            <para>https://en.wikipedia.org/wiki/Least_common_multiple</para>
+            https://en.wikipedia.org/wiki/Euclidean_algorithm<br/>
+            https://en.wikipedia.org/wiki/Least_common_multiple
             </theory>
         </member>
         <member name="M:VDFramework.Utility.MathUtility.NumberUtil.GetLeastCommonMultiple(System.Collections.Generic.IEnumerable{System.Int64})">
@@ -777,8 +909,8 @@
             </summary>
             <credit>https://stackoverflow.com/questions/147515/least-common-multiple-for-3-or-more-numbers/29717490#29717490</credit>
             <theory>
-            <para>https://en.wikipedia.org/wiki/Euclidean_algorithm</para>
-            <para>https://en.wikipedia.org/wiki/Least_common_multiple</para>
+            https://en.wikipedia.org/wiki/Euclidean_algorithm<br/>
+            https://en.wikipedia.org/wiki/Least_common_multiple
             </theory>
         </member>
         <member name="M:VDFramework.Utility.MathUtility.NumberUtil.GetLeastCommonMultiple(System.Int64,System.Int64)">
@@ -786,8 +918,8 @@
             Returns the Least Common Multiple of the given numbers
             </summary>
             <theory>
-            <para>https://en.wikipedia.org/wiki/Euclidean_algorithm</para>
-            <para>https://en.wikipedia.org/wiki/Least_common_multiple</para>
+            https://en.wikipedia.org/wiki/Euclidean_algorithm<br/>
+            https://en.wikipedia.org/wiki/Least_common_multiple
             </theory>
         </member>
         <member name="T:VDFramework.Utility.RandomUtil">
@@ -4028,6 +4160,55 @@
         <member name="M:VDFramework.LootTables.LootTableItems.LootTableItem`1.GetHashCode">
             <inheritdoc/>
         </member>
+        <member name="T:VDFramework.LootTables.Structs.LootTablePair`1">
+            <summary>
+            A simple struct that holds the weight per <see cref="T:VDFramework.LootTables.Interfaces.ILoot`1"/>
+            </summary>
+        </member>
+        <member name="F:VDFramework.LootTables.Structs.LootTablePair`1.Loot">
+            <summary>
+            The loot that is assigned to this pair
+            </summary>
+        </member>
+        <member name="F:VDFramework.LootTables.Structs.LootTablePair`1.Weight">
+            <summary>
+            The weight that is associated with the loot of this pair
+            </summary>
+        </member>
+        <member name="M:VDFramework.LootTables.Structs.LootTablePair`1.#ctor(VDFramework.LootTables.Interfaces.ILoot{`0},System.Int64)">
+            <summary>
+            Create a new instance of this struct with the given loot and weight 
+            </summary>
+        </member>
+        <member name="M:VDFramework.LootTables.Structs.LootTablePair`1.op_Implicit(VDFramework.LootTables.Structs.LootTablePair{`0})~System.Collections.Generic.KeyValuePair{VDFramework.LootTables.Interfaces.ILoot{`0},System.Int64}">
+            <summary>
+            Convert into a KeyValuePair with Key = Loot and Value = Weight
+            </summary>
+        </member>
+        <member name="M:VDFramework.LootTables.Structs.LootTablePair`1.Equals(VDFramework.LootTables.Structs.LootTablePair{`0})">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.LootTables.Structs.LootTablePair`1.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.LootTables.Structs.LootTablePair`1.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.LootTables.Structs.LootTablePair`1.CompareTo(VDFramework.LootTables.Structs.LootTablePair{`0})">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.LootTables.Structs.PercentageLootTablePair`1.Equals(VDFramework.LootTables.Structs.PercentageLootTablePair{`0})">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.LootTables.Structs.PercentageLootTablePair`1.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.LootTables.Structs.PercentageLootTablePair`1.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.LootTables.Structs.PercentageLootTablePair`1.CompareTo(VDFramework.LootTables.Structs.PercentageLootTablePair{`0})">
+            <inheritdoc />
+        </member>
         <member name="M:VDFramework.LootTables.Variations.PercentageLootTable`1.GetLootList">
             <inheritdoc />
         </member>
@@ -4054,23 +4235,68 @@
         <member name="M:VDFramework.LootTables.Variations.PercentageLootTable`1.GetEnumerator">
             <inheritdoc />
         </member>
+        <member name="T:VDFramework.LootTables.WeightedLootTable`1">
+            <summary>
+            A weighted loot table that allows you to grab an random element of type <typeparamref name="TLootType"/> with a probability based on the weight assigned to it.<br/>
+            Internally the Alias-method is used for the sampling.
+            </summary>
+            <seealso cref="T:VDFramework.Utility.AliasMethod.AliasTable`1"/>
+        </member>
+        <member name="P:VDFramework.LootTables.WeightedLootTable`1.TotalWeight">
+            <summary>
+            The combined weight of every loot in the table
+            </summary>
+        </member>
+        <member name="P:VDFramework.LootTables.WeightedLootTable`1.ShouldReconstructAliasTable">
+            <summary>
+            Whether or not the internal alias table should be reconstructed first when <see cref="M:VDFramework.LootTables.WeightedLootTable`1.GetLoot"/> is called
+            </summary>
+        </member>
+        <member name="P:VDFramework.LootTables.WeightedLootTable`1.RandomNumberGenerator">
+            <summary>
+            The <see cref="T:VDFramework.RandomWrapper.Interface.IRandomNumberGenerator"/> implementation that should be used when getting a random value from the loot table.<br/>
+            Will default to <see cref="T:VDFramework.RandomWrapper.SystemRandom"/> if not set.
+            </summary>
+        </member>
+        <member name="F:VDFramework.LootTables.WeightedLootTable`1.lootTable">
+            <summary>
+            The list of pairs that represents this loot table.<br/>
+            Similar to Dictionary{ILoot{TLootType}, int}
+            </summary>
+        </member>
+        <member name="M:VDFramework.LootTables.WeightedLootTable`1.#ctor">
+            <summary>
+            Creates a new instance of a weighted loot table with no loot
+            </summary>
+        </member>
+        <member name="M:VDFramework.LootTables.WeightedLootTable`1.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{`0,System.Int64}})">
+            <summary>
+            Creates a new instance of a weighted loot table with the given loot
+            </summary>
+        </member>
+        <member name="M:VDFramework.LootTables.WeightedLootTable`1.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{VDFramework.LootTables.Interfaces.ILoot{`0},System.Int64}})">
+            <summary>
+            Creates a new instance of a weighted loot table with the given loot
+            </summary>
+        </member>
         <member name="M:VDFramework.LootTables.WeightedLootTable`1.GetLootList">
             <summary>
-            Returns a copy of the loot table as a list
+            Returns a copy of the loot table as a list.
             </summary>
         </member>
         <member name="M:VDFramework.LootTables.WeightedLootTable`1.GetLoot">
             <summary>
             Grabs a random ILoot from the table based on the weights and returns it.<br/>
-            Uses <see cref="T:System.Random">System.Random</see>
+            Uses the <see cref="P:VDFramework.LootTables.WeightedLootTable`1.RandomNumberGenerator"/> or <see cref="T:VDFramework.RandomWrapper.SystemRandom"/> if that is null.
             </summary>
         </member>
-        <member name="M:VDFramework.LootTables.WeightedLootTable`1.GetLoot(VDFramework.RandomWrapper.Interface.IRandomNumberGenerator)">
+        <member name="M:VDFramework.LootTables.WeightedLootTable`1.GetAliasTable">
             <summary>
-            Grabs a random ILoot from the table based on the weights and returns it
+            Returns the internal alias table of this loot table<br/>
+            The table will be constructed if <see cref="P:VDFramework.LootTables.WeightedLootTable`1.ShouldReconstructAliasTable"/> is true
             </summary>
         </member>
-        <member name="M:VDFramework.LootTables.WeightedLootTable`1.CalculateIndexArray">
+        <member name="M:VDFramework.LootTables.WeightedLootTable`1.ConstructAliasTable">
             <summary>
             Calculate an array of indices from the Loot Table <br/>
             </summary>

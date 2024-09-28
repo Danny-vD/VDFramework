@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using VDFramework.AliasMethod;
 using VDFramework.LootTables.Interfaces;
 using VDFramework.LootTables.LootTableItems;
 using VDFramework.LootTables.Structs;
@@ -36,10 +37,10 @@ namespace VDFramework.LootTables.Variations
 		/// <inheritdoc />
 		public override List<LootTablePair<TLootType>> GetLootList()
 		{
-			if (ShouldRecalculateIndices)
+			if (ShouldReconstructAliasTable)
 			{
 				// Add the correct values to the base.lootTable
-				CalculateIndexArray();
+				ConstructAliasTable();
 			}
 
 			return base.GetLootList();
@@ -86,7 +87,7 @@ namespace VDFramework.LootTables.Variations
 				internalPercentageLootTable.Add(pair);
 			}
 
-			ShouldRecalculateIndices = true;
+			ShouldReconstructAliasTable = true;
 		}
 		
 		public bool TryAdd(PercentageLootTablePair<TLootType> pair, bool overrideWeightIfAlreadyPresent = false)
@@ -97,7 +98,7 @@ namespace VDFramework.LootTables.Variations
 				{
 					internalPercentageLootTable[index] = pair;
 					
-					ShouldRecalculateIndices = true;
+					ShouldReconstructAliasTable = true;
 				}
 
 				return false;
@@ -118,7 +119,7 @@ namespace VDFramework.LootTables.Variations
 
 					internalPercentageLootTable[index] = pair;
 					
-					ShouldRecalculateIndices = true;
+					ShouldReconstructAliasTable = true;
 				}
 				
 				return false;
@@ -157,7 +158,7 @@ namespace VDFramework.LootTables.Variations
 
 				internalPercentageLootTable[index] = pair;
 				
-				ShouldRecalculateIndices = true; // The internal collection changed, so next time GetLoot() is called we should recalculate the weights
+				ShouldReconstructAliasTable = true; // The internal collection changed, so next time GetLoot() is called we should recalculate the weights
 			}
 			else
 			{
@@ -177,7 +178,7 @@ namespace VDFramework.LootTables.Variations
 				return false;
 			}
 
-			ShouldRecalculateIndices = true; // The internal collection changed, so next time GetLoot() is called we should recalculate the weights
+			ShouldReconstructAliasTable = true; // The internal collection changed, so next time GetLoot() is called we should recalculate the weights
 
 			internalPercentageLootTable.Remove(pair);
 			return true;
@@ -190,7 +191,7 @@ namespace VDFramework.LootTables.Variations
 				return false;
 			}
 
-			ShouldRecalculateIndices = true; // The internal collection changed, so next time GetLoot() is called we should recalculate the weights
+			ShouldReconstructAliasTable = true; // The internal collection changed, so next time GetLoot() is called we should recalculate the weights
 
 			internalPercentageLootTable.RemoveAt(index);
 			return true;
@@ -207,14 +208,14 @@ namespace VDFramework.LootTables.Variations
 			base.ClearTable();
 		}
 
-		protected override int[] CalculateIndexArray()
+		protected override AliasTable<TLootType> ConstructAliasTable()
 		{
 			lootTable.Clear();
 
 			List<PercentageLootTablePair<TLootType>> percentageLootTable = EnsureValidPercentages();
 			ConvertPercentagesToWeightAndAddToTable(percentageLootTable);
 
-			return base.CalculateIndexArray();
+			return base.ConstructAliasTable();
 		}
 
 		/// <summary>
@@ -306,7 +307,7 @@ namespace VDFramework.LootTables.Variations
 
 		private void InternalAdd(PercentageLootTablePair<TLootType> loot)
 		{
-			ShouldRecalculateIndices = true; // The internal collection changed, so next time we try to GetLoot() we should recalculate the weights
+			ShouldReconstructAliasTable = true; // The internal collection changed, so next time we try to GetLoot() we should recalculate the weights
 			
 			internalPercentageLootTable.Add(loot);
 		}

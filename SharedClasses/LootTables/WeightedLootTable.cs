@@ -1,65 +1,95 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+using VDFramework.AliasMethod;
 using VDFramework.Extensions;
 using VDFramework.LootTables.Interfaces;
 using VDFramework.LootTables.LootTableItems;
 using VDFramework.LootTables.Structs;
+using VDFramework.RandomWrapper;
 using VDFramework.RandomWrapper.Interface;
 
 namespace VDFramework.LootTables
 {
+	/// <summary>
+	/// A weighted loot table that allows you to grab an random element of type <typeparamref name="TLootType"/> with a probability based on the weight assigned to it.<br/>
+	/// Internally the Alias-method is used for the sampling.
+	/// </summary>
+	/// <seealso cref="AliasTable{TType}"/>
 	public class WeightedLootTable<TLootType> : ILoot<TLootType>, IEnumerable<LootTablePair<TLootType>>
 	{
-		private long totalWeight;
-
+		/// <summary>
+		/// The combined weight of every loot in the table
+		/// </summary>
 		public long TotalWeight
 		{
 			get
 			{
-				if (ShouldRecalculateIndices)
+				if (ShouldReconstructAliasTable)
 				{
-					CalculateIndexArray();
+					ConstructAliasTable();
 				}
 
-				return totalWeight;
+				return aliasTable.TotalWeight;
 			}
 		}
 
-		protected bool ShouldRecalculateIndices
+		/// <summary>
+		/// Whether or not the internal alias table should be reconstructed first when <see cref="GetLoot"/> is called
+		/// </summary>
+		protected bool ShouldReconstructAliasTable
 		{
-			get => indexArray == null;
+			get => !aliasTable.IsValid;
 			set
 			{
 				if (value)
 				{
-					indexArray = null;
+					aliasTable.Clear();
 				}
 			}
 		}
 
-		// Similar to Dictionary<ILoot<TLootType>, int>
+		/// <summary>
+		/// The <see cref="IRandomNumberGenerator"/> implementation that should be used when getting a random value from the loot table.<br/>
+		/// Will default to <see cref="SystemRandom"/> if not set.
+		/// </summary>
+		public IRandomNumberGenerator RandomNumberGenerator { get; private set; }
+
+		/// <summary>
+		/// The list of pairs that represents this loot table.<br/>
+		/// Similar to Dictionary{ILoot{TLootType}, int}
+		/// </summary>
 		protected readonly List<LootTablePair<TLootType>> lootTable;
 
-		private int[] indexArray;
+		private readonly AliasTable<TLootType> aliasTable;
 
+		/// <summary>
+		/// Creates a new instance of a weighted loot table with no loot
+		/// </summary>
 		public WeightedLootTable()
 		{
 			lootTable = new List<LootTablePair<TLootType>>();
+
+			aliasTable = new AliasTable<TLootType>();
 		}
 
+		/// <summary>
+		/// Creates a new instance of a weighted loot table with the given loot
+		/// </summary>
 		public WeightedLootTable(IEnumerable<KeyValuePair<TLootType, long>> collection) : this()
 		{
 			TryAddCollection(collection);
 		}
 
+		/// <summary>
+		/// Creates a new instance of a weighted loot table with the given loot
+		/// </summary>
 		public WeightedLootTable(IEnumerable<KeyValuePair<ILoot<TLootType>, long>> collection) : this()
 		{
 			TryAddCollection(collection);
 		}
 
 		/// <summary>
-		/// Returns a copy of the loot table as a list
+		/// Returns a copy of the loot table as a list.
 		/// </summary>
 		public virtual List<LootTablePair<TLootType>> GetLootList()
 		{
@@ -70,12 +100,12 @@ namespace VDFramework.LootTables
 		{
 			return GetLootWeight(loot) / (decimal)TotalWeight;
 		}
-		
+
 		public decimal GetLootDropChance(TLootType loot)
 		{
 			return GetLootWeight(loot);
 		}
-		
+
 		public long GetLootWeight(ILoot<TLootType> loot)
 		{
 			if (TryGetLootTablePair(loot, out LootTablePair<TLootType> pair, out _))
@@ -85,7 +115,7 @@ namespace VDFramework.LootTables
 
 			return 0;
 		}
-		
+
 		public long GetLootWeight(TLootType loot)
 		{
 			return GetLootWeight(new LootTableItem<TLootType>(loot));
@@ -95,24 +125,24 @@ namespace VDFramework.LootTables
 		{
 			return TryGetLootTablePair(loot, out _, out _);
 		}
-		
+
 		public bool TryGetPair(TLootType loot, out LootTablePair<TLootType> pair)
 		{
 			return TryGetLootTablePair(new LootTableItem<TLootType>(loot), out pair, out _);
 		}
-		
+
 		public bool TryGetPair(ILoot<TLootType> loot, out LootTablePair<TLootType> pair)
 		{
 			return TryGetLootTablePair(loot, out pair, out _);
 		}
-		
+
 		public void SetPair(LootTablePair<TLootType> pair)
 		{
 			if (TryGetLootTablePair(pair.Loot, out LootTablePair<TLootType> _, out int index))
 			{
 				lootTable[index] = pair;
-				
-				ShouldRecalculateIndices = true;
+
+				ShouldReconstructAliasTable = true;
 			}
 			else
 			{
@@ -127,13 +157,13 @@ namespace VDFramework.LootTables
 				if (overrideWeightIfAlreadyPresent)
 				{
 					lootTable[index] = pair;
-					
-					ShouldRecalculateIndices = true;
+
+					ShouldReconstructAliasTable = true;
 				}
 
 				return false;
 			}
-			
+
 			InternalAdd(pair);
 
 			return true;
@@ -148,8 +178,8 @@ namespace VDFramework.LootTables
 					pair.Weight = weight;
 
 					lootTable[index] = pair;
-					
-					ShouldRecalculateIndices = true;
+
+					ShouldReconstructAliasTable = true;
 				}
 
 				return false;
@@ -187,8 +217,8 @@ namespace VDFramework.LootTables
 				pair.Weight = weight;
 
 				lootTable[index] = pair;
-				
-				ShouldRecalculateIndices = true;
+
+				ShouldReconstructAliasTable = true;
 			}
 			else
 			{
@@ -219,7 +249,7 @@ namespace VDFramework.LootTables
 				return false;
 			}
 
-			ShouldRecalculateIndices = true; // The internal collection changed, so next time GetLoot() is called we should recalculate the weights
+			ShouldReconstructAliasTable = true; // The internal collection changed, so next time GetLoot() is called we should recalculate the weights
 
 			lootTable.RemoveAt(index);
 			return true;
@@ -233,65 +263,35 @@ namespace VDFramework.LootTables
 		public virtual void ClearTable()
 		{
 			lootTable.Clear();
-			ShouldRecalculateIndices = true;
+			ShouldReconstructAliasTable = true;
 		}
 
 		/// <summary>
 		/// Grabs a random ILoot from the table based on the weights and returns it.<br/>
-		/// Uses <see cref="System.Random">System.Random</see>
+		/// Uses the <see cref="RandomNumberGenerator"/> or <see cref="SystemRandom"/> if that is null.
 		/// </summary>
 		public virtual TLootType GetLoot()
 		{
-			int index = GetIndexArray().GetRandomElement();
-			return lootTable[index].Loot.GetLoot();
+			return GetAliasTable().Sample(RandomNumberGenerator).GetLoot();
 		}
 
 		/// <summary>
-		/// Grabs a random ILoot from the table based on the weights and returns it
+		/// Returns the internal alias table of this loot table<br/>
+		/// The table will be constructed if <see cref="ShouldReconstructAliasTable"/> is true
 		/// </summary>
-		public virtual TLootType GetLoot(IRandomNumberGenerator rng)
+		protected AliasTable<TLootType> GetAliasTable()
 		{
-			int index = GetIndexArray().GetRandomElement(rng);
-			return lootTable[index].Loot.GetLoot();
-		}
-
-		protected int[] GetIndexArray()
-		{
-			if (!ShouldRecalculateIndices)
-			{
-				return indexArray;
-			}
-
-			return CalculateIndexArray();
+			return ShouldReconstructAliasTable ? ConstructAliasTable() : aliasTable;
 		}
 
 		/// <summary>
 		/// Calculate an array of indices from the Loot Table <br/>
 		/// </summary>
-		protected virtual int[] CalculateIndexArray()
+		protected virtual AliasTable<TLootType> ConstructAliasTable()
 		{
-			totalWeight = lootTable.Sum(pair => pair.Weight > 0 ? pair.Weight : 0);
+			aliasTable.Construct(lootTable); // The loot table is sorted because InternalAdd uses AddSorted
 
-			indexArray = new int[totalWeight];
-			int totalIndex = 0;
-
-			for (int lootTableIndex = 0; lootTableIndex < lootTable.Count; lootTableIndex++)
-			{
-				long weight = lootTable[lootTableIndex].Weight;
-
-				if (weight <= 0) // Ignore weights below 0
-				{
-					continue;
-				}
-
-				// No new interator variable, length equals where we were + weight
-				for (long length = totalIndex + weight; totalIndex < length; totalIndex++)
-				{
-					indexArray[totalIndex] = lootTableIndex;
-				}
-			}
-
-			return indexArray;
+			return aliasTable;
 		}
 
 		protected bool TryGetLootTablePair(ILoot<TLootType> loot, out LootTablePair<TLootType> lootTablePair, out int index)
@@ -310,14 +310,14 @@ namespace VDFramework.LootTables
 			lootTablePair = default;
 			return false;
 		}
-		
+
 		protected void InternalAdd(LootTablePair<TLootType> loot)
 		{
-			ShouldRecalculateIndices = true; // Reset the indexArray because the totalWeight might have changed
-			
+			ShouldReconstructAliasTable = true; // Reset the indexArray because the totalWeight might have changed
+
 			lootTable.AddSorted(loot);
 		}
-		
+
 		protected void InternalAdd(ILoot<TLootType> loot, long weight)
 		{
 			InternalAdd(new LootTablePair<TLootType>(loot, weight));

@@ -20,6 +20,12 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Compile Include="..\SharedClasses\AliasMethod\AliasTable.cs">
+        <Link>SharedClasses\AliasMethod\AliasTable.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\AliasMethod\AliasTableEntry.cs">
+        <Link>SharedClasses\AliasMethod\AliasTableEntry.cs</Link>
+      </Compile>
       <Compile Include="..\SharedClasses\EventSystem\EventHandler.cs">
         <Link>SharedClasses\EventSystem\EventHandler.cs</Link>
       </Compile>
@@ -151,6 +157,9 @@
       </Compile>
       <Compile Include="..\SharedClasses\RandomWrapper\Interface\IRandomNumberGenerator.cs">
         <Link>SharedClasses\RandomWrapper\Interface\IRandomNumberGenerator.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\RandomWrapper\RandomDelegator.cs">
+        <Link>SharedClasses\RandomWrapper\RandomDelegator.cs</Link>
       </Compile>
       <Compile Include="..\SharedClasses\RandomWrapper\SystemRandom.cs">
         <Link>SharedClasses\RandomWrapper\SystemRandom.cs</Link>

@@ -63,8 +63,8 @@ namespace VDFramework.Utility.MathUtility
 		/// Returns the Least Common Multiple of the given floating point numbers
 		/// </summary>
 		/// <theory>
-		/// <para>https://en.wikipedia.org/wiki/Euclidean_algorithm</para>
-		/// <para>https://en.wikipedia.org/wiki/Least_common_multiple</para>
+		/// https://en.wikipedia.org/wiki/Euclidean_algorithm<br/>
+		/// https://en.wikipedia.org/wiki/Least_common_multiple
 		/// </theory>
 		public static long GetLeastCommonMultiple(IEnumerable<decimal> numbers)
 		{
@@ -81,8 +81,8 @@ namespace VDFramework.Utility.MathUtility
 		/// Returns the Least Common Multiple of the given floating point numbers
 		/// </summary>
 		/// <theory>
-		/// <para>https://en.wikipedia.org/wiki/Euclidean_algorithm</para>
-		/// <para>https://en.wikipedia.org/wiki/Least_common_multiple</para>
+		/// https://en.wikipedia.org/wiki/Euclidean_algorithm<br/>
+		/// https://en.wikipedia.org/wiki/Least_common_multiple
 		/// </theory>
 		public static long GetLeastCommonMultiple(IEnumerable<float> numbers, int maximumDecimalsInFloat = 4)
 		{
@@ -100,8 +100,8 @@ namespace VDFramework.Utility.MathUtility
 		/// </summary>
 		/// <credit>https://stackoverflow.com/questions/147515/least-common-multiple-for-3-or-more-numbers/29717490#29717490</credit>
 		/// <theory>
-		/// <para>https://en.wikipedia.org/wiki/Euclidean_algorithm</para>
-		/// <para>https://en.wikipedia.org/wiki/Least_common_multiple</para>
+		/// https://en.wikipedia.org/wiki/Euclidean_algorithm<br/>
+		/// https://en.wikipedia.org/wiki/Least_common_multiple
 		/// </theory>
 		public static long GetLeastCommonMultiple(IEnumerable<long> numbers)
 		{
@@ -112,8 +112,8 @@ namespace VDFramework.Utility.MathUtility
 		/// Returns the Least Common Multiple of the given numbers
 		/// </summary>
 		/// <theory>
-		/// <para>https://en.wikipedia.org/wiki/Euclidean_algorithm</para>
-		/// <para>https://en.wikipedia.org/wiki/Least_common_multiple</para>
+		/// https://en.wikipedia.org/wiki/Euclidean_algorithm<br/>
+		/// https://en.wikipedia.org/wiki/Least_common_multiple
 		/// </theory>
 		public static long GetLeastCommonMultiple(long lhs, long rhs)
 		{
