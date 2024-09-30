@@ -1,6 +1,6 @@
 ﻿using VDFramework.LootTables.Interfaces;
 
-namespace VDFramework.AliasMethod
+namespace VDFramework.LootTables.AliasMethod
 {
 	/// <summary>
 	/// An entry of an Alias table

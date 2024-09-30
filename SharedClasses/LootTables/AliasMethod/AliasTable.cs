@@ -6,7 +6,7 @@ using VDFramework.LootTables.Structs;
 using VDFramework.RandomWrapper;
 using VDFramework.RandomWrapper.Interface;
 
-namespace VDFramework.AliasMethod
+namespace VDFramework.LootTables.AliasMethod
 {
 	/// <summary>
 	/// Provides an implementation of a Alias table for the purposes of sampling discrete distributions.

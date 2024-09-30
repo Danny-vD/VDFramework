@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using VDFramework.AliasMethod;
+using VDFramework.LootTables.AliasMethod;
 using VDFramework.Extensions;
 using VDFramework.LootTables.Interfaces;
 using VDFramework.LootTables.LootTableItems;

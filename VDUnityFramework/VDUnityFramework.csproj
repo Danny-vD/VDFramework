@@ -20,12 +20,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Include="..\SharedClasses\AliasMethod\AliasTable.cs">
-        <Link>SharedClasses\AliasMethod\AliasTable.cs</Link>
-      </Compile>
-      <Compile Include="..\SharedClasses\AliasMethod\AliasTableEntry.cs">
-        <Link>SharedClasses\AliasMethod\AliasTableEntry.cs</Link>
-      </Compile>
       <Compile Include="..\SharedClasses\EventSystem\EventHandler.cs">
         <Link>SharedClasses\EventSystem\EventHandler.cs</Link>
       </Compile>
@@ -118,6 +112,12 @@
       </Compile>
       <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Writers\StringWriter.cs">
         <Link>SharedClasses\IO\Parsers\BinaryParsers\Writers\StringWriter.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\LootTables\AliasMethod\AliasTable.cs">
+        <Link>SharedClasses\LootTables\AliasMethod\AliasTable.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\LootTables\AliasMethod\AliasTableEntry.cs">
+        <Link>SharedClasses\LootTables\AliasMethod\AliasTableEntry.cs</Link>
       </Compile>
       <Compile Include="..\SharedClasses\LootTables\Interfaces\ILoot.cs">
         <Link>SharedClasses\LootTables\Interfaces\ILoot.cs</Link>
