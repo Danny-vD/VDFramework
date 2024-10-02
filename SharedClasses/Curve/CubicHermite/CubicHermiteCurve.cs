@@ -11,10 +11,11 @@ namespace SeedFinder.Curve
 {
 	/// <summary>
 	/// The implementation of a Cubic Hermite curve.<br/>
-	/// This is a Cubic curve that where the 2 control points are defined by a weight and a tangent from the start and end points
+	/// This is a Cubic curve that where the 2 control points are defined by a weight and a tangent from the start and end points.<br/>
+	/// The behaviour of this curve is identical to Unitys AnimationCurve
 	/// </summary>
 	/// <wikipedia>https://en.wikipedia.org/wiki/Cubic_Hermite_spline</wikipedia>
-	/// <graphicExample>https://www.desmos.com/calculator/jczgacl2jk</graphicExample>
+	/// <plottedExample>https://www.desmos.com/calculator/jczgacl2jk</plottedExample>
 	public class CubicHermiteCurve : IEnumerable
 	{
 		/// <summary>
@@ -150,6 +151,17 @@ namespace SeedFinder.Curve
 					
 					// x is not within this part of the curve, so check the next part
 					continue; // No need to check if the point is before the start, that has already been checked
+				}
+
+				// For the constant line, the InTangent takes precedence over the OutTangent
+				if (double.IsInfinity(end.InTangent)) // For an infinity tangent the curve should just be a straight line (constant) 
+				{
+					return double.IsPositiveInfinity(end.InTangent) ? start.y : end.y;
+				}
+				
+				if (double.IsInfinity(start.OutTangent)) // For an infinity tangent the curve should just be a straight line (constant) 
+				{
+					return double.IsPositiveInfinity(start.OutTangent) ? start.y : end.y;
 				}
 
 				if (!start.HasCalculatedRightControlPoint)
