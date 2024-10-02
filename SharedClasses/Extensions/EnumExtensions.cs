@@ -31,7 +31,7 @@ namespace VDFramework.Extensions
 		}
 
 		/// <summary>
-		/// Returns an IEnumerable of <see cref="TEnum"/> that has all the values of the enum
+		/// Returns an IEnumerable of <typeparamref name="TEnum"/> that has all the values of the enum
 		/// </summary>
 		public static IEnumerable<TEnum> GetValues<TEnum>(this TEnum @enum)
 			where TEnum : struct, Enum

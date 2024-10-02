@@ -7,7 +7,7 @@ namespace SeedFinder.Curve.Utility
 {
 	/// <summary>
 	/// Provides the under-the-hood calculations needed for a Cubic Hermite curve.<br/>
-	/// This is a Cubic curve that where the 2 control points are defined by a weight and a tangent from the start and end
+	/// This is a Cubic curve that where the 2 control points are defined by a weight and a tangent from the start and end points
 	/// </summary>
 	/// <wikipedia>https://en.wikipedia.org/wiki/Cubic_Hermite_spline</wikipedia>
 	public static class CubicHermiteCalculator

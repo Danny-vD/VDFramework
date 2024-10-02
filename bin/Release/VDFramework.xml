@@ -4,6 +4,269 @@
         <name>VDFramework</name>
     </assembly>
     <members>
+        <member name="T:SeedFinder.Curve.Utility.CubicHermiteCalculator">
+            <summary>
+            Provides the under-the-hood calculations needed for a Cubic Hermite curve.<br/>
+            This is a Cubic curve that where the 2 control points are defined by a weight and a tangent from the start and end points
+            </summary>
+            <wikipedia>https://en.wikipedia.org/wiki/Cubic_Hermite_spline</wikipedia>
+        </member>
+        <member name="F:SeedFinder.Curve.Utility.CubicHermiteCalculator.Xi">
+            <summary>
+            (-1 + √-3) / 2
+            </summary>
+            <wikipedia>https://en.wikipedia.org/wiki/Cubic_equation#General_cubic_formula</wikipedia>
+        </member>
+        <member name="M:SeedFinder.Curve.Utility.CubicHermiteCalculator.CalculateControlPoints(SeedFinder.Curve.Structs.KeyFrame,SeedFinder.Curve.Structs.KeyFrame,SeedFinder.Curve.Structs.Point@,SeedFinder.Curve.Structs.Point@)">
+            <summary>
+            Calculates the right control point for the start keyframe and the left control point for the end keyframe and returns them as out parameters
+            </summary>
+        </member>
+        <member name="M:SeedFinder.Curve.Utility.CubicHermiteCalculator.CalculateControlPoint1(SeedFinder.Curve.Structs.KeyFrame,SeedFinder.Curve.Structs.KeyFrame)">
+            <summary>
+            Calculates the control point to the right of the start keyframe
+            </summary>
+        </member>
+        <member name="M:SeedFinder.Curve.Utility.CubicHermiteCalculator.CalculateControlPoint2(SeedFinder.Curve.Structs.KeyFrame,SeedFinder.Curve.Structs.KeyFrame)">
+            <summary>
+            Calculates the control point to the left of the end keyframe
+            </summary>
+        </member>
+        <member name="M:SeedFinder.Curve.Utility.CubicHermiteCalculator.EvaluateCurve(System.Double,SeedFinder.Curve.Structs.Point,SeedFinder.Curve.Structs.Point,SeedFinder.Curve.Structs.Point,SeedFinder.Curve.Structs.Point)">
+            <summary>
+            Evaluate the Cubic Hermite curve that is defined by the start and end points and 2 control points 
+            </summary>
+            <returns>the y value of the evaluated x coordinate on the curve</returns>
+        </member>
+        <member name="M:SeedFinder.Curve.Utility.CubicHermiteCalculator.GetPointOnCurve(System.Double,SeedFinder.Curve.Structs.Point,SeedFinder.Curve.Structs.Point,SeedFinder.Curve.Structs.Point,SeedFinder.Curve.Structs.Point)">
+            <summary>
+            Gives a point on the curve depending on the value of t. With t = 0 being the start and t = 1 being the end.<br/>
+            </summary>
+            <warning>While this does allow one to trace the curve easily, t does not equate to a % along the curve and should not be used for constant steps</warning>
+        </member>
+        <member name="M:SeedFinder.Curve.Utility.CubicHermiteCalculator.Delta(System.Double,SeedFinder.Curve.Structs.Point)">
+            <summary>
+            Returns the difference towards the start coordinate
+            </summary>
+        </member>
+        <member name="M:SeedFinder.Curve.Utility.CubicHermiteCalculator.RootPlus(System.Double,SeedFinder.Curve.Structs.Point,System.Double,System.Double,System.Double,System.Double,System.Int32)">
+            <summary>
+            Calculates a root of the polynomial equation using the complex number from <see cref="M:SeedFinder.Curve.Utility.CubicHermiteCalculator.ComplexPlus(System.Double,SeedFinder.Curve.Structs.Point,System.Double,System.Double,System.Double,System.Double)"/> and ensures the result is real.
+            </summary>
+        </member>
+        <member name="M:SeedFinder.Curve.Utility.CubicHermiteCalculator.RootMinus(System.Double,SeedFinder.Curve.Structs.Point,System.Double,System.Double,System.Double,System.Double,System.Int32)">
+            <summary>
+            Calculates a root of the polynomial equation using the complex number from <see cref="M:SeedFinder.Curve.Utility.CubicHermiteCalculator.ComplexMinus(System.Double,SeedFinder.Curve.Structs.Point,System.Double,System.Double,System.Double,System.Double)"/> and ensures the result is real.
+            </summary>
+        </member>
+        <member name="T:SeedFinder.Curve.CubicHermiteCurve">
+            <summary>
+            The implementation of a Cubic Hermite curve.<br/>
+            This is a Cubic curve that where the 2 control points are defined by a weight and a tangent from the start and end points
+            </summary>
+            <wikipedia>https://en.wikipedia.org/wiki/Cubic_Hermite_spline</wikipedia>
+            <graphicExample>https://www.desmos.com/calculator/jczgacl2jk</graphicExample>
+        </member>
+        <member name="P:SeedFinder.Curve.CubicHermiteCurve.PreWrapMode">
+            <summary>
+            How evaluating a point that falls to the left of the curve should be handled
+            </summary>
+        </member>
+        <member name="P:SeedFinder.Curve.CubicHermiteCurve.PostWrapMode">
+            <summary>
+            How evaluating a point that falls to the right of the curve should be handled
+            </summary>
+        </member>
+        <member name="P:SeedFinder.Curve.CubicHermiteCurve.KeyFrames">
+            <summary>
+            All the keyframes that belong to this curve, sorted by their x coordinates.
+            </summary>
+        </member>
+        <member name="P:SeedFinder.Curve.CubicHermiteCurve.StartPoint">
+            <summary>
+            The first keyframe of this curve
+            </summary>
+        </member>
+        <member name="P:SeedFinder.Curve.CubicHermiteCurve.EndPoint">
+            <summary>
+            The last keyframe of this curve
+            </summary>
+        </member>
+        <member name="M:SeedFinder.Curve.CubicHermiteCurve.#ctor">
+            <summary>
+            Creates a new Cubic Hermite curve with no keyframes
+            </summary>
+        </member>
+        <member name="M:SeedFinder.Curve.CubicHermiteCurve.#ctor(SeedFinder.Curve.Structs.KeyFrame[])">
+            <summary>
+            Creates a new Cubic Hermite curve with the given keyframes
+            </summary>
+        </member>
+        <member name="M:SeedFinder.Curve.CubicHermiteCurve.#ctor(System.Collections.Generic.IEnumerable{SeedFinder.Curve.Structs.KeyFrame})">
+            <summary>
+            Creates a new Cubic Hermite curve with the given keyframes
+            </summary>
+        </member>
+        <member name="M:SeedFinder.Curve.CubicHermiteCurve.Evaluate(System.Double)">
+            <summary>
+            Evaluate the curve at the given x coordinate
+            </summary>
+            <param name="x">The X coordnate to evaluate</param>
+            <returns>The Y coordinate of the point on the curve that has the given X coordinate</returns>
+        </member>
+        <member name="M:SeedFinder.Curve.CubicHermiteCurve.Evaluate(System.Double,SeedFinder.Curve.Enums.CurveWrapMode,SeedFinder.Curve.Enums.CurveWrapMode)">
+            <summary>
+            Evaluate the curve at the given x coordinate
+            </summary>
+            <param name="x">The X coordnate to evaluate</param>
+            <param name="preWrapMode">How to handle a point that falls outside the curve, before the first keyframe</param>
+            <param name="postWrapMode">How to handle a point that falls outside the curve, after the last keyframe</param>
+            <returns>The Y coordinate of the point on the curve that has the given X coordinate</returns>
+        </member>
+        <member name="M:SeedFinder.Curve.CubicHermiteCurve.GetEnumerator">
+            <inheritdoc />
+        </member>
+        <member name="T:SeedFinder.Curve.Enums.CurveWrapMode">
+            <summary>
+            How to handle evaluating a point outside of the defined curve
+            </summary>
+        </member>
+        <member name="F:SeedFinder.Curve.Enums.CurveWrapMode.Loop">
+            <summary>
+            Repeat the curve ad ininitum
+            </summary>
+        </member>
+        <member name="F:SeedFinder.Curve.Enums.CurveWrapMode.PingPong">
+            <summary>
+            Repeat the curve ad infinitum, but reverse the curve every other cycle
+            </summary>
+        </member>
+        <member name="F:SeedFinder.Curve.Enums.CurveWrapMode.Clamp">
+            <summary>
+            Return the value at the start/end point
+            </summary>
+        </member>
+        <member name="T:SeedFinder.Curve.Structs.KeyFrame">
+            <summary>
+            Represents a x and y coordinate on the curve.<br/>
+            Also contains a weight and a tangent for a cubic hermite curve
+            </summary>
+        </member>
+        <member name="M:SeedFinder.Curve.Structs.KeyFrame.#ctor(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Creates a new keyframe with the given coordinates, and optionally the weights and tangents
+            </summary>
+        </member>
+        <member name="M:SeedFinder.Curve.Structs.KeyFrame.#ctor(SeedFinder.Curve.Structs.Point,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Creates a new keyframe with the coordinates from the given points, and optionally the weights and tangents
+            </summary>
+        </member>
+        <member name="P:SeedFinder.Curve.Structs.KeyFrame.x">
+            <summary>
+            The X coordinate (Time) of this keyframe
+            </summary>
+        </member>
+        <member name="P:SeedFinder.Curve.Structs.KeyFrame.y">
+            <summary>
+            The Y coordinate (Value) of this keyframe
+            </summary>
+        </member>
+        <member name="P:SeedFinder.Curve.Structs.KeyFrame.Position">
+            <summary>
+            The position of this keyframe
+            </summary>
+        </member>
+        <member name="P:SeedFinder.Curve.Structs.KeyFrame.UseWeightForLeftControlPoint">
+            <summary>
+            Whether or not the weight should be used when calculating the left control point of this keyframe
+            </summary>
+        </member>
+        <member name="P:SeedFinder.Curve.Structs.KeyFrame.UseWeightForRightControlPoint">
+            <summary>
+            Whether or not the weight should be used when calculating the right control point of this keyframe
+            </summary>
+        </member>
+        <member name="P:SeedFinder.Curve.Structs.KeyFrame.InTangent">
+            <summary>
+            The tangent on the left side of this keyframe
+            </summary>
+        </member>
+        <member name="P:SeedFinder.Curve.Structs.KeyFrame.InWeight">
+            <summary>
+            The weight used to calculate the control point on the left of this keyframe
+            </summary>
+        </member>
+        <member name="P:SeedFinder.Curve.Structs.KeyFrame.OutTangent">
+            <summary>
+            The tangent on the right side of this keyframe
+            </summary>
+        </member>
+        <member name="P:SeedFinder.Curve.Structs.KeyFrame.OutWeight">
+            <summary>
+            The weight used to calculate the control point on the right of this keyframe
+            </summary>
+        </member>
+        <member name="P:SeedFinder.Curve.Structs.KeyFrame.LeftControlPoint">
+            <summary>
+            The control point to the left of this keyframe
+            </summary>
+        </member>
+        <member name="P:SeedFinder.Curve.Structs.KeyFrame.RightControlPoint">
+            <summary>
+            The control point to the right of this keyframe
+            </summary>
+        </member>
+        <member name="P:SeedFinder.Curve.Structs.KeyFrame.HasCalculatedLeftControlPoint">
+            <summary>
+            Whether or not the left control point has been calculated with the latest data set
+            </summary>
+        </member>
+        <member name="P:SeedFinder.Curve.Structs.KeyFrame.HasCalculatedRightControlPoint">
+            <summary>
+            Whether or not the right control point has been calculated with the latest data set
+            </summary>
+        </member>
+        <member name="M:SeedFinder.Curve.Structs.KeyFrame.CompareTo(SeedFinder.Curve.Structs.KeyFrame)">
+            <inheritdoc />
+        </member>
+        <member name="M:SeedFinder.Curve.Structs.KeyFrame.CalculateLeftControlPoint(SeedFinder.Curve.Structs.KeyFrame)">
+            <summary>
+            Calculate the left control point of this keyframe
+            </summary>
+            <param name="startPoint">A keyframe to the left of this keyframe that will serve as the begin point of the cubic hermite curve</param>
+        </member>
+        <member name="M:SeedFinder.Curve.Structs.KeyFrame.CalculateRightControlPoint(SeedFinder.Curve.Structs.KeyFrame)">
+            <summary>
+            Calculate the right control point of this keyframe
+            </summary>
+            <param name="endPoint">A keyframe to the right of this keyframe that will serve as the end point of the cubic hermite curve</param>
+        </member>
+        <member name="T:SeedFinder.Curve.Structs.Point">
+            <summary>
+            Represents an ordered pair of integer x- and y-coordinates that defines a point in a two-dimensional plane.
+            </summary>
+        </member>
+        <member name="F:SeedFinder.Curve.Structs.Point.x">
+            <summary>
+            The x coordinate of this point
+            </summary>
+        </member>
+        <member name="F:SeedFinder.Curve.Structs.Point.y">
+            <summary>
+            The y coordinate of this point
+            </summary>
+        </member>
+        <member name="M:SeedFinder.Curve.Structs.Point.#ctor(System.Double,System.Double)">
+            <summary>
+            Create a new point with the given x and y coordinates
+            </summary>
+        </member>
+        <member name="M:SeedFinder.Curve.Structs.Point.#ctor(SeedFinder.Curve.Structs.Point)">
+            <summary>
+            Create a new point with the same coordinates as the given point
+            </summary>
+        </member>
         <member name="T:VDFramework.EventSystem.EventHandler`1">
             <summary>
             Wrapper class for a <see cref="T:VDFramework.ObserverPattern.CallbackHandler"/> that uses a callback that takes an eventInstance as parameter
@@ -108,7 +371,7 @@
         </member>
         <member name="M:VDFramework.Extensions.EnumExtensions.GetValues``1(``0)">
             <summary>
-            Returns an IEnumerable of <see cref="!:TEnum"/> that has all the values of the enum
+            Returns an IEnumerable of <typeparamref name="TEnum"/> that has all the values of the enum
             </summary>
         </member>
         <member name="M:VDFramework.Extensions.EnumExtensions.GetRandomValue``1(``0)">
@@ -497,6 +760,73 @@
             This function does not gracefully handle cutting off a multi-byte character, it will split the bytes of these characters if it reached the <paramref name="bytesToWrite"/>
             </warning>
         </member>
+        <member name="T:VDFramework.LootTables.AliasMethod.AliasTable`1">
+            <summary>
+            Provides an implementation of a Alias table for the purposes of sampling discrete distributions.
+            </summary>
+            <theory>
+            https://research.nvidia.com/labs/rtr/publication/wyman2021alias/
+            </theory>
+        </member>
+        <member name="P:VDFramework.LootTables.AliasMethod.AliasTable`1.TotalWeight">
+            <summary>
+            The combined weight of every sample in the table.
+            </summary>
+        </member>
+        <member name="P:VDFramework.LootTables.AliasMethod.AliasTable`1.AverageWeight">
+            <summary>
+            The average weight per sample in the table.
+            </summary>
+        </member>
+        <member name="P:VDFramework.LootTables.AliasMethod.AliasTable`1.IsValid">
+            <summary>
+            Whether or not the table is empty.
+            </summary>
+        </member>
+        <member name="M:VDFramework.LootTables.AliasMethod.AliasTable`1.#ctor(System.Collections.Generic.IEnumerable{VDFramework.LootTables.Structs.LootTablePair{`0}})">
+            <summary>
+            A constructor that immediately constructs the alias table using the given collection.
+            </summary>
+        </member>
+        <member name="M:VDFramework.LootTables.AliasMethod.AliasTable`1.#ctor">
+            <summary>
+            The default constructor that does not immediately construct a table.
+            </summary>
+            <seealso cref="M:VDFramework.LootTables.AliasMethod.AliasTable`1.Construct(System.Collections.Generic.IEnumerable{VDFramework.LootTables.Structs.LootTablePair{`0}})"/>
+        </member>
+        <member name="M:VDFramework.LootTables.AliasMethod.AliasTable`1.Construct(System.Collections.Generic.IEnumerable{VDFramework.LootTables.Structs.LootTablePair{`0}})">
+            <summary>
+            Construct an alias table from the given pairs of {<see cref="T:VDFramework.LootTables.Interfaces.ILoot`1"/>, Weight}
+            </summary>
+            <param name="sortedCollection">A collection of {<see cref="T:VDFramework.LootTables.Interfaces.ILoot`1"/>, Weight} pairs</param>
+        </member>
+        <member name="M:VDFramework.LootTables.AliasMethod.AliasTable`1.Sample(VDFramework.RandomWrapper.Interface.IRandomNumberGenerator)">
+            <summary>
+            Sample the alias table based on the weights and returns the result.<br/>
+            Uses the <paramref name="rng"/> or <see cref="T:VDFramework.RandomWrapper.SystemRandom"/> if that is null
+            </summary>
+        </member>
+        <member name="M:VDFramework.LootTables.AliasMethod.AliasTable`1.Sample">
+            <summary>
+            Sample the alias table based on the weights and returns the result.<br/>
+            Uses <see cref="T:System.Random">System.Random</see>
+            </summary>
+        </member>
+        <member name="M:VDFramework.LootTables.AliasMethod.AliasTable`1.Clear">
+            <summary>
+            Clears the entire alias table
+            </summary>
+        </member>
+        <member name="T:VDFramework.LootTables.AliasMethod.AliasTableEntry`1">
+            <summary>
+            An entry of an Alias table
+            </summary>
+        </member>
+        <member name="F:VDFramework.LootTables.AliasMethod.AliasTableEntry`1.Threshold">
+            <summary>
+            Value in the range of [0, 1) that is used to determine whether to use <see cref="F:VDFramework.LootTables.AliasMethod.AliasTableEntry`1.LowerSample"/> or <see cref="F:VDFramework.LootTables.AliasMethod.AliasTableEntry`1.HigherSample"/>
+            </summary>
+        </member>
         <member name="T:VDFramework.LootTables.Interfaces.ILoot`1">
             <summary>
             Represents an object that returns loot in some way
@@ -609,7 +939,7 @@
             A weighted loot table that allows you to grab an random element of type <typeparamref name="TLootType"/> with a probability based on the weight assigned to it.<br/>
             Internally the Alias-method is used for the sampling.
             </summary>
-            <seealso cref="T:VDFramework.Utility.AliasMethod.AliasTable`1"/>
+            <seealso cref="T:VDFramework.LootTables.AliasMethod.AliasTable`1"/>
         </member>
         <member name="P:VDFramework.LootTables.WeightedLootTable`1.TotalWeight">
             <summary>
@@ -2588,71 +2918,127 @@
         <member name="M:VDFramework.RandomWrapper.SystemRandom.GetPercentage">
             <inheritdoc />
         </member>
-        <member name="T:VDFramework.Utility.AliasMethod.AliasTable`1">
+        <member name="T:VDFramework.Utility.DataTypes.DoubleUtil">
             <summary>
-            Provides an implementation of a Alias table for the purposes of sampling discrete distributions.
-            </summary>
-            <theory>
-            https://research.nvidia.com/labs/rtr/publication/wyman2021alias/
-            </theory>
-        </member>
-        <member name="P:VDFramework.Utility.AliasMethod.AliasTable`1.TotalWeight">
-            <summary>
-            The combined weight of every sample in the table.
+            Provides utility functions specifically aimed at double precision floating-point numbers
             </summary>
         </member>
-        <member name="P:VDFramework.Utility.AliasMethod.AliasTable`1.AverageWeight">
+        <member name="M:VDFramework.Utility.DataTypes.DoubleUtil.AreClose(System.Double,System.Double)">
             <summary>
-            The average weight per sample in the table.
+            Tests whether the given values are very close to eachother (almost equal)
+            </summary>
+            <reference>https://stackoverflow.com/a/35418564</reference>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.DoubleUtil.LessThan(System.Double,System.Double)">
+            <summary>
+            Tests whether the left value is less than the right value (and not almost equal)
             </summary>
         </member>
-        <member name="P:VDFramework.Utility.AliasMethod.AliasTable`1.IsValid">
+        <member name="M:VDFramework.Utility.DataTypes.DoubleUtil.GreaterThan(System.Double,System.Double)">
             <summary>
-            Whether or not the table is empty.
+            Tests whether the left value is greater than the right value (and not almost equal)
             </summary>
         </member>
-        <member name="M:VDFramework.Utility.AliasMethod.AliasTable`1.#ctor(System.Collections.Generic.IEnumerable{VDFramework.LootTables.Structs.LootTablePair{`0}})">
+        <member name="M:VDFramework.Utility.DataTypes.DoubleUtil.LesserThanOrClose(System.Double,System.Double)">
             <summary>
-            A constructor that immediately constructs the alias table using the given collection.
+            Tests whether the left value is less than or close to the right value
+            </summary>
+            <seealso cref="M:VDFramework.Utility.DataTypes.DoubleUtil.AreClose(System.Double,System.Double)"/>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.DoubleUtil.LesserThanOrClose(System.Double,System.Double,System.Boolean@)">
+            <summary>
+            Tests whether the left value is less than or close to the right value.<br/>
+            Returns whether or not the values are close as an out parameter
+            </summary>
+            <seealso cref="M:VDFramework.Utility.DataTypes.DoubleUtil.AreClose(System.Double,System.Double)"/>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.DoubleUtil.GreaterThanOrClose(System.Double,System.Double)">
+            <summary>
+            Tests whether the left value is greater than or close to the right value
+            </summary>
+            <seealso cref="M:VDFramework.Utility.DataTypes.DoubleUtil.AreClose(System.Double,System.Double)"/>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.DoubleUtil.GreaterThanOrClose(System.Double,System.Double,System.Boolean@)">
+            <summary>
+            Tests whether the left value is greater than or close to the right value.<br/>
+            Returns whether or not the values are close as an out parameter
+            </summary>
+            <seealso cref="M:VDFramework.Utility.DataTypes.DoubleUtil.AreClose(System.Double,System.Double)"/>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.DoubleUtil.IsOne(System.Double)">
+            <summary>
+            Tests whether the given value is almost equal to 1
             </summary>
         </member>
-        <member name="M:VDFramework.Utility.AliasMethod.AliasTable`1.#ctor">
+        <member name="M:VDFramework.Utility.DataTypes.DoubleUtil.IsZero(System.Double)">
             <summary>
-            The default constructor that does not immediately construct a table.
-            </summary>
-            <seealso cref="M:VDFramework.Utility.AliasMethod.AliasTable`1.Construct(System.Collections.Generic.IEnumerable{VDFramework.LootTables.Structs.LootTablePair{`0}})"/>
-        </member>
-        <member name="M:VDFramework.Utility.AliasMethod.AliasTable`1.Construct(System.Collections.Generic.IEnumerable{VDFramework.LootTables.Structs.LootTablePair{`0}})">
-            <summary>
-            Construct an alias table from the given pairs of {<see cref="T:VDFramework.LootTables.Interfaces.ILoot`1"/>, Weight}
-            </summary>
-            <param name="sortedCollection">A collection of {<see cref="T:VDFramework.LootTables.Interfaces.ILoot`1"/>, Weight} pairs</param>
-        </member>
-        <member name="M:VDFramework.Utility.AliasMethod.AliasTable`1.Sample(VDFramework.RandomWrapper.Interface.IRandomNumberGenerator)">
-            <summary>
-            Sample the alias table based on the weights and returns the result.<br/>
-            Uses the <paramref name="rng"/> or <see cref="T:VDFramework.RandomWrapper.SystemRandom"/> if that is null
+            Tests whether the given value is almost equal to 0
             </summary>
         </member>
-        <member name="M:VDFramework.Utility.AliasMethod.AliasTable`1.Sample">
+        <member name="M:VDFramework.Utility.DataTypes.DoubleUtil.AreClose(System.Drawing.Point,System.Drawing.Point)">
             <summary>
-            Sample the alias table based on the weights and returns the result.<br/>
-            Uses <see cref="T:System.Random">System.Random</see>
+            Tests whether the given points are almost equal
             </summary>
         </member>
-        <member name="M:VDFramework.Utility.AliasMethod.AliasTable`1.Clear">
+        <member name="M:VDFramework.Utility.DataTypes.DoubleUtil.AreClose(System.Drawing.Size,System.Drawing.Size)">
             <summary>
-            Clears the entire alias table
+            Tests whether the given sizes are almost equal
             </summary>
         </member>
-        <member name="T:VDFramework.Utility.AliasMethod.AliasTableEntry`1">
+        <member name="M:VDFramework.Utility.DataTypes.DoubleUtil.IsBetweenZeroAndOne(System.Double,System.Boolean,System.Boolean)">
             <summary>
-            An entry of an Alias table
+            Tests whether the given value is between 0.0 and 1.0.<br/>
+            Which bounds are inclusive and exclusive are set through the parameters
             </summary>
         </member>
-        <member name="F:VDFramework.Utility.AliasMethod.AliasTableEntry`1.Threshold">
+        <member name="M:VDFramework.Utility.DataTypes.DoubleUtil.RoundToInt(System.Double)">
             <summary>
-            Value in the range of [0, 1) that is used to determine whether to use <see cref="F:VDFramework.Utility.AliasMethod.AliasTableEntry`1.LowerSample"/> or <see cref="F:VDFramework.Utility.AliasMethod.AliasTableEntry`1.HigherSample"/>
+            Rounds the given value to the nearest int
+            </summary>
+        </member>
+        <member name="T:VDFramework.Utility.DataTypes.FloatUtil">
+            <summary>
+            Provides utility functions specifically aimed at single precision floating-point numbers
+            </summary>
+            <seealso cref="T:VDFramework.Utility.DataTypes.DoubleUtil"/>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.FloatUtil.AreClose(System.Single,System.Single)">
+            <inheritdoc cref="M:VDFramework.Utility.DataTypes.DoubleUtil.AreClose(System.Double,System.Double)"/>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.FloatUtil.LessThan(System.Single,System.Single)">
+            <inheritdoc cref="M:VDFramework.Utility.DataTypes.DoubleUtil.LessThan(System.Double,System.Double)"/>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.FloatUtil.GreaterThan(System.Single,System.Single)">
+            <inheritdoc cref="M:VDFramework.Utility.DataTypes.DoubleUtil.GreaterThan(System.Double,System.Double)"/>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.FloatUtil.LesserThanOrClose(System.Single,System.Single)">
+            <inheritdoc cref="M:VDFramework.Utility.DataTypes.DoubleUtil.LesserThanOrClose(System.Double,System.Double)"/>
+            <seealso cref="M:VDFramework.Utility.DataTypes.FloatUtil.AreClose(System.Single,System.Single)"/>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.FloatUtil.LesserThanOrClose(System.Single,System.Single,System.Boolean@)">
+            <inheritdoc cref="M:VDFramework.Utility.DataTypes.DoubleUtil.LesserThanOrClose(System.Double,System.Double,System.Boolean@)"/>
+            <seealso cref="M:VDFramework.Utility.DataTypes.FloatUtil.AreClose(System.Single,System.Single)"/>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.FloatUtil.GreaterThanOrClose(System.Single,System.Single)">
+            <inheritdoc cref="M:VDFramework.Utility.DataTypes.DoubleUtil.GreaterThanOrClose(System.Double,System.Double)"/>
+            <seealso cref="M:VDFramework.Utility.DataTypes.FloatUtil.AreClose(System.Single,System.Single)"/>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.FloatUtil.GreaterThanOrClose(System.Single,System.Single,System.Boolean@)">
+            <inheritdoc cref="M:VDFramework.Utility.DataTypes.DoubleUtil.GreaterThanOrClose(System.Double,System.Double,System.Boolean@)"/>
+            <seealso cref="M:VDFramework.Utility.DataTypes.FloatUtil.AreClose(System.Single,System.Single)"/>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.FloatUtil.IsOne(System.Double)">
+            <inheritdoc cref="M:VDFramework.Utility.DataTypes.DoubleUtil.IsOne(System.Double)"/>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.FloatUtil.IsZero(System.Double)">
+            <inheritdoc cref="M:VDFramework.Utility.DataTypes.DoubleUtil.IsZero(System.Double)"/>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.FloatUtil.IsBetweenZeroAndOne(System.Double,System.Boolean,System.Boolean)">
+            <inheritdoc cref="M:VDFramework.Utility.DataTypes.DoubleUtil.IsBetweenZeroAndOne(System.Double,System.Boolean,System.Boolean)"/>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.FloatUtil.RoundToInt(System.Single)">
+            <summary>
+            Rounds the given value to the nearest int
             </summary>
         </member>
         <member name="T:VDFramework.Utility.DataTypes.StringUtil">
@@ -2694,6 +3080,48 @@
             Will add a KeyValuePair for every enumValue to the list
             </summary>
             <returns>The same list</returns>
+        </member>
+        <member name="T:VDFramework.Utility.MathUtility.LinearInterpolationUtil">
+            <summary>
+            Provides helper functions for linear interpolation between values
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.MathUtility.LinearInterpolationUtil.Lerp(System.Double,System.Double,System.Double)">
+            <summary>
+            Provides the value at t% between a and b
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.MathUtility.LinearInterpolationUtil.Lerp(System.Single,System.Single,System.Single)">
+            <summary>
+            Provides the value at t% between a and b
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.MathUtility.LinearInterpolationUtil.InverseLerp(System.Double,System.Double,System.Double)">
+            <summary>
+            Provides the % between a and b at value
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.MathUtility.LinearInterpolationUtil.InverseLerp(System.Single,System.Single,System.Single)">
+            <summary>
+            Provides the % between a and b at value
+            </summary>
+        </member>
+        <member name="T:VDFramework.Utility.MathUtility.MathFunctions">
+            <summary>
+            Provides implementations of mathematical functions
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.MathUtility.MathFunctions.CubicRoot(System.Double)">
+            <summary>
+            Returns the cubic root of the given value
+            </summary>
+            <math>³√x</math>
+        </member>
+        <member name="M:VDFramework.Utility.MathUtility.MathFunctions.CubicRoot(System.Numerics.Complex)">
+            <summary>
+            Returns the cubic root of the given complex number
+            </summary>
+            <math>³√x</math>
         </member>
         <member name="T:VDFramework.Utility.MathUtility.MathUtil">
             <summary>

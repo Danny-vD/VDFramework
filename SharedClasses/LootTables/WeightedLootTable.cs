@@ -242,7 +242,7 @@ namespace VDFramework.LootTables
 			return true;
 		}
 
-		public bool TryRemove(ILoot<TLootType> loot)
+		public virtual bool TryRemove(ILoot<TLootType> loot)
 		{
 			if (!TryGetLootTablePair(loot, out _, out int index))
 			{
@@ -255,7 +255,7 @@ namespace VDFramework.LootTables
 			return true;
 		}
 
-		public bool TryRemove(TLootType loot)
+		public virtual bool TryRemove(TLootType loot)
 		{
 			return TryRemove(new LootTableItem<TLootType>(loot));
 		}

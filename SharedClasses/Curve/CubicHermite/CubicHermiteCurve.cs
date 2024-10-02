@@ -10,8 +10,10 @@ using VDFramework.Utility.DataTypes;
 namespace SeedFinder.Curve
 {
 	/// <summary>
-	/// The implementation of a Cubic Hermite curve
+	/// The implementation of a Cubic Hermite curve.<br/>
+	/// This is a Cubic curve that where the 2 control points are defined by a weight and a tangent from the start and end points
 	/// </summary>
+	/// <wikipedia>https://en.wikipedia.org/wiki/Cubic_Hermite_spline</wikipedia>
 	/// <graphicExample>https://www.desmos.com/calculator/jczgacl2jk</graphicExample>
 	public class CubicHermiteCurve : IEnumerable
 	{
@@ -41,30 +43,57 @@ namespace SeedFinder.Curve
 			}
 		}
 
+		/// <summary>
+		/// The first keyframe of this curve
+		/// </summary>
 		public KeyFrame StartPoint => keyFrames[0];
 
+		/// <summary>
+		/// The last keyframe of this curve
+		/// </summary>
 		public KeyFrame EndPoint => keyFrames[^1];
 
-		private bool isDirty = true; // Used to know to recalculate the control points
+		private bool isDirty = true; // Used to know whether to recalculate the control points
 
+		/// <summary>
+		/// Creates a new Cubic Hermite curve with no keyframes
+		/// </summary>
 		public CubicHermiteCurve()
 		{
 		}
 
+		/// <summary>
+		/// Creates a new Cubic Hermite curve with the given keyframes
+		/// </summary>
 		public CubicHermiteCurve(KeyFrame[] keyframes)
 		{
 			KeyFrames = keyframes;
 		}
 
+		/// <summary>
+		/// Creates a new Cubic Hermite curve with the given keyframes
+		/// </summary>
 		public CubicHermiteCurve(IEnumerable<KeyFrame> keyframes) : this(keyframes.ToArray())
 		{
 		}
 
+		/// <summary>
+		/// Evaluate the curve at the given x coordinate
+		/// </summary>
+		/// <param name="x">The X coordnate to evaluate</param>
+		/// <returns>The Y coordinate of the point on the curve that has the given X coordinate</returns>
 		public double Evaluate(double x)
 		{
 			return Evaluate(x, PreWrapMode, PostWrapMode);
 		}
 		
+		/// <summary>
+		/// Evaluate the curve at the given x coordinate
+		/// </summary>
+		/// <param name="x">The X coordnate to evaluate</param>
+		/// <param name="preWrapMode">How to handle a point that falls outside the curve, before the first keyframe</param>
+		/// <param name="postWrapMode">How to handle a point that falls outside the curve, after the last keyframe</param>
+		/// <returns>The Y coordinate of the point on the curve that has the given X coordinate</returns>
 		public double Evaluate(double x, CurveWrapMode preWrapMode, CurveWrapMode postWrapMode)
 		{
 			if (keyFrames.Length == 0)
@@ -85,6 +114,7 @@ namespace SeedFinder.Curve
 			KeyFrame startPoint = StartPoint;
 			KeyFrame endPoint = EndPoint;
 
+			// Check if the x falls outside of the curve
 			if (DoubleUtil.LesserThanOrClose(x, startPoint.x, out bool areEqual))
 			{
 				if (areEqual)
@@ -105,6 +135,7 @@ namespace SeedFinder.Curve
 				return CalculateOutOfBoundsValueRight(x, preWrapMode, postWrapMode);
 			}
 
+			// Go over each part of the whole curve to the section that contains the requested coordinate
 			for (int i = 1; i < keyFrames.Length; i++)
 			{
 				KeyFrame start = keyFrames[i - 1];
@@ -118,7 +149,7 @@ namespace SeedFinder.Curve
 					}
 					
 					// x is not within this part of the curve, so check the next part
-					continue;
+					continue; // No need to check if the point is before the start, that has already been checked
 				}
 
 				if (!start.HasCalculatedRightControlPoint)
