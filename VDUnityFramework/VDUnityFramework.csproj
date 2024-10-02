@@ -20,6 +20,21 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Compile Include="..\SharedClasses\Curve\CubicHermite\CubicHermiteCalculator.cs">
+        <Link>SharedClasses\Curve\CubicHermite\CubicHermiteCalculator.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\Curve\CubicHermite\CubicHermiteCurve.cs">
+        <Link>SharedClasses\Curve\CubicHermite\CubicHermiteCurve.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\Curve\Enums\CurveWrapMode.cs">
+        <Link>SharedClasses\Curve\Enums\CurveWrapMode.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\Curve\Structs\KeyFrame.cs">
+        <Link>SharedClasses\Curve\Structs\KeyFrame.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\Curve\Structs\Point.cs">
+        <Link>SharedClasses\Curve\Structs\Point.cs</Link>
+      </Compile>
       <Compile Include="..\SharedClasses\EventSystem\EventHandler.cs">
         <Link>SharedClasses\EventSystem\EventHandler.cs</Link>
       </Compile>
@@ -164,11 +179,23 @@
       <Compile Include="..\SharedClasses\RandomWrapper\SystemRandom.cs">
         <Link>SharedClasses\RandomWrapper\SystemRandom.cs</Link>
       </Compile>
+      <Compile Include="..\SharedClasses\Utility\DataTypes\DoubleUtil.cs">
+        <Link>SharedClasses\Utility\DataTypes\DoubleUtil.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\Utility\DataTypes\FloatUtil.cs">
+        <Link>SharedClasses\Utility\DataTypes\FloatUtil.cs</Link>
+      </Compile>
       <Compile Include="..\SharedClasses\Utility\DataTypes\StringUtil.cs">
         <Link>SharedClasses\Utility\DataTypes\StringUtil.cs</Link>
       </Compile>
       <Compile Include="..\SharedClasses\Utility\EnumDictionaryUtil.cs">
         <Link>SharedClasses\Utility\EnumDictionaryUtil.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\Utility\MathUtility\LinearInterpolationUtil.cs">
+        <Link>SharedClasses\Utility\MathUtility\LinearInterpolationUtil.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\Utility\MathUtility\MathFunctions.cs">
+        <Link>SharedClasses\Utility\MathUtility\MathFunctions.cs</Link>
       </Compile>
       <Compile Include="..\SharedClasses\Utility\MathUtility\MathUtil.cs">
         <Link>SharedClasses\Utility\MathUtility\MathUtil.cs</Link>
