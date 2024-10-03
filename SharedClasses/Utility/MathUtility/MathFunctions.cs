@@ -23,7 +23,7 @@ namespace VDFramework.Utility.MathUtility
 		/// <math>³√x</math>
 		public static Complex CubicRoot(Complex value)
 		{
-			return Complex.Pow(value, 0.3333333333333333D);
+			return Complex.Pow(value, MathConstants.THIRD);
 		}
 	}
 }

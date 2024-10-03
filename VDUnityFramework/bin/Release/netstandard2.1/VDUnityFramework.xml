@@ -862,6 +862,16 @@
             Provides the % between a and b at value
             </summary>
         </member>
+        <member name="T:VDFramework.Utility.MathUtility.MathConstants">
+            <summary>
+            Contains constants used for mathematical operations
+            </summary>
+        </member>
+        <member name="F:VDFramework.Utility.MathUtility.MathConstants.THIRD">
+            <summary>
+            The constant 1/3
+            </summary>
+        </member>
         <member name="T:VDFramework.Utility.MathUtility.MathFunctions">
             <summary>
             Provides implementations of mathematical functions
@@ -6326,10 +6336,13 @@
             This is a Cubic curve that where the 2 control points are defined by a weight and a tangent from the start and end points
             </summary>
             <wikipedia>https://en.wikipedia.org/wiki/Cubic_Hermite_spline</wikipedia>
+            <plottedExample>https://www.desmos.com/calculator/hrswjq9qbe</plottedExample>
         </member>
         <member name="F:SeedFinder.Curve.Utility.CubicHermiteCalculator.Xi">
             <summary>
-            (-1 + √-3) / 2
+            A mathematical constant used for getting the roots of a cubic equation.<br/>
+            (-1 + √-3) / 2<br/>
+            Symbol: ξ
             </summary>
             <wikipedia>https://en.wikipedia.org/wiki/Cubic_equation#General_cubic_formula</wikipedia>
         </member>
@@ -6378,10 +6391,11 @@
         <member name="T:SeedFinder.Curve.CubicHermiteCurve">
             <summary>
             The implementation of a Cubic Hermite curve.<br/>
-            This is a Cubic curve that where the 2 control points are defined by a weight and a tangent from the start and end points
+            This is a Cubic curve that where the 2 control points are defined by a weight and a tangent from the start and end points.<br/>
+            The behaviour of this curve is identical to Unitys AnimationCurve
             </summary>
             <wikipedia>https://en.wikipedia.org/wiki/Cubic_Hermite_spline</wikipedia>
-            <graphicExample>https://www.desmos.com/calculator/jczgacl2jk</graphicExample>
+            <plottedExample>https://www.desmos.com/calculator/hrswjq9qbe</plottedExample>
         </member>
         <member name="P:SeedFinder.Curve.CubicHermiteCurve.PreWrapMode">
             <summary>
@@ -6467,6 +6481,8 @@
             Represents a x and y coordinate on the curve.<br/>
             Also contains a weight and a tangent for a cubic hermite curve
             </summary>
+            <seealso cref="P:SeedFinder.Curve.Structs.KeyFrame.InTangent"/>
+            <seealso cref="P:SeedFinder.Curve.Structs.KeyFrame.OutTangent"/>
         </member>
         <member name="M:SeedFinder.Curve.Structs.KeyFrame.#ctor(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
             <summary>
@@ -6505,22 +6521,30 @@
         </member>
         <member name="P:SeedFinder.Curve.Structs.KeyFrame.InTangent">
             <summary>
-            The tangent on the left side of this keyframe
+            The tangent on the left side of this keyframe.<br/><br/>
+            Use Infinity if you want to use a constant for this curve:<br/>
+            <see cref="F:System.Double.PositiveInfinity"/> = start value (other keyframe)<br/>
+            <see cref="F:System.Double.NegativeInfinity"/> = end value (this keyframe)
             </summary>
         </member>
         <member name="P:SeedFinder.Curve.Structs.KeyFrame.InWeight">
             <summary>
-            The weight used to calculate the control point on the left of this keyframe
+            The weight used to calculate the control point on the left of this keyframe.<br/>
+            It is represented by a normalized value [0, 1] between this keyframe and the one before it
             </summary>
         </member>
         <member name="P:SeedFinder.Curve.Structs.KeyFrame.OutTangent">
             <summary>
-            The tangent on the right side of this keyframe
+            The tangent on the right side of this keyframe.<br/><br/>
+            Use Infinity if you want to use a constant for this curve:<br/>
+            <see cref="F:System.Double.PositiveInfinity"/> = start value (this keyframe)<br/>
+            <see cref="F:System.Double.NegativeInfinity"/> = end value (other keyframe)
             </summary>
         </member>
         <member name="P:SeedFinder.Curve.Structs.KeyFrame.OutWeight">
             <summary>
-            The weight used to calculate the control point on the right of this keyframe
+            The weight used to calculate the control point on the right of this keyframe.<br/>
+            It is represented by a normalized value [0, 1] between this keyframe and the one after it
             </summary>
         </member>
         <member name="P:SeedFinder.Curve.Structs.KeyFrame.LeftControlPoint">

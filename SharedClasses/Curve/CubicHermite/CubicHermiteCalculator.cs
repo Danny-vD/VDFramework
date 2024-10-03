@@ -10,12 +10,13 @@ namespace SeedFinder.Curve.Utility
 	/// This is a Cubic curve that where the 2 control points are defined by a weight and a tangent from the start and end points
 	/// </summary>
 	/// <wikipedia>https://en.wikipedia.org/wiki/Cubic_Hermite_spline</wikipedia>
+	/// <plottedExample>https://www.desmos.com/calculator/hrswjq9qbe</plottedExample>
 	public static class CubicHermiteCalculator
 	{
-		private const double third = 0.3333333333333333D;
-		
 		/// <summary>
-		/// (-1 + √-3) / 2
+		/// A mathematical constant used for getting the roots of a cubic equation.<br/>
+		/// (-1 + √-3) / 2<br/>
+		/// Symbol: ξ
 		/// </summary>
 		/// <wikipedia>https://en.wikipedia.org/wiki/Cubic_equation#General_cubic_formula</wikipedia>
 		public static readonly Complex Xi = (-1 + Complex.Sqrt(-3)) / 2;
@@ -38,8 +39,8 @@ namespace SeedFinder.Curve.Utility
 			{
 				// For unweighted the weights are simply 1/3
 				
-				x = start.x + deltaX * third;
-				y = start.y + start.OutTangent * third * deltaX;
+				x = start.x + deltaX * MathConstants.THIRD;
+				y = start.y + start.OutTangent * MathConstants.THIRD * deltaX;
 			}
 
 			double x2, y2;
@@ -53,8 +54,8 @@ namespace SeedFinder.Curve.Utility
 			{
 				// For unweighted the weights are simply 1/3
 				
-				x2 = end.x - deltaX * third;
-				y2 = end.y - end.InTangent * third * deltaX;
+				x2 = end.x - deltaX * MathConstants.THIRD;
+				y2 = end.y - end.InTangent * MathConstants.THIRD * deltaX;
 			}
 
 			controlPoint1 = new Point(x, y);
@@ -80,8 +81,8 @@ namespace SeedFinder.Curve.Utility
 			{
 				// For unweighted the weight is simply 1/3
 				
-				x = start.x + deltaX * third;
-				y = start.y + start.OutTangent * third * deltaX;
+				x = start.x + deltaX * MathConstants.THIRD;
+				y = start.y + start.OutTangent * MathConstants.THIRD * deltaX;
 			}
 
 			return new Point(x, y);
@@ -106,8 +107,8 @@ namespace SeedFinder.Curve.Utility
 			{
 				// For unweighted the weight is simply 1/3
 				
-				x = end.x - deltaX * third;
-				y = end.y - end.InTangent * third * deltaX;
+				x = end.x - deltaX * MathConstants.THIRD;
+				y = end.y - end.InTangent * MathConstants.THIRD * deltaX;
 			}
 
 			return new Point(x, y);

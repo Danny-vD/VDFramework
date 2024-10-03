@@ -15,7 +15,7 @@ namespace SeedFinder.Curve
 	/// The behaviour of this curve is identical to Unitys AnimationCurve
 	/// </summary>
 	/// <wikipedia>https://en.wikipedia.org/wiki/Cubic_Hermite_spline</wikipedia>
-	/// <plottedExample>https://www.desmos.com/calculator/jczgacl2jk</plottedExample>
+	/// <plottedExample>https://www.desmos.com/calculator/hrswjq9qbe</plottedExample>
 	public class CubicHermiteCurve : IEnumerable
 	{
 		/// <summary>

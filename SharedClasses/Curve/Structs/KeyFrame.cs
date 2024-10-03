@@ -8,13 +8,15 @@ namespace SeedFinder.Curve.Structs
 	/// Represents a x and y coordinate on the curve.<br/>
 	/// Also contains a weight and a tangent for a cubic hermite curve
 	/// </summary>
+	/// <seealso cref="InTangent"/>
+	/// <seealso cref="OutTangent"/>
 	[DebuggerDisplay("{x}, {y}")]
 	public struct KeyFrame : IComparable<KeyFrame>
 	{
 		/// <summary>
 		/// Creates a new keyframe with the given coordinates, and optionally the weights and tangents
 		/// </summary>
-		public KeyFrame(double xCoordinate, double yCoordinate, double inTangent = 0, double inWeight = 0, double outTangent = 0, double outWeight = 0)
+		public KeyFrame(double xCoordinate, double yCoordinate, double inTangent = 0, double inWeight = 1, double outTangent = 0, double outWeight = 0)
 		{
 			this.xCoordinate = xCoordinate;
 			this.yCoordinate = yCoordinate;
@@ -134,7 +136,10 @@ namespace SeedFinder.Curve.Structs
 		private double inTangent;
 
 		/// <summary>
-		/// The tangent on the left side of this keyframe
+		/// The tangent on the left side of this keyframe.<br/><br/>
+		/// Use Infinity if you want to use a constant for this curve:<br/>
+		/// <see cref="double.PositiveInfinity"/> = start value (other keyframe)<br/>
+		/// <see cref="double.NegativeInfinity"/> = end value (this keyframe)
 		/// </summary>
 		public double InTangent
 		{
@@ -149,7 +154,8 @@ namespace SeedFinder.Curve.Structs
 		private double inWeight;
 
 		/// <summary>
-		/// The weight used to calculate the control point on the left of this keyframe
+		/// The weight used to calculate the control point on the left of this keyframe.<br/>
+		/// It is represented by a normalized value [0, 1] between this keyframe and the one before it
 		/// </summary>
 		public double InWeight
 		{
@@ -164,7 +170,10 @@ namespace SeedFinder.Curve.Structs
 		private double outTangent;
 
 		/// <summary>
-		/// The tangent on the right side of this keyframe
+		/// The tangent on the right side of this keyframe.<br/><br/>
+		/// Use Infinity if you want to use a constant for this curve:<br/>
+		/// <see cref="double.PositiveInfinity"/> = start value (this keyframe)<br/>
+		/// <see cref="double.NegativeInfinity"/> = end value (other keyframe)
 		/// </summary>
 		public double OutTangent
 		{
@@ -179,7 +188,8 @@ namespace SeedFinder.Curve.Structs
 		private double outWeight;
 
 		/// <summary>
-		/// The weight used to calculate the control point on the right of this keyframe
+		/// The weight used to calculate the control point on the right of this keyframe.<br/>
+		/// It is represented by a normalized value [0, 1] between this keyframe and the one after it
 		/// </summary>
 		public double OutWeight
 		{

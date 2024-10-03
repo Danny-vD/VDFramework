@@ -194,6 +194,9 @@
       <Compile Include="..\SharedClasses\Utility\MathUtility\LinearInterpolationUtil.cs">
         <Link>SharedClasses\Utility\MathUtility\LinearInterpolationUtil.cs</Link>
       </Compile>
+      <Compile Include="..\SharedClasses\Utility\MathUtility\MathConstants.cs">
+        <Link>SharedClasses\Utility\MathUtility\MathConstants.cs</Link>
+      </Compile>
       <Compile Include="..\SharedClasses\Utility\MathUtility\MathFunctions.cs">
         <Link>SharedClasses\Utility\MathUtility\MathFunctions.cs</Link>
       </Compile>
