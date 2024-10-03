@@ -52,7 +52,7 @@ namespace VDFramework.LootTables
 		/// The <see cref="IRandomNumberGenerator"/> implementation that should be used when getting a random value from the loot table.<br/>
 		/// Will default to <see cref="SystemRandom"/> if not set.
 		/// </summary>
-		public IRandomNumberGenerator RandomNumberGenerator { get; private set; }
+		public IRandomNumberGenerator RandomNumberGenerator { get; set; }
 
 		/// <summary>
 		/// The list of pairs that represents this loot table.<br/>
