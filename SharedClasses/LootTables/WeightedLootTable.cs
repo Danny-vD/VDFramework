@@ -15,7 +15,7 @@ namespace VDFramework.LootTables
 	/// Internally the Alias-method is used for the sampling.
 	/// </summary>
 	/// <seealso cref="AliasTable{TType}"/>
-	public class WeightedLootTable<TLootType> : ILoot<TLootType>, IEnumerable<LootTablePair<TLootType>>
+	public class WeightedLootTable<TLootType> : IRandomLoot<TLootType>, IEnumerable<LootTablePair<TLootType>>
 	{
 		/// <summary>
 		/// The combined weight of every loot in the table
@@ -268,11 +268,48 @@ namespace VDFramework.LootTables
 
 		/// <summary>
 		/// Grabs a random ILoot from the table based on the weights and returns it.<br/>
-		/// Uses the <see cref="RandomNumberGenerator"/> or <see cref="SystemRandom"/> if that is null.
+		/// Uses the <see cref="RandomNumberGenerator"/> or <see cref="SystemRandom"/> if that is null
 		/// </summary>
 		public virtual TLootType GetLoot()
 		{
 			return GetAliasTable().Sample(RandomNumberGenerator).GetLoot();
+		}
+
+		/// <summary>
+		/// Grabs a random ILoot from the table based on the weights and returns it.<br/>
+		/// Uses the <see cref="RandomNumberGenerator"/> or <see cref="SystemRandom"/> if that is null.<br/>
+		/// Will use the provided <see cref="IRandomNumberGenerator"/> for any nested <see cref="IRandomLoot{TLootType}"/> as well.
+		/// </summary>
+		/// <param name="rng">The random number generator to use</param>
+		public virtual TLootType GetLoot(IRandomNumberGenerator rng)
+		{
+			ILoot<TLootType> loot = GetAliasTable().Sample(rng);
+
+			if (loot is IRandomLoot<TLootType> randomLoot)
+			{
+				return randomLoot.GetLoot(rng);
+			}
+			
+			return loot.GetLoot();
+		}
+
+		/// <summary>
+		/// Grabs a random ILoot from the table based on the weights and returns it.<br/>
+		/// Uses the <see cref="RandomNumberGenerator"/> or <see cref="SystemRandom"/> if that is null.<br/>
+		/// Will use the provided <see cref="IRandomNumberGenerator"/> for any nested <see cref="IRandomLoot{TLootType}"/> if <paramref name="useRNGForNested"/> is TRUE.
+		/// </summary>
+		/// <param name="rng">The random number generator to use</param>
+		/// <param name="useRNGForNested">Whether </param>
+		public virtual TLootType GetLoot(IRandomNumberGenerator rng, bool useRNGForNested)
+		{
+			ILoot<TLootType> loot = GetAliasTable().Sample(rng);
+
+			if (useRNGForNested && loot is IRandomLoot<TLootType> randomLoot)
+			{
+				return randomLoot.GetLoot(rng);
+			}
+			
+			return loot.GetLoot();
 		}
 
 		/// <summary>

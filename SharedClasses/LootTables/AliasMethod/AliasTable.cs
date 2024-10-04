@@ -52,7 +52,7 @@ namespace VDFramework.LootTables.AliasMethod
 		/// <summary>
 		/// Construct an alias table from the given pairs of {<see cref="ILoot{TLootType}"/>, Weight}
 		/// </summary>
-		/// <param name="sortedCollection">A collection of {<see cref="ILoot{TLootType}"/>, Weight} pairs</param>
+		/// <param name="sortedCollection">A collection of {<see cref="ILoot{TLootType}"/>, Weight} pairs, sorted by weight</param>
 		public void Construct(IEnumerable<LootTablePair<TType>> sortedCollection)
 		{
 			LinkedList<LootTablePair<TType>> linkedList = new LinkedList<LootTablePair<TType>>(sortedCollection);

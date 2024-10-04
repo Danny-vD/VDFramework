@@ -137,6 +137,9 @@
       <Compile Include="..\SharedClasses\LootTables\Interfaces\ILoot.cs">
         <Link>SharedClasses\LootTables\Interfaces\ILoot.cs</Link>
       </Compile>
+      <Compile Include="..\SharedClasses\LootTables\Interfaces\IRandomLoot.cs">
+        <Link>SharedClasses\LootTables\Interfaces\IRandomLoot.cs</Link>
+      </Compile>
       <Compile Include="..\SharedClasses\LootTables\LootTableItems\LootTableItem.cs">
         <Link>SharedClasses\LootTables\LootTableItems\LootTableItem.cs</Link>
       </Compile>

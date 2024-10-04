@@ -812,7 +812,7 @@
             <summary>
             Construct an alias table from the given pairs of {<see cref="T:VDFramework.LootTables.Interfaces.ILoot`1"/>, Weight}
             </summary>
-            <param name="sortedCollection">A collection of {<see cref="T:VDFramework.LootTables.Interfaces.ILoot`1"/>, Weight} pairs</param>
+            <param name="sortedCollection">A collection of {<see cref="T:VDFramework.LootTables.Interfaces.ILoot`1"/>, Weight} pairs, sorted by weight</param>
         </member>
         <member name="M:VDFramework.LootTables.AliasMethod.AliasTable`1.Sample(VDFramework.RandomWrapper.Interface.IRandomNumberGenerator)">
             <summary>
@@ -847,6 +847,16 @@
             </summary>
         </member>
         <member name="M:VDFramework.LootTables.Interfaces.ILoot`1.GetLoot">
+            <summary>
+            Retrieves or calculates the loot and returns it
+            </summary>
+        </member>
+        <member name="T:VDFramework.LootTables.Interfaces.IRandomLoot`1">
+            <summary>
+            Represents an object that returns random loot in some way using a <see cref="T:VDFramework.RandomWrapper.Interface.IRandomNumberGenerator"/>
+            </summary>
+        </member>
+        <member name="M:VDFramework.LootTables.Interfaces.IRandomLoot`1.GetLoot(VDFramework.RandomWrapper.Interface.IRandomNumberGenerator)">
             <summary>
             Retrieves or calculates the loot and returns it
             </summary>
@@ -1000,8 +1010,25 @@
         <member name="M:VDFramework.LootTables.WeightedLootTable`1.GetLoot">
             <summary>
             Grabs a random ILoot from the table based on the weights and returns it.<br/>
-            Uses the <see cref="P:VDFramework.LootTables.WeightedLootTable`1.RandomNumberGenerator"/> or <see cref="T:VDFramework.RandomWrapper.SystemRandom"/> if that is null.
+            Uses the <see cref="P:VDFramework.LootTables.WeightedLootTable`1.RandomNumberGenerator"/> or <see cref="T:VDFramework.RandomWrapper.SystemRandom"/> if that is null
             </summary>
+        </member>
+        <member name="M:VDFramework.LootTables.WeightedLootTable`1.GetLoot(VDFramework.RandomWrapper.Interface.IRandomNumberGenerator)">
+            <summary>
+            Grabs a random ILoot from the table based on the weights and returns it.<br/>
+            Uses the <see cref="P:VDFramework.LootTables.WeightedLootTable`1.RandomNumberGenerator"/> or <see cref="T:VDFramework.RandomWrapper.SystemRandom"/> if that is null.<br/>
+            Will use the provided <see cref="T:VDFramework.RandomWrapper.Interface.IRandomNumberGenerator"/> for any nested <see cref="T:VDFramework.LootTables.Interfaces.IRandomLoot`1"/> as well.
+            </summary>
+            <param name="rng">The random number generator to use</param>
+        </member>
+        <member name="M:VDFramework.LootTables.WeightedLootTable`1.GetLoot(VDFramework.RandomWrapper.Interface.IRandomNumberGenerator,System.Boolean)">
+            <summary>
+            Grabs a random ILoot from the table based on the weights and returns it.<br/>
+            Uses the <see cref="P:VDFramework.LootTables.WeightedLootTable`1.RandomNumberGenerator"/> or <see cref="T:VDFramework.RandomWrapper.SystemRandom"/> if that is null.<br/>
+            Will use the provided <see cref="T:VDFramework.RandomWrapper.Interface.IRandomNumberGenerator"/> for any nested <see cref="T:VDFramework.LootTables.Interfaces.IRandomLoot`1"/> if <paramref name="useRNGForNested"/> is TRUE.
+            </summary>
+            <param name="rng">The random number generator to use</param>
+            <param name="useRNGForNested">Whether </param>
         </member>
         <member name="M:VDFramework.LootTables.WeightedLootTable`1.GetAliasTable">
             <summary>
