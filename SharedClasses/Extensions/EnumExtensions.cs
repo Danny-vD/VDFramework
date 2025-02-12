@@ -24,7 +24,7 @@ namespace VDFramework.Extensions
 				return names;
 			}
 
-			names = Enum.GetNames(enumType);
+			names                  = Enum.GetNames(enumType);
 			namesPerEnum[enumType] = names;
 
 			return names;
@@ -58,6 +58,22 @@ namespace VDFramework.Extensions
 			Enum.TryParse(names.GetRandomElement(), out TEnum result);
 
 			return result;
+		}
+
+		/// <summary>Determines whether any of the given flags are set in the current instance</summary>
+		/// <param name="enum">The enumeration value to check for flags</param>
+		/// <param name="flag">An enumeration value</param>
+		/// <returns>
+		/// <see langword="true" /> if any bit fields that are set in <paramref name="flag" /> are also set in the current instance; otherwise, <see langword="false" />.
+		/// </returns>
+		/// <info>Differs from <see cref="Enum.HasFlag"/> in that <see cref="Enum.HasFlag"/> requires that every flag is set to return true</info>
+		public static bool HasAnyFlag<TEnum>(this TEnum @enum, TEnum flag) where TEnum : struct, Enum
+		{
+			// a direct cast would also work here instead of using the Convert class
+			ulong enumNumber = Convert.ToUInt64(@enum); // Necessary because the bitwise-AND operator is not available for the TEnum type
+			ulong flagNumber = Convert.ToUInt64(flag);
+			
+			return (enumNumber & flagNumber) > 0;
 		}
 	}
 }
