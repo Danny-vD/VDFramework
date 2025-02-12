@@ -34,7 +34,7 @@ namespace VDFramework.LootTables
 		}
 
 		/// <summary>
-		/// Whether or not the internal alias table should be reconstructed first when <see cref="GetLoot"/> is called
+		/// Whether or not the internal alias table should be reconstructed first when <see cref="GetAliasTable"/> is called
 		/// </summary>
 		protected bool ShouldReconstructAliasTable
 		{
