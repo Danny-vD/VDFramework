@@ -872,6 +872,13 @@
             The constant 1/3
             </summary>
         </member>
+        <member name="F:VDFramework.Utility.MathUtility.MathConstants.GoldenRatio">
+            <summary>
+            The 'extreme and mean ratio' or 'divine proportion' calculated as<br/>(1 + √5) / 2<br/>1.618033988749...
+            </summary>
+            <symbol>φ (phi)</symbol>
+            <theory>https://en.wikipedia.org/wiki/Golden_ratio#Calculation</theory>
+        </member>
         <member name="T:VDFramework.Utility.MathUtility.MathFunctions">
             <summary>
             Provides implementations of mathematical functions
@@ -3977,9 +3984,9 @@
             <param name="enum">The enumeration value to check for flags</param>
             <param name="flag">An enumeration value</param>
             <returns>
-            <see langword="true" /> if any bit fields that are set in <paramref name="flag" /> are also set in the current instance; otherwise, <see langword="false" />.
+            <see langword="true"/> if any bit fields that are set in <paramref name="flag" /> are also set in the current instance; otherwise, <see langword="false" />.
             </returns>
-            <info>Differs from <see cref="M:System.Enum.HasFlag(System.Enum)"/> in that <see cref="M:System.Enum.HasFlag(System.Enum)"/> requires that every flag is set to return true</info>
+            <info>Differs from <see cref="M:System.Enum.HasFlag(System.Enum)"/> in that <see cref="M:System.Enum.HasFlag(System.Enum)"/> requires that every flag is set to return <see langword="true"/></info>
         </member>
         <member name="T:VDFramework.Extensions.FloatingPointExtensions">
             <summary>
@@ -4560,7 +4567,7 @@
         </member>
         <member name="P:VDFramework.LootTables.WeightedLootTable`1.ShouldReconstructAliasTable">
             <summary>
-            Whether or not the internal alias table should be reconstructed first when <see cref="M:VDFramework.LootTables.WeightedLootTable`1.GetLoot"/> is called
+            Whether or not the internal alias table should be reconstructed first when <see cref="M:VDFramework.LootTables.WeightedLootTable`1.GetAliasTable"/> is called
             </summary>
         </member>
         <member name="P:VDFramework.LootTables.WeightedLootTable`1.RandomNumberGenerator">
