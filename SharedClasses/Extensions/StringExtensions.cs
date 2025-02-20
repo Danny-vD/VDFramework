@@ -48,6 +48,50 @@ namespace VDFramework.Extensions
 		}
 
 		/// <summary>
+		/// Get a count of how many times a specific character appears within the string up to a given index
+		/// </summary>
+		public static int CharCount(this string input, char character, int maxIndex)
+		{
+			int count = 0;
+			
+			int length = Math.Min(input.Length, maxIndex);
+
+			for (int i = 0; i < length; i++)
+			{
+				char c = input[i];
+
+				if (c.Equals(character))
+				{
+					++count;
+				}
+			}
+
+			return count;
+		}
+		
+		/// <summary>
+		/// Get a count of how many times a specific character appears within the string up to a given index
+		/// </summary>
+		public static int CharCount(this string input, char character, int startIndex, int maxIndex)
+		{
+			int count = 0;
+			
+			int length = Math.Min(input.Length, maxIndex);
+
+			for (int i = startIndex; i < length; i++)
+			{
+				char c = input[i];
+
+				if (c.Equals(character))
+				{
+					++count;
+				}
+			}
+
+			return count;
+		}
+
+		/// <summary>
 		/// Get a count of how many times a specific string appears within the string
 		/// </summary>
 		public static int StringCount(this string input, string tofind, StringComparison stringComparison = StringComparison.Ordinal)

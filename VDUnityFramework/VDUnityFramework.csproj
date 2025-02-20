@@ -188,8 +188,11 @@
       <Compile Include="..\SharedClasses\Utility\DataTypes\FloatUtil.cs">
         <Link>SharedClasses\Utility\DataTypes\FloatUtil.cs</Link>
       </Compile>
-      <Compile Include="..\SharedClasses\Utility\DataTypes\StringUtil.cs">
-        <Link>SharedClasses\Utility\DataTypes\StringUtil.cs</Link>
+      <Compile Include="..\SharedClasses\Utility\DataTypes\String\StringUtil.cs">
+        <Link>SharedClasses\Utility\DataTypes\String\StringUtil.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\Utility\DataTypes\String\StringUtil.MatchingPairs.cs">
+        <Link>SharedClasses\Utility\DataTypes\String\StringUtil.MatchingPairs.cs</Link>
       </Compile>
       <Compile Include="..\SharedClasses\Utility\EnumDictionaryUtil.cs">
         <Link>SharedClasses\Utility\EnumDictionaryUtil.cs</Link>

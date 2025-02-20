@@ -618,6 +618,16 @@
             Get a count of how many times a specific character appears within the string
             </summary>
         </member>
+        <member name="M:VDFramework.Extensions.StringExtensions.CharCount(System.String,System.Char,System.Int32)">
+            <summary>
+            Get a count of how many times a specific character appears within the string up to a given index
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.StringExtensions.CharCount(System.String,System.Char,System.Int32,System.Int32)">
+            <summary>
+            Get a count of how many times a specific character appears within the string up to a given index
+            </summary>
+        </member>
         <member name="M:VDFramework.Extensions.StringExtensions.StringCount(System.String,System.String,System.StringComparison)">
             <summary>
             Get a count of how many times a specific string appears within the string
@@ -3105,24 +3115,124 @@
             <param name="countAs1Char">A collection of substrings that will only count as 1 char for the purposes of returning the desired length</param>
             <param name="string">The string whose length to enforce</param>
         </member>
-        <member name="M:VDFramework.Utility.DataTypes.StringUtil.GetStringBetweenAandB(System.String,System.String,System.String,System.Int32,System.Boolean)">
+        <member name="F:VDFramework.Utility.DataTypes.StringUtil.escapeCharacter">
             <summary>
-            Get the string between two given strings, optionally including the two strings
+            The backslash character '\'
             </summary>
         </member>
-        <member name="M:VDFramework.Utility.DataTypes.StringUtil.GetStringBetweenAandB(System.String,System.Char,System.Char,System.Int32,System.Boolean,System.Boolean)">
+        <member name="M:VDFramework.Utility.DataTypes.StringUtil.GetDepthAtIndex(System.String,System.String,System.String,System.Int32)">
             <summary>
-            Get all characters between two characters, optionally including the two characters
+            Tests how 'deep' the given index is determined by nested pairs of <paramref name="a"/> and <paramref name="b"/>
             </summary>
+            <param name="input">The string to search for pairs</param>
+            <param name="a">The string that represents the opening of a pair</param>
+            <param name="b">The string that represents the closing of a pair</param>
+            <param name="lookupIndex">The index to check the depth (nested-ness) for</param>
+            <returns>The depth of the given index<br/>0 means it is not within any pair (or no pair could be found)</returns>
         </member>
-        <member name="M:VDFramework.Utility.DataTypes.StringUtil.GetStringsBetweenAandB(System.String,System.Char,System.Char,System.Int32,System.Boolean,System.Boolean)">
+        <member name="M:VDFramework.Utility.DataTypes.StringUtil.GetMatchingPairs(System.String,System.String,System.String)">
             <summary>
-            Get the strings between all pairs of two characters, optionally including the two characters
+            Find all matching pairs of <paramref name="a"/> and <paramref name="b"/>
             </summary>
+            <param name="input">The string to search for pairs</param>
+            <param name="a">The string that represents the opening of a pair</param>
+            <param name="b">The string that represents the closing of a pair</param>
+            <returns>
+            A list of tuples that represent: (OpeningIndex, ClosingIndex, Depth)<br/>
+            with Depth=1 meaning it is not nested within another pair
+            </returns>
         </member>
-        <member name="M:VDFramework.Utility.DataTypes.StringUtil.GetStringsBetweenAandB(System.String,System.String,System.String,System.Int32,System.Boolean)">
+        <member name="M:VDFramework.Utility.DataTypes.StringUtil.GetStringsBetweenAandB(System.String,System.String,System.String,System.Boolean)">
             <summary>
             Get the strings between all pairs of two strings, optionally including the two strings
+            </summary>
+            <param name="input">The string to get the substrings from</param>
+            <param name="a">The string that represents the opening of a pair</param>
+            <param name="b">The string that represents the closing of a pair</param>
+            <param name="includeAandB">Whether <paramref name="a"/> and <paramref name="b"/> should be included in the result</param>
+            <returns>
+            A list of substrings of every occurance of pairs, sorted from most-nested to least-nested<br/>
+            Returns an empty list if no valid pair can be found
+            </returns>
+            <seealso cref="M:VDFramework.Utility.DataTypes.StringUtil.GetMatchingPairs(System.String,System.String,System.String)"/>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.StringUtil.GetStringsBetweenAandBRange(System.String,System.String,System.String,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Get the strings between all pairs of two strings, optionally including the two strings
+            </summary>
+            <param name="input">The string to get the substrings from</param>
+            <param name="a">The string that represents the opening of a pair</param>
+            <param name="b">The string that represents the closing of a pair</param>
+            <param name="startIndex">The index from where to start looking for pairs</param>
+            <param name="endIndex">The index from where to stop looking for pairs</param>
+            <param name="includeAandB">Whether or not <paramref name="a"/> and <paramref name="b"/> should be included in the result</param>
+            <returns>
+            A list of substrings of every occurance of pairs, sorted from most-nested to least-nested<br/>
+            Returns an empty list if no valid pair is within the given range
+            </returns>
+            <seealso cref="M:VDFramework.Utility.DataTypes.StringUtil.GetMatchingPairs(System.String,System.String,System.String)"/>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.StringUtil.GetDepthAtIndex(System.String,System.Char,System.Char,System.Int32,System.Boolean)">
+            <summary>
+            Tests how 'deep' the given index is determined by nested pairs of <paramref name="a"/> and <paramref name="b"/>
+            </summary>
+            <param name="input">The string to search for pairs</param>
+            <param name="a">The character that represents the opening of a pair</param>
+            <param name="b">The character that represents the closing of a pair</param>
+            <param name="lookupIndex">The index to check the depth (nested-ness) for</param>
+            <param name="ignoreEscaped">Whether a found closing or opening match should be ignored if it is preceded by the <see cref="F:VDFramework.Utility.DataTypes.StringUtil.escapeCharacter"/></param>
+            <returns>The depth of the given index<br/>0 means it is not within any pair (or no pair could be found)</returns>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.StringUtil.GetMatchingPairs(System.String,System.Char,System.Char,System.Boolean)">
+            <summary>
+            Find all matching pairs of <paramref name="a"/> and <paramref name="b"/>
+            </summary>
+            <param name="input">The string to search for pairs</param>
+            <param name="a">The character that represents the opening of a pair</param>
+            <param name="b">The character that represents the closing of a pair</param>
+            <param name="ignoreEscaped">Whether a found closing or opening match should be ignored if it is preceded by the <see cref="F:VDFramework.Utility.DataTypes.StringUtil.escapeCharacter"/></param>
+            <returns>
+            A list of tuples that represent: (OpeningIndex, ClosingIndex, Depth)<br/>
+            with Depth=1 meaning it is not nested within another pair
+            </returns>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.StringUtil.GetStringsBetweenAandB(System.String,System.Char,System.Char,System.Boolean,System.Boolean)">
+            <summary>
+            Get the strings between all pairs of two strings, optionally including the two strings
+            </summary>
+            <param name="input">The string to get the substrings from</param>
+            <param name="a">The character that represents the opening of a pair</param>
+            <param name="b">The character that represents the closing of a pair</param>
+            <param name="includeAandB">Whether <paramref name="a"/> and <paramref name="b"/> should be included in the result</param>
+            <param name="ignoreEscaped">Whether a found closing or opening match should be ignored if it is preceded by the <see cref="F:VDFramework.Utility.DataTypes.StringUtil.escapeCharacter"/></param>
+            <returns>
+            A list of substrings of every occurance of pairs, sorted from most-nested to least-nested<br/>
+            Returns an empty list if no valid pair can be found
+            </returns>
+            <seealso cref="M:VDFramework.Utility.DataTypes.StringUtil.GetMatchingPairs(System.String,System.String,System.String)"/>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.StringUtil.GetStringsBetweenAandBRange(System.String,System.Char,System.Char,System.Int32,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Get the strings between all pairs of two strings, optionally including the two strings
+            </summary>
+            <param name="input">The string to get the substrings from</param>
+            <param name="a">The character that represents the opening of a pair</param>
+            <param name="b">The character that represents the closing of a pair</param>
+            <param name="startIndex">The index from where to start looking for pairs</param>
+            <param name="endIndex">The index from where to stop looking for pairs</param>
+            <param name="includeAandB">Whether or not <paramref name="a"/> and <paramref name="b"/> should be included in the result</param>
+            <param name="ignoreEscaped">Whether a found closing or opening match should be ignored if it is preceded by the <see cref="F:VDFramework.Utility.DataTypes.StringUtil.escapeCharacter"/></param>
+            <returns>
+            A list of substrings of every occurance of pairs, sorted from most-nested to least-nested<br/>
+            Returns an empty list if no valid pair is within the given range
+            </returns>
+            <seealso cref="M:VDFramework.Utility.DataTypes.StringUtil.GetMatchingPairs(System.String,System.String,System.String)"/>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.StringUtil.ReduceDepthBecauseOfInvalidOpenings(System.Collections.Generic.List{System.Tuple{System.Int32,System.Int32,System.Int32}},System.Collections.Generic.Stack{System.Int32})">
+            <summary>
+            Fix the invalid depth caused by unclosed openings.<br/>
+            Unresolved openings (those without a fitting closer to make a pair) falsely increase the depth of the matching pairs<br/>
+            This function fixes that discrepancy
             </summary>
         </member>
         <member name="M:VDFramework.Utility.EnumDictionaryUtil.PopulateEnumDictionary``3(System.Collections.Generic.List{``0})">
