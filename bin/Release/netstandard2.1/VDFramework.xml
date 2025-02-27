@@ -3142,6 +3142,18 @@
             with Depth=1 meaning it is not nested within another pair
             </returns>
         </member>
+        <member name="M:VDFramework.Utility.DataTypes.StringUtil.GetFirstMatchingPair(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Find the first matching pair of <paramref name="a"/> and <paramref name="b"/>
+            </summary>
+            <param name="input">The string to search for pairs</param>
+            <param name="a">The string that represents the opening of a pair</param>
+            <param name="b">The string that represents the closing of a pair</param>
+            <param name="startIndex">The index from where to start searching for a matching pair in the string</param>
+            <returns>
+            A tuple that represents: (OpeningIndex, ClosingIndex)
+            </returns>
+        </member>
         <member name="M:VDFramework.Utility.DataTypes.StringUtil.GetStringsBetweenAandB(System.String,System.String,System.String,System.Boolean)">
             <summary>
             Get the strings between all pairs of two strings, optionally including the two strings
@@ -3194,6 +3206,19 @@
             <returns>
             A list of tuples that represent: (OpeningIndex, ClosingIndex, Depth)<br/>
             with Depth=1 meaning it is not nested within another pair
+            </returns>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.StringUtil.GetFirstMatchingPair(System.String,System.Char,System.Char,System.Int32,System.Boolean)">
+            <summary>
+            Find the first matching pair of <paramref name="a"/> and <paramref name="b"/>
+            </summary>
+            <param name="input">The string to search for pairs</param>
+            <param name="a">The character that represents the opening of a pair</param>
+            <param name="b">The character that represents the closing of a pair</param>
+            <param name="startIndex">The index from where to start searching for a matching pair in the string</param>
+            <param name="ignoreEscaped">Whether a found closing or opening match should be ignored if it is preceded by the <see cref="F:VDFramework.Utility.DataTypes.StringUtil.escapeCharacter"/></param>
+            <returns>
+            A tuple that represents: (OpeningIndex, ClosingIndex)
             </returns>
         </member>
         <member name="M:VDFramework.Utility.DataTypes.StringUtil.GetStringsBetweenAandB(System.String,System.Char,System.Char,System.Boolean,System.Boolean)">

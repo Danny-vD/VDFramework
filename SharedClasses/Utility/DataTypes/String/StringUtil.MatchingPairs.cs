@@ -26,7 +26,7 @@ namespace VDFramework.Utility.DataTypes
 			{
 				return 0;
 			}
-			
+
 			int pairCloseIndex = input.LastIndexOf(b, StringComparison.InvariantCulture);
 
 			if (pairCloseIndex == -1 || pairCloseIndex <= pairOpenIndex || lookupIndex > pairCloseIndex) // No ending found so no pairs can be made or the requested index is after the last pair would be closed
@@ -42,7 +42,7 @@ namespace VDFramework.Utility.DataTypes
 			int depthAtIndex = 0;
 
 			int searchIndex = pairOpenIndex + a.Length; // Search index represents the index after which to look for the next opening/closing of the pair
-			
+
 			while (searchIndex < input.Length)
 			{
 				pairCloseIndex = input.IndexOf(b, searchIndex, StringComparison.InvariantCulture);
@@ -206,6 +206,75 @@ namespace VDFramework.Utility.DataTypes
 		}
 
 		/// <summary>
+		/// Find the first matching pair of <paramref name="a"/> and <paramref name="b"/>
+		/// </summary>
+		/// <param name="input">The string to search for pairs</param>
+		/// <param name="a">The string that represents the opening of a pair</param>
+		/// <param name="b">The string that represents the closing of a pair</param>
+		/// <param name="startIndex">The index from where to start searching for a matching pair in the string</param>
+		/// <returns>
+		/// A tuple that represents: (OpeningIndex, ClosingIndex)
+		/// </returns>
+		public static Tuple<int, int> GetFirstMatchingPair(string input, string a, string b, int startIndex = 0)
+		{
+			int pairOpenIndex = input.IndexOf(a, startIndex, StringComparison.InvariantCulture);
+
+			if (pairOpenIndex == -1) // No beginning found so no pair can be made
+			{
+				return null;
+			}
+
+			int searchIndex = pairOpenIndex + a.Length;
+			int pairCloseIndex = input.IndexOf(b, searchIndex, StringComparison.InvariantCulture);
+
+			if (pairCloseIndex == -1) // No ending found so no pair can be made
+			{
+				return null;
+			}
+
+			bool openingEqualsClosing = a.Equals(b);
+
+			Stack<int> openingPairIndices = new Stack<int>();
+			openingPairIndices.Push(pairOpenIndex);
+
+			while (searchIndex < input.Length)
+			{
+				pairCloseIndex = input.IndexOf(b, searchIndex, StringComparison.InvariantCulture);
+
+				if (pairCloseIndex == -1) // No valid B remaining, return the pairs we found so far
+				{
+					break;
+				}
+
+				int count = pairCloseIndex - searchIndex;
+				pairOpenIndex = input.IndexOf(a, searchIndex, count, StringComparison.InvariantCulture);
+
+				if (pairOpenIndex != -1 && pairOpenIndex < pairCloseIndex) // Another A before the B | Because of count it should always be before, but the check is there just to be sure
+				{
+					if (openingEqualsClosing) // If opening and closing are equal, then we should close the pair when we find another 'opening'
+					{
+						if (openingPairIndices.TryPop(out int openingIndex))
+						{
+							return new Tuple<int, int>(openingIndex, pairOpenIndex);
+						}
+					}
+
+					openingPairIndices.Push(pairOpenIndex);
+
+					searchIndex = pairOpenIndex + a.Length;
+				}
+				else // No As before B
+				{
+					int openIndex = openingPairIndices.Pop();
+
+					return new Tuple<int, int>(openIndex, pairCloseIndex);
+				}
+			}
+
+			return null; // No valid pair found before the end of the string
+		}
+
+		/// <summary>
 		/// Get the strings between all pairs of two strings, optionally including the two strings
 		/// </summary>
 		/// <param name="input">The string to get the substrings from</param>
@@ -296,7 +365,7 @@ namespace VDFramework.Utility.DataTypes
 		//\\//\\//\\//\\//\\//\\
 		//		Chars
 		//\\//\\//\\//\\//\\//\\
-		
+
 		/// <summary>
 		/// Tests how 'deep' the given index is determined by nested pairs of <paramref name="a"/> and <paramref name="b"/>
 		/// </summary>
@@ -314,7 +383,7 @@ namespace VDFramework.Utility.DataTypes
 			{
 				return 0;
 			}
-			
+
 			int pairCloseIndex = input.LastIndexOf(b);
 
 			if (pairCloseIndex == -1 || pairCloseIndex <= pairOpenIndex || lookupIndex > pairCloseIndex) // No ending found so no pairs can be made or the requested index is after the last pair would be closed
@@ -364,7 +433,7 @@ namespace VDFramework.Utility.DataTypes
 				if (character.Equals(b) && openingPairIndices.Count > 0)
 				{
 					pairOpenIndex = openingPairIndices.Pop();
-					
+
 					if (pairOpenIndex <= lookupIndex && lookupIndex <= i) // If the requested index is within the range of the pair
 					{
 						++depthAtIndex;
@@ -452,6 +521,78 @@ namespace VDFramework.Utility.DataTypes
 
 			ReduceDepthBecauseOfInvalidOpenings(matchingPairs, openingPairIndices);
 			return matchingPairs;
+		}
+
+		/// <summary>
+		/// Find the first matching pair of <paramref name="a"/> and <paramref name="b"/>
+		/// </summary>
+		/// <param name="input">The string to search for pairs</param>
+		/// <param name="a">The character that represents the opening of a pair</param>
+		/// <param name="b">The character that represents the closing of a pair</param>
+		/// <param name="startIndex">The index from where to start searching for a matching pair in the string</param>
+		/// <param name="ignoreEscaped">Whether a found closing or opening match should be ignored if it is preceded by the <see cref="escapeCharacter"/></param>
+		/// <returns>
+		/// A tuple that represents: (OpeningIndex, ClosingIndex)
+		/// </returns>
+		public static Tuple<int, int> GetFirstMatchingPair(string input, char a, char b, int startIndex = 0, bool ignoreEscaped = false)
+		{
+			int pairOpenIndex = input.IndexOf(a, startIndex);
+
+			// 2 simple short-circuit checks to see if there is any chance of a pair (there still might not be because they could be escaped)
+			if (pairOpenIndex == -1) // No beginning found so no pair can be made
+			{
+				return null;
+			}
+
+			// +1 because otherwise it would find the same character if 'a' and 'b' are equal
+			if (input.IndexOf(b, pairOpenIndex + 1) == -1) // No ending found so no pair can be made | No need to store the index of the closing pair, it will be the same as the iterator in the loop
+			{
+				return null;
+			}
+
+			bool openingEqualsClosing = a.Equals(b);
+
+			Stack<int> openingPairIndices = new Stack<int>();
+
+			bool isEscaped = false;
+
+			for (int i = 0; i < input.Length; i++)
+			{
+				if (ignoreEscaped && isEscaped)
+				{
+					isEscaped = false;
+					continue;
+				}
+
+				char character = input[i];
+
+				if (character.Equals(escapeCharacter))
+				{
+					isEscaped = true;
+				}
+
+				if (character.Equals(a))
+				{
+					if (openingEqualsClosing) // If opening and closing are equal, then we should close the pair when we find another 'opening'
+					{
+						if (openingPairIndices.TryPop(out int openingIndex))
+						{
+							return new Tuple<int, int>(openingIndex, i);
+						}
+					}
+
+					openingPairIndices.Push(i);
+					continue;
+				}
+
+				if (character.Equals(b) && openingPairIndices.Count > 0)
+				{
+					pairOpenIndex = openingPairIndices.Pop();
+					return new Tuple<int, int>(pairOpenIndex, i);
+				}
+			}
+
+			return null; // No valid pair found before the end of the string
 		}
 
 		/// <summary>
