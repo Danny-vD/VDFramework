@@ -298,11 +298,11 @@ namespace VDFramework.Utility.DataTypes
 
 				if (includeAandB)
 				{
-					++closeIndex;
+					closeIndex += b.Length;
 				}
 				else
 				{
-					++openIndex;
+					openIndex += a.Length;
 				}
 
 				int length = closeIndex - openIndex;
@@ -348,11 +348,11 @@ namespace VDFramework.Utility.DataTypes
 
 				if (includeAandB)
 				{
-					++closeIndex;
+					closeIndex += b.Length;
 				}
 				else
 				{
-					++openIndex;
+					openIndex += a.Length;
 				}
 
 				int length = closeIndex - openIndex;
