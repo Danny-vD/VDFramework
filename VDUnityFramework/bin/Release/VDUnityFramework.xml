@@ -213,6 +213,12 @@
             UnityEngine.Random is a static class so the underlaying random is shared between all instances of this class
             </remarks>
         </member>
+        <member name="P:VDFramework.RandomWrapper.UnityRandom.StaticInstance">
+            <summary>
+            Returns a static instance of this class <br/>
+            A new instance will be created the first time this field is used
+            </summary>
+        </member>
         <member name="M:VDFramework.RandomWrapper.UnityRandom.SetSeed(System.Int32)">
             <inheritdoc cref="M:UnityEngine.Random.InitState(System.Int32)" />
             <seealso cref="P:UnityEngine.Random.state"/>

@@ -11,6 +11,33 @@ namespace VDFramework.RandomWrapper
 	/// </remarks>
 	public class UnityRandom : IRandomNumberGenerator
 	{
+		private static readonly object staticLock = new object();
+		
+		private static volatile UnityRandom staticInstance = null;
+
+		/// <summary>
+		/// Returns a static instance of this class <br/>
+		/// A new instance will be created the first time this field is used
+		/// </summary>
+		public static UnityRandom StaticInstance
+		{
+			get
+			{
+				if (staticInstance == null)
+				{
+					lock (staticLock)
+					{
+						if (staticInstance == null)
+						{
+							staticInstance = new UnityRandom();
+						}
+					}
+				}
+
+				return staticInstance;
+			}
+		}
+
 		private static int originalSeed; // Static because Unity uses a static Random class
 
 		/// <inheritdoc cref="UnityEngine.Random.InitState" />

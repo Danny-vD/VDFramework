@@ -1,7 +1,7 @@
-﻿namespace VDFramework.Singleton
-{
-	using Exceptions;
+﻿using VDFramework.Exceptions;
 
+namespace VDFramework.Singleton
+{
 	/// <summary>
 	/// A abstract generic implementation of the singleton pattern
 	/// </summary>
@@ -14,6 +14,9 @@
 
 		private static volatile TSingleton instance;
 
+		/// <summary>
+		/// Returns an instance of this Singleton or initializes it if it does not exist yet (lazy-initialization)
+		/// </summary>
 		public static TSingleton Instance
 		{
 			get

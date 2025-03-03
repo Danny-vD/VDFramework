@@ -9,13 +9,32 @@ namespace VDFramework.RandomWrapper
 	/// <seealso cref="StaticInstance">SystemRandom.StaticInstance</seealso>
 	public class SystemRandom : IRandomNumberGenerator
 	{
-		private static SystemRandom staticInstance = null;
+		private static readonly object staticLock = new object();
 		
+		private static volatile SystemRandom staticInstance = null;
+
 		/// <summary>
 		/// Returns a static instance of this class <br/>
 		/// A new instance will be created the first time this field is used
 		/// </summary>
-		public static SystemRandom StaticInstance => staticInstance ??= new SystemRandom();
+		public static SystemRandom StaticInstance
+		{
+			get
+			{
+				if (staticInstance == null)
+				{
+					lock (staticLock)
+					{
+						if (staticInstance == null)
+						{
+							staticInstance = new SystemRandom();
+						}
+					}
+				}
+
+				return staticInstance;
+			}
+		}
 
 		/// <summary>
 		/// The underlaying <see cref="System.Random">System.Random</see> instance
@@ -23,12 +42,12 @@ namespace VDFramework.RandomWrapper
 		public System.Random Instance { get; private set; } = new System.Random();
 
 		private int originalSeed = Environment.TickCount;
-		
+
 		/// <inheritdoc />
 		public void SetSeed(int seed)
 		{
 			originalSeed = seed;
-			Instance       = new Random(originalSeed);
+			Instance     = new Random(originalSeed);
 		}
 
 		/// <inheritdoc />
@@ -42,7 +61,7 @@ namespace VDFramework.RandomWrapper
 		{
 			return Instance.Next();
 		}
-		
+
 		/// <inheritdoc cref="System.Random.Next(int)" />
 		public int Next(int exclusiveUpperBound)
 		{
@@ -84,7 +103,7 @@ namespace VDFramework.RandomWrapper
 		{
 			Instance.NextBytes(buffer);
 		}
-		
+
 		/// <inheritdoc cref="System.Random.NextDouble()" />
 		public double NextDouble()
 		{

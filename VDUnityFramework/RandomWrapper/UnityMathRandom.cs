@@ -8,15 +8,34 @@ namespace VDFramework.RandomWrapper
 	/// </summary>
 	public class UnityMathRandom : IRandomNumberGenerator
 	{
-		private static UnityMathRandom staticInstance = null;
+		private static readonly object staticLock = new object();
+		
+		private static volatile UnityMathRandom staticInstance = null;
 		
 		/// <summary>
 		/// Returns a static instance of this class<br/>
 		/// A new instance will be created the first time this field is used<br/>
 		/// The seed *has* to be set first before this random can be used to generate numbers
 		/// </summary>
-		public static UnityMathRandom StaticInstance => staticInstance ??= new UnityMathRandom();
-		
+		public static UnityMathRandom StaticInstance
+		{
+			get
+			{
+				if (staticInstance == null)
+				{
+					lock (staticLock)
+					{
+						if (staticInstance == null)
+						{
+							staticInstance = new UnityMathRandom();
+						}
+					}
+				}
+
+				return staticInstance;
+			}
+		}
+
 		/// <summary>
 		/// The underlaying <see cref="Unity.Mathematics.Random">Unity.Mathematics.Random</see> instance
 		/// </summary>
@@ -70,7 +89,7 @@ namespace VDFramework.RandomWrapper
 		/// </summary>
 		/// <seealso cref="Unity.Mathematics.Random.state"/>
 		/// <seealso cref="Unity.Mathematics.Random.InitState(uint)"/>
-		public void SetSeed(uint seed)
+		public void SetSeed(uint seed = 1851936439)
 		{
 			originalSeed = seed;
 			Instance.InitState(seed);

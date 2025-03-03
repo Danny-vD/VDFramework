@@ -6142,6 +6142,11 @@
             </summary>
             <typeparam name="TSingleton">The type to create a singleton of</typeparam>
         </member>
+        <member name="P:VDFramework.Singleton.Singleton`1.Instance">
+            <summary>
+            Returns an instance of this Singleton or initializes it if it does not exist yet (lazy-initialization)
+            </summary>
+        </member>
         <member name="M:VDFramework.Singleton.Singleton`1.DestroyInstance">
             <summary>
             Sets the instance of the singleton to null.
