@@ -108,10 +108,110 @@
             <para>(makes the object DontDestroyOnLoad)</para>
             </summary>
         </member>
+        <member name="T:VDFramework.RandomWrapper.UnityMathRandom">
+            <summary>
+            Provides a implementation of <see cref="T:VDFramework.RandomWrapper.Interface.IRandomNumberGenerator"/> using <see cref="T:Unity.Mathematics.Random">Unity.Mathematics.Random</see>
+            </summary>
+        </member>
+        <member name="P:VDFramework.RandomWrapper.UnityMathRandom.StaticInstance">
+            <summary>
+            Returns a static instance of this class<br/>
+            A new instance will be created the first time this field is used<br/>
+            The seed *has* to be set first before this random can be used to generate numbers
+            </summary>
+        </member>
+        <member name="P:VDFramework.RandomWrapper.UnityMathRandom.Instance">
+            <summary>
+            The underlaying <see cref="T:Unity.Mathematics.Random">Unity.Mathematics.Random</see> instance
+            </summary>
+            <warning>Do not use <see cref="M:Unity.Mathematics.Random.InitState(System.UInt32)"/> directly. Use <see cref="M:VDFramework.RandomWrapper.UnityMathRandom.SetSeed(System.Int32)"/> to not break tracking what the original seed was</warning>
+            <seealso cref="M:VDFramework.RandomWrapper.UnityMathRandom.GetSeed"/>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.UnityMathRandom.#ctor">
+            <summary>
+            Create a new instance of this random<br/>
+            The seed *has* to be set first before this random can be used to generate numbers
+            </summary>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.UnityMathRandom.#ctor(System.UInt32)">
+             <summary>
+             Create a new instance of this random with an index<br/>
+             The seed *has* to be set first before this random can be used to generate numbers<br/>
+             <br/>the index must not be uint.maxValue
+             </summary>
+             <remarks>
+            	Use this function when you expect to create several Random instances in a loop<br/>
+            <br/>
+             <see cref="M:VDFramework.RandomWrapper.UnityMathRandom.GetSeed"/> will return <see cref="F:Unity.Mathematics.Random.state"/> when the random is created through this method
+             </remarks>
+             <seealso cref="M:Unity.Mathematics.Random.CreateFromIndex(System.UInt32)"/>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.UnityMathRandom.SetSeed(System.Int32)">
+            <summary>
+            Set the seed of the underlaying <see cref="T:Unity.Mathematics.Random"/><br/>
+            Because <see cref="M:Unity.Mathematics.Random.InitState(System.UInt32)"/> uses an uint, the given int will be <see cref="M:VDFramework.Utility.Unsafe.UnsafeUtil.reinterpret_cast``2(``0)">reinterpret_cast()</see> to uint
+            </summary>
+            <seealso cref="F:Unity.Mathematics.Random.state"/>
+            <seealso cref="M:VDFramework.Utility.Unsafe.UnsafeUtil.reinterpret_cast``2(``0)"/>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.UnityMathRandom.SetSeed(System.UInt32)">
+            <summary>
+            Set the seed of the underlaying <see cref="T:Unity.Mathematics.Random"/>
+            </summary>
+            <seealso cref="F:Unity.Mathematics.Random.state"/>
+            <seealso cref="M:Unity.Mathematics.Random.InitState(System.UInt32)"/>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.UnityMathRandom.GetSeed">
+            <inheritdoc />
+            <seealso cref="F:Unity.Mathematics.Random.state"/>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.UnityMathRandom.Next">
+            <inheritdoc cref="M:Unity.Mathematics.Random.NextInt" />
+        </member>
+        <member name="M:VDFramework.RandomWrapper.UnityMathRandom.Next(System.Int32)">
+            <inheritdoc cref="M:Unity.Mathematics.Random.NextInt(System.Int32)" />
+        </member>
+        <member name="M:VDFramework.RandomWrapper.UnityMathRandom.Next(System.Int32,System.Int32)">
+            <inheritdoc cref="M:Unity.Mathematics.Random.NextInt(System.Int32,System.Int32)" />
+        </member>
+        <member name="M:VDFramework.RandomWrapper.UnityMathRandom.Next(System.Single)">
+            <summary>
+            Returns a random non-negative floating point number between 0 (inclusive) and the upper bound (exclusive)
+            </summary>
+            <seealso cref="M:Unity.Mathematics.Random.NextFloat(System.Single)"/>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.UnityMathRandom.Next(System.Single,System.Single)">
+            <summary>
+            Returns a random non-negative floating point number between the lower bound (inclusive) and the upper bound (exclusive)
+            </summary>
+            <seealso cref="M:Unity.Mathematics.Random.NextFloat(System.Single,System.Single)"/>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.UnityMathRandom.NextBytes(System.Span{System.Byte})">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.RandomWrapper.UnityMathRandom.NextBytes(System.Byte[])">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.RandomWrapper.UnityMathRandom.NextDouble">
+            <summary>
+            Returns a random double precision floating-point number between 0 (inclusive) and 1 (exclusive)
+            </summary>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.UnityMathRandom.NextFloat">
+            <summary>
+            Returns a random single precision floating-point number between 0 (inclusive) and 1 (exclusive)
+            </summary>
+        </member>
+        <member name="M:VDFramework.RandomWrapper.UnityMathRandom.GetPercentage">
+            <inheritdoc />
+        </member>
         <member name="T:VDFramework.RandomWrapper.UnityRandom">
             <summary>
             Provides a implementation of <see cref="T:VDFramework.RandomWrapper.Interface.IRandomNumberGenerator"/> using <see cref="T:UnityEngine.Random">UnityEngine.Random</see>
             </summary>
+            <remarks>
+            UnityEngine.Random is a static class so the underlaying random is shared between all instances of this class
+            </remarks>
         </member>
         <member name="M:VDFramework.RandomWrapper.UnityRandom.SetSeed(System.Int32)">
             <inheritdoc cref="M:UnityEngine.Random.InitState(System.Int32)" />
@@ -294,6 +394,11 @@
             <summary>
             Returns a static instance of this class <br/>
             A new instance will be created the first time this field is used
+            </summary>
+        </member>
+        <member name="P:VDFramework.RandomWrapper.SystemRandom.Instance">
+            <summary>
+            The underlaying <see cref="T:System.Random">System.Random</see> instance
             </summary>
         </member>
         <member name="M:VDFramework.RandomWrapper.SystemRandom.SetSeed(System.Int32)">
@@ -4313,6 +4418,21 @@
             <summary>
             Contains extension methods for <see cref="T:System.String"/>
             </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.StringExtensions.CapitaliseFirstLetter(System.String)">
+            <summary>
+            Captalises the first letter in the string
+            </summary>
+            <param name="input">The string to capitalise</param>
+            <returns>The given string, with the first character capitalised</returns>
+            <exception cref="T:System.ArgumentException"><paramref name="input"/> is null or empty</exception>
+        </member>
+        <member name="M:VDFramework.Extensions.StringExtensions.CapitaliseEveryWord(System.String)">
+            <summary>
+            Capitalises the first letter of every word
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
         </member>
         <member name="M:VDFramework.Extensions.StringExtensions.InsertSpaceBeforeCapitals(System.String)">
             <summary>

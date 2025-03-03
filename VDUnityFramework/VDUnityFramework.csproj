@@ -14,6 +14,9 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Reference Include="Unity.Mathematics">
+        <HintPath>bin\Release\netstandard2.1\Unity.Mathematics.dll</HintPath>
+      </Reference>
       <Reference Include="UnityEngine">
         <HintPath>bin\Release\netstandard2.1\UnityEngine.dll</HintPath>
       </Reference>

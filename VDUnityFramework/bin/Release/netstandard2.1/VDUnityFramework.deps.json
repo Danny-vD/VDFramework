@@ -9,10 +9,19 @@
     ".NETStandard,Version=v2.1/": {
       "VDUnityFramework/1.0.0": {
         "dependencies": {
+          "Unity.Mathematics": "0.0.0.0",
           "UnityEngine": "0.0.0.0"
         },
         "runtime": {
           "VDUnityFramework.dll": {}
+        }
+      },
+      "Unity.Mathematics/0.0.0.0": {
+        "runtime": {
+          "Unity.Mathematics.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
         }
       },
       "UnityEngine/0.0.0.0": {
@@ -28,6 +37,11 @@
   "libraries": {
     "VDUnityFramework/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Unity.Mathematics/0.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     },

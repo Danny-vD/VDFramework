@@ -6,6 +6,9 @@ namespace VDFramework.RandomWrapper
 	/// <summary>
 	/// Provides a implementation of <see cref="IRandomNumberGenerator"/> using <see cref="UnityEngine.Random">UnityEngine.Random</see>
 	/// </summary>
+	/// <remarks>
+	/// UnityEngine.Random is a static class so the underlaying random is shared between all instances of this class
+	/// </remarks>
 	public class UnityRandom : IRandomNumberGenerator
 	{
 		private static int originalSeed; // Static because Unity uses a static Random class
@@ -100,7 +103,7 @@ namespace VDFramework.RandomWrapper
 			// ReSharper disable once CompareOfFloatsByEqualityOperator | Reason: I want to check if the result is exactly 1
 			if (random == 1)
 			{
-				random -= double.Epsilon; // This technically skews the probability in favour of (1 - epsilon), but the chance is astromically small so it is acceptable. I still hate it though.
+				random -= double.Epsilon; // This technically skews the probability in favour of (1 - epsilon), but the chance is astronomically small so it is acceptable. I still hate it though.
 			}
 
 			return random;

@@ -16,8 +16,11 @@ namespace VDFramework.RandomWrapper
 		/// A new instance will be created the first time this field is used
 		/// </summary>
 		public static SystemRandom StaticInstance => staticInstance ??= new SystemRandom();
-		
-		private System.Random random = new System.Random();
+
+		/// <summary>
+		/// The underlaying <see cref="System.Random">System.Random</see> instance
+		/// </summary>
+		public System.Random Instance { get; private set; } = new System.Random();
 
 		private int originalSeed = Environment.TickCount;
 		
@@ -25,7 +28,7 @@ namespace VDFramework.RandomWrapper
 		public void SetSeed(int seed)
 		{
 			originalSeed = seed;
-			random       = new Random(originalSeed);
+			Instance       = new Random(originalSeed);
 		}
 
 		/// <inheritdoc />
@@ -37,19 +40,19 @@ namespace VDFramework.RandomWrapper
 		/// <inheritdoc cref="System.Random.Next()" />
 		public int Next()
 		{
-			return random.Next();
+			return Instance.Next();
 		}
 		
 		/// <inheritdoc cref="System.Random.Next(int)" />
 		public int Next(int exclusiveUpperBound)
 		{
-			return random.Next(exclusiveUpperBound);
+			return Instance.Next(exclusiveUpperBound);
 		}
 
 		/// <inheritdoc cref="System.Random.Next(int, int)" />
 		public int Next(int inclusiveLowerBound, int exclusiveUpperBound)
 		{
-			return random.Next(inclusiveLowerBound, exclusiveUpperBound);
+			return Instance.Next(inclusiveLowerBound, exclusiveUpperBound);
 		}
 
 		/// <summary>
@@ -73,32 +76,32 @@ namespace VDFramework.RandomWrapper
 		/// <param name="buffer">The span to be filled with random numbers.</param>
 		public void NextBytes(Span<byte> buffer)
 		{
-			random.NextBytes(buffer);
+			Instance.NextBytes(buffer);
 		}
 
 		/// <inheritdoc cref="System.Random.NextBytes(byte[])" />
 		public void NextBytes(byte[] buffer)
 		{
-			random.NextBytes(buffer);
+			Instance.NextBytes(buffer);
 		}
 		
 		/// <inheritdoc cref="System.Random.NextDouble()" />
 		public double NextDouble()
 		{
-			return random.NextDouble();
+			return Instance.NextDouble();
 		}
 
 		/// <inheritdoc cref="System.Random.NextDouble()" />
 		/// <returns>A single-precision floating point number that is greater than or equal to 0.0, and less than 1.0.</returns>
 		public float NextFloat()
 		{
-			return (float)random.NextDouble();
+			return (float)Instance.NextDouble();
 		}
 
 		/// <inheritdoc />
 		public double GetPercentage()
 		{
-			return random.NextDouble();
+			return Instance.NextDouble();
 		}
 	}
 }
