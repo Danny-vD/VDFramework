@@ -10,7 +10,26 @@ namespace VDFramework.Extensions
 	public static class StringExtensions
 	{
 		/// <summary>
-		/// Captalises the first letter in the string
+		/// Captalises the first character in the string
+		/// </summary>
+		/// <param name="input">The string to capitalise</param>
+		/// <returns>The given string, with the first character capitalised</returns>
+		/// <exception cref="ArgumentException"><paramref name="input"/> is null or empty</exception>
+		public static string CapitaliseFirstCharacter(this string input)
+		{
+			if (string.IsNullOrEmpty(input))
+			{
+				throw new ArgumentException("Invalid string!");
+			}
+
+			char[] chars = input.ToCharArray();
+			chars[0] = char.ToUpperInvariant(chars[0]);
+
+			return new string(chars);
+		}
+
+		/// <summary>
+		/// Captalises the first character in the string
 		/// </summary>
 		/// <param name="input">The string to capitalise</param>
 		/// <returns>The given string, with the first character capitalised</returns>
@@ -22,10 +41,22 @@ namespace VDFramework.Extensions
 				throw new ArgumentException("Invalid string!");
 			}
 
-			char[] chars = input.ToCharArray();
-			chars[0] = char.ToUpperInvariant(chars[0]);
+			char[] characters = input.ToCharArray();
 
-			return new string(chars);
+			for (int i = 0; i < characters.Length; i++)
+			{
+				char character = characters[i];
+
+				if (!char.IsLetter(character))
+				{
+					continue;
+				}
+
+				characters[i]        = char.ToUpperInvariant(character);
+				break;
+			}
+
+			return new string(characters);
 		}
 
 		/// <summary>

@@ -4425,9 +4425,17 @@
             Contains extension methods for <see cref="T:System.String"/>
             </summary>
         </member>
+        <member name="M:VDFramework.Extensions.StringExtensions.CapitaliseFirstCharacter(System.String)">
+            <summary>
+            Captalises the first character in the string
+            </summary>
+            <param name="input">The string to capitalise</param>
+            <returns>The given string, with the first character capitalised</returns>
+            <exception cref="T:System.ArgumentException"><paramref name="input"/> is null or empty</exception>
+        </member>
         <member name="M:VDFramework.Extensions.StringExtensions.CapitaliseFirstLetter(System.String)">
             <summary>
-            Captalises the first letter in the string
+            Captalises the first character in the string
             </summary>
             <param name="input">The string to capitalise</param>
             <returns>The given string, with the first character capitalised</returns>
