@@ -131,6 +131,18 @@
       <Compile Include="..\SharedClasses\IO\Parsers\BinaryParsers\Writers\StringWriter.cs">
         <Link>SharedClasses\IO\Parsers\BinaryParsers\Writers\StringWriter.cs</Link>
       </Compile>
+      <Compile Include="..\SharedClasses\Logger\Enums\LogLevel.cs">
+        <Link>SharedClasses\Logger\Enums\LogLevel.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\Logger\Implementations\ConsoleLogger.cs">
+        <Link>SharedClasses\Logger\Implementations\ConsoleLogger.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\Logger\Interfaces\ILogger.cs">
+        <Link>SharedClasses\Logger\Interface\ILogger.cs</Link>
+      </Compile>
+      <Compile Include="..\SharedClasses\Logger\Logger.cs">
+        <Link>SharedClasses\Logger\Logger.cs</Link>
+      </Compile>
       <Compile Include="..\SharedClasses\LootTables\AliasMethod\AliasTable.cs">
         <Link>SharedClasses\LootTables\AliasMethod\AliasTable.cs</Link>
       </Compile>

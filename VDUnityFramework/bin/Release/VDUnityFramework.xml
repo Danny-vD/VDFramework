@@ -102,6 +102,334 @@
             Unity's start function
             </summary>
         </member>
+        <member name="T:VDFramework.Logger.Implementations.DebugLogger">
+            <summary>
+            A simple implementation of <see cref="T:VDFramework.Logger.Interfaces.ILogger"/> that uses <see cref="M:UnityEngine.Debug.Log(System.Object)">Debug.Log</see> to log data
+            </summary>
+        </member>
+        <member name="M:VDFramework.Logger.Implementations.DebugLogger.Log(VDFramework.Logger.Enums.LogLevel,System.String,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.Logger.Implementations.DebugLogger.LogDebug(System.String,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.Logger.Implementations.DebugLogger.LogInfo(System.String,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.Logger.Implementations.DebugLogger.LogMessage(System.String,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.Logger.Implementations.DebugLogger.LogWarning(System.String,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.Logger.Implementations.DebugLogger.LogError(System.String,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.Logger.Implementations.DebugLogger.LogException(System.Exception,System.String,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.Logger.Implementations.DebugLogger.LogFatal(System.String,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:VDFramework.Logger.Implementations.ConsoleLogger">
+            <summary>
+            A simple implementation of <see cref="T:VDFramework.Logger.Interfaces.ILogger"/> that uses <see cref="M:System.Console.WriteLine(System.String)">System.Console.WriteLine</see> to log data
+            </summary>
+        </member>
+        <member name="M:VDFramework.Logger.Implementations.ConsoleLogger.Log(VDFramework.Logger.Enums.LogLevel,System.String,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.Logger.Implementations.ConsoleLogger.LogDebug(System.String,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.Logger.Implementations.ConsoleLogger.LogInfo(System.String,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.Logger.Implementations.ConsoleLogger.LogMessage(System.String,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.Logger.Implementations.ConsoleLogger.LogWarning(System.String,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.Logger.Implementations.ConsoleLogger.LogError(System.String,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.Logger.Implementations.ConsoleLogger.LogException(System.Exception,System.String,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:VDFramework.Logger.Implementations.ConsoleLogger.LogFatal(System.String,System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="T:VDFramework.Logger.Enums.LogLevel">
+            <summary>
+            The Log level or type that should be logged<br/>
+            How this is represented by the final log output is fully determined by the used <see cref="!:VDFramework.Logger.Interface.ILogger"/>
+            </summary>
+        </member>
+        <member name="F:VDFramework.Logger.Enums.LogLevel.None">
+            <summary>
+            Nothing should be logged
+            </summary>
+        </member>
+        <member name="F:VDFramework.Logger.Enums.LogLevel.Debug">
+            <summary>
+            A message used for debugging usually only intended for developers
+            </summary>
+        </member>
+        <member name="F:VDFramework.Logger.Enums.LogLevel.Info">
+            <summary>
+            A message that has no importance but can be used to inform that something happened
+            </summary>
+        </member>
+        <member name="F:VDFramework.Logger.Enums.LogLevel.Message">
+            <summary>
+            An important message
+            </summary>
+        </member>
+        <member name="F:VDFramework.Logger.Enums.LogLevel.Warning">
+            <summary>
+            A warning that informs that something special or undesirable has happened but does not have severe impact on the flow of the program 
+            </summary>
+        </member>
+        <member name="F:VDFramework.Logger.Enums.LogLevel.Error">
+            <summary>
+            An error that interferes with the expected flow of the program
+            </summary>
+        </member>
+        <member name="F:VDFramework.Logger.Enums.LogLevel.Exception">
+            <summary>
+            A critical error that caused an exception to be thrown
+            </summary>
+        </member>
+        <member name="F:VDFramework.Logger.Enums.LogLevel.Fatal">
+            <summary>
+            A fatal error that caused the program to terminate
+            </summary>
+        </member>
+        <member name="F:VDFramework.Logger.Enums.LogLevel.All">
+            <summary>
+            All other <see cref="T:VDFramework.Logger.Enums.LogLevel"/>s combined
+            </summary>
+        </member>
+        <member name="T:VDFramework.Logger.Interfaces.ILogger">
+            <summary>
+            Logs data
+            </summary>
+        </member>
+        <member name="M:VDFramework.Logger.Interfaces.ILogger.Log(VDFramework.Logger.Enums.LogLevel,System.String,System.Object)">
+            <summary>
+            Logs data with respect to the LogLevel<br/>
+            To send the exception with <see cref="F:VDFramework.Logger.Enums.LogLevel.Exception">LogLevel.Exception</see> use <see cref="M:VDFramework.Logger.Interfaces.ILogger.LogException(System.Exception,System.String,System.Object)"/> instead
+            </summary>
+            <param name="logLevel">The level of this log</param>
+            <param name="data">The data to be logged</param>
+            <param name="obj">Additional data that can be used by the logger</param>
+        </member>
+        <member name="M:VDFramework.Logger.Interfaces.ILogger.LogDebug(System.String,System.Object)">
+            <summary>
+            Logs a Debug message
+            </summary>
+            <param name="data">The data to be logged</param>
+            /// <param name="obj">Additional data that can be used by the logger</param>
+        </member>
+        <member name="M:VDFramework.Logger.Interfaces.ILogger.LogInfo(System.String,System.Object)">
+            <summary>
+            Logs an Info message
+            </summary>
+            <param name="data">The data to be logged</param>
+            /// <param name="obj">Additional data that can be used by the logger</param>
+        </member>
+        <member name="M:VDFramework.Logger.Interfaces.ILogger.LogMessage(System.String,System.Object)">
+            <summary>
+            Logs a Message
+            </summary>
+            <param name="data">The data to be logged</param>
+            /// <param name="obj">Additional data that can be used by the logger</param>
+        </member>
+        <member name="M:VDFramework.Logger.Interfaces.ILogger.LogWarning(System.String,System.Object)">
+            <summary>
+            Logs a Warning
+            </summary>
+            <param name="data">The data to be logged</param>
+            /// <param name="obj">Additional data that can be used by the logger</param>
+        </member>
+        <member name="M:VDFramework.Logger.Interfaces.ILogger.LogError(System.String,System.Object)">
+            <summary>
+            Logs an Error
+            </summary>
+            <param name="data">The data to be logged</param>
+            /// <param name="obj">Additional data that can be used by the logger</param>
+        </member>
+        <member name="M:VDFramework.Logger.Interfaces.ILogger.LogException(System.Exception,System.String,System.Object)">
+            <summary>
+            Logs an Exception
+            </summary>
+            <param name="exception">The exception that needs to be logged</param>
+            <param name="data">The data to be logged</param>
+            /// <param name="obj">Additional data that can be used by the logger</param>
+        </member>
+        <member name="M:VDFramework.Logger.Interfaces.ILogger.LogFatal(System.String,System.Object)">
+            <summary>
+            Logs a fatal error
+            </summary>
+            <param name="data">The data to be logged</param>
+            /// <param name="obj">Additional data that can be used by the logger</param>
+        </member>
+        <member name="T:VDFramework.Logger.Logger">
+            <summary>
+            A wrapper for logging data<br/>
+            The actual logging is handled by the <see cref="F:VDFramework.Logger.Logger.LoggerImplementation"/> if the <see cref="T:VDFramework.Logger.Enums.LogLevel"/> is met 
+            </summary>
+        </member>
+        <member name="F:VDFramework.Logger.Logger.Enabled">
+            <summary>
+            If the logger is not enabled then no messages will be logged (except for bypassed logs)
+            </summary>
+        </member>
+        <member name="F:VDFramework.Logger.Logger.LoggerImplementation">
+            <summary>
+            The implementation of <see cref="T:VDFramework.Logger.Interfaces.ILogger"/> that will be used for logging data if the <see cref="T:VDFramework.Logger.Enums.LogLevel"/> is met
+            </summary>
+        </member>
+        <member name="F:VDFramework.Logger.Logger.LogLevel">
+            <summary>
+            The <see cref="T:VDFramework.Logger.Enums.LogLevel"/>s that should be passed to the <see cref="F:VDFramework.Logger.Logger.LoggerImplementation"/>
+            </summary>
+        </member>
+        <member name="M:VDFramework.Logger.Logger.Log(VDFramework.Logger.Enums.LogLevel,System.String,System.Object)">
+            <summary>
+            Logs data respective to the LogLevel<br/>
+            If the <see cref="F:VDFramework.Logger.Logger.LogLevel"/> dot not meet the <paramref name="logLevel"/> then nothing will be logged<br/>
+            To send the exception with <see cref="F:VDFramework.Logger.Enums.LogLevel.Exception">LogLevel.Exception</see> use <see cref="M:VDFramework.Logger.Logger.LogException(System.Exception,System.String,System.Object)"/> instead
+            </summary>
+            <param name="logLevel">The level of this log</param>
+            <param name="data">The data to be logged</param>
+            <param name="obj">Additional data that can be used by the logger</param>
+        </member>
+        <member name="M:VDFramework.Logger.Logger.LogDebug(System.String,System.Object)">
+            <summary>
+            Logs a Debug message<br/>
+            If the <see cref="F:VDFramework.Logger.Logger.LogLevel"/> dot not contain <see cref="F:VDFramework.Logger.Enums.LogLevel.Debug"/> then nothing will be logged
+            </summary>
+            <param name="data">The data to be logged</param>
+            <param name="obj">Additional data that can be used by the logger</param>
+        </member>
+        <member name="M:VDFramework.Logger.Logger.LogInfo(System.String,System.Object)">
+            <summary>
+            Logs an Info message<br/>
+            If the <see cref="F:VDFramework.Logger.Logger.LogLevel"/> dot not contain <see cref="F:VDFramework.Logger.Enums.LogLevel.Info"/> then nothing will be logged
+            </summary>
+            <param name="data">The data to be logged</param>
+            <param name="obj">Additional data that can be used by the logger</param>
+        </member>
+        <member name="M:VDFramework.Logger.Logger.LogMessage(System.String,System.Object)">
+            <summary>
+            Logs a Message<br/>
+            If the <see cref="F:VDFramework.Logger.Logger.LogLevel"/> dot not contain <see cref="F:VDFramework.Logger.Enums.LogLevel.Message"/> then nothing will be logged
+            </summary>
+            <param name="data">The data to be logged</param>
+            <param name="obj">Additional data that can be used by the logger</param>
+        </member>
+        <member name="M:VDFramework.Logger.Logger.LogWarning(System.String,System.Object)">
+            <summary>
+            Logs a Warning<br/>
+            If the <see cref="F:VDFramework.Logger.Logger.LogLevel"/> dot not contain <see cref="F:VDFramework.Logger.Enums.LogLevel.Warning"/> then nothing will be logged
+            </summary>
+            <param name="data">The data to be logged</param>
+            <param name="obj">Additional data that can be used by the logger</param>
+        </member>
+        <member name="M:VDFramework.Logger.Logger.LogError(System.String,System.Object)">
+            <summary>
+            Logs an Error
+            If the <see cref="F:VDFramework.Logger.Logger.LogLevel"/> dot not contain <see cref="F:VDFramework.Logger.Enums.LogLevel.Error"/> then nothing will be logged<br/>
+            </summary>
+            <param name="data">The data to be logged</param>
+            <param name="obj">Additional data that can be used by the logger</param>
+        </member>
+        <member name="M:VDFramework.Logger.Logger.LogException(System.Exception,System.String,System.Object)">
+            <summary>
+            Logs an Exception
+            If the <see cref="F:VDFramework.Logger.Logger.LogLevel"/> dot not contain <see cref="F:VDFramework.Logger.Enums.LogLevel.Debug"/> then nothing will be logged<br/>
+            </summary>
+            <param name="exception">The exception that needs to be logged</param>
+            <param name="data">The data to be logged</param>
+            <param name="obj">Additional data that can be used by the logger</param>
+        </member>
+        <member name="M:VDFramework.Logger.Logger.LogFatal(System.String,System.Object)">
+            <summary>
+            Logs a fatal error
+            If the <see cref="F:VDFramework.Logger.Logger.LogLevel"/> dot not contain <see cref="F:VDFramework.Logger.Enums.LogLevel.Debug"/> then nothing will be logged<br/>
+            </summary>
+            <param name="data">The data to be logged</param>
+            <param name="obj">Additional data that can be used by the logger</param>
+        </member>
+        <member name="M:VDFramework.Logger.Logger.LogBypassSettings(VDFramework.Logger.Enums.LogLevel,System.String,System.Object)">
+            <summary>
+            Logs data respective to the LogLevel<br/>
+            This function will always log and ignores the <see cref="F:VDFramework.Logger.Logger.Enabled"/> and <see cref="F:VDFramework.Logger.Logger.LogLevel"/> settings (and therefore technically allows logging with <see cref="F:VDFramework.Logger.Enums.LogLevel.None"/>)<br/>
+            To send the exception with <see cref="F:VDFramework.Logger.Enums.LogLevel.Exception">LogLevel.Exception</see> use <see cref="M:VDFramework.Logger.Logger.LogExceptionBypassSettings(System.Exception,System.String,System.Object)"/> instead
+            </summary>
+            <param name="logLevel">The level of this log</param>
+            <param name="data">The data to be logged</param>
+            <param name="obj">Additional data that can be used by the logger</param>
+        </member>
+        <member name="M:VDFramework.Logger.Logger.LogDebugBypassSettings(System.String,System.Object)">
+            <summary>
+            Logs a Debug message<br/>
+            This function will always log and ignores the <see cref="F:VDFramework.Logger.Logger.Enabled"/> and <see cref="F:VDFramework.Logger.Logger.LogLevel"/> settings
+            </summary>
+            <param name="data">The data to be logged</param>
+            <param name="obj">Additional data that can be used by the logger</param>
+        </member>
+        <member name="M:VDFramework.Logger.Logger.LogInfoBypassSettings(System.String,System.Object)">
+            <summary>
+            Logs an Info message<br/>
+            This function will always log and ignores the <see cref="F:VDFramework.Logger.Logger.Enabled"/> and <see cref="F:VDFramework.Logger.Logger.LogLevel"/> settings
+            </summary>
+            <param name="data">The data to be logged</param>
+            <param name="obj">Additional data that can be used by the logger</param>
+        </member>
+        <member name="M:VDFramework.Logger.Logger.LogMessageBypassSettings(System.String,System.Object)">
+            <summary>
+            Logs a Message<br/>
+            This function will always log and ignores the <see cref="F:VDFramework.Logger.Logger.Enabled"/> and <see cref="F:VDFramework.Logger.Logger.LogLevel"/> settings
+            </summary>
+            <param name="data">The data to be logged</param>
+            <param name="obj">Additional data that can be used by the logger</param>
+        </member>
+        <member name="M:VDFramework.Logger.Logger.LogWarningBypassSettings(System.String,System.Object)">
+            <summary>
+            Logs a Warning<br/>
+            This function will always log and ignores the <see cref="F:VDFramework.Logger.Logger.Enabled"/> and <see cref="F:VDFramework.Logger.Logger.LogLevel"/> settings
+            </summary>
+            <param name="data">The data to be logged</param>
+            <param name="obj">Additional data that can be used by the logger</param>
+        </member>
+        <member name="M:VDFramework.Logger.Logger.LogErrorBypassSettings(System.String,System.Object)">
+            <summary>
+            Logs an Error<br/>
+            This function will always log and ignores the <see cref="F:VDFramework.Logger.Logger.Enabled"/> and <see cref="F:VDFramework.Logger.Logger.LogLevel"/> settings
+            </summary>
+            <param name="data">The data to be logged</param>
+            <param name="obj">Additional data that can be used by the logger</param>
+        </member>
+        <member name="M:VDFramework.Logger.Logger.LogExceptionBypassSettings(System.Exception,System.String,System.Object)">
+            <summary>
+            Logs an Exception<br/>
+            This function will always log and ignores the <see cref="F:VDFramework.Logger.Logger.Enabled"/> and <see cref="F:VDFramework.Logger.Logger.LogLevel"/> settings
+            </summary>
+            <param name="exception">The exception that needs to be logged</param>
+            <param name="data">The data to be logged</param>
+            <param name="obj">Additional data that can be used by the logger</param>
+        </member>
+        <member name="M:VDFramework.Logger.Logger.LogFatalBypassSettings(System.String,System.Object)">
+            <summary>
+            Logs a fatal error<br/>
+            This function will always log and ignores the <see cref="F:VDFramework.Logger.Logger.Enabled"/> and <see cref="F:VDFramework.Logger.Logger.LogLevel"/> settings
+            </summary>
+            <param name="data">The data to be logged</param>
+            <param name="obj">Additional data that can be used by the logger</param>
+        </member>
         <member name="T:VDFramework.MonoBehaviours.TimerManagerUpdater">
             <summary>
             <para>A simple utility behaviour for Unity that updates the TimerManager in Update using Time.deltaTime</para>
@@ -4480,19 +4808,19 @@
         </member>
         <member name="T:VDFramework.Interfaces.IKeyValuePair`2">
             <summary>
-            Represents a Key-value pair with a public getter and setter for the Key and Value
+            Represents a Key-Value pair with a public getter and setter for the Key and Value
             </summary>
             <typeparam name="TKey">The type of the key</typeparam>
             <typeparam name="TValue">The type of the value</typeparam>
         </member>
         <member name="P:VDFramework.Interfaces.IKeyValuePair`2.Key">
             <summary>
-            The key of this Key-value pair
+            The key of this Key-Value pair
             </summary>
         </member>
         <member name="P:VDFramework.Interfaces.IKeyValuePair`2.Value">
             <summary>
-            The value of this Key-value pair
+            The value of this Key-Value pair
             </summary>
         </member>
         <member name="T:VDFramework.IO.Parsers.BinaryParsers.Parsers.BitShiftEndianParser">
