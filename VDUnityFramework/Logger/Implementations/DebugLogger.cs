@@ -6,7 +6,8 @@ using Object = UnityEngine.Object;
 namespace VDFramework.Logger.Implementations
 {
 	/// <summary>
-	/// A simple implementation of <see cref="VDFramework.Logger.Interfaces.ILogger"/> that uses <see cref="UnityEngine.Debug.Log(object)">Debug.Log</see> to log data
+	/// A simple implementation of <see cref="VDFramework.Logger.Interfaces.ILogger"/> that uses <see cref="UnityEngine.Debug.Log(object)">Debug.Log</see> to log data<br/>
+	/// The extra object field will be interpreted as <see cref="UnityEngine.Object"/> to provide context to the Debug.Log
 	/// </summary>
 	public class DebugLogger : Interfaces.ILogger
 	{
