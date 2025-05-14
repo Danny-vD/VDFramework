@@ -37,8 +37,6 @@ namespace VDFramework.Logger.Implementations
 				case LogLevel.Fatal:
 					LogFatal(data, obj);
 					break;
-				case LogLevel.None:
-				case LogLevel.All:
 				default:
 					if (obj is Object unityObject)
 					{
@@ -123,7 +121,15 @@ namespace VDFramework.Logger.Implementations
 		{
 			if (ReferenceEquals(exception, null))
 			{
-				Debug.LogError(data);
+				if (obj is Object unityObj)
+				{
+					Debug.LogError(data, unityObj);
+				}
+				else
+				{
+					Debug.LogError(data);
+				}
+
 				return;
 			}
 

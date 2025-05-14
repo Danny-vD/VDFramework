@@ -819,7 +819,7 @@
         <member name="T:VDFramework.Logger.Enums.LogLevel">
             <summary>
             The Log level or type that should be logged<br/>
-            How this is represented by the final log output is fully determined by the used <see cref="!:VDFramework.Logger.Interface.ILogger"/>
+            How this is represented by the final log output is fully determined by the used <see cref="T:VDFramework.Logger.Interfaces.ILogger"/>
             </summary>
         </member>
         <member name="F:VDFramework.Logger.Enums.LogLevel.None">
@@ -862,6 +862,11 @@
             A fatal error that caused the program to terminate
             </summary>
         </member>
+        <member name="F:VDFramework.Logger.Enums.LogLevel.Important">
+            <summary>
+            Only <see cref="F:VDFramework.Logger.Enums.LogLevel.Warning"/>, <see cref="F:VDFramework.Logger.Enums.LogLevel.Error"/>, <see cref="F:VDFramework.Logger.Enums.LogLevel.Exception"/> and <see cref="F:VDFramework.Logger.Enums.LogLevel.Fatal"/>
+            </summary>
+        </member>
         <member name="F:VDFramework.Logger.Enums.LogLevel.All">
             <summary>
             All other <see cref="T:VDFramework.Logger.Enums.LogLevel"/>s combined
@@ -869,7 +874,8 @@
         </member>
         <member name="T:VDFramework.Logger.Implementations.ConsoleLogger">
             <summary>
-            A simple implementation of <see cref="T:VDFramework.Logger.Interfaces.ILogger"/> that uses <see cref="M:System.Console.WriteLine(System.String)">System.Console.WriteLine</see> to log data
+            A simple implementation of <see cref="T:VDFramework.Logger.Interfaces.ILogger"/> that uses <see cref="M:System.Console.WriteLine(System.String)">System.Console.WriteLine</see> to log data<br/>
+            The extra object field will appended as obj.ToString() to the end of the message
             </summary>
         </member>
         <member name="M:VDFramework.Logger.Implementations.ConsoleLogger.Log(VDFramework.Logger.Enums.LogLevel,System.String,System.Object)">

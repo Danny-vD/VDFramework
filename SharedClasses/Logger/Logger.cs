@@ -34,7 +34,7 @@ namespace VDFramework.Logger
 		/// <param name="logLevel">The level of this log</param>
 		/// <param name="data">The data to be logged</param>
 		/// <param name="obj">Additional data that can be used by the logger</param>
-		public static void Log(LogLevel logLevel, string data, object obj)
+		public static void Log(LogLevel logLevel, string data, object obj = null)
 		{
 			if (Enabled && LogLevel.HasAnyFlag(logLevel))
 			{
@@ -48,7 +48,7 @@ namespace VDFramework.Logger
 		/// </summary>
 		/// <param name="data">The data to be logged</param>
 		/// <param name="obj">Additional data that can be used by the logger</param>
-		public static void LogDebug(string data, object obj)
+		public static void LogDebug(string data, object obj = null)
 		{
 			if (Enabled && LogLevel.HasFlag(LogLevel.Debug))
 			{
@@ -62,7 +62,7 @@ namespace VDFramework.Logger
 		/// </summary>
 		/// <param name="data">The data to be logged</param>
 		/// <param name="obj">Additional data that can be used by the logger</param>
-		public static void LogInfo(string data, object obj)
+		public static void LogInfo(string data, object obj = null)
 		{
 			if (Enabled && LogLevel.HasFlag(LogLevel.Info))
 			{
@@ -76,7 +76,7 @@ namespace VDFramework.Logger
 		/// </summary>
 		/// <param name="data">The data to be logged</param>
 		/// <param name="obj">Additional data that can be used by the logger</param>
-		public static void LogMessage(string data, object obj)
+		public static void LogMessage(string data, object obj = null)
 		{
 			if (Enabled && LogLevel.HasFlag(LogLevel.Message))
 			{
@@ -90,7 +90,7 @@ namespace VDFramework.Logger
 		/// </summary>
 		/// <param name="data">The data to be logged</param>
 		/// <param name="obj">Additional data that can be used by the logger</param>
-		public static void LogWarning(string data, object obj)
+		public static void LogWarning(string data, object obj = null)
 		{
 			if (Enabled && LogLevel.HasFlag(LogLevel.Warning))
 			{
@@ -104,7 +104,7 @@ namespace VDFramework.Logger
 		/// </summary>
 		/// <param name="data">The data to be logged</param>
 		/// <param name="obj">Additional data that can be used by the logger</param>
-		public static void LogError(string data, object obj)
+		public static void LogError(string data, object obj = null)
 		{
 			if (Enabled && LogLevel.HasFlag(LogLevel.Error))
 			{
@@ -119,7 +119,7 @@ namespace VDFramework.Logger
 		/// <param name="exception">The exception that needs to be logged</param>
 		/// <param name="data">The data to be logged</param>
 		/// <param name="obj">Additional data that can be used by the logger</param>
-		public static void LogException(Exception exception, string data, object obj)
+		public static void LogException(Exception exception, string data, object obj = null)
 		{
 			if (Enabled && LogLevel.HasFlag(LogLevel.Exception))
 			{
@@ -133,7 +133,7 @@ namespace VDFramework.Logger
 		/// </summary>
 		/// <param name="data">The data to be logged</param>
 		/// <param name="obj">Additional data that can be used by the logger</param>
-		public static void LogFatal(string data, object obj)
+		public static void LogFatal(string data, object obj = null)
 		{
 			if (Enabled && LogLevel.HasFlag(LogLevel.Fatal))
 			{
@@ -149,7 +149,7 @@ namespace VDFramework.Logger
 		/// <param name="logLevel">The level of this log</param>
 		/// <param name="data">The data to be logged</param>
 		/// <param name="obj">Additional data that can be used by the logger</param>
-        public static void LogBypassSettings(LogLevel logLevel, string data, object obj)
+        public static void LogBypassSettings(LogLevel logLevel, string data, object obj = null)
 		{
 			LoggerImplementation.Log(logLevel, data, obj);
 		}
@@ -160,7 +160,7 @@ namespace VDFramework.Logger
 		/// </summary>
 		/// <param name="data">The data to be logged</param>
 		/// <param name="obj">Additional data that can be used by the logger</param>
-        public static void LogDebugBypassSettings(string data, object obj)
+        public static void LogDebugBypassSettings(string data, object obj = null)
 		{
 			LoggerImplementation.LogDebug(data, obj);
 		}
@@ -171,7 +171,7 @@ namespace VDFramework.Logger
 		/// </summary>
 		/// <param name="data">The data to be logged</param>
 		/// <param name="obj">Additional data that can be used by the logger</param>
-        public static void LogInfoBypassSettings(string data, object obj)
+        public static void LogInfoBypassSettings(string data, object obj = null)
 		{
 			LoggerImplementation.LogInfo(data, obj);
 		}
@@ -182,7 +182,7 @@ namespace VDFramework.Logger
 		/// </summary>
 		/// <param name="data">The data to be logged</param>
 		/// <param name="obj">Additional data that can be used by the logger</param>
-        public static void LogMessageBypassSettings(string data, object obj)
+        public static void LogMessageBypassSettings(string data, object obj = null)
 		{
 			LoggerImplementation.LogMessage(data, obj);
 		}
@@ -193,7 +193,7 @@ namespace VDFramework.Logger
 		/// </summary>
 		/// <param name="data">The data to be logged</param>
 		/// <param name="obj">Additional data that can be used by the logger</param>
-        public static void LogWarningBypassSettings(string data, object obj)
+        public static void LogWarningBypassSettings(string data, object obj = null)
 		{
 			LoggerImplementation.LogWarning(data, obj);
 		}
@@ -204,7 +204,7 @@ namespace VDFramework.Logger
 		/// </summary>
 		/// <param name="data">The data to be logged</param>
 		/// <param name="obj">Additional data that can be used by the logger</param>
-        public static void LogErrorBypassSettings(string data, object obj)
+        public static void LogErrorBypassSettings(string data, object obj = null)
 		{
 			LoggerImplementation.LogError(data, obj);
 		}
@@ -216,7 +216,7 @@ namespace VDFramework.Logger
 		/// <param name="exception">The exception that needs to be logged</param>
 		/// <param name="data">The data to be logged</param>
 		/// <param name="obj">Additional data that can be used by the logger</param>
-        public static void LogExceptionBypassSettings(Exception exception, string data, object obj)
+        public static void LogExceptionBypassSettings(Exception exception, string data, object obj = null)
 		{
 			LoggerImplementation.LogException(exception, data, obj);
 		}
@@ -227,7 +227,7 @@ namespace VDFramework.Logger
 		/// </summary>
 		/// <param name="data">The data to be logged</param>
 		/// <param name="obj">Additional data that can be used by the logger</param>
-        public static void LogFatalBypassSettings(string data, object obj)
+        public static void LogFatalBypassSettings(string data, object obj = null)
 		{
 			LoggerImplementation.LogFatal(data, obj);
 		}

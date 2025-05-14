@@ -50,6 +50,11 @@ namespace VDFramework.Logger.Enums
 		Fatal = 64,
 
 		/// <summary>
+		/// Only <see cref="Warning"/>, <see cref="Error"/>, <see cref="Exception"/> and <see cref="Fatal"/>
+		/// </summary>
+		Important = Warning | Error | Exception | Fatal,
+		
+		/// <summary>
 		/// All other <see cref="LogLevel"/>s combined
 		/// </summary>
 		All = Debug | Info | Message | Warning | Error | Exception | Fatal,

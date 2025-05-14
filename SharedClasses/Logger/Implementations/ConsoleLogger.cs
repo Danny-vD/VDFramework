@@ -5,7 +5,8 @@ using VDFramework.Logger.Interfaces;
 namespace VDFramework.Logger.Implementations
 {
 	/// <summary>
-	/// A simple implementation of <see cref="ILogger"/> that uses <see cref="System.Console.WriteLine(string)">System.Console.WriteLine</see> to log data
+	/// A simple implementation of <see cref="ILogger"/> that uses <see cref="System.Console.WriteLine(string)">System.Console.WriteLine</see> to log data<br/>
+	/// The extra object field will appended as obj.ToString() to the end of the message
 	/// </summary>
 	public class ConsoleLogger : ILogger
 	{
@@ -35,10 +36,8 @@ namespace VDFramework.Logger.Implementations
 				case LogLevel.Fatal:
 					LogFatal(data, obj);
 					break;
-				case LogLevel.None:
-				case LogLevel.All:
 				default:
-					Console.WriteLine(data);
+					Console.WriteLine(data + "\n" + obj);
 					break;
 			}
 		}
@@ -46,31 +45,31 @@ namespace VDFramework.Logger.Implementations
 		/// <inheritdoc />
 		public void LogDebug(string data, object obj)
 		{
-			Console.WriteLine("[DEBUG] " + data);
+			Console.WriteLine("[DEBUG] " + data + "\n" + obj);
 		}
 
 		/// <inheritdoc />
 		public void LogInfo(string data, object obj)
 		{
-			Console.WriteLine("[INFO] " + data);
+			Console.WriteLine("[INFO] " + data + "\n" + obj);
 		}
 
 		/// <inheritdoc />
 		public void LogMessage(string data, object obj)
 		{
-			Console.WriteLine("[MESSAGE] " + data);
+			Console.WriteLine("[MESSAGE] " + data + "\n" + obj);
 		}
 
 		/// <inheritdoc />
 		public void LogWarning(string data, object obj)
 		{
-			Console.WriteLine("[WARNING] " + data);
+			Console.WriteLine("[WARNING] " + data + "\n" + obj);
 		}
 
 		/// <inheritdoc />
 		public void LogError(string data, object obj)
 		{
-			Console.WriteLine("[ERROR] " + data);
+			Console.WriteLine("[ERROR] " + data + "\n" + obj);
 		}
 
 		/// <inheritdoc />
@@ -78,24 +77,24 @@ namespace VDFramework.Logger.Implementations
 		{
 			if (ReferenceEquals(exception, null))
 			{
-				Console.WriteLine(data);
+				Console.WriteLine(data + "\n" + obj);
 				return;
 			}
 			
 			if (string.IsNullOrEmpty(data))
 			{
-				Console.WriteLine("[EXCEPTION] " + $"{exception.Data}\n{exception.StackTrace}");
+				Console.WriteLine("[EXCEPTION] " + $"{exception.Data}\n{exception.StackTrace}\n{obj}");
 			}
 			else
 			{
-				Console.WriteLine("[EXCEPTION] " + $"{data}\n{exception.Data}\n{exception.StackTrace}");
+				Console.WriteLine("[EXCEPTION] " + $"{data}\n{exception.Data}\n{exception.StackTrace}\n{obj}");
 			}
 		}
 
 		/// <inheritdoc />
 		public void LogFatal(string data, object obj)
 		{
-			Console.WriteLine("[FATAL] " + data);
+			Console.WriteLine("[FATAL] " + data + "\n" + obj);
 		}
 	}
 }
