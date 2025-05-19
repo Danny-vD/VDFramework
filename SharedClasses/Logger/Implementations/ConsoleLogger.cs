@@ -11,7 +11,7 @@ namespace VDFramework.Logger.Implementations
 	public class ConsoleLogger : ILogger
 	{
 		/// <inheritdoc />
-		public void Log(LogLevel logLevel, string data, object obj)
+		public void Log(LogLevel logLevel, object data, object obj)
 		{
 			switch (logLevel)
 			{
@@ -43,56 +43,58 @@ namespace VDFramework.Logger.Implementations
 		}
 
 		/// <inheritdoc />
-		public void LogDebug(string data, object obj)
+		public void LogDebug(object data, object obj)
 		{
 			Console.WriteLine("[DEBUG] " + data + "\n" + obj);
 		}
 
 		/// <inheritdoc />
-		public void LogInfo(string data, object obj)
+		public void LogInfo(object data, object obj)
 		{
 			Console.WriteLine("[INFO] " + data + "\n" + obj);
 		}
 
 		/// <inheritdoc />
-		public void LogMessage(string data, object obj)
+		public void LogMessage(object data, object obj)
 		{
 			Console.WriteLine("[MESSAGE] " + data + "\n" + obj);
 		}
 
 		/// <inheritdoc />
-		public void LogWarning(string data, object obj)
+		public void LogWarning(object data, object obj)
 		{
 			Console.WriteLine("[WARNING] " + data + "\n" + obj);
 		}
 
 		/// <inheritdoc />
-		public void LogError(string data, object obj)
+		public void LogError(object data, object obj)
 		{
 			Console.WriteLine("[ERROR] " + data + "\n" + obj);
 		}
 
 		/// <inheritdoc />
-		public void LogException(Exception exception, string data, object obj)
+		public void LogException(Exception exception, object data, object obj)
 		{
 			if (ReferenceEquals(exception, null))
 			{
 				Console.WriteLine(data + "\n" + obj);
 				return;
 			}
+
+			string dataString = data.ToString();
 			
-			if (string.IsNullOrEmpty(data))
+			if (string.IsNullOrEmpty(dataString))
 			{
 				Console.WriteLine("[EXCEPTION] " + $"{exception.Data}\n{exception.StackTrace}\n{obj}");
 			}
 			else
 			{
-				Console.WriteLine("[EXCEPTION] " + $"{data}\n{exception.Data}\n{exception.StackTrace}\n{obj}");
+				Console.WriteLine("[EXCEPTION] " + $"{dataString}\n{exception.Data}\n{exception.StackTrace}\n{obj}");
 			}
 		}
 
 		/// <inheritdoc />
-		public void LogFatal(string data, object obj)
+		public void LogFatal(object data, object obj)
 		{
 			Console.WriteLine("[FATAL] " + data + "\n" + obj);
 		}

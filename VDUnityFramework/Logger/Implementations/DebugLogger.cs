@@ -12,7 +12,7 @@ namespace VDFramework.Logger.Implementations
 	public class DebugLogger : Interfaces.ILogger
 	{
 		/// <inheritdoc />
-		public void Log(LogLevel logLevel, string data, object obj)
+		public void Log(LogLevel logLevel, object data, object obj)
 		{
 			switch (logLevel)
 			{
@@ -52,7 +52,7 @@ namespace VDFramework.Logger.Implementations
 		}
 
 		/// <inheritdoc />
-		public void LogDebug(string data, object obj)
+		public void LogDebug(object data, object obj)
 		{
 			if (obj is Object unityObject)
 			{
@@ -65,7 +65,7 @@ namespace VDFramework.Logger.Implementations
 		}
 
 		/// <inheritdoc />
-		public void LogInfo(string data, object obj)
+		public void LogInfo(object data, object obj)
 		{
 			if (obj is Object unityObject)
 			{
@@ -78,7 +78,7 @@ namespace VDFramework.Logger.Implementations
 		}
 
 		/// <inheritdoc />
-		public void LogMessage(string data, object obj)
+		public void LogMessage(object data, object obj)
 		{
 			if (obj is Object unityObject)
 			{
@@ -91,7 +91,7 @@ namespace VDFramework.Logger.Implementations
 		}
 
 		/// <inheritdoc />
-		public void LogWarning(string data, object obj)
+		public void LogWarning(object data, object obj)
 		{
 			if (obj is Object unityObject)
 			{
@@ -104,7 +104,7 @@ namespace VDFramework.Logger.Implementations
 		}
 
 		/// <inheritdoc />
-		public void LogError(string data, object obj)
+		public void LogError(object data, object obj)
 		{
 			if (obj is Object unityObject)
 			{
@@ -117,7 +117,7 @@ namespace VDFramework.Logger.Implementations
 		}
 
 		/// <inheritdoc />
-		public void LogException(Exception exception, string data, object obj)
+		public void LogException(Exception exception, object data, object obj)
 		{
 			if (ReferenceEquals(exception, null))
 			{
@@ -144,7 +144,7 @@ namespace VDFramework.Logger.Implementations
 		}
 
 		/// <inheritdoc />
-		public void LogFatal(string data, object obj)
+		public void LogFatal(object data, object obj)
 		{
 			if (obj is Object unityObject)
 			{
