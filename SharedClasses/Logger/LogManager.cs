@@ -119,7 +119,7 @@ namespace VDFramework.Logger
 		/// <param name="exception">The exception that needs to be logged</param>
 		/// <param name="data">The data to be logged</param>
 		/// <param name="obj">Additional data that can be used by the logger</param>
-		public static void LogException(Exception exception, object data, object obj = null)
+		public static void LogException(Exception exception, object data = null, object obj = null)
 		{
 			if (Enabled && LogLevel.HasFlag(LogLevel.Exception))
 			{
@@ -216,7 +216,7 @@ namespace VDFramework.Logger
 		/// <param name="exception">The exception that needs to be logged</param>
 		/// <param name="data">The data to be logged</param>
 		/// <param name="obj">Additional data that can be used by the logger</param>
-        public static void LogExceptionBypassSettings(Exception exception, object data, object obj = null)
+        public static void LogExceptionBypassSettings(Exception exception, object data = null, object obj = null)
 		{
 			LoggerImplementation.LogException(exception, data, obj);
 		}
