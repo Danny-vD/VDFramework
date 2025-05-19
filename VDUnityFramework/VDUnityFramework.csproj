@@ -140,8 +140,8 @@
       <Compile Include="..\SharedClasses\Logger\Interfaces\ILogger.cs">
         <Link>SharedClasses\Logger\Interface\ILogger.cs</Link>
       </Compile>
-      <Compile Include="..\SharedClasses\Logger\Logger.cs">
-        <Link>SharedClasses\Logger\Logger.cs</Link>
+      <Compile Include="..\SharedClasses\Logger\LogManager.cs">
+        <Link>SharedClasses\Logger\LogManager.cs</Link>
       </Compile>
       <Compile Include="..\SharedClasses\LootTables\AliasMethod\AliasTable.cs">
         <Link>SharedClasses\LootTables\AliasMethod\AliasTable.cs</Link>

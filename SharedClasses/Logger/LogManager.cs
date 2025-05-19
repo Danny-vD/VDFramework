@@ -9,7 +9,7 @@ namespace VDFramework.Logger
 	/// A wrapper for logging data<br/>
 	/// The actual logging is handled by the <see cref="LoggerImplementation"/> if the <see cref="VDFramework.Logger.Enums.LogLevel"/> is met 
 	/// </summary>
-	public static class Logger
+	public static class LogManager // 'Logger' would be preferred, but because of Unity's 'Logger' you would have to manually specify which one you mean everywhere
 	{
 		/// <summary>
 		/// If the logger is not enabled then no messages will be logged (except for bypassed logs)
