@@ -25,7 +25,7 @@ namespace VDFramework.Logger
 		/// The <see cref="VDFramework.Logger.Enums.LogLevel"/>s that should be passed to the <see cref="LoggerImplementation"/>
 		/// </summary>
 		public static LogLevel LogLevel = LogLevel.All;
-
+		
 		/// <summary>
 		/// Logs data respective to the LogLevel<br/>
 		/// If the <see cref="LogLevel"/> dot not meet the <paramref name="logLevel"/> then nothing will be logged<br/>
@@ -99,8 +99,8 @@ namespace VDFramework.Logger
 		}
 
 		/// <summary>
-		/// Logs an Error
-		/// If the <see cref="LogLevel"/> dot not contain <see cref="LogLevel.Error"/> then nothing will be logged<br/>
+		/// Logs an Error<br/>
+		/// If the <see cref="LogLevel"/> dot not contain <see cref="LogLevel.Error"/> then nothing will be logged
 		/// </summary>
 		/// <param name="data">The data to be logged</param>
 		/// <param name="obj">Additional data that can be used by the logger</param>
@@ -113,8 +113,8 @@ namespace VDFramework.Logger
 		}
 
 		/// <summary>
-		/// Logs an Exception
-		/// If the <see cref="LogLevel"/> dot not contain <see cref="LogLevel.Debug"/> then nothing will be logged<br/>
+		/// Logs an Exception<br/>
+		/// If the <see cref="LogLevel"/> dot not contain <see cref="LogLevel.Debug"/> then nothing will be logged
 		/// </summary>
 		/// <param name="exception">The exception that needs to be logged</param>
 		/// <param name="data">The data to be logged</param>
@@ -128,8 +128,8 @@ namespace VDFramework.Logger
 		}
 
 		/// <summary>
-		/// Logs a fatal error
-		/// If the <see cref="LogLevel"/> dot not contain <see cref="LogLevel.Debug"/> then nothing will be logged<br/>
+		/// Logs a fatal error<br/>
+		/// If the <see cref="LogLevel"/> dot not contain <see cref="LogLevel.Debug"/> then nothing will be logged
 		/// </summary>
 		/// <param name="data">The data to be logged</param>
 		/// <param name="obj">Additional data that can be used by the logger</param>

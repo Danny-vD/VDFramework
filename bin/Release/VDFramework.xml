@@ -1031,16 +1031,16 @@
         </member>
         <member name="M:VDFramework.Logger.LogManager.LogError(System.Object,System.Object)">
             <summary>
-            Logs an Error
-            If the <see cref="F:VDFramework.Logger.LogManager.LogLevel"/> dot not contain <see cref="F:VDFramework.Logger.Enums.LogLevel.Error"/> then nothing will be logged<br/>
+            Logs an Error<br/>
+            If the <see cref="F:VDFramework.Logger.LogManager.LogLevel"/> dot not contain <see cref="F:VDFramework.Logger.Enums.LogLevel.Error"/> then nothing will be logged
             </summary>
             <param name="data">The data to be logged</param>
             <param name="obj">Additional data that can be used by the logger</param>
         </member>
         <member name="M:VDFramework.Logger.LogManager.LogException(System.Exception,System.Object,System.Object)">
             <summary>
-            Logs an Exception
-            If the <see cref="F:VDFramework.Logger.LogManager.LogLevel"/> dot not contain <see cref="F:VDFramework.Logger.Enums.LogLevel.Debug"/> then nothing will be logged<br/>
+            Logs an Exception<br/>
+            If the <see cref="F:VDFramework.Logger.LogManager.LogLevel"/> dot not contain <see cref="F:VDFramework.Logger.Enums.LogLevel.Debug"/> then nothing will be logged
             </summary>
             <param name="exception">The exception that needs to be logged</param>
             <param name="data">The data to be logged</param>
@@ -1048,8 +1048,8 @@
         </member>
         <member name="M:VDFramework.Logger.LogManager.LogFatal(System.Object,System.Object)">
             <summary>
-            Logs a fatal error
-            If the <see cref="F:VDFramework.Logger.LogManager.LogLevel"/> dot not contain <see cref="F:VDFramework.Logger.Enums.LogLevel.Debug"/> then nothing will be logged<br/>
+            Logs a fatal error<br/>
+            If the <see cref="F:VDFramework.Logger.LogManager.LogLevel"/> dot not contain <see cref="F:VDFramework.Logger.Enums.LogLevel.Debug"/> then nothing will be logged
             </summary>
             <param name="data">The data to be logged</param>
             <param name="obj">Additional data that can be used by the logger</param>
