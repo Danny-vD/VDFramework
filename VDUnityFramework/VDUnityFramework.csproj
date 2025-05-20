@@ -24,7 +24,7 @@
 
     <ItemGroup>
       <Compile Include="..\SharedClasses\**">
-        <Link>SharedClasses\%(RecursiveDir)</Link>
+        <Link>SharedClasses\%(RecursiveDir)\%(extension)</Link>
       </Compile>
     </ItemGroup>
 </Project>
