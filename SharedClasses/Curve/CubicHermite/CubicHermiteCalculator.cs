@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Numerics;
-using SeedFinder.Curve.Structs;
+using VDFramework.Curve.Structs;
 using VDFramework.Utility.MathUtility;
 
-namespace SeedFinder.Curve.Utility
+namespace VDFramework.Curve.CubicHermite
 {
 	/// <summary>
 	/// Provides the under-the-hood calculations needed for a Cubic Hermite curve.<br/>

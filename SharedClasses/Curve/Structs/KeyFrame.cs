@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
-using SeedFinder.Curve.Utility;
+using VDFramework.Curve.CubicHermite;
 
-namespace SeedFinder.Curve.Structs
+namespace VDFramework.Curve.Structs
 {
 	/// <summary>
 	/// Represents a x and y coordinate on the curve.<br/>

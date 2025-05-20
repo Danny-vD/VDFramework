@@ -1,4 +1,4 @@
-﻿namespace SeedFinder.Curve.Enums
+﻿namespace VDFramework.Curve.Enums
 {
 	/// <summary>
 	/// How to handle evaluating a point outside of the defined curve

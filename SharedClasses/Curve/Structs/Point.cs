@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace SeedFinder.Curve.Structs
+namespace VDFramework.Curve.Structs
 {
 	/// <summary>
 	/// Represents an ordered pair of integer x- and y-coordinates that defines a point in a two-dimensional plane.

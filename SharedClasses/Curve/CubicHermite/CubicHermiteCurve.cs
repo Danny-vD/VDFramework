@@ -2,12 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using SeedFinder.Curve.Enums;
-using SeedFinder.Curve.Structs;
-using SeedFinder.Curve.Utility;
+using VDFramework.Curve.Enums;
+using VDFramework.Curve.Structs;
 using VDFramework.Utility.DataTypes;
 
-namespace SeedFinder.Curve
+namespace VDFramework.Curve.CubicHermite
 {
 	/// <summary>
 	/// The implementation of a Cubic Hermite curve.<br/>
