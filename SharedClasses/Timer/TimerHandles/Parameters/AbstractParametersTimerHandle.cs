@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VDFramework.Utility.TimerUtil.TimerHandles.Parameters
+namespace VDFramework.Timer.TimerHandles.Parameters
 {
 	/// <summary>
 	/// An abstract TimerHandle that has additional methods specifically aimed at parameters

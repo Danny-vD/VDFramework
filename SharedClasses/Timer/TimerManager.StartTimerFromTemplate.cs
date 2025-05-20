@@ -1,8 +1,8 @@
 ﻿using System;
-using VDFramework.Utility.TimerUtil.TimerHandles;
-using VDFramework.Utility.TimerUtil.TimerHandles.Parameters;
+using VDFramework.Timer.TimerHandles;
+using VDFramework.Timer.TimerHandles.Parameters;
 
-namespace VDFramework.Utility.TimerUtil
+namespace VDFramework.Timer
 {
 	public static partial class TimerManager
 	{

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VDFramework.Utility.TimerUtil.TimerHandles
+namespace VDFramework.Timer.TimerHandles
 {
 	/// <summary>
 	/// <para>An abstract representation of a timer which invokes an event after a certain amount of seconds pass (possibly loops)</para>

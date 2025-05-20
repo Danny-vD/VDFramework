@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using VDFramework.Utility.TimerUtil.TimerHandles;
-using VDFramework.Utility.TimerUtil.TimerHandles.Parameters;
+using VDFramework.Timer.TimerHandles;
+using VDFramework.Timer.TimerHandles.Parameters;
 
-namespace VDFramework.Utility.TimerUtil
+namespace VDFramework.Timer
 {
 	/// <summary>
 	/// <para>Manager class for all timers</para>
@@ -73,7 +73,7 @@ namespace VDFramework.Utility.TimerUtil
 
 		/// <summary>
 		/// <para>Starts a new timer using the data from the given TimerHandle</para>
-		/// <para>use <see cref="StartNewTimerFromTemplate{TDelegate}(VDFramework.Utility.TimerUtil.TimerHandles.AbstractTimerHandle{TDelegate})"/> if you want to reuse the callback from the given handle</para>
+		/// <para>use <see cref="StartNewTimerFromTemplate{TDelegate}(VDFramework.Timer.TimerHandles.AbstractTimerHandle{TDelegate})"/> if you want to reuse the callback from the given handle</para>
 		/// </summary>
 		/// <param name="handle">A TimerHandle whose data will be used to set a new timer</param>
 		/// <param name="timerExpiredCallback">The callback to invoke once the timer expires</param>

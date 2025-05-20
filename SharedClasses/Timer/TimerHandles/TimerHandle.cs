@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VDFramework.Utility.TimerUtil.TimerHandles
+namespace VDFramework.Timer.TimerHandles
 {
 	/// <summary>
 	/// A Handle for a timer that has a callback that has no parameters
