@@ -18,8 +18,7 @@ namespace VDFramework.Utility
 		{
 			list ??= new List<TKeyValuePair>();
 
-			TEnum @enum = default;
-			TEnum[] enumValues = @enum.GetValues().ToArray();
+			TEnum[] enumValues = default(TEnum).GetValues().ToArray();
 
 			// Remove the keys that are no longer in the enum
 			for (int i = list.Count - 1; i >= 0; i--)
