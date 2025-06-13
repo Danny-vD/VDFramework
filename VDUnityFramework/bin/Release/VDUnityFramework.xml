@@ -18,7 +18,7 @@
             Retrieves the cached ID of the given name or caches a new one if it was not already
             </summary>
             <param name="name">The name of the parameter/state</param>
-            <returns>A ID that can be used for animator parameters/states</returns>
+            <returns>An ID that can be used for animator parameters/states</returns>
             <seealso cref="M:UnityEngine.Animator.StringToHash(System.String)"/>
         </member>
         <member name="T:VDFramework.AssetBundles.AssetBundleUtil">
