@@ -4,6 +4,23 @@
         <name>VDUnityFramework</name>
     </assembly>
     <members>
+        <member name="T:VDFramework.Animators.AnimatorHashUtil">
+            <summary>
+            A utility class to cache and retrieve the ID from an Animator
+            </summary>
+            <remarks>
+            <para>This class provides a single storage-point for all the cached IDs (so multiple classes can take advantage of caching a similar named parameter/states)</para>
+            <para>You should still cache all the returned IDs yourself (so that you do not need a dictionary lookup for the cached value all the time)</para>
+            </remarks>
+        </member>
+        <member name="M:VDFramework.Animators.AnimatorHashUtil.GetCachedID(System.String)">
+            <summary>
+            Retrieves the cached ID of the given name or caches a new one if it was not already
+            </summary>
+            <param name="name">The name of the parameter/state</param>
+            <returns>A ID that can be used for animator parameters/states</returns>
+            <seealso cref="M:UnityEngine.Animator.StringToHash(System.String)"/>
+        </member>
         <member name="T:VDFramework.AssetBundles.AssetBundleUtil">
             <summary>
             Utility class that helps with the loading and unloading of <see cref="T:UnityEngine.AssetBundle"/>s and the assets therein

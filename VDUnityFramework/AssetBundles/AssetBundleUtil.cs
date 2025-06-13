@@ -16,7 +16,7 @@ namespace VDFramework.AssetBundles
 
 		static AssetBundleUtil()
 		{
-			// TODO: Verify that this is the correct path | Maybe add extra functions that take in a path to the bundle
+			//TODO: Verify that this is the correct path | Maybe add extra functions that take in a path to the bundle
 			assemblyDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 		}
 
@@ -70,6 +70,11 @@ namespace VDFramework.AssetBundles
 		/// <returns>Whether the bundle succesfully loaded</returns>
 		public static bool TryLoadAssetBundle(string bundleName, out AssetBundle assetBundle)
 		{
+			if (loadedAssetBundles.TryGetValue(bundleName, out assetBundle))
+			{
+				return true;
+			}
+			
 			assetBundle = AssetBundle.LoadFromFile(GetPath(bundleName));
 
 			if (ReferenceEquals(assetBundle, null))
@@ -106,6 +111,8 @@ namespace VDFramework.AssetBundles
 		public static void UnloadAllAssetBundles(bool unloadAllLoadedObjects)
 		{
 			AssetBundle.UnloadAllAssetBundles(unloadAllLoadedObjects);
+			
+			loadedAssetBundles.Clear();
 		}
 
 		private static bool TryGetLoadedAssetBundle(string bundleName, out AssetBundle assetBundle)
