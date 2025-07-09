@@ -1,8 +1,11 @@
 ﻿namespace VDFramework.ObserverPattern.Constants
 {
 	/// <summary>
-	/// A helper class that provides constants for priorities (can be used in for example the <see cref="EventSystem.EventManager"/> and <see cref="PrioritisedAction"/>
+	/// A helper class that provides constants for priorities
 	/// </summary>
+	/// <remarks>
+	/// Useful in for example the <see cref="EventSystem.EventManager"/> and <see cref="PrioritisedAction"/>
+	/// </remarks>
 	public static class Priority
 	{
 		/// <summary>

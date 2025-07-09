@@ -1396,8 +1396,11 @@
         </member>
         <member name="T:VDFramework.ObserverPattern.Constants.Priority">
             <summary>
-            A helper class that provides constants for priorities (can be used in for example the <see cref="T:VDFramework.EventSystem.EventManager"/> and <see cref="T:VDFramework.ObserverPattern.PrioritisedAction"/>
+            A helper class that provides constants for priorities
             </summary>
+            <remarks>
+            Useful in for example the <see cref="T:VDFramework.EventSystem.EventManager"/> and <see cref="T:VDFramework.ObserverPattern.PrioritisedAction"/>
+            </remarks>
         </member>
         <member name="F:VDFramework.ObserverPattern.Constants.Priority.HIGHEST">
             <summary>
@@ -3202,9 +3205,11 @@
         </member>
         <member name="T:VDFramework.RandomWrapper.RandomDelegator">
             <summary>
-            Provides an implementation of <see cref="T:VDFramework.RandomWrapper.Interface.IRandomNumberGenerator"/> that delegates all implementation to an underlying field.<br/>
-            The idea is that you can reuse a single instance but still change the implementation of the random
+            Provides an implementation of <see cref="T:VDFramework.RandomWrapper.Interface.IRandomNumberGenerator"/> that delegates all implementation to an underlying field
             </summary>
+            <remarks>
+            The idea is that you can reuse a single instance but still change the implementation of the random
+            </remarks>
         </member>
         <member name="F:VDFramework.RandomWrapper.RandomDelegator.RandomNumberGenerator">
             <summary>
@@ -6246,6 +6251,25 @@
         </member>
         <member name="M:VDFramework.Utility.RandomUtil.GetRandom``1(``0[])">
             <inheritdoc cref="M:VDFramework.Utility.RandomUtil.GetRandom(System.Object[])"/>
+        </member>
+        <member name="T:VDFramework.Utility.StringVariableWriter">
+            <summary>
+            A simple class provides an easy way to write variables to a string using <see cref="M:System.String.Format(System.String,System.Object[])"/>
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.StringVariableWriter.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="stringToModify">
+            <para>The string that this instance needs to write variables into</para>
+            <para>The string itself will not be modified, only a copy is used</para>
+            </param>
+        </member>
+        <member name="M:VDFramework.Utility.StringVariableWriter.UpdateText(System.Object[])">
+            <summary>
+            Uses <see cref="M:System.String.Format(System.String,System.Object[])"/> to replace placeholders in the string by variables and returns a copy of the new string
+            </summary>
         </member>
         <member name="T:VDFramework.Utility.Unsafe.UnsafeUtil">
             <summary>

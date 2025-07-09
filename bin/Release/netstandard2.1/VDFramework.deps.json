@@ -8,8 +8,19 @@
     ".NETStandard,Version=v2.1": {},
     ".NETStandard,Version=v2.1/": {
       "VDFramework/1.0.0": {
+        "dependencies": {
+          "JetBrains.Annotations": "4242.42.42.42"
+        },
         "runtime": {
           "VDFramework.dll": {}
+        }
+      },
+      "JetBrains.Annotations/4242.42.42.42": {
+        "runtime": {
+          "JetBrains.Annotations.dll": {
+            "assemblyVersion": "4242.42.42.42",
+            "fileVersion": "2024.3.0.0"
+          }
         }
       }
     }
@@ -17,6 +28,11 @@
   "libraries": {
     "VDFramework/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "JetBrains.Annotations/4242.42.42.42": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

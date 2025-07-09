@@ -3,11 +3,12 @@ using UnityEngine;
 
 namespace VDFramework.Animators
 {
+    //NOTE: Does this actually help? To retrieve the value from the dictionary the string is first hashed, so do we really save on the Animator.StringToHash?
 	/// <summary>
 	/// A utility class to cache and retrieve the ID from an Animator
 	/// </summary>
 	/// <remarks>
-	/// <para>This class provides a single storage-point for all the cached IDs (so multiple classes can take advantage of caching identical named parameter/states)</para>
+	/// <para>This class provides a single storage-point for all the cached IDs (so multiple classes can take advantage of caching identical named parameters/states)</para>
 	/// <para>You should still cache all the returned IDs yourself (so that you do not need a dictionary lookup for the cached value all the time)</para>
 	/// </remarks>
 	public static class AnimatorHashUtil

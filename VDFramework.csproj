@@ -19,14 +19,23 @@
 
   <ItemGroup>
     <Compile Remove="VDUnityFramework\**" />
+    <Compile Remove="References\**" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Remove="VDUnityFramework\**" />
+    <EmbeddedResource Remove="References\**" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="VDUnityFramework\**" />
+    <None Remove="References\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="JetBrains.Annotations">
+      <HintPath>References\Jetbrains Annotations\JetBrains.Annotations.dll</HintPath>
+    </Reference>
   </ItemGroup>
   
 </Project>

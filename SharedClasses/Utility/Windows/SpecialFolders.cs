@@ -20,7 +20,7 @@ namespace VDFramework.Utility.Windows
 		/// </summary>
 		public static readonly SpecialFolder AddNewPrograms = new SpecialFolder(new Guid("{de61d971-5ebc-4f02-a3a9-6c82895e5c04}"),
 			"Get Programs", FolderType.VIRTUAL, string.Empty);
-
+		
 		public static readonly SpecialFolder AdminTools = new SpecialFolder(new Guid("{724EF170-A42D-4FEF-9F26-B60E846FBA4F}"),
 			"Administrative Tools", FolderType.PERUSER, "APPDATA", @"\Microsoft\Windows\Start Menu\Programs\Administrative Tools",
 			"CSIDL_ADMINTOOLS");

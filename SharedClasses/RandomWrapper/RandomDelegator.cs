@@ -4,9 +4,11 @@ using VDFramework.RandomWrapper.Interface;
 namespace VDFramework.RandomWrapper
 {
 	/// <summary>
-	/// Provides an implementation of <see cref="IRandomNumberGenerator"/> that delegates all implementation to an underlying field.<br/>
-	/// The idea is that you can reuse a single instance but still change the implementation of the random
+	/// Provides an implementation of <see cref="IRandomNumberGenerator"/> that delegates all implementation to an underlying field
 	/// </summary>
+	/// <remarks>
+	/// The idea is that you can reuse a single instance but still change the implementation of the random
+	/// </remarks>
 	public class RandomDelegator : IRandomNumberGenerator
 	{
 		/// <summary>
