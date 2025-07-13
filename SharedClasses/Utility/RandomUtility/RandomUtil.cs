@@ -2,7 +2,7 @@
 using VDFramework.RandomWrapper;
 using VDFramework.RandomWrapper.Interface;
 
-namespace VDFramework.Utility
+namespace VDFramework.Utility.RandomUtility
 {
 	/// <summary>
 	/// Utility methods to randomly get an item from a given set of objects

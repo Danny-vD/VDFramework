@@ -4038,6 +4038,25 @@
             Rounds the given value to the nearest int
             </summary>
         </member>
+        <member name="T:VDFramework.Utility.DataTypes.ValueRangeCreator">
+            <summary>
+            A helper class to easily create a list of values in a range
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.ValueRangeCreator.CreateList(System.Int32)">
+            <summary>
+            Creates a list of values in the range of &lt;<paramref name="fromZeroExclusive"/>, 0] or [0, <paramref name="fromZeroExclusive"/>&gt;
+            </summary>
+            <param name="fromZeroExclusive">A non-zero number that defines the range, this can be either negative or positive</param>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.ValueRangeCreator.CreateList(System.Int32,System.Int32)">
+            <summary>
+            Creates a list of values in the range of [<paramref name="minInclusive"/>, <paramref name="maxExclusive"/>&gt;
+            </summary>
+            <param name="minInclusive">The lower bound of the range, the value itself will be inside the range</param>
+            <param name="maxExclusive">The upper bound of the range, the value itself will fall outside of the range</param>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="minInclusive"/> cannot be higher than <paramref name="maxExclusive"/></exception>
+        </member>
         <member name="T:VDFramework.Utility.DataTypes.StringUtil">
             <summary>
             Contains utility functions for the built-in <see cref="T:System.String"/> type
@@ -4216,25 +4235,78 @@
             <typeparam name="TEnum">The enum to check against</typeparam>
             <returns><see langword="true"/> or <see langword="false"/></returns>
         </member>
-        <member name="T:VDFramework.Utility.RandomUtil">
+        <member name="T:VDFramework.Utility.RandomUtility.RandomRangeHelper">
+            <summary>
+            A helper class to return a random integer in a given range while ignoring the last value that was returned
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.RandomUtility.RandomRangeHelper.#ctor(System.Int32)">
+            <summary>
+            Use values in the range of &lt;<paramref name="fromZeroExclusive"/>, 0] or [0, <paramref name="fromZeroExclusive"/>&gt;
+            </summary>
+            <param name="fromZeroExclusive">A non-zero number that defines the range, this can be either negative or positive</param>
+        </member>
+        <member name="M:VDFramework.Utility.RandomUtility.RandomRangeHelper.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Use values in the range of [<paramref name="minInclusive"/>, <paramref name="maxExclusive"/>&gt;
+            </summary>
+            <param name="minInclusive">The lower bound of the range, the value itself will be inside the range</param>
+            <param name="maxExclusive">The upper bound of the range, the value itself will fall outside of the range</param>
+        </member>
+        <member name="M:VDFramework.Utility.RandomUtility.RandomRangeHelper.SetRange(System.Int32)">
+            <summary>
+            Use values in the range of &lt;<paramref name="fromZeroExclusive"/>, 0] or [0, <paramref name="fromZeroExclusive"/>&gt;
+            </summary>
+            <param name="fromZeroExclusive">A non-zero number that defines the range, this can be either negative or positive</param>
+        </member>
+        <member name="M:VDFramework.Utility.RandomUtility.RandomRangeHelper.SetRange(System.Int32,System.Int32)">
+            <summary>
+            Use values in the range of [<paramref name="minInclusive"/>, <paramref name="maxExclusive"/>&gt;
+            </summary>
+            <param name="minInclusive">The lower bound of the range, the value itself will be inside the range</param>
+            <param name="maxExclusive">The upper bound of the range, the value itself will fall outside of the range</param>
+        </member>
+        <member name="M:VDFramework.Utility.RandomUtility.RandomRangeHelper.GetRandomValueIgnorePrevious">
+            <summary>
+            Returns a random value in the given range, but not the value that was returned the last time this class returned a value
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.RandomUtility.RandomRangeHelper.GetRandomValue">
+            <summary>
+            Returns a random value in the given range
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.RandomUtility.RandomRangeHelper.GetRandomValueIgnorePrevious(VDFramework.RandomWrapper.Interface.IRandomNumberGenerator)">
+            <summary>
+            Returns a random value in the given range, but not the value that was returned the last time this class returned a value
+            </summary>
+            <param name="rng">The random number generator to use</param>
+        </member>
+        <member name="M:VDFramework.Utility.RandomUtility.RandomRangeHelper.GetRandomValue(VDFramework.RandomWrapper.Interface.IRandomNumberGenerator)">
+            <summary>
+            Returns a random value in the given range
+            </summary>
+            <param name="rng">The random number generator to use</param>
+        </member>
+        <member name="T:VDFramework.Utility.RandomUtility.RandomUtil">
             <summary>
             Utility methods to randomly get an item from a given set of objects
             </summary>
         </member>
-        <member name="M:VDFramework.Utility.RandomUtil.RandomBool(VDFramework.RandomWrapper.Interface.IRandomNumberGenerator)">
+        <member name="M:VDFramework.Utility.RandomUtility.RandomUtil.RandomBool(VDFramework.RandomWrapper.Interface.IRandomNumberGenerator)">
             <summary>
             Returns a random bool value
             </summary>
             <param name="rng">The random number generator to use</param>
             <returns>TRUE or FALSE</returns>
         </member>
-        <member name="M:VDFramework.Utility.RandomUtil.RandomBool">
+        <member name="M:VDFramework.Utility.RandomUtility.RandomUtil.RandomBool">
             <summary>
             Returns a random bool value (using <see cref="T:System.Random">System.Random</see>)
             </summary>
             <returns>TRUE or FALSE</returns>
         </member>
-        <member name="M:VDFramework.Utility.RandomUtil.GetRandom(VDFramework.RandomWrapper.Interface.IRandomNumberGenerator,System.Object[])">
+        <member name="M:VDFramework.Utility.RandomUtility.RandomUtil.GetRandom(VDFramework.RandomWrapper.Interface.IRandomNumberGenerator,System.Object[])">
             <summary>
             Returns randomly from the parameters given
             </summary>
@@ -4242,18 +4314,18 @@
             <param name="array">The collection to randomly select an object from</param>
             <returns>Any of the given objects, randomly selected</returns>
         </member>
-        <member name="M:VDFramework.Utility.RandomUtil.GetRandom``1(VDFramework.RandomWrapper.Interface.IRandomNumberGenerator,``0[])">
-            <inheritdoc cref="M:VDFramework.Utility.RandomUtil.GetRandom(VDFramework.RandomWrapper.Interface.IRandomNumberGenerator,System.Object[])"/>
+        <member name="M:VDFramework.Utility.RandomUtility.RandomUtil.GetRandom``1(VDFramework.RandomWrapper.Interface.IRandomNumberGenerator,``0[])">
+            <inheritdoc cref="M:VDFramework.Utility.RandomUtility.RandomUtil.GetRandom(VDFramework.RandomWrapper.Interface.IRandomNumberGenerator,System.Object[])"/>
         </member>
-        <member name="M:VDFramework.Utility.RandomUtil.GetRandom(System.Object[])">
+        <member name="M:VDFramework.Utility.RandomUtility.RandomUtil.GetRandom(System.Object[])">
             <summary>
             Returns randomly from the parameters given (using <see cref="T:System.Random">System.Random</see>)
             </summary>
             <param name="array">The collection to randomly select an object from</param>
             <returns>Any of the given objects, randomly selected</returns>
         </member>
-        <member name="M:VDFramework.Utility.RandomUtil.GetRandom``1(``0[])">
-            <inheritdoc cref="M:VDFramework.Utility.RandomUtil.GetRandom(System.Object[])"/>
+        <member name="M:VDFramework.Utility.RandomUtility.RandomUtil.GetRandom``1(``0[])">
+            <inheritdoc cref="M:VDFramework.Utility.RandomUtility.RandomUtil.GetRandom(System.Object[])"/>
         </member>
         <member name="T:VDFramework.Utility.StringVariableWriter">
             <summary>
