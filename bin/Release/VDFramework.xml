@@ -354,6 +354,34 @@
             The exception that is thrown once you create a 2nd instance of a singleton
             </summary>
         </member>
+        <member name="T:VDFramework.Extensions.DictionaryExtension">
+            <summary>
+            Contains Extension methods for Dictionaries
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.DictionaryExtension.GetOrAddNewValue``2(System.Collections.Generic.Dictionary{``0,``1},``0)">
+            <summary>
+            <para>Get the value of the KeyValuePair with key <paramref name="key"/></para>
+            <para>Or add a new <typeparamref name="TValue"/> to the dictionary with that key and return it</para>
+            </summary>
+            <param name="dictionary">The dictionary to get the value from</param>
+            <param name="key">The key of the KeyValuePair to get the value from</param>
+            <typeparam name="TKey">The type of the Key in the dictionary</typeparam>
+            <typeparam name="TValue">The type of the Value in the dictionary</typeparam>
+            <returns>The value of the KeyValuePair at <paramref name="key"/> or a new <typeparamref name="TValue"/></returns>
+        </member>
+        <member name="M:VDFramework.Extensions.DictionaryExtension.GetOrAddNewValue``2(System.Collections.Generic.Dictionary{``0,``1},``0,System.Func{``1})">
+            <summary>
+            <para>Get the value of the KeyValuePair with key <paramref name="key"/></para>
+            <para>Or add a new <typeparamref name="TValue"/> to the dictionary with that key and return it</para>
+            </summary>
+            <param name="dictionary">The dictionary to get the value from</param>
+            <param name="key">The key of the KeyValuePair to get the value from</param>
+            <param name="factoryFunction">A function to create a new <typeparamref name="TValue"/> (only invoked if <paramref name="key"/> is not present in the dictionary)</param>
+            <typeparam name="TKey">The type of the Key in the dictionary</typeparam>
+            <typeparam name="TValue">The type of the Value in the dictionary</typeparam>
+            <returns>The value of the KeyValuePair at <paramref name="key"/> or a new <typeparamref name="TValue"/></returns>
+        </member>
         <member name="T:VDFramework.Extensions.EnumerableExtensions">
             <summary>
             Contains Extension methods for IEnumerables
@@ -5027,7 +5055,7 @@
             <para>It can also be safely ignored if not needed</para></returns>
             <seealso cref="M:System.Delegate.DynamicInvoke(System.Object[])"/>
         </member>
-        <member name="M:VDFramework.Timer.TimerManager.StartNewTimer(VDFramework.Timer.TimerHandles.AbstractTimerHandle)">
+        <member name="M:VDFramework.Timer.TimerManager.StartTimer(VDFramework.Timer.TimerHandles.AbstractTimerHandle)">
             <summary>
             Start a timer on the given TimerHandle and resets the timer (only resets it is already ticking)
             </summary>
@@ -6326,7 +6354,7 @@
         </member>
         <member name="T:VDFramework.Utility.StringVariableWriter">
             <summary>
-            A simple class provides an easy way to write variables to a string using <see cref="M:System.String.Format(System.String,System.Object[])"/>
+            A simple class that provides an easy way to write variables to a string using <see cref="M:System.String.Format(System.String,System.Object[])"/>
             </summary>
         </member>
         <member name="M:VDFramework.Utility.StringVariableWriter.#ctor(System.String)">

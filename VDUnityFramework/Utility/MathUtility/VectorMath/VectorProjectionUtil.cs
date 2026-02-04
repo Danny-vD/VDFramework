@@ -14,8 +14,9 @@ namespace VDFramework.Utility.MathUtility.VectorMath
 		/// <param name="line">The line to project to</param>
 		/// <param name="point">The point to project onto the line</param>
 		/// <param name="ensureReturnedPointIsOnLine">Should the projected point be clamped between the end points of the line?</param>
+		/// <param name="normalizedValueFromStart">A value that signifies how far away from the start the returned point is, normalized to the length of the line</param>
 		/// <returns>A point on the line closest to the given point</returns>
-		public static Vector3 ProjectPointOntoLine(Vector3 lineStart, Vector3 line, Vector3 point, bool ensureReturnedPointIsOnLine)
+		public static Vector3 ProjectPointOntoLine(Vector3 lineStart, Vector3 line, Vector3 point, bool ensureReturnedPointIsOnLine, out float normalizedValueFromStart)
 		{
 			Vector3 normalizedLine = line.normalized;
 
@@ -30,7 +31,8 @@ namespace VDFramework.Utility.MathUtility.VectorMath
 				dot = Mathf.Clamp01(dot);
 			}
 
-			return lineStart + line * dot;
+			normalizedValueFromStart = dot;
+			return lineStart + line * normalizedValueFromStart;
 		}
 
 		/// <summary>
@@ -40,12 +42,13 @@ namespace VDFramework.Utility.MathUtility.VectorMath
 		/// <param name="lineEnd">The end point of the line</param>
 		/// <param name="point">The point to project onto the line</param>
 		/// <param name="ensureReturnedPointIsOnLine">Should the projected point be clamped between the end points of the line?</param>
+		/// <param name="normalizedValueFromStart">A value that signifies how far away from the start the returned point is, normalized to the length of the line</param>
 		/// <returns>A point on the line closest to the given point</returns>
 		/// <returns></returns>
-		public static Vector3 ProjectPointOntoLineBetweenPoints(Vector3 lineStart, Vector3 lineEnd, Vector3 point, bool ensureReturnedPointIsOnLine)
+		public static Vector3 ProjectPointOntoLineBetweenPoints(Vector3 lineStart, Vector3 lineEnd, Vector3 point, bool ensureReturnedPointIsOnLine, out float normalizedValueFromStart)
 		{
 			Vector3 line = lineEnd - lineStart;
-			return ProjectPointOntoLine(lineStart, line, point, ensureReturnedPointIsOnLine);
+			return ProjectPointOntoLine(lineStart, line, point, ensureReturnedPointIsOnLine, out normalizedValueFromStart);
 		}
 	}
 }

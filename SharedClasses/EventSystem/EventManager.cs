@@ -34,7 +34,7 @@ namespace VDFramework.EventSystem
 			}
 
 			// Copy so that we can add and remove from the original list without editing the list we loop through
-			foreach (CallbackHandler handler in new List<CallbackHandler>(handlers).Where(handler => handler != null))
+			foreach (CallbackHandler handler in new List<CallbackHandler>(handlers))
 			{
 				if (eventToRaise.Consumed)
 				{

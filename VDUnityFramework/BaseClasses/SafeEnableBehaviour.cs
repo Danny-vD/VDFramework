@@ -13,8 +13,11 @@
 		protected bool invokeOnEnabledAfterStart = true;
 		
 		private bool hasStartRun = false;
-		
-		private void OnEnable()
+
+		/// <summary>
+		/// This function is called when the object becomes enabled and active
+		/// </summary>
+		protected virtual void OnEnable()
 		{
 			if (!hasStartRun)
 			{

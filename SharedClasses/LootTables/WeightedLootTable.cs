@@ -103,7 +103,7 @@ namespace VDFramework.LootTables
 
 		public decimal GetLootDropChance(TLootType loot)
 		{
-			return GetLootWeight(loot);
+			return GetLootWeight(loot) / (decimal)TotalWeight;
 		}
 
 		public long GetLootWeight(ILoot<TLootType> loot)

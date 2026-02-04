@@ -62,7 +62,8 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		public void Invoke()
 		{
-			foreach (CallbackHandler callbackHandler in eventHandlers)
+            // Copy so that we can add and remove from the original list without editing the list we loop through
+			foreach (CallbackHandler callbackHandler in new List<CallbackHandler>(eventHandlers))
 			{
 				((ParameterlessCallbackHandler)callbackHandler).Invoke();
 			}
@@ -145,7 +146,8 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		public void Invoke(T1 arg1)
 		{
-			foreach (CallbackHandler callbackHandler in eventHandlers)
+            // Copy so that we can add and remove from the original list without editing the list we loop through
+			foreach (CallbackHandler callbackHandler in new List<CallbackHandler>(eventHandlers))
 			{
 				switch (callbackHandler)
 				{
@@ -236,7 +238,8 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		public void Invoke(T1 arg1, T2 arg2)
 		{
-			foreach (CallbackHandler callbackHandler in eventHandlers)
+            // Copy so that we can add and remove from the original list without editing the list we loop through
+			foreach (CallbackHandler callbackHandler in new List<CallbackHandler>(eventHandlers))
 			{
 				switch (callbackHandler)
 				{
@@ -327,7 +330,8 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		public void Invoke(T1 arg1, T2 arg2, T3 arg3)
 		{
-			foreach (CallbackHandler callbackHandler in eventHandlers)
+            // Copy so that we can add and remove from the original list without editing the list we loop through
+			foreach (CallbackHandler callbackHandler in new List<CallbackHandler>(eventHandlers))
 			{
 				switch (callbackHandler)
 				{
@@ -418,7 +422,8 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		public void Invoke(T1 arg1, T2 arg2, T3 arg3, T4 arg4)
 		{
-			foreach (CallbackHandler callbackHandler in eventHandlers)
+            // Copy so that we can add and remove from the original list without editing the list we loop through
+			foreach (CallbackHandler callbackHandler in new List<CallbackHandler>(eventHandlers))
 			{
 				switch (callbackHandler)
 				{
@@ -509,7 +514,8 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		public void Invoke(T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5)
 		{
-			foreach (CallbackHandler callbackHandler in eventHandlers)
+            // Copy so that we can add and remove from the original list without editing the list we loop through
+			foreach (CallbackHandler callbackHandler in new List<CallbackHandler>(eventHandlers))
 			{
 				switch (callbackHandler)
 				{
@@ -600,7 +606,8 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		public void Invoke(T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6)
 		{
-			foreach (CallbackHandler callbackHandler in eventHandlers)
+            // Copy so that we can add and remove from the original list without editing the list we loop through
+			foreach (CallbackHandler callbackHandler in new List<CallbackHandler>(eventHandlers))
 			{
 				switch (callbackHandler)
 				{
@@ -691,7 +698,8 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		public void Invoke(T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7)
 		{
-			foreach (CallbackHandler callbackHandler in eventHandlers)
+            // Copy so that we can add and remove from the original list without editing the list we loop through
+			foreach (CallbackHandler callbackHandler in new List<CallbackHandler>(eventHandlers))
 			{
 				switch (callbackHandler)
 				{
@@ -782,7 +790,8 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		public void Invoke(T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8)
 		{
-			foreach (CallbackHandler callbackHandler in eventHandlers)
+            // Copy so that we can add and remove from the original list without editing the list we loop through
+			foreach (CallbackHandler callbackHandler in new List<CallbackHandler>(eventHandlers))
 			{
 				switch (callbackHandler)
 				{
@@ -873,7 +882,8 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		public void Invoke(T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8, T9 arg9)
 		{
-			foreach (CallbackHandler callbackHandler in eventHandlers)
+            // Copy so that we can add and remove from the original list without editing the list we loop through
+			foreach (CallbackHandler callbackHandler in new List<CallbackHandler>(eventHandlers))
 			{
 				switch (callbackHandler)
 				{
@@ -964,7 +974,8 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		public void Invoke(T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8, T9 arg9, T10 arg10)
 		{
-			foreach (CallbackHandler callbackHandler in eventHandlers)
+            // Copy so that we can add and remove from the original list without editing the list we loop through
+			foreach (CallbackHandler callbackHandler in new List<CallbackHandler>(eventHandlers))
 			{
 				switch (callbackHandler)
 				{
@@ -1055,7 +1066,8 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		public void Invoke(T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8, T9 arg9, T10 arg10, T11 arg11)
 		{
-			foreach (CallbackHandler callbackHandler in eventHandlers)
+            // Copy so that we can add and remove from the original list without editing the list we loop through
+			foreach (CallbackHandler callbackHandler in new List<CallbackHandler>(eventHandlers))
 			{
 				switch (callbackHandler)
 				{
@@ -1146,7 +1158,8 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		public void Invoke(T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8, T9 arg9, T10 arg10, T11 arg11, T12 arg12)
 		{
-			foreach (CallbackHandler callbackHandler in eventHandlers)
+            // Copy so that we can add and remove from the original list without editing the list we loop through
+			foreach (CallbackHandler callbackHandler in new List<CallbackHandler>(eventHandlers))
 			{
 				switch (callbackHandler)
 				{
@@ -1237,7 +1250,8 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		public void Invoke(T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8, T9 arg9, T10 arg10, T11 arg11, T12 arg12, T13 arg13)
 		{
-			foreach (CallbackHandler callbackHandler in eventHandlers)
+            // Copy so that we can add and remove from the original list without editing the list we loop through
+			foreach (CallbackHandler callbackHandler in new List<CallbackHandler>(eventHandlers))
 			{
 				switch (callbackHandler)
 				{
@@ -1328,7 +1342,8 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		public void Invoke(T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8, T9 arg9, T10 arg10, T11 arg11, T12 arg12, T13 arg13, T14 arg14)
 		{
-			foreach (CallbackHandler callbackHandler in eventHandlers)
+            // Copy so that we can add and remove from the original list without editing the list we loop through
+			foreach (CallbackHandler callbackHandler in new List<CallbackHandler>(eventHandlers))
 			{
 				switch (callbackHandler)
 				{
@@ -1419,7 +1434,8 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		public void Invoke(T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8, T9 arg9, T10 arg10, T11 arg11, T12 arg12, T13 arg13, T14 arg14, T15 arg15)
 		{
-			foreach (CallbackHandler callbackHandler in eventHandlers)
+            // Copy so that we can add and remove from the original list without editing the list we loop through
+			foreach (CallbackHandler callbackHandler in new List<CallbackHandler>(eventHandlers))
 			{
 				switch (callbackHandler)
 				{
@@ -1510,7 +1526,8 @@ namespace VDFramework.ObserverPattern
 		/// </summary>
 		public void Invoke(T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8, T9 arg9, T10 arg10, T11 arg11, T12 arg12, T13 arg13, T14 arg14, T15 arg15, T16 arg16)
 		{
-			foreach (CallbackHandler callbackHandler in eventHandlers)
+            // Copy so that we can add and remove from the original list without editing the list we loop through
+			foreach (CallbackHandler callbackHandler in new List<CallbackHandler>(eventHandlers))
 			{
 				switch (callbackHandler)
 				{

@@ -44,6 +44,13 @@ namespace VDFramework.Singleton
 
 		public static bool IsInitialized => instance != null;
 
+		// In case of disabled Domain Reload, reset static members before entering Play Mode.
+		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+		private static void InitOnPlayMode()
+		{
+			DestroyInstance();
+		}
+        
 		protected virtual void Awake()
 		{
 			if (!IsInitialized)
@@ -80,13 +87,16 @@ namespace VDFramework.Singleton
 
 			instance.gameObject.DestroyOnLoad();
 		}
-
+		
 		/// <summary>
 		/// Sets the instance of the singleton to null.
 		/// </summary>
-		public void DestroyInstance()
+		public static void DestroyInstance()
 		{
-			DestroyThis(true);
+			if (IsInitialized)
+			{
+				Instance.DestroyThis(true);
+			}
 		}
 
 		private void DestroyThis(bool destroyStaticInstance)

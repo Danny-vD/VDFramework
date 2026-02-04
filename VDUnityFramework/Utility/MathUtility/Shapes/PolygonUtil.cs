@@ -68,7 +68,7 @@ namespace VDFramework.Utility.MathUtility.Shapes
 				Vector2 vertex = polygon[i];
 				Vector2 nextVertex = polygon[nextIndex];
 
-				Vector2 pointOnLine = VectorProjectionUtil.ProjectPointOntoLineBetweenPoints(vertex, nextVertex, point, true);
+				Vector2 pointOnLine = VectorProjectionUtil.ProjectPointOntoLineBetweenPoints(vertex, nextVertex, point, true, out _);
 				closestPoints[i] = pointOnLine;
 			}
 
@@ -128,7 +128,7 @@ namespace VDFramework.Utility.MathUtility.Shapes
 				Vector3 vertex = polygon[i];
 				Vector3 nextVertex = polygon[nextIndex];
 
-				Vector3 pointOnLine = VectorProjectionUtil.ProjectPointOntoLineBetweenPoints(vertex, nextVertex, point, true);
+				Vector3 pointOnLine = VectorProjectionUtil.ProjectPointOntoLineBetweenPoints(vertex, nextVertex, point, true, out _);
 				closestPoints[i] = pointOnLine;
 			}
 

@@ -3,7 +3,7 @@
 namespace VDFramework.Utility
 {
 	/// <summary>
-	/// A simple class provides an easy way to write variables to a string using <see cref="string.Format(string, object[])"/>
+	/// A simple class that provides an easy way to write variables to a string using <see cref="string.Format(string, object[])"/>
 	/// </summary>
 	public class StringVariableWriter
 	{

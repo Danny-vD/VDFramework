@@ -59,7 +59,7 @@ namespace VDFramework.Timer
 		/// <param name="handle">The TimerHandle to set the timer on</param>
 		/// <returns>The same timerhandle</returns>
 		/// <seealso cref="AbstractTimerHandle.IsTicking"/>
-		public static AbstractTimerHandle StartNewTimer(AbstractTimerHandle handle)
+		public static AbstractTimerHandle StartTimer(AbstractTimerHandle handle)
 		{
 			handle.ResetTimer();
 			
