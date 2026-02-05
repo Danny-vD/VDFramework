@@ -28,7 +28,7 @@ namespace VDFramework.Logger
 		
 		/// <summary>
 		/// Logs data respective to the LogLevel<br/>
-		/// If the <see cref="LogLevel"/> dot not meet the <paramref name="logLevel"/> then nothing will be logged<br/>
+		/// If the <see cref="LogLevel"/> does not meet the <paramref name="logLevel"/> then nothing will be logged<br/>
 		/// To send the exception with <see cref="LogLevel.Exception">LogLevel.Exception</see> use <see cref="LogException"/> instead
 		/// </summary>
 		/// <param name="logLevel">The level of this log</param>
@@ -44,7 +44,7 @@ namespace VDFramework.Logger
 
 		/// <summary>
 		/// Logs a Debug message<br/>
-		/// If the <see cref="LogLevel"/> dot not contain <see cref="LogLevel.Debug"/> then nothing will be logged
+		/// If the <see cref="LogLevel"/> does not contain <see cref="LogLevel.Debug"/> then nothing will be logged
 		/// </summary>
 		/// <param name="data">The data to be logged</param>
 		/// <param name="obj">Additional data that can be used by the logger</param>
@@ -58,7 +58,7 @@ namespace VDFramework.Logger
 
 		/// <summary>
 		/// Logs an Info message<br/>
-		/// If the <see cref="LogLevel"/> dot not contain <see cref="LogLevel.Info"/> then nothing will be logged
+		/// If the <see cref="LogLevel"/> does not contain <see cref="LogLevel.Info"/> then nothing will be logged
 		/// </summary>
 		/// <param name="data">The data to be logged</param>
 		/// <param name="obj">Additional data that can be used by the logger</param>
@@ -72,7 +72,7 @@ namespace VDFramework.Logger
 
 		/// <summary>
 		/// Logs a Message<br/>
-		/// If the <see cref="LogLevel"/> dot not contain <see cref="LogLevel.Message"/> then nothing will be logged
+		/// If the <see cref="LogLevel"/> does not contain <see cref="LogLevel.Message"/> then nothing will be logged
 		/// </summary>
 		/// <param name="data">The data to be logged</param>
 		/// <param name="obj">Additional data that can be used by the logger</param>
@@ -86,7 +86,7 @@ namespace VDFramework.Logger
 
 		/// <summary>
 		/// Logs a Warning<br/>
-		/// If the <see cref="LogLevel"/> dot not contain <see cref="LogLevel.Warning"/> then nothing will be logged
+		/// If the <see cref="LogLevel"/> does not contain <see cref="LogLevel.Warning"/> then nothing will be logged
 		/// </summary>
 		/// <param name="data">The data to be logged</param>
 		/// <param name="obj">Additional data that can be used by the logger</param>
@@ -100,7 +100,7 @@ namespace VDFramework.Logger
 
 		/// <summary>
 		/// Logs an Error<br/>
-		/// If the <see cref="LogLevel"/> dot not contain <see cref="LogLevel.Error"/> then nothing will be logged
+		/// If the <see cref="LogLevel"/> does not contain <see cref="LogLevel.Error"/> then nothing will be logged
 		/// </summary>
 		/// <param name="data">The data to be logged</param>
 		/// <param name="obj">Additional data that can be used by the logger</param>
@@ -114,7 +114,7 @@ namespace VDFramework.Logger
 
 		/// <summary>
 		/// Logs an Exception<br/>
-		/// If the <see cref="LogLevel"/> dot not contain <see cref="LogLevel.Debug"/> then nothing will be logged
+		/// If the <see cref="LogLevel"/> does not contain <see cref="LogLevel.Exception"/> then nothing will be logged
 		/// </summary>
 		/// <param name="exception">The exception that needs to be logged</param>
 		/// <param name="data">The data to be logged</param>
@@ -129,7 +129,7 @@ namespace VDFramework.Logger
 
 		/// <summary>
 		/// Logs a fatal error<br/>
-		/// If the <see cref="LogLevel"/> dot not contain <see cref="LogLevel.Debug"/> then nothing will be logged
+		/// If the <see cref="LogLevel"/> does not contain <see cref="LogLevel.Fatal"/> then nothing will be logged
 		/// </summary>
 		/// <param name="data">The data to be logged</param>
 		/// <param name="obj">Additional data that can be used by the logger</param>
