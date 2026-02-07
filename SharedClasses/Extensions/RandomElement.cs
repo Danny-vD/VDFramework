@@ -46,15 +46,19 @@ namespace VDFramework.Extensions
 		/// <param name="rng">The random number generator to use</param>
 		/// <param name="randomIndex">the index of the element returned</param>
 		/// <param name="ignoreIndices">[OPTIONAL] the indices of elements that cannot be returned by this function</param>
+		/// <remarks>If the ignored indices would ignore all elements, then none will be ignored and a random element will be returned</remarks>
 		public static TElement GetRandomElement<TElement>(this IEnumerable<TElement> collection, IRandomNumberGenerator rng, out int randomIndex, params int[] ignoreIndices)
 		{
 			// Transform the collection to a collection of Tuples<TElement, OriginalIndex> and then filter
-			(TElement item, int i)[] filteredArray = collection.Select((element, index) => (element, index)).Where(tuple => !ignoreIndices.Contains(tuple.index)).ToArray();
+			(TElement item, int i)[] filteredArray = collection
+				.Select((element, index) => (element, index))
+				.Where(tuple => !ignoreIndices.Contains(tuple.index))
+				.ToArray();
 
 			if (filteredArray.Length == 0)
 			{
 				randomIndex = -1;
-				return default;
+				return collection.GetRandomElement(rng, out randomIndex);
 			}
 
 			(TElement element, int originalIndex) valueTuple = filteredArray.GetRandomElement(rng, out _);

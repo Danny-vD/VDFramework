@@ -577,6 +577,7 @@
             <param name="rng">The random number generator to use</param>
             <param name="randomIndex">the index of the element returned</param>
             <param name="ignoreIndices">[OPTIONAL] the indices of elements that cannot be returned by this function</param>
+            <remarks>If the ignored indices would ignore all elements, then none will be ignored and a random element will be returned</remarks>
         </member>
         <member name="M:VDFramework.Extensions.RandomElement.GetRandomElement``1(System.Collections.Generic.IEnumerable{``0},VDFramework.RandomWrapper.Interface.IRandomNumberGenerator,System.Int32[])">
             <summary>
