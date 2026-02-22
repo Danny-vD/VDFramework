@@ -43,13 +43,6 @@ namespace VDFramework.Singleton
 		public static TSingleton InstanceIfInitialized => IsInitialized ? instance : null;
 
 		public static bool IsInitialized => instance != null;
-
-		// In case of disabled Domain Reload, reset static members before entering Play Mode.
-		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-		private static void InitOnPlayMode()
-		{
-			DestroyInstance();
-		}
         
 		protected virtual void Awake()
 		{
