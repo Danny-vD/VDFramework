@@ -17,7 +17,7 @@ namespace VDFramework.Extensions
 		/// <typeparam name="TKey">The type of the Key in the dictionary</typeparam>
 		/// <typeparam name="TValue">The type of the Value in the dictionary</typeparam>
 		/// <returns>The value of the KeyValuePair at <paramref name="key"/> or a new <typeparamref name="TValue"/></returns>
-		public static TValue GetOrAddNewValue<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TKey key) where TValue : new()
+		public static TValue GetOrAddNewValue<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key) where TValue : new()
 		{
 			if (!dictionary.TryGetValue(key, out TValue value))
 			{
@@ -59,7 +59,7 @@ namespace VDFramework.Extensions
 		/// <typeparam name="TKey">The type of the Key in the dictionary</typeparam>
 		/// <typeparam name="TValue">The type of the Value in the dictionary</typeparam>
 		/// <returns>The value of the KeyValuePair at <paramref name="key"/> or a new <typeparamref name="TValue"/></returns>
-		public static TValue GetOrAddNewValue<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TKey key, TValue defaultValue)
+		public static TValue GetOrAddNewValue<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key, TValue defaultValue)
 		{
 			if (!dictionary.TryGetValue(key, out TValue value))
 			{

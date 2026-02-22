@@ -4923,7 +4923,7 @@
             Contains Extension methods for Dictionaries
             </summary>
         </member>
-        <member name="M:VDFramework.Extensions.DictionaryExtension.GetOrAddNewValue``2(System.Collections.Generic.Dictionary{``0,``1},``0)">
+        <member name="M:VDFramework.Extensions.DictionaryExtension.GetOrAddNewValue``2(System.Collections.Generic.IDictionary{``0,``1},``0)">
             <summary>
             <para>Get the value of the KeyValuePair with key <paramref name="key"/></para>
             <para>Or add a new <typeparamref name="TValue"/> to the dictionary with that key and return it</para>
@@ -4946,7 +4946,7 @@
             <typeparam name="TValue">The type of the Value in the dictionary</typeparam>
             <returns>The value of the KeyValuePair at <paramref name="key"/> or a new <typeparamref name="TValue"/></returns>
         </member>
-        <member name="M:VDFramework.Extensions.DictionaryExtension.GetOrAddNewValue``2(System.Collections.Generic.Dictionary{``0,``1},``0,``1)">
+        <member name="M:VDFramework.Extensions.DictionaryExtension.GetOrAddNewValue``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)">
             <summary>
             <para>Get the value of the KeyValuePair with key <paramref name="key"/></para>
             <para>Or add a new <typeparamref name="TValue"/> to the dictionary with that key and return it</para>
