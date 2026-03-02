@@ -10,21 +10,24 @@ namespace VDFramework.Timer
 	{
 		private static bool exists = false;
 		private bool destroyStatic = true;
-		
+
 		private void Awake()
 		{
 			if (exists)
 			{
 				destroyStatic = false;
-				
+
 				// Prevent updating the TimerManager twice
 				Destroy(this);
 				return;
 			}
-			
+
 			exists = true;
-			
-			DontDestroyOnLoad(gameObject);
+
+			if (transform.parent == null)
+			{
+				DontDestroyOnLoad(gameObject);
+			}
 		}
 
 		private void Update()
