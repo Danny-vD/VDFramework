@@ -18,7 +18,7 @@ namespace VDFramework.Utility.RandomUtility
 		/// <returns>TRUE or FALSE</returns>
 		public static bool RandomBool(IRandomNumberGenerator rng)
 		{
-			return boolValues.GetRandomElement(rng);
+			return boolValues[rng.Next(boolValues.Length)];
 		}
 		
 		/// <summary>
