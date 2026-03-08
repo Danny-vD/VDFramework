@@ -20,9 +20,16 @@ namespace VDFramework.EventSystem
 		private static readonly Dictionary<Type, List<CallbackHandler>> eventHandlersPerEventType = new Dictionary<Type, List<CallbackHandler>>();
 
 		// Used by the non-generic RaiseEvent(Type) function to construct a RaiseEvent<T> where T is the type of the given event
-		private static readonly MethodInfo genericRaiseEventMethodInfo = typeof(EventManager).GetMethod(nameof(RaiseEvent), BindingFlags.Static);
+		private static readonly MethodInfo genericRaiseEventMethodInfo = GetGenericRaiseEventMethodInfo();
 		private static readonly Dictionary<Type, MethodInfo> specificRaiseEventMethods = new Dictionary<Type, MethodInfo>();
 
+		private static MethodInfo GetGenericRaiseEventMethodInfo() // It's not possible to get an overloaded generic method through Type.GetMethod but filtering all methods works
+		{
+			MethodInfo[] methodInfos = typeof(EventManager).GetMethods(BindingFlags.Public | BindingFlags.Static);
+
+			return methodInfos.FirstOrDefault(methodInfo => methodInfo.IsGenericMethod && methodInfo.Name.Equals(nameof(RaiseEvent)));
+		}
+        
 		/////////////////////////////////////RaiseEvent/////////////////////////////////////
 		public static void RaiseEvent<TEvent>(TEvent eventToRaise) where TEvent : VDEvent
 		{
