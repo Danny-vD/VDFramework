@@ -4078,6 +4078,12 @@
             <param name="countAs1Char">A collection of substrings that will only count as 1 char for the purposes of returning the desired length</param>
             <param name="string">The string whose length to enforce</param>
         </member>
+        <member name="M:VDFramework.Utility.DataTypes.StringUtil.HasVisibleCharacters(System.String)">
+            <summary>
+            Tests if the string is not null and has any visible characters (non-format and non-whitespace)
+            </summary>
+            <returns><see langword="false"/> if the string is null or only contains whitespace and/or format characters</returns>
+        </member>
         <member name="F:VDFramework.Utility.DataTypes.StringUtil.escapeCharacter">
             <summary>
             The backslash character '\'
@@ -4223,6 +4229,25 @@
             This function fixes that discrepancy
             </summary>
         </member>
+        <member name="T:VDFramework.Utility.DataTypes.StringVariableWriter">
+            <summary>
+            A simple class that provides an easy way to write variables to a string using <see cref="M:System.String.Format(System.String,System.Object[])"/>
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.StringVariableWriter.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="stringToModify">
+            <para>The string that this instance needs to write variables into</para>
+            <para>The string itself will not be modified, only a copy is used</para>
+            </param>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.StringVariableWriter.UpdateText(System.Object[])">
+            <summary>
+            Uses <see cref="M:System.String.Format(System.String,System.Object[])"/> to replace placeholders in the string by variables and returns a copy of the new string
+            </summary>
+        </member>
         <member name="M:VDFramework.Utility.EnumDictionaryUtil.PopulateEnumDictionary``3(System.Collections.Generic.List{``0})">
             <summary>
             Will add a KeyValuePair for every enumValue to the list
@@ -4333,25 +4358,6 @@
         </member>
         <member name="M:VDFramework.Utility.RandomUtility.RandomUtil.GetRandom``1(``0[])">
             <inheritdoc cref="M:VDFramework.Utility.RandomUtility.RandomUtil.GetRandom(System.Object[])"/>
-        </member>
-        <member name="T:VDFramework.Utility.StringVariableWriter">
-            <summary>
-            A simple class that provides an easy way to write variables to a string using <see cref="M:System.String.Format(System.String,System.Object[])"/>
-            </summary>
-        </member>
-        <member name="M:VDFramework.Utility.StringVariableWriter.#ctor(System.String)">
-            <summary>
-            Constructor
-            </summary>
-            <param name="stringToModify">
-            <para>The string that this instance needs to write variables into</para>
-            <para>The string itself will not be modified, only a copy is used</para>
-            </param>
-        </member>
-        <member name="M:VDFramework.Utility.StringVariableWriter.UpdateText(System.Object[])">
-            <summary>
-            Uses <see cref="M:System.String.Format(System.String,System.Object[])"/> to replace placeholders in the string by variables and returns a copy of the new string
-            </summary>
         </member>
         <member name="T:VDFramework.Utility.Unsafe.UnsafeUtil">
             <summary>

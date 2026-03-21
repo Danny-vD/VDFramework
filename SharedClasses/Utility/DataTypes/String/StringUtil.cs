@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -90,6 +91,25 @@ namespace VDFramework.Utility.DataTypes
 			}
 
 			return stringBuilder.ToString();
+		}
+		
+		/// <summary>
+		/// Tests if the string is not null and has any visible characters (non-format and non-whitespace)
+		/// </summary>
+		/// <returns><see langword="false"/> if the string is null or only contains whitespace and/or format characters</returns>
+		public static bool HasVisibleCharacters(string value)
+		{
+			return value != null && value.Any(IsVisible);
+		}
+		
+		private static bool IsVisible(char character)
+		{
+			if (char.IsWhiteSpace(character))
+			{
+				return false;
+			}
+
+			return char.GetUnicodeCategory(character) != UnicodeCategory.Format; // Format characters are not whitespace (includes the zero-width space)
 		}
 	}
 }

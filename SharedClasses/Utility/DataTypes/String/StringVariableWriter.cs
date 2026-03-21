@@ -1,6 +1,6 @@
 ﻿using JetBrains.Annotations;
 
-namespace VDFramework.Utility
+namespace VDFramework.Utility.DataTypes
 {
 	/// <summary>
 	/// A simple class that provides an easy way to write variables to a string using <see cref="string.Format(string, object[])"/>

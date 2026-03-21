@@ -69,11 +69,51 @@ namespace VDFramework.Extensions
 		/// <info>Differs from <see cref="Enum.HasFlag"/> in that <see cref="Enum.HasFlag"/> requires that every flag is set to return <see langword="true"/></info>
 		public static bool HasAnyFlag<TEnum>(this TEnum @enum, TEnum flag) where TEnum : struct, Enum
 		{
-			// a direct cast would also work here instead of using the Convert class
-			ulong enumNumber = Convert.ToUInt64(@enum); // Necessary because the bitwise-AND operator is not available for the TEnum type
-			ulong flagNumber = Convert.ToUInt64(flag);
-			
-			return (enumNumber & flagNumber) > 0;
+			switch (@enum.GetTypeCode())
+			{
+				case TypeCode.SByte:
+					sbyte enumNumberSByte = Convert.ToSByte(@enum);
+					sbyte flagNumberSByte = Convert.ToSByte(flag);
+					
+					return (enumNumberSByte & flagNumberSByte) != 0;
+				case TypeCode.Int16:
+					short enumNumberShort = Convert.ToInt16(@enum);
+					short flagNumberShort = Convert.ToInt16(flag);
+					
+					return (enumNumberShort & flagNumberShort) != 0;
+				case TypeCode.Int32:
+					int enumNumberInt = Convert.ToInt32(@enum);
+					int flagNumberInt = Convert.ToInt32(flag);
+					
+					return (enumNumberInt & flagNumberInt) != 0;
+				case TypeCode.Int64:
+					long enumNumberLong = Convert.ToInt64(@enum);
+					long flagNumberLong = Convert.ToInt64(flag);
+					
+					return (enumNumberLong & flagNumberLong) != 0;
+				case TypeCode.Byte:
+					byte enumNumberByte = Convert.ToByte(@enum);
+					byte flagNumberByte = Convert.ToByte(flag);
+
+					return (enumNumberByte & flagNumberByte) != 0;
+				case TypeCode.UInt16:
+					ushort enumNumberUShort = Convert.ToUInt16(@enum);
+					ushort flagNumberUShort = Convert.ToUInt16(flag);
+
+					return (enumNumberUShort & flagNumberUShort) != 0;
+				case TypeCode.UInt32:
+					uint enumNumberUInt = Convert.ToUInt32(@enum);
+					uint flagNumberUInt = Convert.ToUInt32(flag);
+
+					return (enumNumberUInt & flagNumberUInt) != 0;
+				case TypeCode.UInt64:
+					ulong enumNumberULong = Convert.ToUInt64(@enum);
+					ulong flagNumberULong = Convert.ToUInt64(flag);
+					
+					return (enumNumberULong & flagNumberULong) != 0;
+				default:
+					throw new ArgumentOutOfRangeException();
+			}
 		}
 	}
 }
