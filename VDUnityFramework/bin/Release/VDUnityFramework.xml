@@ -4851,6 +4851,16 @@
             Create a new point with the same coordinates as the given point
             </summary>
         </member>
+        <member name="T:VDFramework.DynamicInstantiation.ConstructorCreator">
+            <summary>
+            A helper class to get the constructor (optionally with parameters) of a type dynamically
+            </summary>
+        </member>
+        <member name="M:VDFramework.DynamicInstantiation.ConstructorCreator.GetConstructor``1(System.Type,System.Type[])">
+            <summary>
+            Returns the constructor with the given parameters if one exists for the given type, otherwise <see langword="default"/>
+            </summary>
+        </member>
         <member name="T:VDFramework.EventSystem.EventHandler`1">
             <summary>
             Wrapper class for a <see cref="T:VDFramework.ObserverPattern.CallbackHandler"/> that uses a callback that takes an eventInstance as parameter

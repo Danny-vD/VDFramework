@@ -6,10 +6,16 @@ using System.Reflection;
 
 namespace VDFramework.DynamicInstantiation
 {
+	/// <summary>
+	/// A helper class to get the constructor (optionally with parameters) of a type dynamically
+	/// </summary>
 	public static class ConstructorCreator
 	{
-		public static Dictionary<Type, Dictionary<Type[], Delegate>> constructorsPerType = new Dictionary<Type, Dictionary<Type[], Delegate>>();
+		private static readonly Dictionary<Type, Dictionary<Type[], Delegate>> constructorsPerType = new Dictionary<Type, Dictionary<Type[], Delegate>>();
 		
+		/// <summary>
+		/// Returns the constructor with the given parameters if one exists for the given type, otherwise <see langword="default"/>
+		/// </summary>
 		public static TDelegate GetConstructor<TDelegate>(Type type, params Type[] parameterTypes) where TDelegate : Delegate
 		{
 			if (constructorsPerType.TryGetValue(type, out Dictionary<Type[], Delegate> constructors))
@@ -22,9 +28,11 @@ namespace VDFramework.DynamicInstantiation
 					}
 				}
 			}
-
-			constructors              = new Dictionary<Type[], Delegate>();
-			constructorsPerType[type] = constructors;
+			else
+			{
+				constructors              = new Dictionary<Type[], Delegate>();
+				constructorsPerType[type] = constructors;	
+			}
 			
 			ConstructorInfo constructorInfo = type.GetConstructor(parameterTypes);
 
