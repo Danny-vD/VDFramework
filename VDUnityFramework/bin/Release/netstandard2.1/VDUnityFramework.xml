@@ -459,6 +459,23 @@
             <param name="data">The data to be logged</param>
             <param name="obj">Additional data that can be used by the logger</param>
         </member>
+        <member name="T:VDFramework.Parsing.TransformParsingHelper">
+            <summary>
+            A helper class to go from a <see cref="T:UnityEngine.Vector3"/> and <see cref="T:UnityEngine.Quaternion"/> to a string and vice versa
+            </summary>
+        </member>
+        <member name="M:VDFramework.Parsing.TransformParsingHelper.VectorFromString(System.String,System.IFormatProvider)">
+            <summary>
+            Parse the string representation of a <see cref="T:UnityEngine.Vector3"/> back into a <see cref="T:UnityEngine.Vector3"/>
+            </summary>
+            <remarks>String format: (X, Y, Z)</remarks>
+        </member>
+        <member name="M:VDFramework.Parsing.TransformParsingHelper.QuaternionFromString(System.String,System.IFormatProvider)">
+            <summary>
+            Parse the string representation of a <see cref="T:UnityEngine.Quaternion"/> back into a <see cref="T:UnityEngine.Quaternion"/>
+            </summary>
+            <remarks>String format: (X, Y, Z, W)</remarks>
+        </member>
         <member name="T:VDFramework.RandomWrapper.UnityMathRandom">
             <summary>
             Provides a implementation of <see cref="T:VDFramework.RandomWrapper.Interface.IRandomNumberGenerator"/> using <see cref="T:Unity.Mathematics.Random">Unity.Mathematics.Random</see>
@@ -3847,6 +3864,18 @@
             <summary>
             Get the X coordinates of a 2D curve that crosses y = 0 at [0,0] and [distance,0] with a maxY of height
             </summary>
+        </member>
+        <member name="M:VDFramework.Utility.MathUtility.MathUtil.DivRem(System.Single,System.Single,System.Single@)">
+            <summary>
+            The same as <see cref="M:System.Math.DivRem(System.Int32,System.Int32,System.Int32@)"/> but then using floats
+            </summary>
+            <returns>The result of <code>lhs / rhs</code> as an integer (floored)</returns>
+        </member>
+        <member name="M:VDFramework.Utility.MathUtility.MathUtil.PingPong(System.Single,System.Single)">
+            <summary>
+            Returns the <paramref name="value"/> pingponged between 0 and <paramref name="length"/>
+            </summary>
+            <returns>The value clamped between 0 and <paramref name="length"/>, where the value is reversed when <paramref name="value"/> exceeds <paramref name="length"/> an odd number of times</returns>
         </member>
         <member name="T:VDFramework.Utility.MathUtility.NumberUtil">
             <summary>

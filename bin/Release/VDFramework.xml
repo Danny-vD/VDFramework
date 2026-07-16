@@ -6251,6 +6251,18 @@
             Get the X coordinates of a 2D curve that crosses y = 0 at [0,0] and [distance,0] with a maxY of height
             </summary>
         </member>
+        <member name="M:VDFramework.Utility.MathUtility.MathUtil.DivRem(System.Single,System.Single,System.Single@)">
+            <summary>
+            The same as <see cref="M:System.Math.DivRem(System.Int32,System.Int32,System.Int32@)"/> but then using floats
+            </summary>
+            <returns>The result of <code>lhs / rhs</code> as an integer (floored)</returns>
+        </member>
+        <member name="M:VDFramework.Utility.MathUtility.MathUtil.PingPong(System.Single,System.Single)">
+            <summary>
+            Returns the <paramref name="value"/> pingponged between 0 and <paramref name="length"/>
+            </summary>
+            <returns>The value clamped between 0 and <paramref name="length"/>, where the value is reversed when <paramref name="value"/> exceeds <paramref name="length"/> an odd number of times</returns>
+        </member>
         <member name="T:VDFramework.Utility.MathUtility.NumberUtil">
             <summary>
             Static class that contains functions for getting data about numbers
