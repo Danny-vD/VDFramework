@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using VDFramework.RandomWrapper;
@@ -20,6 +21,11 @@ namespace VDFramework.Extensions
 		{
 			// Convert to a T[] to prevent multiple enumeration
 			TElement[] array = collection.ToArray();
+
+			if (array.Length == 0)
+			{
+				throw new ArgumentException("Cannot take a random element of an empty collection!", nameof(collection));
+			}
 
 			int index = rng.Next(array.Length); // Get a random index
 
