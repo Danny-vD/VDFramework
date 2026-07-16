@@ -105,5 +105,42 @@ namespace VDFramework.Utility.MathUtility
 
 			return new Tuple<float, float>(p1, p2);
 		}
+
+		/// <summary>
+		/// The same as <see cref="System.Math.DivRem(int, int, out int)"/> but then using floats
+		/// </summary>
+		/// <returns>The result of <code>lhs / rhs</code> as an integer (floored)</returns>
+		public static int DivRem(float lhs, float rhs, out float remainder)
+		{
+			int division = (int)(lhs / rhs);
+			float substraction = division * rhs;
+
+			remainder = lhs - substraction;
+			
+			return division;
+		}
+
+		/// <summary>
+		/// Returns the <paramref name="value"/> pingponged between 0 and <paramref name="length"/>
+		/// </summary>
+		/// <returns>The value clamped between 0 and <paramref name="length"/>, where the value is reversed when <paramref name="value"/> exceeds <paramref name="length"/> an odd number of times</returns>
+		public static float PingPong(float value, float length) //TODO: Make also work for negative numbers
+		{
+			if (value > length)
+			{
+				int division = DivRem(value, length, out float remainder);
+
+				bool divisionIsEven = (division & 1) == 0;
+				
+				if (divisionIsEven)
+				{
+					return remainder;
+				}
+
+				return length - remainder;
+			}
+
+			return value;
+		}
 	}
 }
