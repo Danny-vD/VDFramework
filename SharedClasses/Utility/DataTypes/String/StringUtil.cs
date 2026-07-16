@@ -2,6 +2,8 @@
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
+using VDFramework.Extensions;
 
 namespace VDFramework.Utility.DataTypes
 {
@@ -102,7 +104,10 @@ namespace VDFramework.Utility.DataTypes
 			return value != null && value.Any(IsVisible);
 		}
 		
-		private static bool IsVisible(char character)
+		/// <summary>
+		/// Tests if the given character is visible (non-whitespace and not a format character)
+		/// </summary>
+		public static bool IsVisible(char character)
 		{
 			if (char.IsWhiteSpace(character))
 			{
@@ -110,6 +115,53 @@ namespace VDFramework.Utility.DataTypes
 			}
 
 			return char.GetUnicodeCategory(character) != UnicodeCategory.Format; // Format characters are not whitespace (includes the zero-width space)
+		}
+		
+		/// <summary>
+		/// Converts the given string into a string that follows the Domain Name Notation rules
+		/// </summary>
+		/// <returns>The same string but only containing alphanumeric characters (A-Z, a-z, 0-9), hyphens (-) and periods (.)<br/>Characters with diacritics will be replaced by their regular version while any other character will be replaced by a hyphen</returns>
+		/// <credits>https://stackoverflow.com/a/18577410</credits>
+		public static string GetDNSNotation(string input)
+		{
+			string dnsString = input.RemoveDiacritics();
+
+			return Regex.Replace(dnsString, "[^a-zA-Z0-9-.]+", "-"); // Regex matches: (non-) a-z A-Z 0-9 hyphen dot
+		}
+		
+		/// <summary>
+		/// Tests if the character is a alphanumeric character (A-Z, a-z, 0-9), hyphen (-) or period (.)
+		/// </summary>
+		public static bool IsAllowedInDNS(char character)
+		{
+			UnicodeCategory unicodeCategory = char.GetUnicodeCategory(character);
+
+			if (unicodeCategory == UnicodeCategory.NonSpacingMark)
+			{
+				return false;
+			}
+			
+			if (character == 45 || character == 46) // hyphen (-) or dot (.)
+			{
+				return true;
+			}
+
+			if (48 <= character && character <= 57) // digits (0-9)
+			{
+				return true;
+			}
+			
+			if (65 <= character && character <= 90) // uppercase letters (A-Z)
+			{
+				return true;
+			}
+			
+			if (97 <= character && character <= 122) // lowercase letters (a-z)
+			{
+				return true;
+			}
+
+			return false;
 		}
 	}
 }

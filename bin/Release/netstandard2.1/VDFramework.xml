@@ -687,6 +687,13 @@
             Replaces all underscores in this string with a space
             </summary>
         </member>
+        <member name="M:VDFramework.Extensions.StringExtensions.RemoveDiacritics(System.String)">
+            <summary>
+            Replace all letters with a diacritic with the equivalent letter without a diacritic and returns that as a new string
+            </summary>
+            <remarks>Extra explanation: https://stackoverflow.com/a/3288164</remarks>
+            <credits>https://stackoverflow.com/a/18577191</credits>
+        </member>
         <member name="M:VDFramework.Extensions.StringExtensions.CharCount(System.String,System.Char)">
             <summary>
             Get a count of how many times a specific character appears within the string
@@ -5987,6 +5994,23 @@
             Tests if the string is not null and has any visible characters (non-format and non-whitespace)
             </summary>
             <returns><see langword="false"/> if the string is null or only contains whitespace and/or format characters</returns>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.StringUtil.IsVisible(System.Char)">
+            <summary>
+            Tests if the given character is visible (non-whitespace and not a format character)
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.StringUtil.GetDNSNotation(System.String)">
+            <summary>
+            Converts the given string into a string that follows the Domain Name Notation rules
+            </summary>
+            <returns>The same string but only containing alphanumeric characters (A-Z, a-z, 0-9), hyphens (-) and periods (.)<br/>Characters with diacritics will be replaced by their regular version while any other character will be replaced by a hyphen</returns>
+            <credits>https://stackoverflow.com/a/18577410</credits>
+        </member>
+        <member name="M:VDFramework.Utility.DataTypes.StringUtil.IsAllowedInDNS(System.Char)">
+            <summary>
+            Tests if the character is a alphanumeric character (A-Z, a-z, 0-9), hyphen (-) or period (.)
+            </summary>
         </member>
         <member name="F:VDFramework.Utility.DataTypes.StringUtil.escapeCharacter">
             <summary>

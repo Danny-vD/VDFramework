@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Text;
+using VDFramework.Utility.DataTypes;
 
 namespace VDFramework.Extensions
 {
@@ -124,6 +128,22 @@ namespace VDFramework.Extensions
 		public static string ReplaceUnderscoreWithSpace(this string input)
 		{
 			return input.Replace('_', ' ');
+		}
+
+		/// <summary>
+		/// Replace all letters with a diacritic with the equivalent letter without a diacritic and returns that as a new string
+		/// </summary>
+		/// <remarks>Extra explanation: https://stackoverflow.com/a/3288164</remarks>
+		/// <credits>https://stackoverflow.com/a/18577191</credits>
+		public static string RemoveDiacritics(this string input)
+		{
+			// The normalization to FormD splits accented letters in letters+accents
+			string formDString = input.Normalize(NormalizationForm.FormD);
+
+			// NonSpacingMark = Nonspacing character that indicates modifications of a base character. Signified by the Unicode designation "Mn" (mark, nonspacing).
+			IEnumerable<char> validCharacters = formDString.Where(character => char.GetUnicodeCategory(character) != UnicodeCategory.NonSpacingMark);
+			
+			return new string(validCharacters.ToArray());
 		}
 
 		/// <summary>
