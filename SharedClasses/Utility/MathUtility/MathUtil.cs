@@ -5,7 +5,7 @@ namespace VDFramework.Utility.MathUtility
 	/// <summary>
 	/// Static class that contains useful math functions
 	/// </summary>
-	public static class MathUtil
+	public static class MathUtils
 	{
 		/// <summary>
 		/// Returns a number depending on the sign of the input
@@ -116,7 +116,7 @@ namespace VDFramework.Utility.MathUtility
 			float substraction = division * rhs;
 
 			remainder = lhs - substraction;
-			
+
 			return division;
 		}
 
@@ -131,13 +131,75 @@ namespace VDFramework.Utility.MathUtility
 				int division = DivRem(value, length, out float remainder);
 
 				bool divisionIsEven = (division & 1) == 0;
-				
+
 				if (divisionIsEven)
 				{
 					return remainder;
 				}
 
 				return length - remainder;
+			}
+
+			return value;
+		}
+
+		/// <summary>
+		/// Returns the <paramref name="value"/> looped between <paramref name="lowerRange"/> and <paramref name="upperRange"/>
+		/// </summary>
+		/// <returns>The value looped between <paramref name="lowerRange"/> and <paramref name="upperRange"/></returns>
+		/// <remarks>Both ranges are inclusive</remarks>
+		public static int LoopRange(int lowerRange, int upperRange, int value)
+		{
+			if (value > upperRange)
+			{
+				int delta = value - upperRange;
+				--delta; // subtract 1 so that adding 1 gives the lowerRange
+
+				int minMaxDelta = upperRange - lowerRange;
+				delta %= minMaxDelta;
+
+				return lowerRange + delta;
+			}
+
+			if (value < lowerRange)
+			{
+				int delta = lowerRange - value;
+				--delta; // subtract 1 so that removing 1 gives the upperRange
+				
+				int minMaxDelta = upperRange - lowerRange;
+				delta %= minMaxDelta;
+
+				return upperRange - delta;
+			}
+
+			return value;
+		}
+		
+		/// <summary>
+		/// Returns the <paramref name="value"/> looped between <paramref name="lowerRange"/> and <paramref name="upperRange"/>
+		/// </summary>
+		/// <returns>The value looped between <paramref name="lowerRange"/> and <paramref name="upperRange"/></returns>
+		/// <remarks>Both ranges are inclusive</remarks>
+		public static double LoopRange(double lowerRange, double upperRange, double value)
+		{
+			if (value > upperRange)
+			{
+				double delta = value - upperRange;
+
+				double minMaxDelta = upperRange - lowerRange;
+				delta %= minMaxDelta;
+
+				return lowerRange + delta;
+			}
+
+			if (value < lowerRange)
+			{
+				double delta = lowerRange - value;
+				
+				double minMaxDelta = upperRange - lowerRange;
+				delta %= minMaxDelta;
+
+				return upperRange - delta;
 			}
 
 			return value;

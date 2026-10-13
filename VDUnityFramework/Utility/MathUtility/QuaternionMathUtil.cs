@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace VDFramework.Utility
+namespace VDFramework.Utility.MathUtility
 {
 	/// <summary>
 	/// Contains helper functions for <see cref="Quaternion"/> math

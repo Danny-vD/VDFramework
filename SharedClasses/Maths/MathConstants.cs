@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VDFramework.Utility.MathUtility
+namespace VDFramework.Maths
 {
 	/// <summary>
 	/// Contains constants used for mathematical operations
@@ -18,5 +18,10 @@ namespace VDFramework.Utility.MathUtility
 		/// <symbol>φ (phi)</symbol>
 		/// <theory>https://en.wikipedia.org/wiki/Golden_ratio#Calculation</theory>
 		public static readonly double GoldenRatio = (1 + Math.Sqrt(5)) / 2;
+		
+		/// <summary>
+		/// The square root of 0.5
+		/// </summary>
+		public const float SQRT_HALF = 0.70710678118654752440084436210485f; // Mathf.Sqrt(0.5f);
 	}
 }

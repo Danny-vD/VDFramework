@@ -3877,6 +3877,20 @@
             </summary>
             <returns>The value clamped between 0 and <paramref name="length"/>, where the value is reversed when <paramref name="value"/> exceeds <paramref name="length"/> an odd number of times</returns>
         </member>
+        <member name="M:VDFramework.Utility.MathUtility.MathUtil.LoopRange(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Returns the <paramref name="value"/> looped between <paramref name="lowerRange"/> and <paramref name="upperRange"/>
+            </summary>
+            <returns>The value looped between <paramref name="lowerRange"/> and <paramref name="upperRange"/></returns>
+            <remarks>Both ranges are inclusive</remarks>
+        </member>
+        <member name="M:VDFramework.Utility.MathUtility.MathUtil.LoopRange(System.Double,System.Double,System.Double)">
+            <summary>
+            Returns the <paramref name="value"/> looped between <paramref name="lowerRange"/> and <paramref name="upperRange"/>
+            </summary>
+            <returns>The value looped between <paramref name="lowerRange"/> and <paramref name="upperRange"/></returns>
+            <remarks>Both ranges are inclusive</remarks>
+        </member>
         <member name="T:VDFramework.Utility.MathUtility.NumberUtil">
             <summary>
             Static class that contains functions for getting data about numbers
@@ -3950,6 +3964,20 @@
             <para>0.1 degree difference is a difference of 0.0000004f</para>
             </param>
             <credit>https://discussions.unity.com/t/how-do-i-compare-quaternions/47274/6</credit>
+        </member>
+        <member name="T:VDFramework.Utility.ArrayUtility.ArrayUtil">
+            <summary>
+            Contains utility functions for arrays
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.ArrayUtility.ArrayUtil.MirrorYAxisOfArray(System.Byte[],System.Int32)">
+            <summary>
+            <para>Mirrors the y-axis of the array</para>
+            <para>This function mirrors the y axis (rows) of the 2d data represented by the given byte[]</para>
+            </summary>
+            <param name="data">The data to mirror</param>
+            <param name="height">The amount of rows in the data<br/>The width will be determined as length / height</param>
+            <returns>A new array filled with data, but the 'columns' are reversed</returns>
         </member>
         <member name="T:VDFramework.Utility.DataTypes.DoubleUtil">
             <summary>
@@ -5264,6 +5292,11 @@
             Randomly sorts the IEnumerable (using <see cref="T:System.Random">System.Random</see>)
             </summary>
             <returns>The same list, for the purposes of chaining</returns>
+        </member>
+        <member name="T:VDFramework.Extensions.SpanExtensions">
+            <summary>
+            Contains utility functions for Span
+            </summary>
         </member>
         <member name="T:VDFramework.Extensions.StringExtensions">
             <summary>

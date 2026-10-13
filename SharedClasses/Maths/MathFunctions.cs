@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Numerics;
 
-namespace VDFramework.Utility.MathUtility
+namespace VDFramework.Maths
 {
 	/// <summary>
 	/// Provides implementations of mathematical functions

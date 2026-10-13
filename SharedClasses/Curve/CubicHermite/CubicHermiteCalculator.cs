@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Numerics;
 using VDFramework.Curve.Structs;
-using VDFramework.Utility.MathUtility;
+using VDFramework.Maths;
 
 namespace VDFramework.Curve.CubicHermite
 {

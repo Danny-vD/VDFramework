@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using VDFramework.UnityExtensions;
+using VDFramework.Maths;
 
 namespace VDFramework.Utility.MathUtility.Shapes
 {
+	/// <summary>
+	/// Provides helper functions for working with an ellipse
+	/// </summary>
 	public static class EllipseUtil
 	{
-		private const float sqrtPointFive = 0.70710678118654752440084436210485f; // Mathf.Sqrt(0.5f);
-
 		/// <summary>
 		/// Tests whether the given point is within the axis-alligned ellipse
 		/// </summary>
@@ -57,7 +59,7 @@ namespace VDFramework.Utility.MathUtility.Shapes
 		}
 
 		/// <summary>
-		/// Projects a point onto the ellipse and returns the point on the epplipse, optionally returns the point itself if it is within the ellipse
+		/// Projects a point onto the ellipse and returns the point on the ellipse, optionally returns the point itself if it is within the ellipse
 		/// </summary>
 		/// <param name="origin">The centre of the ellipse</param>
 		/// <param name="xRadius">The radius of the x side of the ellipse</param>
@@ -80,8 +82,8 @@ namespace VDFramework.Utility.MathUtility.Shapes
 			float xRadiusSquared = xRadius * xRadius;
 			float yRadiusSquared = yRadius * yRadius;
 
-			float tx = sqrtPointFive;
-			float ty = sqrtPointFive;
+			float tx = MathConstants.SQRT_HALF;
+			float ty = MathConstants.SQRT_HALF;
 
 			for (int i = 0; i < 3; i++)
 			{

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace VDFramework.Utility.MathUtility.Shapes
 {
@@ -37,7 +38,7 @@ namespace VDFramework.Utility.MathUtility.Shapes
 			return true;
 		}
 		
-		public static Rect GetBoundingBoxOfPolygon2D(Vector2[] polygon)
+		public static Rect GetBoundingBoxOfPolygon2D(ReadOnlySpan<Vector2> polygon)
 		{
 			float minX = float.PositiveInfinity;
 			float minY = float.PositiveInfinity;

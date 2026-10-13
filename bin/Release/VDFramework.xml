@@ -649,6 +649,17 @@
             </summary>
             <returns>The same list, for the purposes of chaining</returns>
         </member>
+        <member name="T:VDFramework.Extensions.SpanExtensions">
+            <summary>
+            Contains utility functions for Span
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.SpanExtensions.Insert``1(System.ReadOnlySpan{``0}@,System.Span{``0}@,System.Int32,``0)">
+            <summary>
+            Insert the given object into the span at the given index 
+            </summary>
+            <remarks>Gracefully prevents out of bounds errors by only copying elements until the end of either span is reached</remarks>
+        </member>
         <member name="T:VDFramework.Extensions.StringExtensions">
             <summary>
             Contains extension methods for <see cref="T:System.String"/>
@@ -1451,6 +1462,40 @@
         </member>
         <member name="M:VDFramework.LootTables.WeightedLootTable`1.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc />
+        </member>
+        <member name="T:VDFramework.Maths.MathConstants">
+            <summary>
+            Contains constants used for mathematical operations
+            </summary>
+        </member>
+        <member name="F:VDFramework.Maths.MathConstants.THIRD">
+            <summary>
+            The constant 1/3
+            </summary>
+        </member>
+        <member name="F:VDFramework.Maths.MathConstants.GoldenRatio">
+            <summary>
+            The 'extreme and mean ratio' or 'divine proportion' calculated as<br/>(1 + √5) / 2<br/>1.618033988749...
+            </summary>
+            <symbol>φ (phi)</symbol>
+            <theory>https://en.wikipedia.org/wiki/Golden_ratio#Calculation</theory>
+        </member>
+        <member name="T:VDFramework.Maths.MathFunctions">
+            <summary>
+            Provides implementations of mathematical functions
+            </summary>
+        </member>
+        <member name="M:VDFramework.Maths.MathFunctions.CubicRoot(System.Double)">
+            <summary>
+            Returns the cubic root of the given value
+            </summary>
+            <math>³√x</math>
+        </member>
+        <member name="M:VDFramework.Maths.MathFunctions.CubicRoot(System.Numerics.Complex)">
+            <summary>
+            Returns the cubic root of the given complex number
+            </summary>
+            <math>³√x</math>
         </member>
         <member name="T:VDFramework.ObserverPattern.Constants.Priority">
             <summary>
@@ -5833,6 +5878,20 @@
             <typeparam name="TParam16">The type of the sixteenth parameter</typeparam>
             <returns>A new ParameterTimerHandler with the given parameters</returns>
         </member>
+        <member name="T:VDFramework.Utility.ArrayUtility.ArrayUtil">
+            <summary>
+            Contains utility functions for arrays
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.ArrayUtility.ArrayUtil.MirrorYAxisOfArray(System.Byte[],System.Int32)">
+            <summary>
+            <para>Mirrors the y-axis of the array</para>
+            <para>This function mirrors the y axis (rows) of the 2d data represented by the given byte[]</para>
+            </summary>
+            <param name="data">The data to mirror</param>
+            <param name="height">The amount of rows in the data<br/>The width will be determined as length / height</param>
+            <returns>A new array filled with data, but the 'columns' are reversed</returns>
+        </member>
         <member name="T:VDFramework.Utility.DataTypes.DoubleUtil">
             <summary>
             Provides utility functions specifically aimed at double precision floating-point numbers
@@ -5843,6 +5902,7 @@
             Tests whether the given values are very close to eachother (almost equal)
             </summary>
             <reference>https://stackoverflow.com/a/35418564</reference>
+            <source>Decompiled code from microsoft (windowsbase)</source>
         </member>
         <member name="M:VDFramework.Utility.DataTypes.DoubleUtil.LessThan(System.Double,System.Double)">
             <summary>
@@ -6220,40 +6280,6 @@
             Provides the % between a and b at value
             </summary>
         </member>
-        <member name="T:VDFramework.Utility.MathUtility.MathConstants">
-            <summary>
-            Contains constants used for mathematical operations
-            </summary>
-        </member>
-        <member name="F:VDFramework.Utility.MathUtility.MathConstants.THIRD">
-            <summary>
-            The constant 1/3
-            </summary>
-        </member>
-        <member name="F:VDFramework.Utility.MathUtility.MathConstants.GoldenRatio">
-            <summary>
-            The 'extreme and mean ratio' or 'divine proportion' calculated as<br/>(1 + √5) / 2<br/>1.618033988749...
-            </summary>
-            <symbol>φ (phi)</symbol>
-            <theory>https://en.wikipedia.org/wiki/Golden_ratio#Calculation</theory>
-        </member>
-        <member name="T:VDFramework.Utility.MathUtility.MathFunctions">
-            <summary>
-            Provides implementations of mathematical functions
-            </summary>
-        </member>
-        <member name="M:VDFramework.Utility.MathUtility.MathFunctions.CubicRoot(System.Double)">
-            <summary>
-            Returns the cubic root of the given value
-            </summary>
-            <math>³√x</math>
-        </member>
-        <member name="M:VDFramework.Utility.MathUtility.MathFunctions.CubicRoot(System.Numerics.Complex)">
-            <summary>
-            Returns the cubic root of the given complex number
-            </summary>
-            <math>³√x</math>
-        </member>
         <member name="T:VDFramework.Utility.MathUtility.MathUtil">
             <summary>
             Static class that contains useful math functions
@@ -6286,6 +6312,20 @@
             Returns the <paramref name="value"/> pingponged between 0 and <paramref name="length"/>
             </summary>
             <returns>The value clamped between 0 and <paramref name="length"/>, where the value is reversed when <paramref name="value"/> exceeds <paramref name="length"/> an odd number of times</returns>
+        </member>
+        <member name="M:VDFramework.Utility.MathUtility.MathUtil.LoopRange(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Returns the <paramref name="value"/> looped between <paramref name="lowerRange"/> and <paramref name="upperRange"/>
+            </summary>
+            <returns>The value looped between <paramref name="lowerRange"/> and <paramref name="upperRange"/></returns>
+            <remarks>Both ranges are inclusive</remarks>
+        </member>
+        <member name="M:VDFramework.Utility.MathUtility.MathUtil.LoopRange(System.Double,System.Double,System.Double)">
+            <summary>
+            Returns the <paramref name="value"/> looped between <paramref name="lowerRange"/> and <paramref name="upperRange"/>
+            </summary>
+            <returns>The value looped between <paramref name="lowerRange"/> and <paramref name="upperRange"/></returns>
+            <remarks>Both ranges are inclusive</remarks>
         </member>
         <member name="T:VDFramework.Utility.MathUtility.NumberUtil">
             <summary>
@@ -6435,6 +6475,17 @@
         </member>
         <member name="M:VDFramework.Utility.RandomUtility.RandomUtil.GetRandom``1(``0[])">
             <inheritdoc cref="M:VDFramework.Utility.RandomUtility.RandomUtil.GetRandom(System.Object[])"/>
+        </member>
+        <member name="T:VDFramework.Utility.SpanUtility.SpanUtil">
+            <summary>
+            Provides utility functions for working with spans
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.SpanUtility.SpanUtil.Insert``1(System.ReadOnlySpan{``0}@,System.Span{``0}@,System.Int32,``0)">
+            <summary>
+            Insert the given object into the span at the given index 
+            </summary>
+            <remarks>Gracefully prevents out of bounds errors by only copying elements until the end of either span is reached</remarks>
         </member>
         <member name="T:VDFramework.Utility.Unsafe.UnsafeUtil">
             <summary>

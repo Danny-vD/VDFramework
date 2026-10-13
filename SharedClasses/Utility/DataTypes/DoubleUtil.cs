@@ -14,6 +14,7 @@ namespace VDFramework.Utility.DataTypes
 		/// Tests whether the given values are very close to eachother (almost equal)
 		/// </summary>
 		/// <reference>https://stackoverflow.com/a/35418564</reference>
+		/// <source>Decompiled code from microsoft (windowsbase)</source>
 		public static bool AreClose(double lhs, double rhs)
 		{
 			// ReSharper disable once CompareOfFloatsByEqualityOperator
@@ -40,7 +41,9 @@ namespace VDFramework.Utility.DataTypes
 		public static bool LessThan(double lhs, double rhs)
 		{
 			if (lhs < rhs)
+			{
 				return !AreClose(lhs, rhs);
+			}
 
 			return false;
 		}
@@ -51,7 +54,9 @@ namespace VDFramework.Utility.DataTypes
 		public static bool GreaterThan(double lhs, double rhs)
 		{
 			if (lhs > rhs)
+			{
 				return !AreClose(lhs, rhs);
+			}
 
 			return false;
 		}
@@ -140,7 +145,9 @@ namespace VDFramework.Utility.DataTypes
 		public static bool AreClose(Point point1, Point point2)
 		{
 			if (AreClose(point1.X, point2.X))
+			{
 				return AreClose(point1.Y, point2.Y);
+			}
 
 			return false;
 		}
@@ -151,7 +158,9 @@ namespace VDFramework.Utility.DataTypes
 		public static bool AreClose(Size size1, Size size2)
 		{
 			if (AreClose(size1.Width, size2.Width))
+			{
 				return AreClose(size1.Height, size2.Height);
+			}
 
 			return false;
 		}
@@ -176,7 +185,9 @@ namespace VDFramework.Utility.DataTypes
 		public static int RoundToInt(double value)
 		{
 			if (value <= 0.0)
+			{
 				return (int)(value - 0.5);
+			}
 
 			return (int)(value + 0.5);
 		}
