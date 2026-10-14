@@ -66,7 +66,7 @@ namespace VDFramework.Utility.MathUtility.VectorMath
 				Vector2 vertex = vertices[^1];
 				Vector2 vertex2 = vertices[0];
 
-				Vector2 projectedPoint = ProjectPointOntoLine(vertex, vertex2, point, true, out _);
+				Vector2 projectedPoint = ProjectPointOntoLineBetweenPoints(vertex, vertex2, point, true, out _);
 				float distanceToProjectedPoint = Vector2.SqrMagnitude(projectedPoint - point);
 
 				if (distanceToProjectedPoint < closestDistanceToEdgePoint)

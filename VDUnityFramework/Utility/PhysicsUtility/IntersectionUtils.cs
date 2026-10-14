@@ -213,12 +213,12 @@ namespace VDFramework.Utility.PhysicsUtility
 
 			for (int i = 1; i < length; i++)
 			{
-				AddIntersectionsToList(lines, vertices[i - 1], vertices[i], true, intersectionPoints);
+				AddIntersectionsToList(lines, vertices[i - 1], vertices[i], true, true, intersectionPoints);
 			}
 
 			if (isPolygon)
 			{
-				AddIntersectionsToList(lines, vertices[length - 1], vertices[0], true, intersectionPoints);
+				AddIntersectionsToList(lines, vertices[length - 1], vertices[0], true, true, intersectionPoints);
 			}
 		}
 
@@ -236,10 +236,8 @@ namespace VDFramework.Utility.PhysicsUtility
 			Vector2 circle2LeftBound = circle2Centre + normal * radius;
 			Vector2 circle2RightBound = circle2Centre - normal * radius;
 
-			AddIntersectionsToList(lines, circle1LeftBound, circle1RightBound, true, intersectionPoints);
-			AddIntersectionsToList(lines, circle1RightBound, circle2RightBound, true, intersectionPoints);
-			AddIntersectionsToList(lines, circle2RightBound, circle2LeftBound, true, intersectionPoints);
-			AddIntersectionsToList(lines, circle2LeftBound, circle1LeftBound, true, intersectionPoints);
+			AddIntersectionsToList(lines, circle1RightBound, circle2RightBound, true, true, intersectionPoints);
+			AddIntersectionsToList(lines, circle2LeftBound, circle1LeftBound, true, true, intersectionPoints);
 
 			float radiusSquared = radius * radius;
 
@@ -361,11 +359,11 @@ namespace VDFramework.Utility.PhysicsUtility
 			return circleCentre + circleToPointNormalised * circleRadius;
 		}
 
-		public static void AddIntersectionsToList(in Span<Line> lines, in Vector2 line2Point1, in Vector2 line2Point2, bool useLineSegment, List<Vector2> intersections)
+		public static void AddIntersectionsToList(in Span<Line> lines, in Vector2 line2Point1, in Vector2 line2Point2, bool useLineSegment, bool intersectAtEndPoint, List<Vector2> intersections)
 		{
 			foreach (Line line in lines)
 			{
-				if (TryGetIntersection(line.Point1, line.Point2, line2Point1, line2Point2, useLineSegment, false, out Vector2 intersection, out _))
+				if (TryGetIntersection(line.Point1, line.Point2, line2Point1, line2Point2, useLineSegment, intersectAtEndPoint, out Vector2 intersection, out _))
 				{
 					intersections.Add(intersection);
 				}

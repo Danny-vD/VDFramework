@@ -3666,6 +3666,23 @@
             Return the absolute value of this vector
             </summary>
         </member>
+        <member name="T:VDFramework.Utility.MathUtility.QuaternionMathUtil">
+            <summary>
+            Contains helper functions for <see cref="T:UnityEngine.Quaternion"/> math
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.MathUtility.QuaternionMathUtil.IsApproximate(UnityEngine.Quaternion,UnityEngine.Quaternion,System.Single)">
+            <summary>
+            Checks if two quaternions are approximately the same
+            </summary>
+            <param name="lhs">The first quaternion to compare</param>
+            <param name="rhs">The second quaternion to compare</param>
+            <param name="precision">
+            <para>An acceptable range for quaternions to still be counted as equal</para>
+            <para>0.1 degree difference is a difference of 0.0000004f</para>
+            </param>
+            <credit>https://discussions.unity.com/t/how-do-i-compare-quaternions/47274/6</credit>
+        </member>
         <member name="T:VDFramework.Utility.MathUtility.Shapes.BoundsUtils">
             <summary>
             Provides helper functions for the <see cref="T:UnityEngine.Bounds"/> struct
@@ -3679,6 +3696,52 @@
             <param name="point">The point to test against the bounds</param>
             <param name="acceptPointOnEdge">If true, the function will return true if the point is on the edge of the bounds</param>
             <returns>TRUE or FALSE depending on if the given point falls within the bounds</returns>
+        </member>
+        <member name="T:VDFramework.Utility.MathUtility.Shapes.ConeUtils">
+            <summary>
+            Provides helper functions for working with cones
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.MathUtility.Shapes.ConeUtils.GetConeEndPoints(UnityEngine.Vector2@,UnityEngine.Vector2@,System.Single,System.Single,UnityEngine.Vector2@,UnityEngine.Vector2@)">
+            <summary>
+            Calculate the endpoints of the cone based on pre-calculated properties
+            </summary>
+            <seealso cref="M:VDFramework.Utility.MathUtility.Shapes.ConeUtils.CalculateConeEndPointProperties(System.Single,System.Single,System.Single@,System.Single@,System.Single@,System.Single@,System.Single@)"/>
+        </member>
+        <member name="M:VDFramework.Utility.MathUtility.Shapes.ConeUtils.CalculateConeEndPointProperties(System.Single,System.Single,System.Single@,System.Single@,System.Single@,System.Single@,System.Single@)">
+            <summary>
+            Apply trigonometry to determine where the end points of the cone are and several properties on how to perform a spherecast that covers the entire cone
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.MathUtility.Shapes.ConeUtils.IsPointWithinCone(UnityEngine.Vector2@,UnityEngine.Vector2@,System.Single,System.Single,UnityEngine.Vector2@,System.Single)">
+            <summary>
+            Tests if the given point falls within the cone
+            </summary>
+            <param name="coneOrigin">The origin of the cone</param>
+            <param name="coneDirection">The direction the cone is aiming in (does not need to be normalized)</param>
+            <param name="sqrRange">The square of the range of the cone</param>
+            <param name="halfConeAngleDeg">The angle of the cone in degrees, halved (so the angle from the cone centre to the endpoint)</param>
+            <param name="point">The point to check against the cone</param>
+            <param name="angleTolerance">How many degrees the point is allowed to fall outside of the cone</param>
+        </member>
+        <member name="M:VDFramework.Utility.MathUtility.Shapes.ConeUtils.GetClosestPointsOfObjectsWithinCone(UnityEngine.Vector2@,UnityEngine.Vector2@,System.Single,System.Single,System.ReadOnlySpan{VDFramework.Utility.PhysicsUtility.Structs.Line},System.Collections.Generic.IEnumerable{UnityEngine.Collider2D},UnityEngine.PhysicsShapeGroup2D)">
+            <summary>
+            Go over all <paramref name="colliders"/> and return their closest points in the cone (if they are not in the cone, nothing will be returned for that object)<br/>
+            Works for both convex and concave colliders
+            </summary>
+            <param name="coneOrigin">The origin of the cone</param>
+            <param name="coneDirection">The direction the cone is aiming in (does not need to be normalized)</param>
+            <param name="sqrRange">The square of the range of the cone</param>
+            <param name="halfConeAngleDeg">The angle of the cone in degrees, halved (so the angle from the cone centre to the endpoint)</param>
+            <param name="endPointLines">The 2 directions from the cone origin to the end points</param>
+            <param name="colliders">The colliders to check against the cone</param>
+            <param name="physicsShapeGroup2D">A <see cref="T:UnityEngine.PhysicsShapeGroup2D"/> that will be used to hold the physics shapes of the collider</param>
+            <returns>A collection of GameObjects within the cone and their closest point to the <paramref name="coneOrigin"/> within the cone</returns>
+        </member>
+        <member name="T:VDFramework.Utility.MathUtility.Shapes.EllipseUtil">
+            <summary>
+            Provides helper functions for working with an ellipse
+            </summary>
         </member>
         <member name="M:VDFramework.Utility.MathUtility.Shapes.EllipseUtil.IsPointWithinEllipse(UnityEngine.Vector2,System.Single,System.Single,UnityEngine.Vector2,System.Boolean,System.Boolean@)">
             <summary>
@@ -3704,7 +3767,7 @@
         </member>
         <member name="M:VDFramework.Utility.MathUtility.Shapes.EllipseUtil.ProjectPointOntoEllipse(UnityEngine.Vector2,System.Single,System.Single,UnityEngine.Vector2,System.Boolean)">
             <summary>
-            Projects a point onto the ellipse and returns the point on the epplipse, optionally returns the point itself if it is within the ellipse
+            Projects a point onto the ellipse and returns the point on the ellipse, optionally returns the point itself if it is within the ellipse
             </summary>
             <param name="origin">The centre of the ellipse</param>
             <param name="xRadius">The radius of the x side of the ellipse</param>
@@ -3725,16 +3788,42 @@
             <param name="measureDistanceToEdgeIfWithinEllipse">If the point falls within the ellipse, should the distance to the edge be calculated?</param>
             <returns>The distance from the given point to the ellipse</returns>
         </member>
-        <member name="M:VDFramework.Utility.MathUtility.Shapes.PolygonUtil.ProjectPointOntoPolygon2D(UnityEngine.Vector2[],UnityEngine.Vector2,System.Boolean)">
+        <member name="T:VDFramework.Utility.MathUtility.Shapes.PolygonUtils">
             <summary>
-            Projects a point onto the polygon and returns the point on the polygon, optionally returns the point itself if it is within the polygon
+            Provides utility functions for working with polygons
             </summary>
-            <param name="polygon">An array of vertices of the polygon</param>
-            <param name="point">The point to project onto the polygon</param>
-            <param name="returnPointIfWithinPolygon">If the point falls within the polygon, should the point itself be returned?</param>
-            <returns>A point on the edge of the polygon, closest to the given point. Or, optionally, the given point if it falls within the polygon</returns>
         </member>
-        <member name="M:VDFramework.Utility.MathUtility.Shapes.PolygonUtil.ProjectPointOntoPolygon(UnityEngine.Vector3[],UnityEngine.Vector3,System.Boolean)">
+        <member name="M:VDFramework.Utility.MathUtility.Shapes.PolygonUtils.CalculateAreaDouble(System.ReadOnlySpan{UnityEngine.Vector2}@)">
+            <summary>
+            Calculates the Area * 2 of the polygon, this is an in-between step when calculating the area of a polygon
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.MathUtility.Shapes.PolygonUtils.CalculateAreaDouble(System.Collections.Generic.List{UnityEngine.Vector2})">
+            <summary>
+            Calculates the Area * 2 of the polygon, this is an in-between step when calculating the area of a polygon
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.MathUtility.Shapes.PolygonUtils.GetClosestPointInPolygon(System.ReadOnlySpan{UnityEngine.Vector2}@,UnityEngine.Vector2@)">
+            <summary>
+            Returns the point inside the polygon that is closest to the given point or <paramref name="point"/> if the given point is inside the polygon
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.MathUtility.Shapes.PolygonUtils.IsPointInPolygon(System.ReadOnlySpan{UnityEngine.Vector2}@,UnityEngine.Vector2@,System.Boolean@,UnityEngine.Vector2@)">
+            <summary>
+            Test to see if a given point is within a polygon by modifying the polygon and checking if the area increased or decreased.<br/>
+            Additionally it also returns the closest point on the edge of the polygon
+            </summary>
+            <theory>
+            https://www.researchgate.net/publication/335796456_Modified-Polygon_Method_for_Point-in-Polygon_Problem<br/>
+            https://www.researchgate.net/publication/342679727_Enhanced_Modified-Polygon_Method_for_Point-in-_Polygon_Problem
+            </theory>
+        </member>
+        <member name="M:VDFramework.Utility.MathUtility.Shapes.PolygonUtils.DebugDrawPolygon(System.ReadOnlySpan{UnityEngine.Vector2}@,UnityEngine.Color,System.Single,System.Boolean,System.Boolean)">
+            <summary>
+            Draws the polygon using <see cref="M:UnityEngine.Debug.DrawLine(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Color,System.Single,System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.MathUtility.Shapes.PolygonUtils.ProjectPointOntoPolygon(UnityEngine.Vector3[],UnityEngine.Vector3,System.Boolean)">
             <summary>
             Projects a point onto the polygon and returns the point on the polygon, optionally returns the point itself if it is within the polygon
             </summary>
@@ -3762,6 +3851,29 @@
             Provides helper functions to do vector math
             </summary>
         </member>
+        <member name="M:VDFramework.Utility.MathUtility.VectorMath.VectorProjectionUtil.ProjectPointOntoLine(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,System.Boolean,System.Single@)">
+            <summary>
+            Projects a point onto a line and returns the projected point, optionally clamps the returned point to the line
+            </summary>
+            <param name="lineStart">The start point of the line</param>
+            <param name="line">The line to project to</param>
+            <param name="point">The point to project onto the line</param>
+            <param name="ensureReturnedPointIsOnLine">Should the projected point be clamped between the end points of the line?</param>
+            <param name="normalizedValueFromStart">A value that signifies how far away from the start the returned point is, normalized to the length of the line</param>
+            <returns>A point on the line closest to the given point</returns>
+        </member>
+        <member name="M:VDFramework.Utility.MathUtility.VectorMath.VectorProjectionUtil.ProjectPointOntoLineBetweenPoints(UnityEngine.Vector2,UnityEngine.Vector2,UnityEngine.Vector2,System.Boolean,System.Single@)">
+            <summary>
+            Projects a point onto a line and returns the projected point, optionally clamps the returned point to the line
+            </summary>
+            <param name="lineStart">The start point of the line</param>
+            <param name="lineEnd">The end point of the line</param>
+            <param name="point">The point to project onto the line</param>
+            <param name="ensureReturnedPointIsOnLine">Should the projected point be clamped between the end points of the line?</param>
+            <param name="normalizedValueFromStart">A value that signifies how far away from the start the returned point is, normalized to the length of the line</param>
+            <returns>A point on the line closest to the given point</returns>
+            <returns></returns>
+        </member>
         <member name="M:VDFramework.Utility.MathUtility.VectorMath.VectorProjectionUtil.ProjectPointOntoLine(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,System.Boolean,System.Single@)">
             <summary>
             Projects a point onto a line and returns the projected point, optionally clamps the returned point to the line
@@ -3784,6 +3896,21 @@
             <param name="normalizedValueFromStart">A value that signifies how far away from the start the returned point is, normalized to the length of the line</param>
             <returns>A point on the line closest to the given point</returns>
             <returns></returns>
+        </member>
+        <member name="T:VDFramework.Utility.MathUtility.VectorMath.VectorUtils">
+            <summary>
+            Contains utility functions for Vectors
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.MathUtility.VectorMath.VectorUtils.Normalize(UnityEngine.Vector3,System.Single@)">
+            <summary>
+            Normalize the given Vector and return the length as an out-parameter
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.MathUtility.VectorMath.VectorUtils.Normalize(UnityEngine.Vector2,System.Single@)">
+            <summary>
+            Normalize the given Vector and return the length as an out-parameter
+            </summary>
         </member>
         <member name="T:VDFramework.Utility.MathUtility.LinearInterpolationUtil">
             <summary>
@@ -3810,81 +3937,47 @@
             Provides the % between a and b at value
             </summary>
         </member>
-        <member name="T:VDFramework.Utility.MathUtility.MathConstants">
-            <summary>
-            Contains constants used for mathematical operations
-            </summary>
-        </member>
-        <member name="F:VDFramework.Utility.MathUtility.MathConstants.THIRD">
-            <summary>
-            The constant 1/3
-            </summary>
-        </member>
-        <member name="F:VDFramework.Utility.MathUtility.MathConstants.GoldenRatio">
-            <summary>
-            The 'extreme and mean ratio' or 'divine proportion' calculated as<br/>(1 + √5) / 2<br/>1.618033988749...
-            </summary>
-            <symbol>φ (phi)</symbol>
-            <theory>https://en.wikipedia.org/wiki/Golden_ratio#Calculation</theory>
-        </member>
-        <member name="T:VDFramework.Utility.MathUtility.MathFunctions">
-            <summary>
-            Provides implementations of mathematical functions
-            </summary>
-        </member>
-        <member name="M:VDFramework.Utility.MathUtility.MathFunctions.CubicRoot(System.Double)">
-            <summary>
-            Returns the cubic root of the given value
-            </summary>
-            <math>³√x</math>
-        </member>
-        <member name="M:VDFramework.Utility.MathUtility.MathFunctions.CubicRoot(System.Numerics.Complex)">
-            <summary>
-            Returns the cubic root of the given complex number
-            </summary>
-            <math>³√x</math>
-        </member>
-        <member name="T:VDFramework.Utility.MathUtility.MathUtil">
+        <member name="T:VDFramework.Utility.MathUtility.MathUtils">
             <summary>
             Static class that contains useful math functions
             </summary>
         </member>
-        <member name="M:VDFramework.Utility.MathUtility.MathUtil.GetSignFactor(System.Single)">
+        <member name="M:VDFramework.Utility.MathUtility.MathUtils.GetSignFactor(System.Single)">
             <summary>
             Returns a number depending on the sign of the input
             </summary>
             <returns>negative: -1 | zero: 0 | positive: 1</returns>
         </member>
-        <member name="M:VDFramework.Utility.MathUtility.MathUtil.GetYCoordinateOnCurve(System.Single,System.Single,System.Single)">
+        <member name="M:VDFramework.Utility.MathUtility.MathUtils.GetYCoordinateOnCurve(System.Single,System.Single,System.Single)">
             <summary>
             Get the Y coordinate of a 2D curve that crosses y = 0 at [0,0] and [distance,0] with a maxY of height
             </summary>
         </member>
-        <member name="M:VDFramework.Utility.MathUtility.MathUtil.GetXCoordinatesOnCurve(System.Single,System.Single,System.Single)">
+        <member name="M:VDFramework.Utility.MathUtility.MathUtils.GetXCoordinatesOnCurve(System.Single,System.Single,System.Single)">
             <summary>
             Get the X coordinates of a 2D curve that crosses y = 0 at [0,0] and [distance,0] with a maxY of height
             </summary>
         </member>
-        <member name="M:VDFramework.Utility.MathUtility.MathUtil.DivRem(System.Single,System.Single,System.Single@)">
+        <member name="M:VDFramework.Utility.MathUtility.MathUtils.DivRem(System.Single,System.Single,System.Single@)">
             <summary>
             The same as <see cref="M:System.Math.DivRem(System.Int32,System.Int32,System.Int32@)"/> but then using floats
             </summary>
             <returns>The result of <code>lhs / rhs</code> as an integer (floored)</returns>
         </member>
-        <member name="M:VDFramework.Utility.MathUtility.MathUtil.PingPong(System.Single,System.Single)">
+        <member name="M:VDFramework.Utility.MathUtility.MathUtils.PingPong(System.Single,System.Single)">
             <summary>
             Returns the <paramref name="value"/> pingponged between 0 and <paramref name="length"/>
             </summary>
             <returns>The value clamped between 0 and <paramref name="length"/>, where the value is reversed when <paramref name="value"/> exceeds <paramref name="length"/> an odd number of times</returns>
         </member>
-        <member name="M:VDFramework.Utility.MathUtility.MathUtil.LoopRange(System.Int32,System.Int32,System.Int32)">
+        <member name="M:VDFramework.Utility.MathUtility.MathUtils.LoopRange(System.Int32,System.Int32,System.Int32)">
             <summary>
             Returns the <paramref name="value"/> looped between <paramref name="lowerRange"/> and <paramref name="upperRange"/>
             </summary>
             <returns>The value looped between <paramref name="lowerRange"/> and <paramref name="upperRange"/></returns>
             <remarks>Both ranges are inclusive</remarks>
         </member>
-        <member name="M:VDFramework.Utility.MathUtility.MathUtil.LoopRange(System.Double,System.Double,System.Double)">
+        <member name="M:VDFramework.Utility.MathUtility.MathUtils.LoopRange(System.Double,System.Double,System.Double)">
             <summary>
             Returns the <paramref name="value"/> looped between <paramref name="lowerRange"/> and <paramref name="upperRange"/>
             </summary>
@@ -3948,29 +4041,77 @@
             https://en.wikipedia.org/wiki/Least_common_multiple
             </theory>
         </member>
-        <member name="T:VDFramework.Utility.QuaternionMathUtil">
+        <member name="T:VDFramework.Utility.PhysicsUtility.IntersectionUtils">
             <summary>
-            Contains helper functions for <see cref="T:UnityEngine.Quaternion"/> math
+            Provides helper functions to get the intersection points with given shapes
             </summary>
         </member>
-        <member name="M:VDFramework.Utility.QuaternionMathUtil.IsApproximate(UnityEngine.Quaternion,UnityEngine.Quaternion,System.Single)">
+        <member name="M:VDFramework.Utility.PhysicsUtility.IntersectionUtils.TryGetIntersection(UnityEngine.Vector2@,UnityEngine.Vector2@,UnityEngine.Vector2@,UnityEngine.Vector2@,System.Boolean,System.Boolean,UnityEngine.Vector2@,System.Single@)">
             <summary>
-            Checks if two quaternions are approximately the same
+            Find the intersection between 2 lines
             </summary>
-            <param name="lhs">The first quaternion to compare</param>
-            <param name="rhs">The second quaternion to compare</param>
-            <param name="precision">
-            <para>An acceptable range for quaternions to still be counted as equal</para>
-            <para>0.1 degree difference is a difference of 0.0000004f</para>
-            </param>
-            <credit>https://discussions.unity.com/t/how-do-i-compare-quaternions/47274/6</credit>
+            <param name="line1Point1">The first point on line 1, or the start of the line segment</param>
+            <param name="line1Point2">The second point on line 1, or the end of the line segment</param>
+            <param name="line2Point1">The first point on line 2, or the start of the line segment</param>
+            <param name="line2Point2">The second point on line 2, or the end of the line segment</param>
+            <param name="useLineSegments">If true, the lines will be treated as line-segments. An intersection outside of the lines will return false</param>
+            <param name="intersectAtEndPoints">If false, the function will return false if the intersection is exactly at the end of a line. Only applicable with <paramref name="useLineSegments"/>=true</param>
+            <param name="intersection">The point of the intersection between the lines or <see cref="F:System.Single.NaN"/> if no intersection is found (even when using line segments, this still returns the point of the intersection of infinite lines)</param>
+            <param name="normalizedDistanceLine1">The normalized distance along line 1 towards the intersection or <see cref="F:System.Single.NaN"/> if no intersection is found</param>
+            <returns>Whether the 2 lines intersect</returns>
         </member>
-        <member name="T:VDFramework.Utility.ArrayUtility.ArrayUtil">
+        <member name="M:VDFramework.Utility.PhysicsUtility.IntersectionUtils.AddAllIntersectPointsWithCollider(System.ReadOnlySpan{VDFramework.Utility.PhysicsUtility.Structs.Line}@,UnityEngine.Collider2D,UnityEngine.PhysicsShapeGroup2D,UnityEngine.Vector2,System.Collections.Generic.List{UnityEngine.Vector2},System.Collections.Generic.List{UnityEngine.Vector2})">
+            <summary>
+            Determine all intersection points between <paramref name="lines"/> and <paramref name="collider"/> and add them to the <paramref name="intersectionPoints"/> lists<br/>
+            Also determine the closest points on every physics shape to <paramref name="referencePoint"/> and return those in <paramref name="closestPoints"/><br/>
+            Both lists will be sorted by distance to <paramref name="referencePoint"/> (closest first)
+            </summary>
+            <param name="lines">The lines to check against the collider</param>
+            <param name="collider">The collider to check against</param>
+            <param name="physicsShapeGroup2D">A <see cref="T:UnityEngine.PhysicsShapeGroup2D"/> that will be used to hold the physics shapes of the collider</param>
+            <param name="referencePoint">A point used to sort the intersections by distance and to determine the closest point</param>
+            <param name="intersectionPoints">All intersection points with the collider, sorted so that the closest points (to <paramref name="referencePoint"/>) are first in the list</param>
+            <param name="closestPoints">The closest point on every physics shape, sorted so that the closest points (to <paramref name="referencePoint"/>) are first in the list</param>
+        </member>
+        <member name="M:VDFramework.Utility.PhysicsUtility.IntersectionUtils.AddIntersectionPointsCircle(System.Collections.Generic.List{UnityEngine.Vector2},System.Span{VDFramework.Utility.PhysicsUtility.Structs.Line}@,UnityEngine.Vector2@,System.Single)">
+            <summary>
+            Gets the intersection point between the given lines and the circle and adds them to the <paramref name="intersectionPoints"/> list
+            </summary>
+            <credits>https://stackoverflow.com/a/1084899</credits>
+        </member>
+        <member name="T:VDFramework.Utility.PhysicsUtility.Structs.Line">
+            <summary>
+            A simple struct that represents a line by holding 2 points
+            </summary>
+        </member>
+        <member name="P:VDFramework.Utility.PhysicsUtility.Structs.Line.Point1">
+            <summary>
+            The first point on the line, or the start of the line segment
+            </summary>
+        </member>
+        <member name="P:VDFramework.Utility.PhysicsUtility.Structs.Line.Point2">
+            <summary>
+            The second point on the line, or the end of the line segment
+            </summary>
+        </member>
+        <member name="P:VDFramework.Utility.PhysicsUtility.Structs.Line.LineVector">
+            <summary>
+            Get the vector from <see cref="P:VDFramework.Utility.PhysicsUtility.Structs.Line.Point1"/> towards <see cref="P:VDFramework.Utility.PhysicsUtility.Structs.Line.Point2"/>
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.PhysicsUtility.Structs.Line.#ctor(UnityEngine.Vector2,UnityEngine.Vector2)">
+            <summary>
+            Create a new line with the given points
+            </summary>
+            <param name="linePoint1">The first point on the line, or the start of the line segment</param>
+            <param name="linePoint2">The second point on the line, or the end of the line segment</param>
+        </member>
+        <member name="T:VDFramework.Utility.ArrayUtility.ArrayUtils">
             <summary>
             Contains utility functions for arrays
             </summary>
         </member>
-        <member name="M:VDFramework.Utility.ArrayUtility.ArrayUtil.MirrorYAxisOfArray(System.Byte[],System.Int32)">
+        <member name="M:VDFramework.Utility.ArrayUtility.ArrayUtils.MirrorYAxisOfArray(System.Byte[],System.Int32)">
             <summary>
             <para>Mirrors the y-axis of the array</para>
             <para>This function mirrors the y axis (rows) of the 2d data represented by the given byte[]</para>
@@ -3989,6 +4130,7 @@
             Tests whether the given values are very close to eachother (almost equal)
             </summary>
             <reference>https://stackoverflow.com/a/35418564</reference>
+            <source>Decompiled code from microsoft (windowsbase)</source>
         </member>
         <member name="M:VDFramework.Utility.DataTypes.DoubleUtil.LessThan(System.Double,System.Double)">
             <summary>
@@ -4432,6 +4574,17 @@
         </member>
         <member name="M:VDFramework.Utility.RandomUtility.RandomUtil.GetRandom``1(``0[])">
             <inheritdoc cref="M:VDFramework.Utility.RandomUtility.RandomUtil.GetRandom(System.Object[])"/>
+        </member>
+        <member name="T:VDFramework.Utility.SpanUtility.SpanUtil">
+            <summary>
+            Provides utility functions for working with spans
+            </summary>
+        </member>
+        <member name="M:VDFramework.Utility.SpanUtility.SpanUtil.Insert``1(System.ReadOnlySpan{``0}@,System.Span{``0}@,System.Int32,``0)">
+            <summary>
+            Insert the given object into the span at the given index 
+            </summary>
+            <remarks>Gracefully prevents out of bounds errors by only copying elements until the end of either span is reached</remarks>
         </member>
         <member name="T:VDFramework.Utility.Unsafe.UnsafeUtil">
             <summary>
@@ -5298,6 +5451,16 @@
             Contains utility functions for Span
             </summary>
         </member>
+        <member name="M:VDFramework.Extensions.SpanExtensions.ToList``1(System.ReadOnlySpan{``0})">
+            <summary>
+            Turn this Span into a list (allocates memory!)
+            </summary>
+        </member>
+        <member name="M:VDFramework.Extensions.SpanExtensions.ToList``1(System.Span{``0})">
+            <summary>
+            Turn this Span into a list (allocates memory!)
+            </summary>
+        </member>
         <member name="T:VDFramework.Extensions.StringExtensions">
             <summary>
             Contains extension methods for <see cref="T:System.String"/>
@@ -5795,6 +5958,45 @@
         </member>
         <member name="M:VDFramework.LootTables.WeightedLootTable`1.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc />
+        </member>
+        <member name="T:VDFramework.Maths.MathConstants">
+            <summary>
+            Contains constants used for mathematical operations
+            </summary>
+        </member>
+        <member name="F:VDFramework.Maths.MathConstants.THIRD">
+            <summary>
+            The constant 1/3
+            </summary>
+        </member>
+        <member name="F:VDFramework.Maths.MathConstants.GoldenRatio">
+            <summary>
+            The 'extreme and mean ratio' or 'divine proportion' calculated as<br/>(1 + √5) / 2<br/>1.618033988749...
+            </summary>
+            <symbol>φ (phi)</symbol>
+            <theory>https://en.wikipedia.org/wiki/Golden_ratio#Calculation</theory>
+        </member>
+        <member name="F:VDFramework.Maths.MathConstants.SQRT_HALF">
+            <summary>
+            The square root of 0.5
+            </summary>
+        </member>
+        <member name="T:VDFramework.Maths.MathFunctions">
+            <summary>
+            Provides implementations of mathematical functions
+            </summary>
+        </member>
+        <member name="M:VDFramework.Maths.MathFunctions.CubicRoot(System.Double)">
+            <summary>
+            Returns the cubic root of the given value
+            </summary>
+            <math>³√x</math>
+        </member>
+        <member name="M:VDFramework.Maths.MathFunctions.CubicRoot(System.Numerics.Complex)">
+            <summary>
+            Returns the cubic root of the given complex number
+            </summary>
+            <math>³√x</math>
         </member>
         <member name="T:VDFramework.ObserverPattern.Constants.Priority">
             <summary>

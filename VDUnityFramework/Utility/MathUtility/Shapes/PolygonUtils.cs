@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using VDFramework.Extensions;
 using VDFramework.Utility.DataTypes;
 using VDFramework.Utility.MathUtility.VectorMath;
 using VDFramework.Utility.PhysicsUtility;
@@ -133,7 +132,7 @@ namespace VDFramework.Utility.MathUtility.Shapes
 				Vector2 vertex = vertices[i];
 				Vector2 vertex2 = vertices[nextIndex];
 
-				Vector2 projectedPoint = VectorProjectionUtil.ProjectPointOntoLine(vertex, vertex2, point, true, out _);
+				Vector2 projectedPoint = VectorProjectionUtil.ProjectPointOntoLineBetweenPoints(vertex, vertex2, point, true, out _);
 				float distanceToProjectedPoint = Vector2.SqrMagnitude(projectedPoint - point);
 
 				if (distanceToProjectedPoint < closestDistanceToEdgePoint)

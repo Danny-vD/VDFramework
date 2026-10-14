@@ -89,6 +89,12 @@ namespace VDFramework.Utility.MathUtility.Shapes
 		/// <summary>
 		/// Tests if the given point falls within the cone
 		/// </summary>
+		/// <param name="coneOrigin">The origin of the cone</param>
+		/// <param name="coneDirection">The direction the cone is aiming in (does not need to be normalized)</param>
+		/// <param name="sqrRange">The square of the range of the cone</param>
+		/// <param name="halfConeAngleDeg">The angle of the cone in degrees, halved (so the angle from the cone centre to the endpoint)</param>
+		/// <param name="point">The point to check against the cone</param>
+		/// <param name="angleTolerance">How many degrees the point is allowed to fall outside of the cone</param>
 		public static bool IsPointWithinCone(in Vector2 coneOrigin, in Vector2 coneDirection, float sqrRange, float halfConeAngleDeg, in Vector2 point, float angleTolerance = 0.05f)
 		{
 			Vector2 coneToPoint = point - coneOrigin;
@@ -119,15 +125,15 @@ namespace VDFramework.Utility.MathUtility.Shapes
 		/// Works for both convex and concave colliders
 		/// </summary>
 		/// <param name="coneOrigin">The origin of the cone</param>
-		/// <param name="coneDirection">The direction the cone is aiming in</param>
+		/// <param name="coneDirection">The direction the cone is aiming in (does not need to be normalized)</param>
 		/// <param name="sqrRange">The square of the range of the cone</param>
-		/// <param name="halfAngleDeg">The angle of the cone in degrees, halved (so the angle from the cone centre to the endpoint)</param>
+		/// <param name="halfConeAngleDeg">The angle of the cone in degrees, halved (so the angle from the cone centre to the endpoint)</param>
 		/// <param name="endPointLines">The 2 directions from the cone origin to the end points</param>
 		/// <param name="colliders">The colliders to check against the cone</param>
 		/// <param name="physicsShapeGroup2D">A <see cref="PhysicsShapeGroup2D"/> that will be used to hold the physics shapes of the collider</param>
 		/// <returns>A collection of GameObjects within the cone and their closest point to the <paramref name="coneOrigin"/> within the cone</returns>
 		[Pure]
-		public static ValueTuple<GameObject, Vector2>[] GetClosestPointsOfObjectsWithinCone(in Vector2 coneOrigin, in Vector2 coneDirection, float sqrRange, float halfAngleDeg, ReadOnlySpan<Line> endPointLines, IEnumerable<Collider2D> colliders, PhysicsShapeGroup2D physicsShapeGroup2D)
+		public static ValueTuple<GameObject, Vector2>[] GetClosestPointsOfObjectsWithinCone(in Vector2 coneOrigin, in Vector2 coneDirection, float sqrRange, float halfConeAngleDeg, ReadOnlySpan<Line> endPointLines, IEnumerable<Collider2D> colliders, PhysicsShapeGroup2D physicsShapeGroup2D)
 		{
 			List<ValueTuple<GameObject, Vector2>> hitsInsideCone = new List<ValueTuple<GameObject, Vector2>>();
 
@@ -141,7 +147,7 @@ namespace VDFramework.Utility.MathUtility.Shapes
 				
 				Vector2 closestPoint = collider.ClosestPoint(coneOrigin);
 
-				if (!IsPointWithinCone(coneOrigin, coneDirection, sqrRange, halfAngleDeg, closestPoint)) // Try the closest point first
+				if (!IsPointWithinCone(coneOrigin, coneDirection, sqrRange, halfConeAngleDeg, closestPoint)) // Try the closest point first
 				{
 					IntersectionUtils.AddAllIntersectPointsWithCollider(endPointLines, collider, physicsShapeGroup2D, coneOrigin, coneIntersectionPoints, closestPoints);
 
@@ -149,7 +155,7 @@ namespace VDFramework.Utility.MathUtility.Shapes
 
 					foreach (Vector2 point in closestPoints)
 					{
-						if (IsPointWithinCone(coneOrigin, coneDirection, sqrRange, halfAngleDeg, point))
+						if (IsPointWithinCone(coneOrigin, coneDirection, sqrRange, halfConeAngleDeg, point))
 						{
 							closestPoint = point;
 
