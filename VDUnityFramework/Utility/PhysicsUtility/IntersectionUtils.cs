@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Linq;
 using Unity.Collections;
 using UnityEngine;
 using VDFramework.Utility.DataTypes;
@@ -86,29 +84,28 @@ namespace VDFramework.Utility.PhysicsUtility
 		}
 
 		/// <summary>
-		/// 
+		/// Determine all intersection points between <paramref name="lines"/> and <paramref name="collider"/> and add them to the <paramref name="intersectionPoints"/> lists<br/>
+		/// Also determine the closest points on every physics shape to <paramref name="referencePoint"/> and return those in <paramref name="closestPoints"/><br/>
+		/// Both lists will be sorted by distance to <paramref name="referencePoint"/> (closest first)
 		/// </summary>
-		/// <param name="lines"></param>
-		/// <param name="collider"></param>
-		/// <param name="physicsShapeGroup2D"></param>
-		/// <param name="referencePoint"></param>
-		/// <param name="closestPoints">The closest point on every physics shape, sorted so that the closest points (to <paramref name="referencePoint"/>) are first in the array</param>
-		/// <returns>All intersection points with the collider, sorted so that the closest points (to <paramref name="referencePoint"/>) are first in the array</returns>
-		[Pure]
-		public static Vector2[] GetAllIntersectPointsWithCollider(in ReadOnlySpan<Line> lines, Collider2D collider, PhysicsShapeGroup2D physicsShapeGroup2D, Vector2 referencePoint, out Vector2[] closestPoints)
+		/// <param name="lines">The lines to check against the collider</param>
+		/// <param name="collider">The collider to check against</param>
+		/// <param name="physicsShapeGroup2D">A <see cref="PhysicsShapeGroup2D"/> that will be used to hold the physics shapes of the collider</param>
+		/// <param name="referencePoint">A point used to sort the intersections by distance and to determine the closest point</param>
+		/// <param name="intersectionPoints">All intersection points with the collider, sorted so that the closest points (to <paramref name="referencePoint"/>) are first in the list</param>
+		/// <param name="closestPoints">The closest point on every physics shape, sorted so that the closest points (to <paramref name="referencePoint"/>) are first in the list</param>
+		public static void AddAllIntersectPointsWithCollider(in ReadOnlySpan<Line> lines, Collider2D collider, PhysicsShapeGroup2D physicsShapeGroup2D, Vector2 referencePoint, List<Vector2> intersectionPoints, List<Vector2> closestPoints)
 		{
-			closestPoints = Array.Empty<Vector2>();
-
 			if (lines.Length == 0)
 			{
-				return Array.Empty<Vector2>();
+				return;
 			}
 
 			int shapeCount = collider.GetShapes(physicsShapeGroup2D);
 
 			if (shapeCount == 0)
 			{
-				return Array.Empty<Vector2>();
+				return;
 			}
 
 			bool isLocalSpace = collider.attachedRigidbody != null; // Has a rigidbody, so the vertices are in local space 
@@ -121,8 +118,8 @@ namespace VDFramework.Utility.PhysicsUtility
 				{
 					Line line = lines[i];
 
-					Vector2 linePoint1Transformed = collider.transform.TransformPoint(line.Point1); // Because the vertices are in local space, we turn our line into local space as well
-					Vector2 linePoint2Transformed = collider.transform.TransformPoint(line.Point2); // This is cheaper than turning every other point into world space (2 operations per line vs however many points)
+					Vector2 linePoint1Transformed = collider.transform.InverseTransformPoint(line.Point1); // Because the vertices are in local space, we turn our line into local space as well
+					Vector2 linePoint2Transformed = collider.transform.InverseTransformPoint(line.Point2); // This is cheaper than turning every vertex into world space (2 operations per line vs however many vertices)
 					transformedLines[i] = new Line(linePoint1Transformed, linePoint2Transformed);
 				}
 			}
@@ -130,10 +127,8 @@ namespace VDFramework.Utility.PhysicsUtility
 			{
 				for (int i = 0; i < transformedLines.Length; i++)
 				{
-					Line line = lines[i];
-
 					// No need to actually transform anything, but by assigning the original we can use the same variable later
-					transformedLines[i] = new Line(line.Point1, line.Point2);
+					transformedLines[i] = lines[i];
 				}
 			}
 
@@ -142,68 +137,77 @@ namespace VDFramework.Utility.PhysicsUtility
 
 			physicsShapeGroup2D.GetShapeData(shapes, vertices);
 
-			List<Vector2> intersectionPoints = new List<Vector2>(2);
-			closestPoints = new Vector2[shapeCount];
+			int intersectionPointsLengthOriginal = intersectionPoints.Count;
+			int closestPointsLengthOriginal = closestPoints.Count;
+
+			ReadOnlySpan<Vector2> allVertices = vertices.AsReadOnlySpan();
 
 			for (int i = 0; i < shapes.Length; i++)
 			{
 				PhysicsShape2D currentShape = shapes[i];
+				ReadOnlySpan<Vector2> shapeVertices = allVertices.Slice(currentShape.vertexStartIndex, currentShape.vertexCount);
 
 				switch (currentShape.shapeType)
 				{
 					case PhysicsShapeType2D.Circle:
-						Vector2 circleCentre = vertices[currentShape.vertexStartIndex];
+						Vector2 circleCentre = shapeVertices[0]; // Circle always has 1 vertex (the centre)
 
-						AddInteresectionPointsCircle(intersectionPoints, transformedLines, circleCentre, currentShape.radius); // Circle always has 1 vertex (the centre)
+						float radiusSquared = currentShape.radius * currentShape.radius;
 
-						closestPoints[i] = GetClosestPointInCircle(referencePoint, circleCentre, currentShape.radius);
+						AddIntersectionPointsCircle(intersectionPoints, transformedLines, circleCentre, radiusSquared);
+
+						closestPoints.Add(GetClosestPointInCircle(referencePoint, circleCentre, radiusSquared, currentShape.radius));
 						break;
 					case PhysicsShapeType2D.Capsule:
-						AddInteresectionPointsCapsule(intersectionPoints, transformedLines, currentShape, vertices, referencePoint, out Vector2 closestPoint);
+						AddIntersectionPointsCapsule(intersectionPoints, transformedLines, shapeVertices, currentShape.radius, referencePoint, out Vector2 closestPoint);
 
-						closestPoints[i] = closestPoint;
+						closestPoints.Add(closestPoint);
 						break;
 					case PhysicsShapeType2D.Polygon:
-						ReadOnlySpan<Vector2> polygonVertices = vertices.AsReadOnlySpan().Slice(currentShape.vertexStartIndex, currentShape.vertexCount);
 
-						AddInteresectionPointsPolygon(intersectionPoints, transformedLines, true, polygonVertices);
-						closestPoints[i] = PolygonUtils.GetClosestPointInPolygon(polygonVertices, referencePoint);
+						AddIntersectionPointsPolygon(intersectionPoints, transformedLines, true, shapeVertices);
+
+						closestPoints.Add(PolygonUtils.GetClosestPointInPolygon(shapeVertices, referencePoint));
 						break;
 					case PhysicsShapeType2D.Edges:
-						ReadOnlySpan<Vector2> edgeVertices = vertices.AsReadOnlySpan().Slice(currentShape.vertexStartIndex, currentShape.vertexCount);
 
-						AddInteresectionPointsPolygon(intersectionPoints, transformedLines, false, edgeVertices);
-						closestPoints[i] = VectorProjectionUtil.ProjectPointOntoPolygonEdge(edgeVertices, referencePoint, false);
+						AddIntersectionPointsPolygon(intersectionPoints, transformedLines, false, shapeVertices);
+
+						closestPoints.Add(VectorProjectionUtil.ProjectPointOntoPolygonEdge(shapeVertices, referencePoint, false));
 						break;
 					default:
-						throw new ArgumentOutOfRangeException();
+						Debug.LogWarning($"Collider {collider.gameObject.name} contains an unknown shape!\nShape index: {i}");
+						break;
 				}
 			}
 
 			shapes.Dispose();
 			vertices.Dispose();
 
-			if (intersectionPoints.Count == 0)
-			{
-				return Array.Empty<Vector2>();
-			}
-
 			if (isLocalSpace)
 			{
-				// Transform the intersection and closest points to world space
-				intersectionPoints = intersectionPoints.Select(point => (Vector2)collider.transform.TransformPoint(point)).ToList();
-				closestPoints      = closestPoints.Select(point => (Vector2)collider.transform.TransformPoint(point)).ToArray();
+				for (int i = intersectionPointsLengthOriginal; i < intersectionPoints.Count; i++) // Only tranform the points that are newly added
+				{
+					intersectionPoints[i] = collider.transform.TransformPoint(intersectionPoints[i]);
+				}
+
+				for (int i = closestPointsLengthOriginal; i < closestPoints.Count; i++) // Only tranform the points that are newly added
+				{
+					closestPoints[i] = collider.transform.TransformPoint(closestPoints[i]);
+				}
 			}
 
-			Comparison<Vector2> closestToPointComparison = (lhs, rhs) => Vector2.SqrMagnitude(referencePoint - lhs).CompareTo(Vector2.SqrMagnitude(referencePoint - rhs));
+			intersectionPoints.Sort(ClosestToPointComparison);
+			closestPoints.Sort(ClosestToPointComparison);
+			return;
 
-			intersectionPoints.Sort(closestToPointComparison);
-			Array.Sort(closestPoints, closestToPointComparison);
-
-			return intersectionPoints.ToArray();
+			int ClosestToPointComparison(Vector2 lhs, Vector2 rhs)
+			{
+				return Vector2.SqrMagnitude(referencePoint - lhs).CompareTo(Vector2.SqrMagnitude(referencePoint - rhs));
+			}
 		}
 
-		private static void AddInteresectionPointsPolygon(List<Vector2> intersectionPoints, in Span<Line> lines, bool isPolygon, in ReadOnlySpan<Vector2> vertices)
+		public static void AddIntersectionPointsPolygon(List<Vector2> intersectionPoints, in Span<Line> lines, bool isPolygon, in ReadOnlySpan<Vector2> vertices)
 		{
 			int length = vertices.Length;
 
@@ -218,36 +222,36 @@ namespace VDFramework.Utility.PhysicsUtility
 			}
 		}
 
-		private static void AddInteresectionPointsCapsule(List<Vector2> intersectionPoints, in Span<Line> lines, in PhysicsShape2D physicsShape, in NativeArray<Vector2> vertices, Vector2 point, out Vector2 closestPoint)
+		public static void AddIntersectionPointsCapsule(List<Vector2> intersectionPoints, in Span<Line> lines, in ReadOnlySpan<Vector2> vertices, float radius, Vector2 point, out Vector2 closestPoint)
 		{
-			int startIndex = physicsShape.vertexStartIndex; // Capsule always has 2 vertices (1 for each circle)
-
-			Vector2 circle1Centre = vertices[startIndex];
-			Vector2 circle2Centre = vertices[startIndex + 1];
+			Vector2 circle1Centre = vertices[0];
+			Vector2 circle2Centre = vertices[1];
 
 			Vector2 capsuleVector = circle2Centre - circle1Centre;
 			Vector2 normal = Vector2.Perpendicular(in capsuleVector).normalized;
 
-			Vector2 circle1LeftBound = circle1Centre + normal * physicsShape.radius;
-			Vector2 circle1RightBound = circle1Centre - normal * physicsShape.radius;
+			Vector2 circle1LeftBound = circle1Centre + normal * radius;
+			Vector2 circle1RightBound = circle1Centre - normal * radius;
 
-			Vector2 circle2LeftBound = circle2Centre + normal * physicsShape.radius;
-			Vector2 circle2RightBound = circle2Centre - normal * physicsShape.radius;
+			Vector2 circle2LeftBound = circle2Centre + normal * radius;
+			Vector2 circle2RightBound = circle2Centre - normal * radius;
 
 			AddIntersectionsToList(lines, circle1LeftBound, circle1RightBound, true, intersectionPoints);
 			AddIntersectionsToList(lines, circle1RightBound, circle2RightBound, true, intersectionPoints);
 			AddIntersectionsToList(lines, circle2RightBound, circle2LeftBound, true, intersectionPoints);
 			AddIntersectionsToList(lines, circle2LeftBound, circle1LeftBound, true, intersectionPoints);
 
-			AddInteresectionPointsCircle(intersectionPoints, lines, circle1Centre, physicsShape.radius);
-			AddInteresectionPointsCircle(intersectionPoints, lines, circle2Centre, physicsShape.radius);
+			float radiusSquared = radius * radius;
+
+			AddIntersectionPointsCircle(intersectionPoints, lines, circle1Centre, radiusSquared);
+			AddIntersectionPointsCircle(intersectionPoints, lines, circle2Centre, radiusSquared);
 
 			Span<Vector2> closestPoints = stackalloc Vector2[2];
 
-			closestPoint = GetClosestPointInCircle(point, circle1Centre, physicsShape.radius);
+			closestPoint = GetClosestPointInCircle(point, circle1Centre, radiusSquared, radius);
 			float sqrDistanceToClosestPoint = Vector2.SqrMagnitude(closestPoint - point);
 
-			closestPoints[0] = GetClosestPointInCircle(point, circle2Centre, physicsShape.radius);
+			closestPoints[0] = GetClosestPointInCircle(point, circle2Centre, radiusSquared, radius);
 
 			ReadOnlySpan<Vector2> boxVertices = stackalloc Vector2[4] { circle1LeftBound, circle1RightBound, circle2RightBound, circle2LeftBound };
 
@@ -271,20 +275,25 @@ namespace VDFramework.Utility.PhysicsUtility
 		/// Gets the intersection point between the given lines and the circle and adds them to the <paramref name="intersectionPoints"/> list
 		/// </summary>
 		/// <credits>https://stackoverflow.com/a/1084899</credits>
-		private static void AddInteresectionPointsCircle(List<Vector2> intersectionPoints, in Span<Line> lines, in Vector2 circleCentre, float radius)
+		public static void AddIntersectionPointsCircle(List<Vector2> intersectionPoints, in Span<Line> lines, in Vector2 circleCentre, float radiusSquared)
 		{
 			foreach (Line line in lines)
 			{
 				Vector2 E = line.Point1;
-				Vector2 L = line.Point2;
 				Vector2 C = circleCentre;
 
-				Vector2 d = L - E;
+				Vector2 d = line.LineVector;
 				Vector2 f = E - C;
 
 				float a = d.sqrMagnitude;
+
+				if (FloatUtil.AreClose(a, 0)) // Cannot intersect with a line with length 0
+				{
+					continue;
+				}
+
 				float b = 2 * Vector2.Dot(f, d);
-				float c = f.sqrMagnitude - radius * radius;
+				float c = f.sqrMagnitude - radiusSquared;
 
 				float discriminant = b * b - 4 * a * c;
 
@@ -322,31 +331,37 @@ namespace VDFramework.Utility.PhysicsUtility
 					intersectionPoints.Add(E + d * t1);
 				}
 
-				// here t1 didn't intersect so we are either started
-				// inside the sphere or completely past it
-				if (t2 is >= 0 and <= 1)
+				if (!FloatUtil.AreClose(discriminant, 0))  // If discriminant == 0 then we hit the edge of the circle (and t1 == t2) so we can skip adding a point for t2
 				{
-					// ExitWound
-					intersectionPoints.Add(E + d * t2);
+					// here t1 didn't intersect so we are either started
+					// inside the sphere or completely past it
+					if (t2 is >= 0 and <= 1)
+					{
+						// ExitWound
+						intersectionPoints.Add(E + d * t2);
+					}
 				}
 
 				// no intn: FallShort, Past, CompletelyInside
 			}
 		}
 
-		private static Vector2 GetClosestPointInCircle(in Vector2 point, in Vector2 circleCentre, float circleRadius)
+		public static Vector2 GetClosestPointInCircle(in Vector2 point, in Vector2 circleCentre, float circleRadiusSquared, float circleRadius)
 		{
-			Vector2 circleToPoint = VectorUtils.Normalize(point - circleCentre, out float distanceToPoint);
+			Vector2 circleToPoint = point - circleCentre;
+			float distanceSquared = circleToPoint.sqrMagnitude;
 
-			if (distanceToPoint < circleRadius)
+			if (distanceSquared < circleRadiusSquared)
 			{
 				return point;
 			}
 
-			return circleCentre + circleToPoint * circleRadius;
+			Vector2 circleToPointNormalised = circleToPoint / Mathf.Sqrt(distanceSquared);
+
+			return circleCentre + circleToPointNormalised * circleRadius;
 		}
 
-		private static void AddIntersectionsToList(in Span<Line> lines, in Vector2 line2Point1, in Vector2 line2Point2, bool useLineSegment, List<Vector2> intersections)
+		public static void AddIntersectionsToList(in Span<Line> lines, in Vector2 line2Point1, in Vector2 line2Point2, bool useLineSegment, List<Vector2> intersections)
 		{
 			foreach (Line line in lines)
 			{

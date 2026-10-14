@@ -114,18 +114,36 @@ namespace VDFramework.Utility.MathUtility.Shapes
 			return true;
 		}
 
+		/// <summary>
+		/// Go over all <paramref name="colliders"/> and return their closest points in the cone (if they are not in the cone, nothing will be returned for that object)<br/>
+		/// Works for both convex and concave colliders
+		/// </summary>
+		/// <param name="coneOrigin">The origin of the cone</param>
+		/// <param name="coneDirection">The direction the cone is aiming in</param>
+		/// <param name="sqrRange">The square of the range of the cone</param>
+		/// <param name="halfAngleDeg">The angle of the cone in degrees, halved (so the angle from the cone centre to the endpoint)</param>
+		/// <param name="endPointLines">The 2 directions from the cone origin to the end points</param>
+		/// <param name="colliders">The colliders to check against the cone</param>
+		/// <param name="physicsShapeGroup2D">A <see cref="PhysicsShapeGroup2D"/> that will be used to hold the physics shapes of the collider</param>
+		/// <returns>A collection of GameObjects within the cone and their closest point to the <paramref name="coneOrigin"/> within the cone</returns>
 		[Pure]
-		public static Tuple<GameObject, Vector2>[] GetClosestPointsOfObjectsWithinCone(in Vector2 coneOrigin, in Vector2 coneDirection, float sqrRange, float halfAngleDeg, ReadOnlySpan<Line> endPointLines, IEnumerable<Collider2D> colliders, PhysicsShapeGroup2D physicsShapeGroup2D)
+		public static ValueTuple<GameObject, Vector2>[] GetClosestPointsOfObjectsWithinCone(in Vector2 coneOrigin, in Vector2 coneDirection, float sqrRange, float halfAngleDeg, ReadOnlySpan<Line> endPointLines, IEnumerable<Collider2D> colliders, PhysicsShapeGroup2D physicsShapeGroup2D)
 		{
-			List<Tuple<GameObject, Vector2>> hitsInsideCone = new List<Tuple<GameObject, Vector2>>();
+			List<ValueTuple<GameObject, Vector2>> hitsInsideCone = new List<ValueTuple<GameObject, Vector2>>();
 
+			List<Vector2> coneIntersectionPoints = new List<Vector2>(); // Allocate once so we can reuse the list
+			List<Vector2> closestPoints = new List<Vector2>();
+			
 			foreach (Collider2D collider in colliders) // Iterate over all possible objects in the cone
 			{
+				coneIntersectionPoints.Clear(); // Clear every time
+				closestPoints.Clear();
+				
 				Vector2 closestPoint = collider.ClosestPoint(coneOrigin);
 
 				if (!IsPointWithinCone(coneOrigin, coneDirection, sqrRange, halfAngleDeg, closestPoint)) // Try the closest point first
 				{
-					Vector2[] coneEdgePoints = IntersectionUtils.GetAllIntersectPointsWithCollider(endPointLines, collider, physicsShapeGroup2D, coneOrigin, out Vector2[] closestPoints);
+					IntersectionUtils.AddAllIntersectPointsWithCollider(endPointLines, collider, physicsShapeGroup2D, coneOrigin, coneIntersectionPoints, closestPoints);
 
 					bool hasClosestPointInCone = false;
 
@@ -140,9 +158,9 @@ namespace VDFramework.Utility.MathUtility.Shapes
 						}
 					}
 
-					if (coneEdgePoints.Length > 0)
+					if (coneIntersectionPoints.Count > 0) // All intersection points are by definition inside the cone, so no need to check
 					{
-						Vector2 closestIntersection = coneEdgePoints[0];
+						Vector2 closestIntersection = coneIntersectionPoints[0];
 
 						if (hasClosestPointInCone)
 						{
@@ -165,7 +183,7 @@ namespace VDFramework.Utility.MathUtility.Shapes
 					}
 				}
 
-				hitsInsideCone.Add(new Tuple<GameObject, Vector2>(collider.gameObject, closestPoint));
+				hitsInsideCone.Add(new ValueTuple<GameObject, Vector2>(collider.gameObject, closestPoint));
 			}
 
 			return hitsInsideCone.ToArray();

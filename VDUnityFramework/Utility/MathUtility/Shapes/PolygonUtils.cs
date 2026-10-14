@@ -180,6 +180,7 @@ namespace VDFramework.Utility.MathUtility.Shapes
 					}
 				}
 
+				// Check if adding a line from the vertex before the closest point to the point would intersect with this polygon side
 				if (!vertexBeforeToPointIntersects)
 				{
 					if (IntersectionUtils.TryGetIntersection(vertexBefore, point, vertex, vertex2, true, false, out _, out _))
@@ -191,6 +192,7 @@ namespace VDFramework.Utility.MathUtility.Shapes
 
 			if (!vertexBeforeToPointIntersects)
 			{
+				// VertexBefore was modified, so we check all the polygon sides up until the point it was modified
 				for (int i = 0; i < vertexAtIntersection; i++)
 				{
 					if (IntersectionUtils.TryGetIntersection(vertexBefore, point, vertices[i], vertices[i + 1], true, false, out _, out _))
