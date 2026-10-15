@@ -17,11 +17,13 @@ namespace VDFramework.Utility.MathUtility.Shapes
 		/// Calculate the endpoints of the cone based on pre-calculated properties
 		/// </summary>
 		/// <seealso cref="CalculateConeEndPointProperties"/>
-		public static void GetConeEndPoints(in Vector2 coneOrigin, in Vector2 aimDirection, float distanceConeOriginToEndPointMiddle, float distanceConeMiddleToEndPoint, out Vector2 endPoint1, out Vector2 endPoint2)
+		public static void GetConeEndPoints(in Vector2 coneOrigin, in Vector2 coneDirection, float distanceConeOriginToEndPointMiddle, float distanceConeMiddleToEndPoint, out Vector2 endPoint1, out Vector2 endPoint2)
 		{
-			Vector2 aimNormal = Vector2.Perpendicular(in aimDirection).normalized;
+			Vector2 coneDirectionNormalised = coneDirection.normalized;
+            
+			Vector2 aimNormal = Vector2.Perpendicular(in coneDirectionNormalised);
 
-			Vector2 endPointCentre = coneOrigin + (aimDirection * distanceConeOriginToEndPointMiddle);
+			Vector2 endPointCentre = coneOrigin + (coneDirectionNormalised * distanceConeOriginToEndPointMiddle);
 
 			endPoint1 = endPointCentre + aimNormal * distanceConeMiddleToEndPoint;
 			endPoint2 = endPointCentre - aimNormal * distanceConeMiddleToEndPoint;
@@ -139,12 +141,12 @@ namespace VDFramework.Utility.MathUtility.Shapes
 
 			List<Vector2> coneIntersectionPoints = new List<Vector2>(); // Allocate once so we can reuse the list
 			List<Vector2> closestPoints = new List<Vector2>();
-			
+
 			foreach (Collider2D collider in colliders) // Iterate over all possible objects in the cone
 			{
 				coneIntersectionPoints.Clear(); // Clear every time
 				closestPoints.Clear();
-				
+
 				Vector2 closestPoint = collider.ClosestPoint(coneOrigin);
 
 				if (!IsPointWithinCone(coneOrigin, coneDirection, sqrRange, halfConeAngleDeg, closestPoint)) // Try the closest point first
@@ -193,6 +195,37 @@ namespace VDFramework.Utility.MathUtility.Shapes
 			}
 
 			return hitsInsideCone.ToArray();
+		}
+
+		/// <summary>
+		/// Draws the cone using <see cref="Debug.DrawLine(Vector3, Vector3, Color, float, bool)"/> and 
+		/// </summary>
+		/// <seealso cref="GetConeEndPoints"/>
+		public static void DebugDrawCone(Vector2 coneOrigin,     float angleDegrees,   float range,      Vector2 endPoint1, Vector2 endPoint2,
+			Color                                endPoint1Color, Color endPoint2Color, Color coneColour, float   duration,  bool    depthTest, float rayCount = 9)
+		{
+			Debug.DrawLine(coneOrigin, endPoint1, endPoint1Color, duration, depthTest);
+			Debug.DrawLine(coneOrigin, endPoint2, endPoint2Color, duration, depthTest);
+
+			if (rayCount <= 0)
+			{
+				return;
+			}
+
+			Vector3 endPoint2Direction = endPoint2 - coneOrigin;
+
+			float delta = angleDegrees / (rayCount + 1);
+			float rotation = 0;
+
+			for (float i = 0; i < rayCount; i++)
+			{
+				rotation += delta;
+
+				Quaternion rotationQuaternion = Quaternion.Euler(0, 0, rotation);
+
+				Vector3 point = rotationQuaternion * endPoint2Direction; // Positive rotation is counter-clockwise so rotate from point 2
+				Debug.DrawRay(coneOrigin, point.normalized * range, coneColour, duration, depthTest);
+			}
 		}
 	}
 }
