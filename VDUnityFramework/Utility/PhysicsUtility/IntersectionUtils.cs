@@ -236,8 +236,8 @@ namespace VDFramework.Utility.PhysicsUtility
 			Vector2 circle2LeftBound = circle2Centre + normal * radius;
 			Vector2 circle2RightBound = circle2Centre - normal * radius;
 
-			AddIntersectionsToList(lines, circle1RightBound, circle2RightBound, true, true, intersectionPoints);
-			AddIntersectionsToList(lines, circle2LeftBound, circle1LeftBound, true, true, intersectionPoints);
+			AddIntersectionsToList(lines, circle1LeftBound, circle2LeftBound, true, true, intersectionPoints);
+			AddIntersectionsToList(lines, circle2RightBound, circle1RightBound, true, true, intersectionPoints);
 
 			float radiusSquared = radius * radius;
 
@@ -329,7 +329,7 @@ namespace VDFramework.Utility.PhysicsUtility
 					intersectionPoints.Add(E + d * t1);
 				}
 
-				if (!FloatUtil.AreClose(discriminant, 0))  // If discriminant == 0 then we hit the edge of the circle (and t1 == t2) so we can skip adding a point for t2
+				if (!FloatUtil.AreClose(discriminant, 0)) // If discriminant == 0 then we hit the edge of the circle (and t1 == t2) so we can skip adding a point for t2
 				{
 					// here t1 didn't intersect so we are either started
 					// inside the sphere or completely past it

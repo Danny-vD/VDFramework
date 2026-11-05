@@ -20,7 +20,7 @@ namespace VDFramework.Utility.MathUtility.Shapes
 		public static void GetConeEndPoints(in Vector2 coneOrigin, in Vector2 coneDirection, float distanceConeOriginToEndPointMiddle, float distanceConeMiddleToEndPoint, out Vector2 endPoint1, out Vector2 endPoint2)
 		{
 			Vector2 coneDirectionNormalised = coneDirection.normalized;
-            
+
 			Vector2 aimNormal = Vector2.Perpendicular(in coneDirectionNormalised);
 
 			Vector2 endPointCentre = coneOrigin + (coneDirectionNormalised * distanceConeOriginToEndPointMiddle);
@@ -202,7 +202,7 @@ namespace VDFramework.Utility.MathUtility.Shapes
 		/// </summary>
 		/// <seealso cref="GetConeEndPoints"/>
 		public static void DebugDrawCone(Vector2 coneOrigin,     float angleDegrees,   float range,      Vector2 endPoint1, Vector2 endPoint2,
-			Color                                endPoint1Color, Color endPoint2Color, Color coneColour, float   duration,  bool    depthTest, float rayCount = 9)
+			Color                                endPoint1Color, Color endPoint2Color, Color coneColour, float   duration,  bool    depthTest, int rayCount = 9)
 		{
 			Debug.DrawLine(coneOrigin, endPoint1, endPoint1Color, duration, depthTest);
 			Debug.DrawLine(coneOrigin, endPoint2, endPoint2Color, duration, depthTest);
@@ -215,17 +215,102 @@ namespace VDFramework.Utility.MathUtility.Shapes
 			Vector3 endPoint2Direction = endPoint2 - coneOrigin;
 
 			float delta = angleDegrees / (rayCount + 1);
-			float rotation = 0;
 
-			for (float i = 0; i < rayCount; i++)
+			Quaternion rotationQuaternion = Quaternion.Euler(0, 0, delta);
+			Vector3 inBetweenPointDirection = endPoint2Direction.normalized;
+
+			for (int i = 0; i < rayCount; i++)
 			{
-				rotation += delta;
+				// Rotating using quaternions is faster than calculating aSin
+				inBetweenPointDirection = rotationQuaternion * inBetweenPointDirection; // Positive rotation is counter-clockwise so rotate from point 2
 
-				Quaternion rotationQuaternion = Quaternion.Euler(0, 0, rotation);
-
-				Vector3 point = rotationQuaternion * endPoint2Direction; // Positive rotation is counter-clockwise so rotate from point 2
-				Debug.DrawRay(coneOrigin, point.normalized * range, coneColour, duration, depthTest);
+				Debug.DrawRay(coneOrigin, inBetweenPointDirection * range, coneColour, duration, depthTest);
 			}
+		}
+
+		/// <summary>
+		/// Write vertices and triangles to the mesh so that it covers the cone. And add the given amount of extra vertices at the end to create a rounded shape 
+		/// </summary>
+		/// <seealso cref="CalculateConeEndPointProperties"/>
+		/// <remarks>This function already recalculates the normals, but not the tangents. If you intend to use a normal map with the given mesh call <see cref="Mesh.RecalculateTangents()"/> yourself</remarks>
+		public static void WriteConeDataToMesh(Mesh coneMesh, Vector2 coneDirection, float angleDegrees, float range, float distanceConeOriginToEndPointMiddle, float distanceConeMiddleToEndPoint, int extraVerticesAtConeEnd = 9)
+		{
+			GetConeEndPoints(Vector2.zero, coneDirection, distanceConeOriginToEndPointMiddle, distanceConeMiddleToEndPoint, out Vector2 endPoint1Vector2, out Vector2 endPoint2Vector2);
+
+			Vector3 endPoint1 = endPoint1Vector2;
+			Vector3 endPoint2 = endPoint2Vector2;
+
+			if (extraVerticesAtConeEnd < 0) // Prevent going below 0 so the math doesn't break
+			{
+				extraVerticesAtConeEnd = 0;
+			}
+
+			coneMesh.Clear();
+
+			int vertexCount = 3 + extraVerticesAtConeEnd; // The origin + 2 endpoints + any extra vertices
+			Vector3[] vertices = new Vector3[vertexCount];
+
+			int triangleCount = 1 + extraVerticesAtConeEnd; // The original triangle plus 1 for every extra vertex
+			int[] triangles = new int[triangleCount * 3];   // One triangle = 3 indices
+
+			vertices[0] = Vector3.zero;
+			vertices[1] = endPoint1; // The first 2 vertices are always the same
+
+			if (extraVerticesAtConeEnd == 0) // Shortcut to prevent the calculations related to the normalisation and quaternions
+			{
+				vertices[2] = endPoint2;
+
+				triangles[0] = 0;
+				triangles[1] = 1; // Whether we have extra points or not, the first 2 vertices of the first triangle are always the same
+				triangles[2] = 2;
+
+				coneMesh.vertices  = vertices;
+				coneMesh.triangles = triangles;
+
+				return;
+			}
+
+			float delta = angleDegrees / (extraVerticesAtConeEnd + 1);
+
+			Quaternion rotationQuaternion = Quaternion.Euler(0, 0, -delta); // Positive rotation is counter-clockwise, but we need clock-wise for the winding-order to be correct
+			Vector3 inBetweenPointDirection = endPoint1.normalized;         // Because our origin is always 0, the endPoint is by definition also the direction towards the endpoint
+
+			int secondPointIndex = 1;
+			int thirdPointIndex = 2;
+
+			int triangleVertexIndex = 0;
+
+			int lastVertexIndex = vertexCount - 1;
+
+			for (int i = 0; i < triangleCount; i++)
+			{
+				Vector3 thirdPoint;
+
+				if (thirdPointIndex == lastVertexIndex)
+				{
+					thirdPoint = endPoint2;
+				}
+				else
+				{
+					inBetweenPointDirection = rotationQuaternion * inBetweenPointDirection;
+					thirdPoint              = inBetweenPointDirection * range;
+				}
+
+				vertices[thirdPointIndex] = thirdPoint; // Assign the third point of the triangle to the vertex array
+
+				// And then assign the triangle
+				triangles[triangleVertexIndex++] = 0; // Every triangle starts at the origin of the cone
+				triangles[triangleVertexIndex++] = secondPointIndex;
+				triangles[triangleVertexIndex++] = thirdPointIndex;
+
+				secondPointIndex = thirdPointIndex;
+				++thirdPointIndex;
+			}
+
+			coneMesh.vertices  = vertices;
+			coneMesh.triangles = triangles;
+
+			coneMesh.RecalculateNormals();
 		}
 	}
 }
