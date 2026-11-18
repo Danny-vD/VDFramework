@@ -1519,6 +1519,11 @@
             The highest possible priority, should always be first
             </summary>
         </member>
+        <member name="F:VDFramework.ObserverPattern.Constants.Priority.INPUT">
+            <summary>
+            The priority for input (high so it happens before everything else) 
+            </summary>
+        </member>
         <member name="F:VDFramework.ObserverPattern.Constants.Priority.HIGH">
             <summary>
             A higher than default priority

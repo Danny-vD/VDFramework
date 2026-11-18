@@ -14,6 +14,11 @@
 		public const int HIGHEST = int.MaxValue;
 		
 		/// <summary>
+		/// The priority for input (high so it happens before everything else) 
+		/// </summary>
+		public const int INPUT = 5000;
+		
+		/// <summary>
 		/// A higher than default priority
 		/// </summary>
 		public const int HIGH = 100;
@@ -31,7 +36,7 @@
 		/// <summary>
 		/// The priority for UI based systems (low so it can use changes from other systems)
 		/// </summary>
-		public const int UI = -500;
+		public const int UI = -5000;
 		
 		/// <summary>
 		/// The lowest possible priority, should always be last

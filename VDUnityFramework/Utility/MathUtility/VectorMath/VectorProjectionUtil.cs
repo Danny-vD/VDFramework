@@ -103,7 +103,7 @@ namespace VDFramework.Utility.MathUtility.VectorMath
 		/// <param name="ensureReturnedPointIsOnLine">Should the projected point be clamped between the end points of the line?</param>
 		/// <param name="normalizedValueFromStart">A value that signifies how far away from the start the returned point is, normalized to the length of the line</param>
 		/// <returns>A point on the line closest to the given point</returns>
-		public static Vector3 ProjectPointOntoLine(Vector3 lineStart, Vector3 line, Vector3 point, bool ensureReturnedPointIsOnLine, out float normalizedValueFromStart)
+		public static Vector3 ProjectPointOntoLine3D(Vector3 lineStart, Vector3 line, Vector3 point, bool ensureReturnedPointIsOnLine, out float normalizedValueFromStart)
 		{
 			Vector3 normalizedLine = VectorUtils.Normalize(line, out float lineLength);
 			Vector3 lineToPoint = point - lineStart;
@@ -130,7 +130,7 @@ namespace VDFramework.Utility.MathUtility.VectorMath
 		/// <param name="normalizedValueFromStart">A value that signifies how far away from the start the returned point is, normalized to the length of the line</param>
 		/// <returns>A point on the line closest to the given point</returns>
 		/// <returns></returns>
-		public static Vector3 ProjectPointOntoLineBetweenPoints(Vector3 lineStart, Vector3 lineEnd, Vector3 point, bool ensureReturnedPointIsOnLine, out float normalizedValueFromStart)
+		public static Vector3 ProjectPointOntoLineBetweenPoints3D(Vector3 lineStart, Vector3 lineEnd, Vector3 point, bool ensureReturnedPointIsOnLine, out float normalizedValueFromStart)
 		{
 			Vector3 line = lineEnd - lineStart;
 			
