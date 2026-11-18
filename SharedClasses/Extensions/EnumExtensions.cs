@@ -61,7 +61,7 @@ namespace VDFramework.Extensions
 		}
 
 		/// <summary>Determines whether any of the given flags are set in the current instance</summary>
-		/// <param name="enum">The enumeration value to check for flags</param>
+		/// <param name="enum">The enumeration value to check against flag</param>
 		/// <param name="flag">An enumeration value</param>
 		/// <returns>
 		/// <see langword="true"/> if any bit fields that are set in <paramref name="flag" /> are also set in the current instance; otherwise, <see langword="false" />.

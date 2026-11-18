@@ -20,8 +20,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Include="..\SharedClasses\**">
-        <Link>SharedClasses\%(RecursiveDir)\%(extension)</Link>
-      </Compile>
+        <Compile Include="..\SharedClasses\**">
+            <Link>SharedClasses\%(RecursiveDir)\%(extension)</Link>
+        </Compile>
     </ItemGroup>
 </Project>

@@ -819,15 +819,73 @@
         <member name="M:VDFramework.RandomWrapper.SystemRandom.GetPercentage">
             <inheritdoc />
         </member>
+        <member name="T:VDFramework.Singleton.UnitySingleton`1">
+            <summary>
+            A abstract generic implementation of the singleton pattern
+            </summary>
+            <typeparam name="TSingleton">The type to create a singleton of</typeparam>
+        </member>
+        <member name="P:VDFramework.Singleton.UnitySingleton`1.IsInitialised">
+            <summary>
+            Tests if this Singleton has a valid instance
+            </summary>
+        </member>
+        <member name="P:VDFramework.Singleton.UnitySingleton`1.InstanceIfInitialized">
+            <summary>
+            Returns the instance of the singleton, if it was created.<br/>Otherwise, NULL
+            </summary>
+        </member>
+        <member name="P:VDFramework.Singleton.UnitySingleton`1.Instance">
+            <summary>
+            Returns an instance of this Singleton or initializes it if it does not exist yet (lazy-initialisation)
+            </summary>
+        </member>
+        <member name="M:VDFramework.Singleton.UnitySingleton`1.Awake">
+            <Description></Description>
+        </member>
+        <member name="M:VDFramework.Singleton.UnitySingleton`1.ForceInitialise">
+            <summary>
+            Forces the lazy-initialisation if not performed already and returns the instance
+            </summary>
+        </member>
+        <member name="M:VDFramework.Singleton.UnitySingleton`1.DestroyInstance">
+            <summary>
+            Sets the instance of the singleton to null.
+            </summary>
+        </member>
+        <member name="M:VDFramework.Singleton.UnitySingleton`1.OnDestroy">
+            <Description></Description>
+        </member>
         <member name="T:VDFramework.Singleton.Singleton`1">
             <summary>
             A abstract generic implementation of the singleton pattern
             </summary>
             <typeparam name="TSingleton">The type to create a singleton of</typeparam>
         </member>
+        <member name="P:VDFramework.Singleton.Singleton`1.IsInitialised">
+            <summary>
+            Tests if this Singleton has a valid instance
+            </summary>
+        </member>
+        <member name="P:VDFramework.Singleton.Singleton`1.InstanceIfInitialised">
+            <summary>
+            Returns the instance of the singleton, if it was created.<br/>Otherwise, NULL
+            </summary>
+        </member>
         <member name="P:VDFramework.Singleton.Singleton`1.Instance">
             <summary>
-            Returns an instance of this Singleton or initializes it if it does not exist yet (lazy-initialization)
+            Returns an instance of this Singleton or creates one if it does not exist yet (lazy-initialization)
+            </summary>
+        </member>
+        <member name="M:VDFramework.Singleton.Singleton`1.#ctor">
+            <summary>
+            Creates 
+            </summary>
+            <exception cref="T:VDFramework.Exceptions.SingletonViolationException"></exception>
+        </member>
+        <member name="M:VDFramework.Singleton.Singleton`1.ForceInitialise">
+            <summary>
+            Forces the lazy-initaliasation if not performed already and returns the instance
             </summary>
         </member>
         <member name="M:VDFramework.Singleton.Singleton`1.DestroyInstance">
@@ -5255,7 +5313,7 @@
         </member>
         <member name="M:VDFramework.Extensions.EnumExtensions.HasAnyFlag``1(``0,``0)">
             <summary>Determines whether any of the given flags are set in the current instance</summary>
-            <param name="enum">The enumeration value to check for flags</param>
+            <param name="enum">The enumeration value to check against flag</param>
             <param name="flag">An enumeration value</param>
             <returns>
             <see langword="true"/> if any bit fields that are set in <paramref name="flag" /> are also set in the current instance; otherwise, <see langword="false" />.
